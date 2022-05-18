@@ -6,6 +6,8 @@ public class Tester : MonoBehaviour
 {
 	public Stat stat;
 
+	public ResourceStat resource;
+
 	// Start is called before the first frame update
 	void Start()
 	{

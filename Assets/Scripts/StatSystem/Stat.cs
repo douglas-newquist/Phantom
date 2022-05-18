@@ -17,11 +17,15 @@ public class Stat : IStat
 			float old = baseValue;
 			baseValue = value;
 			dirty = true;
-			onBaseValueChanged.Invoke(new ValueChangedEvent(this, old, value));
+			OnBaseValueChanged.Invoke(new ValueChangedEvent(this, old, value));
 		}
 	}
 
-	public UnityEvent<ValueChangedEvent> onBaseValueChanged;
+	public UnityEvent<ValueChangedEvent> OnBaseValueChanged
+	{
+		get => onBaseValueChanged;
+		set => onBaseValueChanged = value;
+	}
 
 	[SerializeField]
 	protected float value = 0;
@@ -35,7 +39,7 @@ public class Stat : IStat
 				float old = baseValue;
 				value = Recalculate();
 				dirty = false;
-				onValueChanged.Invoke(new ValueChangedEvent(this, old, value));
+				OnValueChanged.Invoke(new ValueChangedEvent(this, old, value));
 			}
 
 			return value;
@@ -43,7 +47,14 @@ public class Stat : IStat
 		set => this.value = value;
 	}
 
-	public UnityEvent<ValueChangedEvent> onValueChanged;
+	public UnityEvent<ValueChangedEvent> OnValueChanged
+	{
+		get => onValueChanged;
+		set => onValueChanged = value;
+	}
+
+	[SerializeField]
+	protected UnityEvent<ValueChangedEvent> onBaseValueChanged, onValueChanged;
 
 	public virtual float Recalculate()
 	{
