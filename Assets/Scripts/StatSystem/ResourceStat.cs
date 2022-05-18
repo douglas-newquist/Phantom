@@ -12,7 +12,7 @@ namespace Game
 	}
 
 	[System.Serializable]
-	public class ResourceStat : IResourceStat
+	public class ResourceStat
 	{
 		[SerializeField]
 		protected ResourceMaxChangedMode maxChangedMode = ResourceMaxChangedMode.KeepCurrent;
@@ -20,9 +20,9 @@ namespace Game
 		[SerializeField]
 		protected Stat minimum = new Stat(), maximum = new Stat();
 
-		public IStat Maximum => maximum;
+		public Stat Maximum => maximum;
 
-		public IStat Minimum => minimum;
+		public Stat Minimum => minimum;
 
 		[SerializeField]
 		protected float current;
@@ -58,8 +58,8 @@ namespace Game
 		public ResourceStat()
 		{
 			onCurrentChanged = new UnityEvent<ValueChangedEvent>();
-			minimum.OnValueChanged.AddListener(OnMinChanged);
-			maximum.OnValueChanged.AddListener(OnMaxChanged);
+			Minimum.OnValueChanged.AddListener(OnMinChanged);
+			Maximum.OnValueChanged.AddListener(OnMaxChanged);
 		}
 
 		void OnMaxChanged(ValueChangedEvent change)

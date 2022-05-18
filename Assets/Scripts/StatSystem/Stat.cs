@@ -5,7 +5,7 @@ using UnityEngine.Events;
 namespace Game
 {
 	[System.Serializable]
-	public class Stat : IStat
+	public class Stat
 	{
 		protected bool dirty = true;
 
