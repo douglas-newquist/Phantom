@@ -17,7 +17,7 @@ public class Stat : IStat
 			float old = baseValue;
 			baseValue = value;
 			dirty = true;
-			onBaseValueChanged.Invoke(new ValueChangedEvent(old, value));
+			onBaseValueChanged.Invoke(new ValueChangedEvent(this, old, value));
 		}
 	}
 
@@ -35,7 +35,7 @@ public class Stat : IStat
 				float old = baseValue;
 				value = Recalculate();
 				dirty = false;
-				onValueChanged.Invoke(new ValueChangedEvent(old, value));
+				onValueChanged.Invoke(new ValueChangedEvent(this, old, value));
 			}
 
 			return value;
