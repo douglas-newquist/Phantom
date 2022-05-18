@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Device"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Threading", "Unity.Services.Core.Threading.csproj", "{5b58a726-48ba-68bd-5d60-2e4c6c46372d}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{a1ab2bc3-4e88-22ed-ec9b-2ea84bd2fd40}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.2D.Tilemap.Extras", "Unity.2D.Tilemap.Extras.csproj", "{75bae35e-6890-efa7-c3a9-675021f38a30}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Networking", "Unity.Services.Core.Networking.csproj", "{00b33916-b35b-c59e-c2b1-1ef1e1ae8796}"
@@ -170,6 +172,8 @@ Global
 		{a1277c3e-6517-b8f4-c41b-1fd5e78981f8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5b58a726-48ba-68bd-5d60-2e4c6c46372d}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5b58a726-48ba-68bd-5d60-2e4c6c46372d}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{a1ab2bc3-4e88-22ed-ec9b-2ea84bd2fd40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{a1ab2bc3-4e88-22ed-ec9b-2ea84bd2fd40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75bae35e-6890-efa7-c3a9-675021f38a30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75bae35e-6890-efa7-c3a9-675021f38a30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00b33916-b35b-c59e-c2b1-1ef1e1ae8796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
