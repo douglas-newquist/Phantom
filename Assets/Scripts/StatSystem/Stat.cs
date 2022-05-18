@@ -41,7 +41,7 @@ namespace Game
 			{
 				if (dirty)
 				{
-					float old = baseValue;
+					float old = value;
 					value = Recalculate();
 					dirty = false;
 
@@ -51,7 +51,6 @@ namespace Game
 
 				return value;
 			}
-			set => this.value = value;
 		}
 
 		public UnityEvent<ValueChangedEvent> OnValueChanged

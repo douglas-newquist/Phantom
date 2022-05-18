@@ -14,7 +14,7 @@ namespace Game
 		/// <summary>
 		/// Gets/Sets the current value of this stat after any modifiers
 		/// </summary>
-		float Value { get; set; }
+		float Value { get; }
 
 		UnityEvent<ValueChangedEvent> OnValueChanged { get; set; }
 	}

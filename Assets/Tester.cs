@@ -17,8 +17,10 @@ namespace Game
 			stat.AddModifier(new AdditiveModifier(this, 0, true, 10));
 			Debug.Log(stat.Value);
 			stat.AddModifier(new PercentageModifier(this, 20, true, 0.5f));
-			Debug.Log(stat.Value);
+			//Debug.Log(stat.Value);
 			stat.AddModifier(new MultiplierModifier(this, 10, true, 2));
+			Debug.Log(stat.Value);
+			stat.RemoveModifiersFromSource(this);
 			Debug.Log(stat.Value);
 		}
 
