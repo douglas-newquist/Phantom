@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu()]
-public class TileSO : ScriptableObject
+namespace Game
 {
-	public Sprite[] sprites;
+	[CreateAssetMenu()]
+	public class TileSO : ScriptableObject
+	{
+		public Sprite[] sprites;
 
-	public bool connectsToSelf = false;
+		public bool connectsToSelf = false;
 
-	public TileConnectionSO[] up, down, left, right;
+		public TileConnectionSO[] up, down, left, right;
+	}
 }

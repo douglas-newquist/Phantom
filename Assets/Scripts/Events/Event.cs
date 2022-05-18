@@ -1,14 +1,18 @@
-public class Event
+namespace Game
 {
-	public object Context { get; protected set; }
-
-	public Event(object context)
+	public class Event
 	{
-		Context = context;
+		public object Context { get; protected set; }
+
+		public Event(object context)
+		{
+			Context = context;
+		}
+
+		public override string ToString()
+		{
+			return "Generic Event";
+		}
 	}
 
-	public override string ToString()
-	{
-		return "Generic Event";
-	}
 }

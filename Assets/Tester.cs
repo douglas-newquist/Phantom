@@ -2,27 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tester : MonoBehaviour
+namespace Game
 {
-	public Stat stat;
-
-	public ResourceStat resource;
-
-	// Start is called before the first frame update
-	void Start()
+	public class Tester : MonoBehaviour
 	{
-		//stat.onBaseValueChanged.AddListener(OnChanged);
-		stat.BaseValue = 1;
-	}
+		public Stat stat;
 
-	// Update is called once per frame
-	void Update()
-	{
+		public ResourceStat resource;
 
-	}
+		// Start is called before the first frame update
+		void Start()
+		{
+			//stat.onBaseValueChanged.AddListener(OnChanged);
+			stat.BaseValue = 1;
+		}
 
-	public void OnChanged(ValueChangedEvent e)
-	{
-		Debug.Log(e);
+		// Update is called once per frame
+		void Update()
+		{
+
+		}
+
+		public void OnChanged(ValueChangedEvent e)
+		{
+			Debug.Log(e);
+		}
 	}
 }

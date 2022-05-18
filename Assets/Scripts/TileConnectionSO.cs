@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu()]
-public class TileConnectionSO : ScriptableObject
+namespace Game
 {
+	[CreateAssetMenu()]
+	public class TileConnectionSO : ScriptableObject
+	{
 
+	}
 }

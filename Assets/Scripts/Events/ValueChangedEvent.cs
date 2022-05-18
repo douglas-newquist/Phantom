@@ -1,23 +1,26 @@
 using UnityEngine;
 
-public class ValueChangedEvent : Event
+namespace Game
 {
-	public float Old { get; private set; }
-
-	public float Current { get; private set; }
-
-	public float Delta => Current - Old;
-
-	public float AbsDelta => Mathf.Abs(Delta);
-
-	public ValueChangedEvent(object context, float old, float current) : base(context)
+	public class ValueChangedEvent : Event
 	{
-		Old = old;
-		Current = current;
-	}
+		public float Old { get; private set; }
 
-	public override string ToString()
-	{
-		return string.Format("Value changed from {0} to {1} ({2})", Old, Current, Delta);
+		public float Current { get; private set; }
+
+		public float Delta => Current - Old;
+
+		public float AbsDelta => Mathf.Abs(Delta);
+
+		public ValueChangedEvent(object context, float old, float current) : base(context)
+		{
+			Old = old;
+			Current = current;
+		}
+
+		public override string ToString()
+		{
+			return string.Format("Value changed from {0} to {1} ({2})", Old, Current, Delta);
+		}
 	}
 }

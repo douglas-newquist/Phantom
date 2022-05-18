@@ -1,66 +1,69 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[System.Serializable]
-public class Stat : IStat
+namespace Game
 {
-	private bool dirty = true;
-
-	[SerializeField]
-	protected float baseValue = 0;
-
-	public virtual float BaseValue
+	[System.Serializable]
+	public class Stat : IStat
 	{
-		get => baseValue;
-		set
+		private bool dirty = true;
+
+		[SerializeField]
+		protected float baseValue = 0;
+
+		public virtual float BaseValue
 		{
-			float old = baseValue;
-			baseValue = value;
-			dirty = true;
-			OnBaseValueChanged.Invoke(new ValueChangedEvent(this, old, value));
-		}
-	}
-
-	public UnityEvent<ValueChangedEvent> OnBaseValueChanged
-	{
-		get => onBaseValueChanged;
-		set => onBaseValueChanged = value;
-	}
-
-	[SerializeField]
-	protected float value = 0;
-
-	public virtual float Value
-	{
-		get
-		{
-			if (dirty)
+			get => baseValue;
+			set
 			{
 				float old = baseValue;
-				value = Recalculate();
-				dirty = false;
-				OnValueChanged.Invoke(new ValueChangedEvent(this, old, value));
+				baseValue = value;
+				dirty = true;
+				OnBaseValueChanged.Invoke(new ValueChangedEvent(this, old, value));
 			}
-
-			return value;
 		}
-		set => this.value = value;
-	}
 
-	public UnityEvent<ValueChangedEvent> OnValueChanged
-	{
-		get => onValueChanged;
-		set => onValueChanged = value;
-	}
+		public UnityEvent<ValueChangedEvent> OnBaseValueChanged
+		{
+			get => onBaseValueChanged;
+			set => onBaseValueChanged = value;
+		}
 
-	[SerializeField]
-	protected UnityEvent<ValueChangedEvent> onBaseValueChanged, onValueChanged;
+		[SerializeField]
+		protected float value = 0;
 
-	public virtual float Recalculate()
-	{
-		if (!dirty)
-			return value;
+		public virtual float Value
+		{
+			get
+			{
+				if (dirty)
+				{
+					float old = baseValue;
+					value = Recalculate();
+					dirty = false;
+					OnValueChanged.Invoke(new ValueChangedEvent(this, old, value));
+				}
 
-		return BaseValue;
+				return value;
+			}
+			set => this.value = value;
+		}
+
+		public UnityEvent<ValueChangedEvent> OnValueChanged
+		{
+			get => onValueChanged;
+			set => onValueChanged = value;
+		}
+
+		[SerializeField]
+		protected UnityEvent<ValueChangedEvent> onBaseValueChanged, onValueChanged;
+
+		public virtual float Recalculate()
+		{
+			if (!dirty)
+				return value;
+
+			return BaseValue;
+		}
 	}
 }

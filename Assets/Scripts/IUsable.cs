@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IUsable
+namespace Game
 {
-	void Use(object user);
+	public interface IUsable
+	{
+		void Use(object user);
+	}
+
 }
