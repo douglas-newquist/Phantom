@@ -18,7 +18,7 @@ namespace Game
 		protected ResourceMaxChangedMode maxChangedMode = ResourceMaxChangedMode.KeepCurrent;
 
 		[SerializeField]
-		protected IStat minimum = new Stat(), maximum = new Stat();
+		protected Stat minimum = new Stat(), maximum = new Stat();
 
 		public IStat Maximum => maximum;
 
@@ -34,8 +34,16 @@ namespace Game
 			{
 				float old = current;
 				current = Mathf.Clamp(value, Minimum.Value, Maximum.Value);
-				onCurrentChanged.Invoke(new ValueChangedEvent(this, old, current));
+
+				if (old != current)
+					onCurrentChanged.Invoke(new ValueChangedEvent(this, old, current));
 			}
+		}
+
+		public UnityEvent<ValueChangedEvent> OnCurrentChanged
+		{
+			get => onCurrentChanged;
+			set => onCurrentChanged = value;
 		}
 
 		public float Percentage
@@ -44,10 +52,12 @@ namespace Game
 			set => Current = Math.FromPercentage(value, Minimum.Value, Maximum.Value);
 		}
 
-		public UnityEvent<ValueChangedEvent> onCurrentChanged;
+		[SerializeField]
+		protected UnityEvent<ValueChangedEvent> onCurrentChanged;
 
 		public ResourceStat()
 		{
+			onCurrentChanged = new UnityEvent<ValueChangedEvent>();
 			minimum.OnValueChanged.AddListener(OnMinChanged);
 			maximum.OnValueChanged.AddListener(OnMaxChanged);
 		}

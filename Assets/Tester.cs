@@ -13,8 +13,13 @@ namespace Game
 		// Start is called before the first frame update
 		void Start()
 		{
-			//stat.onBaseValueChanged.AddListener(OnChanged);
-			stat.BaseValue = 1;
+			//resource = new ResourceStat();
+			resource.Maximum.BaseValue = 10;
+			resource.Current = 1;
+			resource.Maximum.BaseValue = 100;
+			resource.Percentage = 1;
+
+			Debug.Log(resource.Maximum.Value);
 		}
 
 		// Update is called once per frame
@@ -23,9 +28,10 @@ namespace Game
 
 		}
 
-		public void OnChanged(ValueChangedEvent e)
+		public void OnChanged(Event e)
 		{
 			Debug.Log(e);
+			Debug.Log(e.Context);
 		}
 	}
 }

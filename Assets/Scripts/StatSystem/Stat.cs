@@ -19,7 +19,9 @@ namespace Game
 				float old = baseValue;
 				baseValue = value;
 				dirty = true;
-				OnBaseValueChanged.Invoke(new ValueChangedEvent(this, old, value));
+
+				if (old != baseValue)
+					OnBaseValueChanged.Invoke(new ValueChangedEvent(this, old, value));
 			}
 		}
 
@@ -41,7 +43,9 @@ namespace Game
 					float old = baseValue;
 					value = Recalculate();
 					dirty = false;
-					OnValueChanged.Invoke(new ValueChangedEvent(this, old, value));
+
+					if (old != value)
+						OnValueChanged.Invoke(new ValueChangedEvent(this, old, value));
 				}
 
 				return value;
@@ -57,6 +61,12 @@ namespace Game
 
 		[SerializeField]
 		protected UnityEvent<ValueChangedEvent> onBaseValueChanged, onValueChanged;
+
+		public Stat()
+		{
+			onBaseValueChanged = new UnityEvent<ValueChangedEvent>();
+			onValueChanged = new UnityEvent<ValueChangedEvent>();
+		}
 
 		public virtual float Recalculate()
 		{
