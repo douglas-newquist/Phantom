@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,7 +7,7 @@ namespace Game
 	[System.Serializable]
 	public class Stat : IStat
 	{
-		private bool dirty = true;
+		protected bool dirty = true;
 
 		[SerializeField]
 		protected float baseValue = 0;
@@ -62,6 +63,8 @@ namespace Game
 		[SerializeField]
 		protected UnityEvent<ValueChangedEvent> onBaseValueChanged, onValueChanged;
 
+		protected List<IModifier> modifiers = new List<IModifier>();
+
 		public Stat()
 		{
 			onBaseValueChanged = new UnityEvent<ValueChangedEvent>();
@@ -70,10 +73,32 @@ namespace Game
 
 		public virtual float Recalculate()
 		{
-			if (!dirty)
-				return value;
+			return modifiers.ApplyModifiers(BaseValue);
+		}
 
-			return BaseValue;
+		public void AddModifier(IModifier modifier)
+		{
+			modifiers.Add(modifier);
+			dirty = true;
+		}
+
+		public bool RemoveModifier(IModifier modifier)
+		{
+			bool removed = modifiers.Remove(modifier);
+			dirty = dirty || removed;
+			return removed;
+		}
+
+		public void RemoveModifiersFromSource(object source)
+		{
+			for (int i = modifiers.Count - 1; i >= 0; i--)
+			{
+				if (modifiers[i].Source == source)
+				{
+					modifiers.RemoveAt(i);
+					dirty = true;
+				}
+			}
 		}
 	}
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Game
 {
@@ -9,17 +10,16 @@ namespace Game
 		public Stat stat;
 
 		public ResourceStat resource;
-
 		// Start is called before the first frame update
 		void Start()
 		{
-			//resource = new ResourceStat();
-			resource.Maximum.BaseValue = 10;
-			resource.Current = 1;
-			resource.Maximum.BaseValue = 100;
-			resource.Percentage = 1;
-
-			Debug.Log(resource.Maximum.Value);
+			stat.OnValueChanged.AddListener(OnChanged);
+			stat.AddModifier(new AdditiveModifier(this, 0, true, 10));
+			Debug.Log(stat.Value);
+			stat.AddModifier(new PercentageModifier(this, 20, true, 0.5f));
+			Debug.Log(stat.Value);
+			stat.AddModifier(new MultiplierModifier(this, 10, true, 2));
+			Debug.Log(stat.Value);
 		}
 
 		// Update is called once per frame
@@ -31,7 +31,7 @@ namespace Game
 		public void OnChanged(Event e)
 		{
 			Debug.Log(e);
-			Debug.Log(e.Context);
+			//Debug.Log(e.Context);
 		}
 	}
 }

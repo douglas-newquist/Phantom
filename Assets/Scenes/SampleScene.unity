@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stat:
-    baseValue: 0
+    baseValue: 2
     value: 0
     onBaseValueChanged:
       m_PersistentCalls:
@@ -260,8 +260,8 @@ MonoBehaviour:
   resource:
     maxChangedMode: 0
     minimum:
-      baseValue: 0
-      value: 0
+      baseValue: 3.6
+      value: -0.56
       onBaseValueChanged:
         m_PersistentCalls:
           m_Calls: []
@@ -281,11 +281,23 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
     maximum:
-      baseValue: 0
-      value: 0
+      baseValue: -0.59
+      value: 3.62
       onBaseValueChanged:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 1765724972}
+            m_TargetAssemblyTypeName: Game.Tester, Assembly-CSharp
+            m_MethodName: OnChanged
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       onValueChanged:
         m_PersistentCalls:
           m_Calls:
@@ -301,10 +313,22 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-    current: 0
+    current: 1.65
     onCurrentChanged:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1765724972}
+          m_TargetAssemblyTypeName: Game.Tester, Assembly-CSharp
+          m_MethodName: OnChanged
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &1765724973
 Transform:
   m_ObjectHideFlags: 0
