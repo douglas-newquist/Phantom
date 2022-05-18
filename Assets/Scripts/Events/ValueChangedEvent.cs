@@ -10,7 +10,7 @@ public class ValueChangedEvent : Event
 
 	public float AbsDelta => Mathf.Abs(Delta);
 
-	public ValueChangedEvent(float old, float current)
+	public ValueChangedEvent(object context, float old, float current) : base(context)
 	{
 		Old = old;
 		Current = current;
