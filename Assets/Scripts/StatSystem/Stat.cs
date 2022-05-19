@@ -4,10 +4,6 @@ using UnityEngine.Events;
 
 namespace Game
 {
-	public class StatSheet
-	{
-		private Dictionary<StatSO, Stat> stats = new Dictionary<StatSO, Stat>();
-	}
 	[System.Serializable]
 	public class Stat
 	{
@@ -87,12 +83,14 @@ namespace Game
 
 		public void AddModifier(IModifier modifier)
 		{
+			if (modifier == null) return;
 			modifiers.Add(modifier);
 			Dirty = true;
 		}
 
 		public bool RemoveModifier(IModifier modifier)
 		{
+			if (modifier == null) return false;
 			bool removed = modifiers.Remove(modifier);
 			Dirty = Dirty || removed;
 			return removed;
