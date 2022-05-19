@@ -12,7 +12,7 @@ namespace Game
 
 		public override Stat Create()
 		{
-			var resource = new ResourceStat(this, baseValue, startingPercentage);
+			var resource = new ResourceStat(this, defaultValue, startingPercentage);
 			resource.MaxChangedMode = maxChangedMode;
 			return resource;
 		}

@@ -12,11 +12,11 @@ namespace Game
 
 		public Sprite icon;
 
-		public float baseValue;
+		public float defaultValue;
 
 		public virtual Stat Create()
 		{
-			return new Stat(this, baseValue);
+			return new Stat(this, defaultValue);
 		}
 	}
 }
