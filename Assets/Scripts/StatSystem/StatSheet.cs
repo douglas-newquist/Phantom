@@ -3,8 +3,13 @@ using UnityEngine;
 
 namespace Game
 {
-	public class StatSheet
+	[RequireComponent(typeof(Entity))]
+	[DisallowMultipleComponent]
+	public class StatSheet : MonoBehaviour
 	{
+		public Entity Entity => GetComponent<Entity>();
+
+		[SerializeField]
 		private Dictionary<StatSO, Stat> stats = new Dictionary<StatSO, Stat>();
 
 		/// <summary>

@@ -12,17 +12,13 @@ namespace Game
 
 		public StatPair[] stats;
 
-		public StatSheet CreateStatSheet()
+		public void PopulateStatSheet(StatSheet sheet)
 		{
-			var sheet = new StatSheet();
-
 			foreach (var pair in stats)
 			{
 				var stat = sheet.AddStat(pair.stat, pair.stat.Create());
 				stat.BaseValue = pair.baseValue;
 			}
-
-			return sheet;
 		}
 	}
 }
