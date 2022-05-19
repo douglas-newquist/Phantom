@@ -16,5 +16,13 @@ namespace Game
 		{
 			return value + magnitude;
 		}
+
+		public override float Stack(float magnitude)
+		{
+			if (Stacks)
+				return magnitude + Magnitude;
+
+			return Mathf.Max(magnitude, Magnitude);
+		}
 	}
 }

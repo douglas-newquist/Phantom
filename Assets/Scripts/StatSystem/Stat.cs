@@ -7,6 +7,14 @@ namespace Game
 	[System.Serializable]
 	public class Stat
 	{
+		/// <summary>
+		/// The stat sheet this stat is associated with
+		/// </summary>
+		public StatSheet Sheet { get; set; }
+
+		/// <summary>
+		/// What type of stat this stat is
+		/// </summary>
 		public StatSO Type { get; protected set; }
 
 		public bool Dirty { get; protected set; } = true;
@@ -14,6 +22,9 @@ namespace Game
 		[SerializeField]
 		protected float baseValue = 0;
 
+		/// <summary>
+		/// The starting value of this stat before modifiers
+		/// </summary>
 		public virtual float BaseValue
 		{
 			get => baseValue;
@@ -21,7 +32,7 @@ namespace Game
 			{
 				float old = baseValue;
 				baseValue = value;
-				Dirty = true;
+				MarkDirty();
 
 				if (old != baseValue)
 					OnBaseValueChanged.Invoke(new ValueChangedEvent(this, old, value));
@@ -35,6 +46,9 @@ namespace Game
 		[SerializeField]
 		protected float value = 0;
 
+		/// <summary>
+		/// The current value of this stat after modifiers
+		/// </summary>
 		public virtual float Value
 		{
 			get
@@ -69,10 +83,11 @@ namespace Game
 			Type = type;
 		}
 
+		/// <summary>
+		/// Recalculates the current value for this stat
+		/// </summary>
 		public virtual void Recalculate()
 		{
-			if (!Dirty) return;
-
 			float old = value;
 			value = modifiers.ApplyModifiers(BaseValue);
 			Dirty = false;
@@ -81,21 +96,31 @@ namespace Game
 				OnValueChanged.Invoke(new ValueChangedEvent(this, old, value));
 		}
 
+		/// <summary>
+		/// Adds a modifier to this stat
+		/// </summary>
 		public void AddModifier(IModifier modifier)
 		{
 			if (modifier == null) return;
 			modifiers.Add(modifier);
-			Dirty = true;
+			MarkDirty();
 		}
 
+		/// <summary>
+		/// Removes a specific modifier
+		/// </summary>
+		/// <returns>True if modifier existed and was removed</returns>
 		public bool RemoveModifier(IModifier modifier)
 		{
 			if (modifier == null) return false;
 			bool removed = modifiers.Remove(modifier);
-			Dirty = Dirty || removed;
+			MarkDirty();
 			return removed;
 		}
 
+		/// <summary>
+		/// Removes all modifiers from a specific source
+		/// </summary>
 		public void RemoveModifiersFromSource(object source)
 		{
 			for (int i = modifiers.Count - 1; i >= 0; i--)
@@ -107,5 +132,10 @@ namespace Game
 				}
 			}
 		}
+
+		/// <summary>
+		/// Marks this stat's current value as dirty
+		/// </summary>
+		public void MarkDirty() => Dirty = true;
 	}
 }

@@ -8,7 +8,7 @@ namespace Game
 		[Range(0f, 1f)]
 		public float startingPercentage = 1;
 
-		public ResourceStat.ChangedMode maxChangedMode = ResourceStat.ChangedMode.KeepPercentage;
+		public ResourceStat.Changed maxChangedMode = ResourceStat.Changed.KeepPercentage;
 
 		public override Stat Create()
 		{

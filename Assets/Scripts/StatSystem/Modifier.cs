@@ -14,12 +14,6 @@ namespace Game
 
 		public abstract float Apply(float value, float magnitude);
 
-		public virtual float Stack(float magnitude)
-		{
-			if (Stacks)
-				return Apply(magnitude, Magnitude);
-
-			return Mathf.Max(magnitude, Magnitude);
-		}
+		public abstract float Stack(float magnitude);
 	}
 }

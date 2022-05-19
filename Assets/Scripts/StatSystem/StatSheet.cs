@@ -7,6 +7,13 @@ namespace Game
 	{
 		private Dictionary<StatSO, Stat> stats = new Dictionary<StatSO, Stat>();
 
+		/// <summary>
+		/// Adds a stat to this stat sheet, rejects if there is already a stat of the same type.
+		/// </summary>
+		/// <typeparam name="T">The stat class type</typeparam>
+		/// <param name="type">The stat type</param>
+		/// <param name="stat">The stat to add</param>
+		/// <returns>The stat</returns>
 		public T AddStat<T>(StatSO type, T stat) where T : Stat
 		{
 			if (type == null)
@@ -19,6 +26,7 @@ namespace Game
 				return stats[type] as T;
 
 			stats[type] = stat;
+			stat.Sheet = this;
 			return stat;
 		}
 
@@ -41,10 +49,24 @@ namespace Game
 			return GetStat(type) as T;
 		}
 
+		/// <summary>
+		/// Gets all stats of a given type
+		/// </summary>
+		/// <typeparam name="T">Stat class type to filter</typeparam>
+		public IEnumerable<T> GetStatsOfType<T>() where T : Stat
+		{
+			foreach (var stat in stats.Values)
+				if (stat is T)
+					yield return stat as T;
+		}
+
+		/// <summary>
+		/// Removes all modifiers from each stat from the given source
+		/// </summary>
 		public void RemoveAllModifiersFromSource(object source)
 		{
-			foreach (var stat in stats)
-				stat.Value.RemoveModifiersFromSource(source);
+			foreach (var stat in stats.Values)
+				stat.RemoveModifiersFromSource(source);
 		}
 	}
 }

@@ -9,7 +9,7 @@ namespace Game
 	{
 		public ResourceStatSO ResourceType => (ResourceStatSO)Type;
 
-		public enum ChangedMode
+		public enum Changed
 		{
 			KeepCurrent,
 			KeepDeltaMax,
@@ -17,9 +17,9 @@ namespace Game
 		}
 
 		[SerializeField]
-		protected ChangedMode maxChangedMode = ChangedMode.KeepPercentage;
+		protected Changed maxChangedMode = Changed.KeepPercentage;
 
-		public ChangedMode MaxChangedMode
+		public Changed MaxChangedMode
 		{
 			get => maxChangedMode;
 			set => maxChangedMode = value;
@@ -70,11 +70,11 @@ namespace Game
 		{
 			switch (maxChangedMode)
 			{
-				case ChangedMode.KeepDeltaMax:
+				case Changed.KeepDeltaMax:
 					Current += change.Delta;
 					break;
 
-				case ChangedMode.KeepPercentage:
+				case Changed.KeepPercentage:
 					Percentage = Math.ToPercentage(Current, 0, change.Old);
 					break;
 
@@ -95,12 +95,12 @@ namespace Game
 		/// Adds an amount of resource to the current supply
 		/// </summary>
 		/// <param name="amount">The amount of the resource to deposit</param>
-		/// <param name="allOrNothing">If true only deposits if the full amount can be deposited</param>
+		/// <param name="allOrNothing">If true, only deposits if the full amount can be deposited</param>
 		/// <returns>The amount actually deposited</returns>
 		public float Deposit(float amount, bool allOrNothing = false)
 		{
 			if (amount < 0)
-				return Withdraw(-amount, allOrNothing);
+				return -Withdraw(-amount, allOrNothing);
 
 			float expected = Current + amount;
 
@@ -112,15 +112,15 @@ namespace Game
 		}
 
 		/// <summary>
-		///
+		/// Withdraws an amount of this resource
 		/// </summary>
-		/// <param name="amount"></param>
-		/// <param name="allOrNothing">If true only withdraws if the full amount can be withdrawn</param>
+		/// <param name="amount">Amount to withdraw</param>
+		/// <param name="allOrNothing">If true, only withdraws if the full amount can be withdrawn</param>
 		/// <returns>The amount actually withdrawn</returns>
 		public float Withdraw(float amount, bool allOrNothing = false)
 		{
 			if (amount < 0)
-				return Deposit(-amount, allOrNothing);
+				return -Deposit(-amount, allOrNothing);
 
 			float expected = Current - amount;
 
@@ -129,6 +129,14 @@ namespace Game
 
 			Current -= amount;
 			return Current - expected;
+		}
+
+		/// <summary>
+		/// Resets the current value it its starting value
+		/// </summary>
+		public void Reset()
+		{
+			Percentage = ResourceType.startingPercentage;
 		}
 	}
 }

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Game
 {
 	public class MultiplierModifier : Modifier
@@ -20,7 +22,10 @@ namespace Game
 			if (magnitude == 0)
 				return Magnitude;
 
-			return base.Stack(magnitude);
+			if (Stacks)
+				return magnitude * Magnitude;
+
+			return Mathf.Max(magnitude, Magnitude);
 		}
 	}
 }
