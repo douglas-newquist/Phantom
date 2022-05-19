@@ -7,7 +7,7 @@ namespace Game
 	[System.Serializable]
 	public class Stat
 	{
-		protected bool dirty = true;
+		public bool Dirty { get; protected set; } = true;
 
 		[SerializeField]
 		protected float baseValue = 0;
@@ -19,7 +19,7 @@ namespace Game
 			{
 				float old = baseValue;
 				baseValue = value;
-				dirty = true;
+				Dirty = true;
 
 				if (old != baseValue)
 					OnBaseValueChanged.Invoke(new ValueChangedEvent(this, old, value));
@@ -39,15 +39,8 @@ namespace Game
 		{
 			get
 			{
-				if (dirty)
-				{
-					float old = value;
-					value = Recalculate();
-					dirty = false;
-
-					if (old != value)
-						OnValueChanged.Invoke(new ValueChangedEvent(this, old, value));
-				}
+				if (Dirty)
+					Recalculate();
 
 				return value;
 			}
@@ -70,21 +63,28 @@ namespace Game
 			onValueChanged = new UnityEvent<ValueChangedEvent>();
 		}
 
-		public virtual float Recalculate()
+		public virtual void Recalculate()
 		{
-			return modifiers.ApplyModifiers(BaseValue);
+			if (!Dirty) return;
+
+			float old = value;
+			value = modifiers.ApplyModifiers(BaseValue);
+			Dirty = false;
+
+			if (old != value)
+				OnValueChanged.Invoke(new ValueChangedEvent(this, old, value));
 		}
 
 		public void AddModifier(IModifier modifier)
 		{
 			modifiers.Add(modifier);
-			dirty = true;
+			Dirty = true;
 		}
 
 		public bool RemoveModifier(IModifier modifier)
 		{
 			bool removed = modifiers.Remove(modifier);
-			dirty = dirty || removed;
+			Dirty = Dirty || removed;
 			return removed;
 		}
 
@@ -95,7 +95,7 @@ namespace Game
 				if (modifiers[i].Source == source)
 				{
 					modifiers.RemoveAt(i);
-					dirty = true;
+					Dirty = true;
 				}
 			}
 		}

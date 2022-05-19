@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace Game
 {
-	public enum ResourceMaxChangedMode
+	public enum ResourceChangedMode
 	{
 		KeepCurrent,
 		KeepDeltaMax,
@@ -15,7 +15,22 @@ namespace Game
 	public class ResourceStat
 	{
 		[SerializeField]
-		protected ResourceMaxChangedMode maxChangedMode = ResourceMaxChangedMode.KeepCurrent;
+		protected ResourceChangedMode maxChangedMode = ResourceChangedMode.KeepPercentage;
+
+		public ResourceChangedMode MaxChangedMode
+		{
+			get => maxChangedMode;
+			set => maxChangedMode = value;
+		}
+
+		[SerializeField]
+		protected ResourceChangedMode minChangedMode = ResourceChangedMode.KeepPercentage;
+
+		public ResourceChangedMode MinChangedMode
+		{
+			get => minChangedMode;
+			set => minChangedMode = value;
+		}
 
 		[SerializeField]
 		protected Stat minimum = new Stat(), maximum = new Stat();
@@ -29,7 +44,15 @@ namespace Game
 
 		public float Current
 		{
-			get => current;
+			get
+			{
+				if (Maximum.Dirty)
+					Maximum.Recalculate();
+				if (Minimum.Dirty)
+					Minimum.Recalculate();
+
+				return current;
+			}
 			set
 			{
 				float old = current;
@@ -66,11 +89,11 @@ namespace Game
 		{
 			switch (maxChangedMode)
 			{
-				case ResourceMaxChangedMode.KeepDeltaMax:
+				case ResourceChangedMode.KeepDeltaMax:
 					Current += change.Delta;
 					break;
 
-				case ResourceMaxChangedMode.KeepPercentage:
+				case ResourceChangedMode.KeepPercentage:
 					Percentage = Math.ToPercentage(Current, Minimum.Value, change.Old);
 					break;
 
@@ -82,13 +105,13 @@ namespace Game
 
 		void OnMinChanged(ValueChangedEvent change)
 		{
-			switch (maxChangedMode)
+			switch (minChangedMode)
 			{
-				case ResourceMaxChangedMode.KeepDeltaMin:
+				case ResourceChangedMode.KeepDeltaMin:
 					Current += change.Delta;
 					break;
 
-				case ResourceMaxChangedMode.KeepPercentage:
+				case ResourceChangedMode.KeepPercentage:
 					Percentage = Math.ToPercentage(Current, change.Old, Maximum.Value);
 					break;
 

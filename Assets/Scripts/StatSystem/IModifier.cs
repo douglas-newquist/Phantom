@@ -14,18 +14,22 @@ namespace Game
 
 	public static class IModifierHelper
 	{
-		public static float ApplyModifiers(this List<IModifier> modifiers, float value)
+		public static float ApplyModifiers(this IEnumerable<IModifier> modifiers, float value)
 		{
 			var groups = modifiers.OrderByDescending(mod => mod.Stacks).OrderBy(mod => mod.GetType().ToString()).GroupBy(mod => mod.Order);
 
 			foreach (var group in groups)
 			{
 				float magnitude = 0;
+				IModifier mod = null;
 
 				foreach (var modifier in group)
+				{
+					if (mod == null) mod = modifier;
 					magnitude = modifier.Stack(magnitude);
+				}
 
-				value = group.First().Apply(value, magnitude);
+				value = mod.Apply(value, magnitude);
 			}
 
 			return value;

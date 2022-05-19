@@ -13,15 +13,14 @@ namespace Game
 		// Start is called before the first frame update
 		void Start()
 		{
-			stat.OnValueChanged.AddListener(OnChanged);
-			stat.AddModifier(new AdditiveModifier(this, 0, true, 10));
-			Debug.Log(stat.Value);
-			stat.AddModifier(new PercentageModifier(this, 20, true, 0.5f));
-			//Debug.Log(stat.Value);
-			stat.AddModifier(new MultiplierModifier(this, 10, true, 2));
-			Debug.Log(stat.Value);
-			stat.RemoveModifiersFromSource(this);
-			Debug.Log(stat.Value);
+			resource.OnCurrentChanged.AddListener(OnChanged);
+			resource.Maximum.AddModifier(new AdditiveModifier(this, 0, true, 10));
+			resource.Percentage = 0.5f;
+			resource.Maximum.AddModifier(new PercentageModifier(this, 20, true, 0.5f));
+			resource.Maximum.AddModifier(new MultiplierModifier(this, 10, true, 2));
+			Debug.Log(resource.Current + "/" + resource.Maximum.Value + " " + resource.Percentage);
+			resource.Minimum.AddModifier(new AdditiveModifier(this, 0, true, 10));
+			Debug.Log(resource.Current + "/" + resource.Maximum.Value + " " + resource.Percentage);
 		}
 
 		// Update is called once per frame
