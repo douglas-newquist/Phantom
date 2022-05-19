@@ -31,7 +31,12 @@ namespace Game
 			set
 			{
 				float old = baseValue;
-				baseValue = value;
+
+				if (Type != null)
+					baseValue = Type.limits.Clamp(value);
+				else
+					baseValue = value;
+
 				MarkDirty();
 
 				if (old != baseValue)
@@ -90,6 +95,8 @@ namespace Game
 		{
 			float old = value;
 			value = modifiers.ApplyModifiers(BaseValue);
+			if (Type != null)
+				value = Type.limits.Clamp(value);
 			Dirty = false;
 
 			if (old != value)

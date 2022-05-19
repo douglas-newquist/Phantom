@@ -14,6 +14,8 @@ namespace Game
 
 		public float defaultValue;
 
+		public FloatRange limits = new FloatRange(0, float.MaxValue);
+
 		public virtual Stat Create()
 		{
 			return new Stat(this, defaultValue);
