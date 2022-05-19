@@ -8,6 +8,7 @@ namespace Game
 	public class Tester : MonoBehaviour
 	{
 		public Stat stat;
+		public StatList stats;
 
 		public ResourceStat resource;
 		// Start is called before the first frame update
