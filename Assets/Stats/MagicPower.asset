@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e932c3ce049e1256fadcf4e669176f71, type: 3}
   m_Name: MagicPower
   m_EditorClassIdentifier: 
-  baseValue: 0
+  displayName: Magic Power
+  description: Determines how much damage magical attacks do.
+  icon: {fileID: 0}
+  baseValue: 1

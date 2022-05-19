@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 167b95b1a139c0de68d79804109780a3, type: 3}
   m_Name: Health
   m_EditorClassIdentifier: 
+  displayName: Health
+  description: Determines the size of the health pool.
+  icon: {fileID: 0}
   baseValue: 1
   startingPercentage: 1
   maxChangedMode: 2
