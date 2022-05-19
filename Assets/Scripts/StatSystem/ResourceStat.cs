@@ -3,41 +3,27 @@ using UnityEngine.Events;
 
 namespace Game
 {
-	public enum ResourceChangedMode
-	{
-		KeepCurrent,
-		KeepDeltaMax,
-		KeepDeltaMin,
-		KeepPercentage
-	}
 
 	[System.Serializable]
-	public class ResourceStat
+	public class ResourceStat : Stat
 	{
-		[SerializeField]
-		protected ResourceChangedMode maxChangedMode = ResourceChangedMode.KeepPercentage;
+		public ResourceStatSO ResourceType => (ResourceStatSO)Type;
 
-		public ResourceChangedMode MaxChangedMode
+		public enum ChangedMode
+		{
+			KeepCurrent,
+			KeepDeltaMax,
+			KeepPercentage
+		}
+
+		[SerializeField]
+		protected ChangedMode maxChangedMode = ChangedMode.KeepPercentage;
+
+		public ChangedMode MaxChangedMode
 		{
 			get => maxChangedMode;
 			set => maxChangedMode = value;
 		}
-
-		[SerializeField]
-		protected ResourceChangedMode minChangedMode = ResourceChangedMode.KeepPercentage;
-
-		public ResourceChangedMode MinChangedMode
-		{
-			get => minChangedMode;
-			set => minChangedMode = value;
-		}
-
-		[SerializeField]
-		protected Stat minimum = new Stat(), maximum = new Stat();
-
-		public Stat Maximum => maximum;
-
-		public Stat Minimum => minimum;
 
 		[SerializeField]
 		protected float current;
@@ -46,55 +32,50 @@ namespace Game
 		{
 			get
 			{
-				if (Maximum.Dirty)
-					Maximum.Recalculate();
-				if (Minimum.Dirty)
-					Minimum.Recalculate();
+				if (Dirty)
+					Recalculate();
 
 				return current;
 			}
 			set
 			{
 				float old = current;
-				current = Mathf.Clamp(value, Minimum.Value, Maximum.Value);
+				current = Mathf.Clamp(value, 0, Value);
 
 				if (old != current)
-					onCurrentChanged.Invoke(new ValueChangedEvent(this, old, current));
+					OnCurrentChanged.Invoke(new ValueChangedEvent(this, old, current));
 			}
 		}
 
-		public UnityEvent<ValueChangedEvent> OnCurrentChanged
-		{
-			get => onCurrentChanged;
-			set => onCurrentChanged = value;
-		}
+		[SerializeField]
+		protected UnityEvent<ValueChangedEvent> onCurrentChanged = new UnityEvent<ValueChangedEvent>();
+
+		public UnityEvent<ValueChangedEvent> OnCurrentChanged => onCurrentChanged;
 
 		public float Percentage
 		{
-			get => Math.ToPercentage(Current, Minimum.Value, Maximum.Value);
-			set => Current = Math.FromPercentage(value, Minimum.Value, Maximum.Value);
+			get => Math.ToPercentage(Current, 0, Value);
+			set => Current = Math.FromPercentage(value, 0, Value);
 		}
 
-		[SerializeField]
-		protected UnityEvent<ValueChangedEvent> onCurrentChanged;
+		public ResourceStat() : base()
+		{ }
 
-		public ResourceStat()
+		public ResourceStat(ResourceStatSO type, float maximum, float startPercent = 1) : base(type, maximum)
 		{
-			onCurrentChanged = new UnityEvent<ValueChangedEvent>();
-			Minimum.OnValueChanged.AddListener(OnMinChanged);
-			Maximum.OnValueChanged.AddListener(OnMaxChanged);
+			Percentage = startPercent;
 		}
 
 		void OnMaxChanged(ValueChangedEvent change)
 		{
 			switch (maxChangedMode)
 			{
-				case ResourceChangedMode.KeepDeltaMax:
+				case ChangedMode.KeepDeltaMax:
 					Current += change.Delta;
 					break;
 
-				case ResourceChangedMode.KeepPercentage:
-					Percentage = Math.ToPercentage(Current, Minimum.Value, change.Old);
+				case ChangedMode.KeepPercentage:
+					Percentage = Math.ToPercentage(Current, 0, change.Old);
 					break;
 
 				default:
@@ -103,22 +84,11 @@ namespace Game
 			}
 		}
 
-		void OnMinChanged(ValueChangedEvent change)
+		public override void Recalculate()
 		{
-			switch (minChangedMode)
-			{
-				case ResourceChangedMode.KeepDeltaMin:
-					Current += change.Delta;
-					break;
-
-				case ResourceChangedMode.KeepPercentage:
-					Percentage = Math.ToPercentage(Current, change.Old, Maximum.Value);
-					break;
-
-				default:
-					Current = Current;
-					break;
-			}
+			float old = value;
+			base.Recalculate();
+			OnMaxChanged(new ValueChangedEvent(this, old, Value));
 		}
 
 		/// <summary>
@@ -134,7 +104,7 @@ namespace Game
 
 			float expected = Current + amount;
 
-			if (allOrNothing && expected > Maximum.Value)
+			if (allOrNothing && expected > Value)
 				return 0;
 
 			Current += amount;
@@ -154,7 +124,7 @@ namespace Game
 
 			float expected = Current - amount;
 
-			if (allOrNothing && expected < Minimum.Value)
+			if (allOrNothing && expected < Value)
 				return 0;
 
 			Current -= amount;

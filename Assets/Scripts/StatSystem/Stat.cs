@@ -4,9 +4,15 @@ using UnityEngine.Events;
 
 namespace Game
 {
+	public class StatSheet
+	{
+		private Dictionary<StatSO, Stat> stats = new Dictionary<StatSO, Stat>();
+	}
 	[System.Serializable]
 	public class Stat
 	{
+		public StatSO Type { get; protected set; }
+
 		public bool Dirty { get; protected set; } = true;
 
 		[SerializeField]
@@ -25,12 +31,10 @@ namespace Game
 					OnBaseValueChanged.Invoke(new ValueChangedEvent(this, old, value));
 			}
 		}
+		[SerializeField]
+		protected UnityEvent<ValueChangedEvent> onBaseValueChanged;
 
-		public UnityEvent<ValueChangedEvent> OnBaseValueChanged
-		{
-			get => onBaseValueChanged;
-			set => onBaseValueChanged = value;
-		}
+		public UnityEvent<ValueChangedEvent> OnBaseValueChanged => onBaseValueChanged;
 
 		[SerializeField]
 		protected float value = 0;
@@ -46,21 +50,27 @@ namespace Game
 			}
 		}
 
-		public UnityEvent<ValueChangedEvent> OnValueChanged
-		{
-			get => onValueChanged;
-			set => onValueChanged = value;
-		}
+		[SerializeField]
+		protected UnityEvent<ValueChangedEvent> onValueChanged;
+
+		public UnityEvent<ValueChangedEvent> OnValueChanged => onValueChanged;
 
 		[SerializeField]
-		protected UnityEvent<ValueChangedEvent> onBaseValueChanged, onValueChanged;
-
 		protected List<IModifier> modifiers = new List<IModifier>();
+
 
 		public Stat()
 		{
-			onBaseValueChanged = new UnityEvent<ValueChangedEvent>();
+			modifiers = new List<IModifier>();
 			onValueChanged = new UnityEvent<ValueChangedEvent>();
+			onBaseValueChanged = new UnityEvent<ValueChangedEvent>();
+		}
+
+		public Stat(StatSO type, float baseValue) : this()
+		{
+			this.baseValue = baseValue;
+			this.value = baseValue;
+			Type = type;
 		}
 
 		public virtual void Recalculate()

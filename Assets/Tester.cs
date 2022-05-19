@@ -14,13 +14,11 @@ namespace Game
 		void Start()
 		{
 			resource.OnCurrentChanged.AddListener(OnChanged);
-			resource.Maximum.AddModifier(new AdditiveModifier(this, 0, true, 10));
+			resource.AddModifier(new AdditiveModifier(this, 0, true, 10));
 			resource.Percentage = 0.5f;
-			resource.Maximum.AddModifier(new PercentageModifier(this, 20, true, 0.5f));
-			resource.Maximum.AddModifier(new MultiplierModifier(this, 10, true, 2));
-			Debug.Log(resource.Current + "/" + resource.Maximum.Value + " " + resource.Percentage);
-			resource.Minimum.AddModifier(new AdditiveModifier(this, 0, true, 10));
-			Debug.Log(resource.Current + "/" + resource.Maximum.Value + " " + resource.Percentage);
+			resource.AddModifier(new PercentageModifier(this, 20, true, 0.5f));
+			resource.AddModifier(new MultiplierModifier(this, 10, true, 2));
+			Debug.Log(resource.Current + "/" + resource.Value + " " + resource.Percentage);
 		}
 
 		// Update is called once per frame
