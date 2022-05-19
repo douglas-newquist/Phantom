@@ -260,6 +260,8 @@ MonoBehaviour:
     onValueChanged:
       m_PersistentCalls:
         m_Calls: []
+  stats:
+    stats: []
   resource:
     baseValue: 0
     onBaseValueChanged:
