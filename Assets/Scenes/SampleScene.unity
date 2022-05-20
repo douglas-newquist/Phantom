@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 1765724975}
   - component: {fileID: 1765724977}
   - component: {fileID: 1765724978}
+  - component: {fileID: 1765724979}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -346,3 +347,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 11400000, guid: 3234325795b38e9f8bc2348987f72a22, type: 2}
+--- !u!114 &1765724979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765724971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b95fb1794abd62c2beeea1025dd90f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stat:
+    baseValue: 0
+    onBaseValueChanged:
+      m_PersistentCalls:
+        m_Calls: []
+    value: 0
+    onValueChanged:
+      m_PersistentCalls:
+        m_Calls: []
+  stats:
+    stats: []
+  resource:
+    baseValue: 0
+    onBaseValueChanged:
+      m_PersistentCalls:
+        m_Calls: []
+    value: 0
+    onValueChanged:
+      m_PersistentCalls:
+        m_Calls: []
+    maxChangedMode: 2
+    current: 0
+    onCurrentChanged:
+      m_PersistentCalls:
+        m_Calls: []
+  dungeonSpec:
+    regions:
+    - id: 0
+      superRegion: 0
+      rooms:
+      - id: 0
+        size: 0
+        connections: 0
+        elements:
+        - element: {fileID: 0}
+          special: 0
+      corridors:
+      - source: 0
+        destination: 0
+        size: 0
+    corridors:
+    - source: 0
+      destination: 0
+      size: 0

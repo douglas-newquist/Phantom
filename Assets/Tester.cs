@@ -11,6 +11,8 @@ namespace Game
 		public StatList stats;
 
 		public ResourceStat resource;
+
+		public DungeonSpec dungeonSpec;
 		// Start is called before the first frame update
 		void Start()
 		{
