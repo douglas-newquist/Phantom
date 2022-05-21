@@ -131,18 +131,20 @@ namespace Game
 		public void RemoveModifiersFromSource(object source)
 		{
 			for (int i = modifiers.Count - 1; i >= 0; i--)
-			{
 				if (modifiers[i].Source == source)
 				{
 					modifiers.RemoveAt(i);
-					Dirty = true;
+					MarkDirty();
 				}
-			}
 		}
 
 		/// <summary>
 		/// Marks this stat's current value as dirty
 		/// </summary>
-		public void MarkDirty() => Dirty = true;
+		public void MarkDirty()
+		{
+			Dirty = true;
+			Recalculate();
+		}
 	}
 }

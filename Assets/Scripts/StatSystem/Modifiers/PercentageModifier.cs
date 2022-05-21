@@ -2,9 +2,12 @@ using UnityEngine;
 
 namespace Game
 {
-	public class AssignModifier : Modifier
+	/// <summary>
+	/// Increases a stat value by a percentage, stacks additively
+	/// </summary>
+	public class PercentageModifier : Modifier
 	{
-		public AssignModifier(object source, int order, bool stacks, float magnitude)
+		public PercentageModifier(object source, int order, bool stacks, float magnitude)
 		{
 			Source = source;
 			Order = order;
@@ -14,7 +17,7 @@ namespace Game
 
 		public override float Apply(float value, float magnitude)
 		{
-			return magnitude;
+			return (magnitude + 1) * value;
 		}
 
 		public override float Stack(float magnitude)

@@ -54,6 +54,8 @@ namespace Game
 			return GetStat(type) as T;
 		}
 
+		public float GetValue(StatSO type) => GetStat(type).Value;
+
 		/// <summary>
 		/// Gets all stats of a given type
 		/// </summary>

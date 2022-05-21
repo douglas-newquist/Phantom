@@ -2,9 +2,12 @@ using UnityEngine;
 
 namespace Game
 {
-	public class MultiplierModifier : Modifier
+	/// <summary>
+	/// Sets a stat value to a constant value
+	/// </summary>
+	public class AssignModifier : Modifier
 	{
-		public MultiplierModifier(object source, int order, bool stacks, float magnitude)
+		public AssignModifier(object source, int order, bool stacks, float magnitude)
 		{
 			Source = source;
 			Order = order;
@@ -14,16 +17,13 @@ namespace Game
 
 		public override float Apply(float value, float magnitude)
 		{
-			return value * magnitude;
+			return magnitude;
 		}
 
 		public override float Stack(float magnitude)
 		{
-			if (magnitude == 0)
-				return Magnitude;
-
 			if (Stacks)
-				return magnitude * Magnitude;
+				return magnitude + Magnitude;
 
 			return Mathf.Max(magnitude, Magnitude);
 		}

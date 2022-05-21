@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Game
 {
+	/// <summary>
+	/// Adds a constant value to a stat value
+	/// </summary>
 	public class AdditiveModifier : Modifier
 	{
 		public AdditiveModifier(object source, int order, bool stacks, float magnitude)
