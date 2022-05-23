@@ -9,6 +9,7 @@ namespace Game
 	{
 		public TileMap map;
 		public TileMapTexture tileMapTexture;
+		public Tile a, b, c;
 
 		// Start is called before the first frame update
 		void Start()
@@ -29,7 +30,7 @@ namespace Game
 		// Update is called once per frame
 		void Update()
 		{
-
+			b = a ^ Tile.Full;
 		}
 
 		public void OnChanged(Event e)
