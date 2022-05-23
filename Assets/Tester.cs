@@ -7,21 +7,23 @@ namespace Game
 {
 	public class Tester : MonoBehaviour
 	{
-		public Stat stat;
-		public StatList stats;
+		public TileMap map;
+		public TileMapTexture tileMapTexture;
 
-		public ResourceStat resource;
-
-		public DungeonSpec dungeonSpec;
 		// Start is called before the first frame update
 		void Start()
 		{
-			resource.OnCurrentChanged.AddListener(OnChanged);
-			resource.AddModifier(new AdditiveModifier(this, 0, true, 10));
-			resource.Percentage = 0.5f;
-			resource.AddModifier(new PercentageModifier(this, 20, true, 0.5f));
-			resource.AddModifier(new MultiplierModifier(this, 10, true, 2));
-			Debug.Log(resource.Current + "/" + resource.Value + " " + resource.Percentage);
+			map = new TileMap(32, 32);
+
+			for (int x = 0; x < map.VertexWidth; x++)
+				for (int y = 0; y < map.VertexHeight; y++)
+				{
+					if (Random.Range(0f, 1f) < 0.5f)
+						map.SetVertex(x, y, 1);
+				}
+
+			SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
+			renderer.sprite = tileMapTexture.DrawSprite(map);
 		}
 
 		// Update is called once per frame
