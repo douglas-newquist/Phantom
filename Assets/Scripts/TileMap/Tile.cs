@@ -32,8 +32,6 @@ namespace Game
 		Full = BottomLeft | BottomRight | TopLeft | TopRight
 	}
 
-	public enum Direction { Up, Down, Left, Right }
-
 	public static class TileHelper
 	{
 		/// <summary>
