@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92da0dcf35adf62379a8bff00a9dc431, type: 3}
   m_Name: Player Controller
   m_EditorClassIdentifier: 
+  speedStat: {fileID: 11400000, guid: c258cf61c1e402ace9e0fffa54495f96, type: 2}

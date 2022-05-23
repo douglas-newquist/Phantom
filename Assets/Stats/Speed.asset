@@ -15,4 +15,7 @@ MonoBehaviour:
   displayName: 
   description: Determines how fast the target can move.
   icon: {fileID: 0}
-  baseValue: 1
+  defaultValue: 1
+  limits:
+    min: 0
+    max: 3.4028235e+38

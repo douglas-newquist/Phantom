@@ -11,6 +11,8 @@ namespace Game
 	{
 		public int id;
 
+		public bool isEntryPoint = false;
+
 		/// <summary>
 		/// How large the room is
 		/// </summary>

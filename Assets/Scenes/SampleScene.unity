@@ -233,8 +233,8 @@ GameObject:
   - component: {fileID: 1765724976}
   - component: {fileID: 1765724975}
   - component: {fileID: 1765724977}
-  - component: {fileID: 1765724978}
   - component: {fileID: 1765724979}
+  - component: {fileID: 1765724980}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -334,19 +334,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1765724978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765724971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30230fb490c4f1f99bdf7db16f6b037d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 11400000, guid: 3234325795b38e9f8bc2348987f72a22, type: 2}
 --- !u!114 &1765724979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,6 +377,7 @@ MonoBehaviour:
       superRegion: 0
       rooms:
       - id: 0
+        isEntryPoint: 0
         size: 0
         connections: 0
         elements:
@@ -403,3 +391,17 @@ MonoBehaviour:
     - source: 0
       destination: 0
       size: 0
+--- !u!114 &1765724980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765724971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef6702ebf0da19858f476fd8f188804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 11400000, guid: 3234325795b38e9f8bc2348987f72a22, type: 2}
+  speed: {fileID: 11400000, guid: c258cf61c1e402ace9e0fffa54495f96, type: 2}

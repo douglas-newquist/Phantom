@@ -9,9 +9,9 @@ namespace Game
 		public Controller controller;
 
 		[System.NonSerialized]
-		IEnumerator running = null;
+		protected IEnumerator running = null;
 
-		public void Start()
+		public virtual void Start()
 		{
 			if (controller != null)
 			{
@@ -22,7 +22,7 @@ namespace Game
 				Debug.LogWarning("No controller provided!");
 		}
 
-		public void Stop()
+		public virtual void Stop()
 		{
 			if (running != null)
 			{
