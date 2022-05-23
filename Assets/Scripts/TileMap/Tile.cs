@@ -32,6 +32,8 @@ namespace Game
 		Full = BottomLeft | BottomRight | TopLeft | TopRight
 	}
 
+	public enum TileConnection { None, Solid, Air }
+
 	public static class TileHelper
 	{
 		/// <summary>
@@ -70,34 +72,47 @@ namespace Game
 			return TileShape.None;
 		}
 
-		public static bool Connectable(this Tile tile, Tile other, Direction direction)
+		public static TileConnection ConnectionType(bool a, bool b)
 		{
-			bool a = false, b = false;
+			if (a != b)
+				return TileConnection.None;
+
+			if (a) return TileConnection.Solid;
+			return TileConnection.Air;
+		}
+
+		public static TileConnection Connectable(this Tile tile, Tile other, Direction direction)
+		{
+			TileConnection a = TileConnection.None, b = TileConnection.None;
 
 			switch (direction)
 			{
 				case Direction.Up:
-					a = tile.HasFlag(Tile.TopLeft) == other.HasFlag(Tile.BottomLeft);
-					b = tile.HasFlag(Tile.TopRight) == other.HasFlag(Tile.BottomRight);
-					return a && b;
+					a = ConnectionType(tile.HasFlag(Tile.TopLeft), other.HasFlag(Tile.BottomLeft));
+					b = ConnectionType(tile.HasFlag(Tile.TopRight), other.HasFlag(Tile.BottomRight));
+					break;
 
 				case Direction.Right:
-					a = tile.HasFlag(Tile.TopRight) == other.HasFlag(Tile.TopLeft);
-					b = tile.HasFlag(Tile.BottomRight) == other.HasFlag(Tile.BottomLeft);
-					return a && b;
+					a = ConnectionType(tile.HasFlag(Tile.TopRight), other.HasFlag(Tile.TopLeft));
+					b = ConnectionType(tile.HasFlag(Tile.BottomRight), other.HasFlag(Tile.BottomLeft));
+					break;
 
 				case Direction.Down:
-					a = tile.HasFlag(Tile.BottomLeft) == other.HasFlag(Tile.TopLeft);
-					b = tile.HasFlag(Tile.BottomRight) == other.HasFlag(Tile.TopRight);
-					return a && b;
+					a = ConnectionType(tile.HasFlag(Tile.BottomLeft), other.HasFlag(Tile.TopLeft));
+					b = ConnectionType(tile.HasFlag(Tile.BottomRight), other.HasFlag(Tile.TopRight));
+					break;
 
 				case Direction.Left:
-					a = tile.HasFlag(Tile.TopLeft) == other.HasFlag(Tile.TopRight);
-					b = tile.HasFlag(Tile.BottomLeft) == other.HasFlag(Tile.BottomRight);
-					return a && b;
+					a = ConnectionType(tile.HasFlag(Tile.TopLeft), other.HasFlag(Tile.TopRight));
+					b = ConnectionType(tile.HasFlag(Tile.BottomLeft), other.HasFlag(Tile.BottomRight));
+					break;
 			}
 
-			return false;
+			if (a == TileConnection.None || b == TileConnection.None)
+				return TileConnection.None;
+			if (a == TileConnection.Solid || b == TileConnection.Solid)
+				return TileConnection.Solid;
+			return TileConnection.Air;
 		}
 
 		public static Tile FlipY(this Tile tile)
