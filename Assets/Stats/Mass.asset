@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e932c3ce049e1256fadcf4e669176f71, type: 3}
-  m_Name: Evasion
+  m_Name: Mass
   m_EditorClassIdentifier: 
-  displayName: Evasion
-  description: Chance to completely dodge incoming damage.
+  displayName: 
+  description: No description provided.
   icon: {fileID: 0}
-  defaultValue: 0
+  defaultValue: 1
   limits:
-    min: 0
-    max: 1
+    min: 1
+    max: 10000
