@@ -20,7 +20,7 @@ namespace Game
 
 		public Texture2D Draw(TileMap map)
 		{
-			var texture = new Texture2D(Width * map.TilesWidth, Height * map.TilesHeight);
+			var texture = new Texture2D(Width * map.Width, Height * map.Height);
 			Debug.Log(texture.width);
 			DrawOverride(texture, map);
 			return texture;
@@ -28,11 +28,11 @@ namespace Game
 
 		public void DrawOverride(Texture2D texture, TileMap map)
 		{
-			for (int x = 0; x < map.TilesWidth; x++)
+			for (int x = 0; x < map.Width; x++)
 			{
-				for (int y = 0; y < map.TilesHeight; y++)
+				for (int y = 0; y < map.Height; y++)
 				{
-					var pixels = GetTilePixels(map.GetTile(x, y));
+					var pixels = GetTilePixels(map.Get(x, y));
 					texture.SetPixels(x * Width, y * Height, Width, Height, pixels);
 				}
 			}

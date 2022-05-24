@@ -1,103 +1,59 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game
 {
 	[System.Serializable]
-	public class TileMap
+	public class TileMap : IGrid2D<Tile>
 	{
-		[SerializeField]
-		private int width, height;
+		public Grid2D<int> vertices;
 
 		/// <summary>
 		/// How many tiles wide this map is
 		/// </summary>
-		public int TilesWidth => width;
+		public int Width => vertices.Width - 1;
 
 		/// <summary>
 		/// How many tiles tall this map is
 		/// </summary>
-		public int TilesHeight => height;
-
-		/// <summary>
-		/// How many vertices wide this map is
-		/// </summary>
-		public int VertexWidth => width + 1;
-
-		/// <summary>
-		/// How many vertices tall this map is
-		/// </summary>
-		public int VertexHeight => height + 1;
-
-		[SerializeField]
-		private int[] vertices;
+		public int Height => vertices.Height - 1;
 
 		public TileMap(int width, int height)
 		{
-			this.width = width;
-			this.height = height;
-
-			vertices = new int[VertexWidth * VertexHeight];
+			vertices = new Grid2D<int>(width + 1, height + 1);
 		}
 
-		/// <summary>
-		/// Checks if the given coordinate is a valid vertex coordinate
-		/// </summary>
-		public bool InVertexBounds(int x, int y)
+		public bool InBounds(int x, int y)
 		{
-			return x >= 0 && x < VertexWidth && y >= 0 && y < VertexHeight;
+			return x >= 0 && x < Width && y >= 0 && y < Height;
 		}
 
-		/// <summary>
-		/// Checks if the given coordinate is a valid tile coordinate
-		/// </summary>
-		public bool InTileBounds(int x, int y)
-		{
-			return x >= 0 && x < TilesWidth && y >= 0 && y < TilesHeight;
-		}
-
-		public int GetVertex(int x, int y)
-		{
-			if (InVertexBounds(x, y))
-				return vertices[x * width + y];
-			return -1;
-		}
-
-		/// <summary>
-		///
-		/// </summary>
-		/// <param name="value">Value to set the vertex to</param>
-		public void SetVertex(int x, int y, int value)
-		{
-			if (InVertexBounds(x, y))
-				vertices[x * width + y] = value;
-		}
-
-		public Tile GetTile(int x, int y)
+		public Tile Get(int x, int y)
 		{
 			Tile tile = Tile.None;
 
-			if (GetVertex(x, y) > 0)
+			if (vertices.Get(x, y) > 0)
 				tile |= Tile.BottomLeft;
-			if (GetVertex(x + 1, y) > 0)
+			if (vertices.Get(x + 1, y) > 0)
 				tile |= Tile.BottomRight;
-			if (GetVertex(x, y + 1) > 0)
+			if (vertices.Get(x, y + 1) > 0)
 				tile |= Tile.TopLeft;
-			if (GetVertex(x + 1, y + 1) > 0)
+			if (vertices.Get(x + 1, y + 1) > 0)
 				tile |= Tile.TopRight;
 
 			return tile;
 		}
 
-		public void SetTile(int x, int y, Tile tile)
+		public void Set(int x, int y, Tile value)
 		{
-			if (tile.HasFlag(Tile.BottomLeft))
-				SetVertex(x, y, 1);
-			if (tile.HasFlag(Tile.BottomRight))
-				SetVertex(x + 1, y, 1);
-			if (tile.HasFlag(Tile.TopLeft))
-				SetVertex(x, y + 1, 1);
-			if (tile.HasFlag(Tile.TopRight))
-				SetVertex(x + 1, y + 1, 1);
+			if (value.HasFlag(Tile.BottomLeft))
+				vertices.Set(x, y, 1);
+			if (value.HasFlag(Tile.BottomRight))
+				vertices.Set(x + 1, y, 1);
+			if (value.HasFlag(Tile.TopLeft))
+				vertices.Set(x, y + 1, 1);
+			if (value.HasFlag(Tile.TopRight))
+				vertices.Set(x + 1, y + 1, 1);
 		}
 	}
 }
