@@ -12,6 +12,16 @@ namespace Game
 		[SerializeField]
 		private Dictionary<StatSO, Stat> stats = new Dictionary<StatSO, Stat>();
 
+		public override string ToString()
+		{
+			string s = "Stat Sheet " + stats.Count + " stats";
+
+			foreach (var stat in stats.Values)
+				s += "\n" + stat.ToString();
+
+			return s;
+		}
+
 		/// <summary>
 		/// Adds a stat to this stat sheet, rejects if there is already a stat of the same type.
 		/// </summary>

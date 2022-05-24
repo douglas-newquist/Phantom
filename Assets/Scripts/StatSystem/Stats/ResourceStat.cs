@@ -66,6 +66,11 @@ namespace Game
 			Percentage = startPercent;
 		}
 
+		public override string ToString()
+		{
+			return Type.name + " " + Current + " / " + Value + " (" + BaseValue + ")";
+		}
+
 		void OnMaxChanged(ValueChangedEvent change)
 		{
 			switch (maxChangedMode)
@@ -102,13 +107,14 @@ namespace Game
 			if (amount < 0)
 				return -Withdraw(-amount, allOrNothing);
 
-			float expected = Current + amount;
-
-			if (allOrNothing && expected > Value)
+			if (allOrNothing && Current + amount > Value)
 				return 0;
 
+			if (Current + amount > Value)
+				amount = Value - Current;
+
 			Current += amount;
-			return expected - Current;
+			return amount;
 		}
 
 		/// <summary>
@@ -122,13 +128,14 @@ namespace Game
 			if (amount < 0)
 				return -Deposit(-amount, allOrNothing);
 
-			float expected = Current - amount;
-
-			if (allOrNothing && expected < Value)
+			if (allOrNothing && Current < amount)
 				return 0;
 
+			if (amount > Current)
+				amount = Current;
+
 			Current -= amount;
-			return Current - expected;
+			return amount;
 		}
 
 		/// <summary>

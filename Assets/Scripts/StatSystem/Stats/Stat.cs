@@ -88,6 +88,11 @@ namespace Game
 			Type = type;
 		}
 
+		public override string ToString()
+		{
+			return Type.name + " " + Value + " (" + BaseValue + ")";
+		}
+
 		/// <summary>
 		/// Recalculates the current value for this stat
 		/// </summary>
