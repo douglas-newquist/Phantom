@@ -14,5 +14,4 @@ namespace Game
 			return "Generic Event";
 		}
 	}
-
 }
