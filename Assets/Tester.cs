@@ -7,23 +7,12 @@ namespace Game
 {
 	public class Tester : MonoBehaviour
 	{
-		public Damage damage;
-		public ResourceStatSO hull, armor, shield;
-
+		public GameObject prefab;
 		// Start is called before the first frame update
 		void Start()
 		{
-			var sheet = gameObject.AddComponent<StatSheet>();
-			sheet.GetStat(hull).BaseValue = 100;
-			sheet.GetStat(armor).BaseValue = 100;
-			sheet.GetStat(shield).BaseValue = 100;
-
-
-			Debug.Log(sheet);
-
-			damage.Apply(sheet);
-
-			Debug.Log(sheet);
+			ObjectPool.Register("test", prefab);
+			ObjectPool.Spawn("test");
 		}
 
 		// Update is called once per frame

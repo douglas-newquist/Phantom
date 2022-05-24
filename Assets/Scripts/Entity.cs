@@ -39,4 +39,16 @@ namespace Game
 			Destroy(gameObject);
 		}
 	}
+	public class Ship : Entity
+	{
+
+	}
+	public class Projectile : MonoBehaviour
+	{
+
+	}
+	public class Homing : MonoBehaviour
+	{
+
+	}
 }
