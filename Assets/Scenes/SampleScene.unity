@@ -303,11 +303,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b95fb1794abd62c2beeea1025dd90f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map:
-    width: 0
-    height: 0
-    vertices: 
-  tileMapTexture: {fileID: 11400000, guid: df9ab9085f1b95d2face880ee54503ac, type: 2}
+  damage:
+    damageType: {fileID: 11400000, guid: b83b78c6a2fc2402588f7d74e8ab0ef7, type: 2}
+    amount: 125
+  hull: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
+  armor: {fileID: 11400000, guid: 1aa0fd03d7583554eb8bb53fd768e514, type: 2}
+  shield: {fileID: 11400000, guid: f00840f3f4c31fb8d82e8f5e6f22b77d, type: 2}
 --- !u!4 &1387071761
 Transform:
   m_ObjectHideFlags: 0

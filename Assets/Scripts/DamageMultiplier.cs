@@ -7,7 +7,7 @@ namespace Game
 	{
 		public ResourceStatSO resource;
 
-		[Range(0f, 2f)]
+		[Range(-2f, 2f)]
 		public float multiplier;
 
 		public DamageMultiplier(ResourceStatSO resource, float multiplier = 1)

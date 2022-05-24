@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Game
 {
 	[System.Serializable]
@@ -19,9 +21,11 @@ namespace Game
 
 			foreach (var multiplier in damageType.multipliers)
 			{
+				if (Mathf.Abs(remaining) < 0.1f)
+					return new Damage(damageType, 0);
+
 				var resource = sheet.GetStat<ResourceStat>(multiplier.resource);
-				var taken = resource.Withdraw(amount * multiplier.multiplier);
-				UnityEngine.Debug.Log("Taken " + taken);
+				var taken = resource.Withdraw(remaining * multiplier.multiplier);
 				remaining -= taken / multiplier.multiplier;
 			}
 

@@ -16,6 +16,6 @@ MonoBehaviour:
   - resource: {fileID: 11400000, guid: f00840f3f4c31fb8d82e8f5e6f22b77d, type: 2}
     multiplier: 1.25
   - resource: {fileID: 11400000, guid: 1aa0fd03d7583554eb8bb53fd768e514, type: 2}
-    multiplier: 0.5
+    multiplier: 0.75
   - resource: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
     multiplier: 1.25
