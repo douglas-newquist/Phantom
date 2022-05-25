@@ -6,6 +6,8 @@ namespace Game
 	{
 		public Sprite sprite;
 
+		public Texture2D Texture => sprite.texture;
+
 		public int Width => sprite.texture.width / 4;
 
 		public int Height => sprite.texture.height / 4;
@@ -37,6 +39,7 @@ namespace Game
 				}
 			}
 
+			texture.filterMode = Texture.filterMode;
 			texture.Apply();
 		}
 
@@ -45,8 +48,7 @@ namespace Game
 			var texture = Draw(map);
 			var rect = new Rect(0, 0, texture.width, texture.height);
 			var pivot = new Vector2(0.5f, 0.5f);
-			var sprite = Sprite.Create(texture, rect, pivot, Width);
-			System.IO.File.WriteAllBytes("test.png", sprite.texture.EncodeToPNG());
+			var sprite = Sprite.Create(texture, rect, pivot, this.sprite.pixelsPerUnit);
 			return sprite;
 		}
 	}
