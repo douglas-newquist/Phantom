@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Game
 {
 	public static class Math
@@ -28,6 +30,19 @@ namespace Game
 		public static float FromPercentage(float value, float min, float max)
 		{
 			return value * (max - min) + min;
+		}
+
+		public static Vector2 RotateVector2(Vector2 vector, float radians)
+		{
+			return new Vector2(
+				vector.x * Mathf.Cos(radians) - vector.y * Mathf.Sin(radians),
+				vector.x * Mathf.Sin(radians) + vector.y * Mathf.Cos(radians)
+			);
+		}
+
+		public static Vector2 Rotate(this Vector2 vector, float radians)
+		{
+			return RotateVector2(vector, radians);
 		}
 	}
 }

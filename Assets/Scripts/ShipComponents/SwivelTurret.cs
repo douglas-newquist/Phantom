@@ -2,10 +2,16 @@ using UnityEngine;
 
 namespace Game
 {
-	public class GimbalTurret : SwivelTurret, ITurret
+	public class SwivelTurret : Turret
 	{
-		[Range(0f, 180f)]
-		public float degreeLimit = 25;
+		public GameObject head;
+
+		[Range(0, GameManager.RotationSpeedLimit)]
+		public float degreePerSec;
+
+		public float MaxDeltaDegrees => degreePerSec * Time.deltaTime;
+
+		protected float angle;
 
 		public override float Look(Vector3 vector, Reference mode)
 		{
@@ -20,16 +26,9 @@ namespace Game
 
 			var angle = Vector3.SignedAngle(vector.normalized, head.transform.up, Vector3.forward);
 			var deltaAngle = -Mathf.Sign(angle) * Mathf.Min(MaxDeltaDegrees, Mathf.Abs(angle));
-			var up = Math.RotateVector2(head.transform.up, deltaAngle * Mathf.Deg2Rad);
+			head.transform.up = Math.RotateVector2(head.transform.up, deltaAngle * Mathf.Deg2Rad);
 
-			angle = Vector3.SignedAngle(up, transform.up, Vector3.forward);
-
-			if (Mathf.Abs(angle) > degreeLimit)
-				up = Math.RotateVector2(transform.up, -Mathf.Sign(angle) * degreeLimit * Mathf.Deg2Rad);
-
-			head.transform.up = up;
-
-			return Vector3.Angle(vector.normalized, head.transform.up);
+			return Vector3.SignedAngle(vector.normalized, head.transform.up, Vector3.forward);
 		}
 
 		public override void Reset()
@@ -42,8 +41,6 @@ namespace Game
 			var mousePos = Input.mousePosition;
 			var pos = Camera.main.ScreenToWorldPoint(mousePos);
 			var angle = Look(pos, Reference.Absolute);
-
-			Debug.Log(angle);
 		}
 	}
 }
