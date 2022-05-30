@@ -11,7 +11,12 @@ namespace Game
 
 		public float MaxDeltaDegrees => degreePerSec * Time.deltaTime;
 
+		public override Vector3 Forward => head.transform.up;
+
+		public override Vector3 Position => head.transform.position;
+
 		protected float angle;
+		public Rigidbody2D target;
 
 		public override float Look(Vector3 vector, Reference mode)
 		{
@@ -40,7 +45,17 @@ namespace Game
 		{
 			var mousePos = Input.mousePosition;
 			var pos = Camera.main.ScreenToWorldPoint(mousePos);
-			var angle = Look(pos, Reference.Absolute);
+			if (target != null)
+			{
+				if (Input.GetMouseButton(0))
+					FireAt(target);
+				else
+					LookAt(target);
+			}
+			else
+			{
+				Look(pos, Reference.Absolute);
+			}
 		}
 	}
 }

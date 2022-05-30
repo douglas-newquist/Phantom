@@ -7,17 +7,55 @@ namespace Game
 		[Range(0f, 180f)]
 		public float angleTolerance = 15;
 
-		public virtual float ProjectileVelocity => throw new System.NotImplementedException();
+		public float velocity = 10;
+
+		public virtual float ProjectileVelocity => velocity;
+
+		public virtual float ProjectileAcceleration => 0;
+
+		public GameObject prefab;
+
+		public float fireDelay = 1;
+
+		private float nextShot = 0;
+
+		public abstract Vector3 Forward { get; }
+
+		public abstract Vector3 Position { get; }
+
+		private Rigidbody2D lastTarget;
+		private Vector2 lastTargetPos;
 
 		public virtual Vector3 PredictTargetPosition(Rigidbody2D body)
 		{
-			return body.position + body.velocity;
+			if (lastTarget == null || lastTarget != body)
+			{
+				lastTarget = body;
+				lastTargetPos = body.position;
+			}
+
+			var prediction = Math.PredictImpact(transform.position,
+									  body.position,
+									  ProjectileVelocity,
+									  body.velocity,
+									  ProjectileAcceleration,
+									  body.position - lastTargetPos);
+
+			lastTargetPos = body.position;
+			return prediction;
 		}
 
 		public virtual bool Fire(Vector3 vector, Reference mode)
 		{
 			var angle = Look(vector, mode);
-			throw new System.NotImplementedException();
+			if (Time.time >= nextShot)
+			{
+				nextShot = Time.time + fireDelay;
+				var projectile = Instantiate(prefab, Position, Quaternion.identity);
+				var body = projectile.GetComponent<Rigidbody2D>();
+				body.velocity = Forward * ProjectileVelocity;
+			}
+			return false;
 		}
 
 		public abstract float Look(Vector3 vector, Reference mode);

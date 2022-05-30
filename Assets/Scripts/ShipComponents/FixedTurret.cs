@@ -4,16 +4,20 @@ namespace Game
 {
 	public class FixedTurret : Turret, ITurret
 	{
+		public override Vector3 Forward => transform.up;
+
+		public override Vector3 Position => transform.position;
+
 		public override float Look(Vector3 vector, Reference mode)
 		{
 			switch (mode)
 			{
 				case Reference.Absolute:
-					vector -= transform.position;
+					vector -= Position;
 					break;
 			}
 
-			return Vector3.Angle(transform.up, vector);
+			return Vector3.Angle(Forward, vector);
 		}
 	}
 }
