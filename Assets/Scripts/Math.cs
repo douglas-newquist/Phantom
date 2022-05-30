@@ -64,8 +64,8 @@ namespace Game
 
 			var distance = Vector2.Distance(start, end);
 
-			//if (acceleration == 0)
-			return distance / velocity;
+			if (acceleration == 0)
+				return distance / velocity;
 
 			var t = (Mathf.Sqrt(2f * acceleration * acceleration * distance + velocity * velocity) - velocity) / (acceleration * acceleration);
 
@@ -95,7 +95,6 @@ namespace Game
 				var time = ProjectileTravelTime(start, prediction, v1, a1);
 				lastPrediction = prediction;
 				prediction = ProjectilePosition(time, target, v2, a2);
-				Debug.Log(prediction + " " + i + " " + time + " to " + target);
 				if (Vector2.Distance(prediction, lastPrediction) < 1f)
 					return prediction;
 			}
