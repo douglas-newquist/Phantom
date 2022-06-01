@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game
 {
-	public abstract class Turret : MonoBehaviour, ITurret
+	public abstract class Turret : ShipComponent, ITurret
 	{
 		[Range(0f, 180f)]
 		public float angleTolerance = 15;
@@ -48,7 +48,7 @@ namespace Game
 		public virtual bool Fire(Vector3 vector, Reference mode)
 		{
 			var angle = Look(vector, mode);
-			if (Time.time >= nextShot)
+			if (Time.time >= nextShot && Mathf.Abs(angle) <= angleTolerance)
 			{
 				nextShot = Time.time + fireDelay;
 				var projectile = Instantiate(prefab, Position, Quaternion.identity);

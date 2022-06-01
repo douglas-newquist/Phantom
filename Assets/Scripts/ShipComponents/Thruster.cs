@@ -8,10 +8,9 @@ namespace Game
 	{
 
 	}
-	public class Thruster : MonoBehaviour, IThruster
+	public class Thruster : ShipComponent, IThruster
 	{
 		public Rigidbody2D body;
-		public StatSheet statSheet;
 		public StatSO thrustStat;
 		public float multiplier = 1;
 

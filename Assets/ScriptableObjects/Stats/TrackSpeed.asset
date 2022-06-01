@@ -15,7 +15,7 @@ MonoBehaviour:
   displayName: Tracking Speed
   description: Determines how fast turrets can rotate towards their target.
   icon: {fileID: 0}
-  defaultValue: 0.1
+  defaultValue: 1
   limits:
     min: 0
     max: 10

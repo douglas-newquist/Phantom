@@ -350,6 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4effb7653d718d8fa0bad54b1a10784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statSheet: {fileID: 1387071763}
   body: {fileID: 1387071764}
   statSheet: {fileID: 1387071763}
   thrustStat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
@@ -503,6 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4effb7653d718d8fa0bad54b1a10784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statSheet: {fileID: 1387071763}
   body: {fileID: 1387071764}
   statSheet: {fileID: 1387071763}
   thrustStat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
@@ -717,6 +719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4effb7653d718d8fa0bad54b1a10784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statSheet: {fileID: 1387071763}
   body: {fileID: 1387071764}
   statSheet: {fileID: 1387071763}
   thrustStat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
@@ -818,6 +821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4effb7653d718d8fa0bad54b1a10784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statSheet: {fileID: 1387071763}
   body: {fileID: 1387071764}
   statSheet: {fileID: 1387071763}
   thrustStat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
@@ -973,6 +977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a9a0d285386db337ad3c8ec3ad6649d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statSheet: {fileID: 1387071763}
   angleTolerance: 15
   velocity: 55
   prefab: {fileID: 7457276514429572784, guid: 49546eaec390466b1bb9f2189033e195, type: 3}
@@ -980,6 +985,7 @@ MonoBehaviour:
   head: {fileID: 492162347}
   degreePerSec: 135
   target: {fileID: 1387071764}
+  trackSpeed: {fileID: 11400000, guid: 843d561003bfb5fbfa411acf44ca8139, type: 2}
 --- !u!114 &2106564234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -992,6 +998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75fac1a348ca078ab15c1b528302a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statSheet: {fileID: 1387071763}
   angleTolerance: 15
   velocity: 10
   prefab: {fileID: 0}
@@ -999,4 +1006,5 @@ MonoBehaviour:
   head: {fileID: 492162347}
   degreePerSec: 45
   target: {fileID: 0}
+  trackSpeed: {fileID: 11400000, guid: 843d561003bfb5fbfa411acf44ca8139, type: 2}
   degreeLimit: 25

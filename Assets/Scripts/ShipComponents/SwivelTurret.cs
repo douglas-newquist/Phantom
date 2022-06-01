@@ -9,7 +9,9 @@ namespace Game
 		[Range(0, GameManager.RotationSpeedLimit)]
 		public float degreePerSec;
 
-		public float MaxDeltaDegrees => degreePerSec * Time.deltaTime;
+		public float DegreesPerSec => Mathf.Clamp(degreePerSec * statSheet.GetValue(trackSpeed), 0, GameManager.RotationSpeedLimit);
+
+		public float MaxDeltaDegrees => DegreesPerSec * Time.deltaTime;
 
 		public override Vector3 Forward => head.transform.up;
 
@@ -17,6 +19,8 @@ namespace Game
 
 		protected float angle;
 		public Rigidbody2D target;
+
+		public StatSO trackSpeed;
 
 		public override float Look(Vector3 vector, Reference mode)
 		{
