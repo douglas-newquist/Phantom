@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e932c3ce049e1256fadcf4e669176f71, type: 3}
-  m_Name: Thrust
+  m_Name: ArmorRepair
   m_EditorClassIdentifier: 
-  displayName: Thrust
-  description: Determines how powerful thrusters are.
+  displayName: Armor Repair Rate
+  description: How much armor is repaired per second.
   icon: {fileID: 0}
-  defaultValue: 1
+  defaultValue: 0
   limits:
     min: 0
     max: 3.4028235e+38

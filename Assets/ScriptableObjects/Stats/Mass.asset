@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e932c3ce049e1256fadcf4e669176f71, type: 3}
   m_Name: Mass
   m_EditorClassIdentifier: 
-  displayName: 
+  displayName: Mass
   description: No description provided.
   icon: {fileID: 0}
   defaultValue: 1

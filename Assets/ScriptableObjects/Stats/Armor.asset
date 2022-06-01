@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 167b95b1a139c0de68d79804109780a3, type: 3}
   m_Name: Armor
   m_EditorClassIdentifier: 
-  displayName: 
+  displayName: Armor
   description: No description provided.
   icon: {fileID: 0}
   defaultValue: 0

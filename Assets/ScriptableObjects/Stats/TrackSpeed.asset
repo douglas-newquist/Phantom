@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e932c3ce049e1256fadcf4e669176f71, type: 3}
-  m_Name: Thrust
+  m_Name: TrackSpeed
   m_EditorClassIdentifier: 
-  displayName: Thrust
-  description: Determines how powerful thrusters are.
+  displayName: Tracking Speed
+  description: Determines how fast turrets can rotate towards their target.
   icon: {fileID: 0}
-  defaultValue: 1
+  defaultValue: 0.1
   limits:
     min: 0
-    max: 3.4028235e+38
+    max: 10
