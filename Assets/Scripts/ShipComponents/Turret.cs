@@ -7,15 +7,12 @@ namespace Game
 		[Range(0f, 180f)]
 		public float angleTolerance = 15;
 
-		public float velocity = 10;
+		public ProjectileSO projectile;
 
-		public virtual float ProjectileVelocity => velocity;
+		[Range(1f, 60f)]
+		public float fireRate = 1;
 
-		public virtual float ProjectileAcceleration => 0;
-
-		public GameObject prefab;
-
-		public float fireDelay = 1;
+		public float FireDelay => 1f / fireRate;
 
 		private float nextShot = 0;
 
@@ -36,26 +33,26 @@ namespace Game
 
 			var prediction = Math.PredictImpact(transform.position,
 									  body.position,
-									  ProjectileVelocity,
+									  projectile.GetVelocity(statSheet),
 									  body.velocity,
-									  ProjectileAcceleration,
+									  projectile.GetAcceleration(statSheet),
 									  body.position - lastTargetPos);
 
 			lastTargetPos = body.position;
 			return prediction;
 		}
 
-		public virtual bool Fire(Vector3 vector, Reference mode)
+		public virtual GameObject Fire(Vector3 vector, ProjectileSO projectile, Reference mode)
 		{
 			var angle = Look(vector, mode);
+
 			if (Time.time >= nextShot && Mathf.Abs(angle) <= angleTolerance)
 			{
-				nextShot = Time.time + fireDelay;
-				var projectile = Instantiate(prefab, Position, Quaternion.identity);
-				var body = projectile.GetComponent<Rigidbody2D>();
-				body.velocity = Forward * ProjectileVelocity;
+				nextShot = Time.time + fireRate;
+				return projectile.Spawn(statSheet, Position, Forward);
 			}
-			return false;
+
+			return null;
 		}
 
 		public abstract float Look(Vector3 vector, Reference mode);
@@ -66,9 +63,9 @@ namespace Game
 		/// <param name="turret"></param>
 		/// <param name="body">What moving target to fire at</param>
 		/// <returns>True if the turret actually fired a projectile</returns>
-		public virtual bool FireAt(Rigidbody2D body)
+		public virtual bool FireAt(Rigidbody2D body, ProjectileSO projectile)
 		{
-			return Fire(PredictTargetPosition(body), Reference.Absolute);
+			return Fire(PredictTargetPosition(body), projectile, Reference.Absolute);
 		}
 
 		/// <summary>

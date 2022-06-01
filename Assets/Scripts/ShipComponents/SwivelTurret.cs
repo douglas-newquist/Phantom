@@ -52,7 +52,7 @@ namespace Game
 			if (target != null)
 			{
 				if (Input.GetMouseButton(0))
-					FireAt(target);
+					FireAt(target, projectile);
 				else
 					LookAt(target);
 			}

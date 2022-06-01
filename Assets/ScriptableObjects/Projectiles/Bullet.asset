@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432f07322096b31209387e2d363bb063, type: 3}
+  m_Name: Bullet
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7457276514429572784, guid: 49546eaec390466b1bb9f2189033e195, type: 3}
+  damage:
+    damageType: {fileID: 11400000, guid: 3aa711e51be6346c4ba83012a4338f6d, type: 2}
+    amount: 10
+  velocity: 10
+  velocityStat: {fileID: 11400000, guid: f8332add7f06f29d09b0a3fdaeb7cb1a, type: 2}
+  acceleration: 0
+  accelerationStat: {fileID: 0}

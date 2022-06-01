@@ -20,7 +20,7 @@ namespace Game
 
 			if (turrets != null)
 				foreach (var turret in turrets)
-					turret.Fire(vector, mode);
+					turret.Fire(vector, null, mode);
 		}
 
 		public void Look(Vector3 vector, int group, Reference mode)
