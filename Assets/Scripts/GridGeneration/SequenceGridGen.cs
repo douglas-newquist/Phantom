@@ -12,7 +12,8 @@ namespace Game
 			var result = grid;
 
 			foreach (var step in steps)
-				result = step.Apply(result, area);
+				if (step != null)
+					result = step.Apply(result, area);
 
 			return result;
 		}

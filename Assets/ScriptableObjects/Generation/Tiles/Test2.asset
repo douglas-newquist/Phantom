@@ -15,6 +15,6 @@ MonoBehaviour:
   repeat:
     min: 1
     max: 1
-  mask: {fileID: 11400000, guid: 447aa6359d5b5372fab028921289cab0, type: 2}
+  mask: {fileID: 11400000, guid: ff794b2c57e3de778a768f28470b89af, type: 2}
   steps:
-  - {fileID: 11400000, guid: d43737443be7ddf9f84057ae0a5d62c8, type: 2}
+  - {fileID: 11400000, guid: 4fde8a2ecb6dff6ebb1ba2de8c8ca2fa, type: 2}
