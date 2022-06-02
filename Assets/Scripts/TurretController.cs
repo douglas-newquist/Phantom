@@ -19,19 +19,6 @@ namespace Game
 			return null;
 		}
 
-		public void ClearTarget()
-		{
-			target = null;
-		}
-
-		public void SetTarget(Rigidbody2D target)
-		{
-			if (this.target != target)
-			{
-				this.target = target;
-			}
-		}
-
 		public List<Projectile> Aim(Rigidbody2D target, bool fire)
 		{
 			var projectiles = new List<Projectile>();
@@ -52,9 +39,11 @@ namespace Game
 			if (turrets == null)
 				return null;
 
-			SetTarget(target);
-			var location = turrets.PredictImpactLocation(target, Vector3.zero);
-			return Aim(location, Reference.Absolute, group, fire);
+			if (fire)
+				return turrets.Fire(target);
+
+			turrets.Look(target.position, Reference.Absolute);
+			return null;
 		}
 
 		public List<Projectile> Aim(Vector3 vector, Reference mode, bool fire)

@@ -30,6 +30,20 @@ namespace Game
 			return projectiles;
 		}
 
+		public List<Projectile> Fire(Rigidbody2D target)
+		{
+			var projectiles = new List<Projectile>();
+
+			foreach (var turret in turrets)
+			{
+				var p = turret.Fire(target, projectile);
+				if (p != null)
+					projectiles.Add(p);
+			}
+
+			return projectiles;
+		}
+
 		/// <summary>
 		///
 		/// </summary>
