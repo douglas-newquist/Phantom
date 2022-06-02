@@ -5,9 +5,9 @@ namespace Game
 	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Fill")]
 	public class FillGridGen : GridGen<int>
 	{
-		public int value;
+		public int value = 1;
 
-		public override Grid2D<int> Apply(Grid2D<int> grid, RectInt area)
+		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
 		{
 			grid = new Grid2D<int>(grid);
 

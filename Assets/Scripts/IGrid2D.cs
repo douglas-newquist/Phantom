@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Game
 {
@@ -27,6 +28,12 @@ namespace Game
 			return true;
 		}
 
+		/// <summary>
+		/// Counts the number of appearances of each value in this grid
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="grid"></param>
+		/// <returns></returns>
 		public static Dictionary<T, int> Itemize<T>(this IGrid2D<T> grid)
 		{
 			var counts = new Dictionary<T, int>();
@@ -42,6 +49,17 @@ namespace Game
 				}
 
 			return counts;
+		}
+
+		public static IEnumerable<KeyValuePair<Vector2Int, T>> GetNeighbors<T>(this IGrid2D<T> grid, Vector2Int pos, int range)
+		{
+			for (int x = pos.x - range; x <= pos.x + range; x++)
+				for (int y = pos.y - range; y <= pos.y + range; y++)
+				{
+					var p = new Vector2Int(x, y);
+					if (grid.InBounds(x, y) && p != pos)
+						yield return new KeyValuePair<Vector2Int, T>(p, grid.Get(x, y));
+				}
 		}
 	}
 }

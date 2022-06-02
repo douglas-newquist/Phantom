@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa0650cb6d7ae293aefd617151c64a6, type: 3}
+  m_Name: Random Mask
+  m_EditorClassIdentifier: 
+  repeat:
+    min: 1
+    max: 1
+  mask: {fileID: 11400000, guid: 4fde8a2ecb6dff6ebb1ba2de8c8ca2fa, type: 2}
+  positiveMaskValue: 3
+  valueOutsideMask: 5
