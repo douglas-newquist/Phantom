@@ -19,7 +19,7 @@ namespace Game
 				for (int y = area.yMin; y < area.yMax; y++)
 				{
 					int active = 0;
-					foreach (var neighbor in grid.GetNeighbors(new Vector2Int(x, y), 1))
+					foreach (var neighbor in grid.GetNeighbors(new Vector2Int(x, y), 1, true))
 						if (neighbor.Value == alive)
 							active++;
 

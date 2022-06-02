@@ -29,6 +29,12 @@ namespace Game
 			values = new T[width * height];
 		}
 
+		public Grid2D(int width, int height, T value) : this(width, height)
+		{
+			for (int i = 0; i < values.Length; i++)
+				values[i] = value;
+		}
+
 		public Grid2D(Grid2D<T> grid) : this(grid.Width, grid.Height)
 		{
 			for (int x = 0; x < Width; x++)

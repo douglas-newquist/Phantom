@@ -51,15 +51,92 @@ namespace Game
 			return counts;
 		}
 
-		public static IEnumerable<KeyValuePair<Vector2Int, T>> GetNeighbors<T>(this IGrid2D<T> grid, Vector2Int pos, int range)
+		public static IEnumerable<KeyValuePair<Vector2Int, T>> GetNeighbors<T>(this IGrid2D<T> grid, Vector2Int pos, int range, bool diagonal)
 		{
 			for (int x = pos.x - range; x <= pos.x + range; x++)
 				for (int y = pos.y - range; y <= pos.y + range; y++)
 				{
+					if (!diagonal && (x != pos.x && y != pos.y))
+						continue;
+
 					var p = new Vector2Int(x, y);
 					if (grid.InBounds(x, y) && p != pos)
 						yield return new KeyValuePair<Vector2Int, T>(p, grid.Get(x, y));
 				}
+		}
+
+		/// <summary>
+		/// Uses flood search to find all similar connected elements in this grid
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="grid"></param>
+		/// <param name="start">Cell to start the search from</param>
+		/// <param name="area">Area to constrain search to</param>
+		/// <param name="equals">Function that returns true if two values are similar</param>
+		/// <returns>List of coordinates</returns>
+		public static List<Vector2Int> FloodFindGroup<T>(this IGrid2D<T> grid, Vector2Int start, RectInt area, System.Func<T, T, bool> equals)
+		{
+			var group = new List<Vector2Int>();
+			group.Add(start);
+
+			var toSearch = new Queue<Vector2Int>();
+			toSearch.Enqueue(start);
+
+			while (toSearch.TryDequeue(out var cell))
+			{
+				T v1 = grid.Get(cell.x, cell.y);
+
+				foreach (var neighbor in grid.GetNeighbors(cell, 1, false))
+				{
+					if (group.Contains(neighbor.Key) || toSearch.Contains(neighbor.Key))
+						continue;
+
+					if (equals(v1, grid.Get(neighbor.Key.x, neighbor.Key.y)))
+					{
+						group.Add(neighbor.Key);
+						toSearch.Enqueue(neighbor.Key);
+					}
+				}
+			}
+
+			return group;
+		}
+
+		public static List<List<Vector2Int>> FloodFindGroups<T>(this IGrid2D<T> grid, System.Func<T, T, bool> equals)
+		{
+			var area = new RectInt(0, 0, grid.Width, grid.Height);
+			return grid.FloodFindGroups(area, equals);
+		}
+
+		/// <summary>
+		/// Uses flood search to group every element in this grd
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="grid"></param>
+		/// <param name="area">Area to constrain search to</param>
+		/// <param name="equals">Function that returns true if two values are similar</param>
+		/// <returns>List of list of coordinates</returns>
+		public static List<List<Vector2Int>> FloodFindGroups<T>(this IGrid2D<T> grid, RectInt area, System.Func<T, T, bool> equals)
+		{
+			var grouped = new Grid2D<bool>(area.width, area.height);
+			var groups = new List<List<Vector2Int>>();
+
+			for (int x = area.xMin; x < area.xMax; x++)
+			{
+				for (int y = area.yMin; y < area.yMax; y++)
+				{
+					if (grouped.Get(x - area.xMin, y - area.yMin))
+						continue;
+
+					var group = grid.FloodFindGroup(new Vector2Int(x, y), area, equals);
+					groups.Add(group);
+
+					foreach (var cell in group)
+						grouped.Set(cell.x - area.xMin, cell.y - area.yMin, true);
+				}
+			}
+
+			return groups;
 		}
 	}
 }
