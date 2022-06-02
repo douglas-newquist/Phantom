@@ -36,16 +36,16 @@ namespace Game
 			return Apply(new Grid2D<int>(width, height));
 		}
 
-		public virtual Grid2D<int> ApplyMask(Grid2D<int> old, Grid2D<int> changed, RectInt area)
+		public virtual Grid2D<int> ApplyMask(Grid2D<int> negative, Grid2D<int> positive, RectInt area)
 		{
-			var result = new Grid2D<int>(old);
+			var result = new Grid2D<int>(negative);
 
 			var gridMask = Create(area.width, area.height);
 
 			for (int x = area.xMin, xMask = 0; x < area.xMax; x++, xMask++)
 				for (int y = area.yMin, yMask = 0; y < area.yMax; y++, yMask++)
 					if (gridMask.Get(xMask, yMask) == 1)
-						result.Set(x, y, changed.Get(x, y));
+						result.Set(x, y, positive.Get(x, y));
 
 			return result;
 		}

@@ -15,7 +15,7 @@ MonoBehaviour:
   repeat:
     min: 1
     max: 1
-  mask: {fileID: 0}
+  mask: {fileID: 11400000, guid: 447aa6359d5b5372fab028921289cab0, type: 2}
   choices:
     items:
     - value: {fileID: 11400000, guid: ba3b0fc57e1867523990d3c728e42d83, type: 2}
@@ -23,6 +23,4 @@ MonoBehaviour:
     - value: {fileID: 11400000, guid: ba9244d740259b54c9530963f00515ff, type: 2}
       weight: 25
     - value: {fileID: 11400000, guid: ac782c49c9f721a92893a92577e233d4, type: 2}
-      weight: 25
-    - value: {fileID: 0}
       weight: 25
