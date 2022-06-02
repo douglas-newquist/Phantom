@@ -43,10 +43,6 @@ namespace Game
 	{
 
 	}
-	public class Projectile : MonoBehaviour
-	{
-
-	}
 	public class Homing : MonoBehaviour
 	{
 

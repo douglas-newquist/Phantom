@@ -42,7 +42,7 @@ namespace Game
 			return prediction;
 		}
 
-		public virtual GameObject Fire(Vector3 vector, ProjectileSO projectile, Reference mode)
+		public virtual Projectile Fire(Vector3 vector, ProjectileSO projectile, Reference mode)
 		{
 			var angle = Look(vector, mode);
 
