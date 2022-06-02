@@ -10,9 +10,17 @@ namespace Game
 
 		public Damage damage;
 
+		public float DeathTime { get; set; }
+
+		protected virtual void Start()
+		{
+			DeathTime = Time.time + ProjectileStats.GetLifeSpan(statSheet);
+		}
+
 		public virtual void Update()
 		{
-
+			if (Time.time > DeathTime)
+				ObjectPool.Despawn(gameObject);
 		}
 	}
 }

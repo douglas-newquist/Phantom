@@ -38,7 +38,7 @@ namespace Game
 		{
 			if (CanFire)
 			{
-				nextShot = Time.time + fireRate;
+				nextShot = Time.time + FireDelay;
 				var p = projectile.Spawn(statSheet, Position, Forward);
 				OnProjectileFired.Invoke(new ProjectileFiredEvent(this, p));
 				return p;

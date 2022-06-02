@@ -20,10 +20,10 @@ MonoBehaviour:
     min: 60
     max: 60
   velocity:
-    min: 6
-    max: 6
+    min: 1
+    max: 10
   velocityStat: {fileID: 0}
   acceleration:
-    min: 55
+    min: 50
     max: 55
   accelerationStat: {fileID: 0}

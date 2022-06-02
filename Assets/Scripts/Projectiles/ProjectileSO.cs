@@ -8,7 +8,10 @@ namespace Game
 
 		public Damage damage;
 
-		public FloatRange lifeSpan = new FloatRange(60, 60);
+		[MinMax(0, GameManager.ProjectileAgeLimit)]
+		public FloatRange lifeSpan = new FloatRange(20, 30);
+
+		public virtual float GetLifeSpan(StatSheet statSheet) => lifeSpan.Random;
 
 		public virtual float GetVelocity(StatSheet statSheet) => 0;
 
