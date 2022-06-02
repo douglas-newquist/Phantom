@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Game
 {
 	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Marching Squares")]
-	public class MarchingSquaresGridGen : GridGen<int>
+	public class MarchingSquaresGridGen : GridGen
 	{
 		public IntRange n;
 

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Game
 {
 	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Border")]
-	public class BorderGridGen : GridGen<int>
+	public class BorderGridGen : GridGen
 	{
 		public IntRange topBottom = new IntRange(3, 3);
 

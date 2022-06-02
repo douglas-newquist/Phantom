@@ -9,7 +9,7 @@ namespace Game
 	{
 		public TileMapTexture tileMapTexture;
 		public TileMap tileMap;
-		public GridGen<int> tileMapGenerator;
+		public GridGen tileMapGenerator;
 		public Color[] colors;
 		// Start is called before the first frame update
 		void Start()

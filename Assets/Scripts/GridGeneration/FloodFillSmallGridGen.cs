@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Game
 {
 	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Flood Fill Small")]
-	public class FloodFillSmallGridGen : GridGen<int>
+	public class FloodFillSmallGridGen : GridGen
 	{
 		public int areaSize = 4;
 

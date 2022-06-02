@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Game
 {
 	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Invert")]
-	public class InvertGridGen : GridGen<int>
+	public class InvertGridGen : GridGen
 	{
 		protected override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
 		{

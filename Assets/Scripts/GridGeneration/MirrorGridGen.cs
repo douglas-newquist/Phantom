@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Game
 {
 	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Mirror")]
-	public class MirrorGridGen : GridGen<int>
+	public class MirrorGridGen : GridGen
 	{
 		public Mirror mirror;
 

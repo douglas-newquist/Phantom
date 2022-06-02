@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Game
 {
 	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Fill")]
-	public class FillGridGen : GridGen<int>
+	public class FillGridGen : GridGen
 	{
 		public int value = 1;
 
@@ -12,7 +12,7 @@ namespace Game
 			grid = new Grid2D<int>(grid);
 
 			for (int x = area.xMin; x < area.xMax; x++)
-				for (int y = area.yMin; x < area.yMax; y++)
+				for (int y = area.yMin; y < area.yMax; y++)
 					grid.Set(x, y, value);
 
 			return grid;

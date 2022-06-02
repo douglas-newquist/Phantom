@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Game
 {
 	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Random Uniform")]
-	public class FillRandomUniformGridGen : GridGen<int>
+	public class FillRandomUniformGridGen : GridGen
 	{
 		public FloatRange chance = new FloatRange(0.4f, 0.6f);
 

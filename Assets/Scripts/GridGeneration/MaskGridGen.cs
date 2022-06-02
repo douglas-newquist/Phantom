@@ -3,10 +3,8 @@ using UnityEngine;
 namespace Game
 {
 	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Mask")]
-	public class MaskGridGen : GridGen<int>
+	public class MaskGridGen : GridGen
 	{
-		public GridGen<int> mask;
-
 		public int positiveMaskValue = 1;
 
 		public int valueOutsideMask = 0;
@@ -14,7 +12,7 @@ namespace Game
 		protected override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
 		{
 			var result = new Grid2D<int>(grid);
-			var gridMask = mask.Create(area.width, area.height);
+			var gridMask = mask.Create(area.width + 1, area.height + 1);
 
 			for (int x = area.xMin, xMask = 0; x < area.xMax; x++, xMask++)
 			{
