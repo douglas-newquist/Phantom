@@ -31,19 +31,5 @@ namespace Game
 
 			return Vector3.Angle(vector.normalized, head.transform.up);
 		}
-
-		public override void Reset()
-		{
-			Look(transform.up, Reference.Relative);
-		}
-
-		private void Update()
-		{
-			var mousePos = Input.mousePosition;
-			var pos = Camera.main.ScreenToWorldPoint(mousePos);
-			var angle = Look(pos, Reference.Absolute);
-
-			Debug.Log(angle);
-		}
 	}
 }

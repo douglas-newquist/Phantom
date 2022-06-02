@@ -4,6 +4,7 @@ namespace Game
 {
 	public class SwivelTurret : Turret
 	{
+		[Header("Turret Head")]
 		public GameObject head;
 
 		[Range(0, GameManager.RotationSpeedLimit)]
@@ -16,9 +17,6 @@ namespace Game
 		public override Vector3 Forward => head.transform.up;
 
 		public override Vector3 Position => head.transform.position;
-
-		protected float angle;
-		public Rigidbody2D target;
 
 		public StatSO trackSpeed;
 
@@ -43,23 +41,6 @@ namespace Game
 		public override void Reset()
 		{
 			Look(transform.up, Reference.Relative);
-		}
-
-		private void Update()
-		{
-			var mousePos = Input.mousePosition;
-			var pos = Camera.main.ScreenToWorldPoint(mousePos);
-			if (target != null)
-			{
-				if (Input.GetMouseButton(0))
-					FireAt(target, projectile);
-				else
-					LookAt(target);
-			}
-			else
-			{
-				Look(pos, Reference.Absolute);
-			}
 		}
 	}
 }

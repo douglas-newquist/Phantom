@@ -888,6 +888,7 @@ GameObject:
   - component: {fileID: 2106564231}
   - component: {fileID: 2106564233}
   - component: {fileID: 2106564234}
+  - component: {fileID: 2106564235}
   m_Layer: 0
   m_Name: TurretBase01
   m_TagString: Untagged
@@ -977,11 +978,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statSheet: {fileID: 1387071763}
   angleTolerance: 15
-  projectile: {fileID: 11400000, guid: 216d672e2fea22d8fa5c74c56c53b3dc, type: 2}
   fireRate: 1
   head: {fileID: 492162347}
   degreePerSec: 135
-  target: {fileID: 1387071764}
   trackSpeed: {fileID: 11400000, guid: 843d561003bfb5fbfa411acf44ca8139, type: 2}
 --- !u!114 &2106564234
 MonoBehaviour:
@@ -997,10 +996,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statSheet: {fileID: 1387071763}
   angleTolerance: 15
-  projectile: {fileID: 0}
   fireRate: 1
   head: {fileID: 492162347}
   degreePerSec: 45
-  target: {fileID: 0}
   trackSpeed: {fileID: 11400000, guid: 843d561003bfb5fbfa411acf44ca8139, type: 2}
   degreeLimit: 25
+--- !u!114 &2106564235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106564230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d325c6e15aa2ded7877e52dbee63f8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groups:
+  - projectile: {fileID: 11400000, guid: 216d672e2fea22d8fa5c74c56c53b3dc, type: 2}
+    turrets:
+    - {fileID: 2106564233}
+  target: {fileID: 1387071764}

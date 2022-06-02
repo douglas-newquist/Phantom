@@ -16,8 +16,14 @@ MonoBehaviour:
   damage:
     damageType: {fileID: 11400000, guid: 37aca0d2b060244dda1e9ae4b10e3c76, type: 2}
     amount: 55
-  lifeSpan: 60
-  velocity: 0
+  lifeSpan:
+    min: 60
+    max: 60
+  velocity:
+    min: 6
+    max: 6
   velocityStat: {fileID: 0}
-  acceleration: 100
+  acceleration:
+    min: 55
+    max: 55
   accelerationStat: {fileID: 0}

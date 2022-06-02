@@ -17,8 +17,8 @@ MonoBehaviour:
     max: 1
   mask: {fileID: 0}
   thresholdHeight:
-    min: 0.5
-    max: 0.5
+    min: 0.4135829
+    max: 0.5528953
   scale:
     min: 5
     max: 5
