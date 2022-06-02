@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 206851796ba85e3f2bda4df030f0c4e3, type: 3}
-  m_Name: Mirror XY
+  m_Script: {fileID: 11500000, guid: d28c0c3cb6e06984a95d8760b6f2f455, type: 3}
+  m_Name: Invert
   m_EditorClassIdentifier: 
   repeat:
     min: 1
     max: 1
-  mirror: 2

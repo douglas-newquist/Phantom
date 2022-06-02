@@ -7,7 +7,7 @@ namespace Game
 	{
 		public IntRange repeat = new IntRange(1, 1);
 
-		public abstract Grid2D<T> ApplyOnce(Grid2D<T> grid, RectInt area);
+		protected abstract Grid2D<T> ApplyOnce(Grid2D<T> grid, RectInt area);
 
 		public virtual Grid2D<T> Apply(Grid2D<T> grid, RectInt area)
 		{

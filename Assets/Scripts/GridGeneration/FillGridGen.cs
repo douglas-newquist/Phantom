@@ -7,7 +7,7 @@ namespace Game
 	{
 		public int value = 1;
 
-		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		protected override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
 		{
 			grid = new Grid2D<int>(grid);
 

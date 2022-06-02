@@ -9,7 +9,7 @@ namespace Game
 
 		public GridGen<int>[] steps;
 
-		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		protected override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
 		{
 			var result = grid;
 

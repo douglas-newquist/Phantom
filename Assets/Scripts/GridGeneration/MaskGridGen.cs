@@ -11,7 +11,7 @@ namespace Game
 
 		public int valueOutsideMask = 0;
 
-		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		protected override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
 		{
 			var result = new Grid2D<int>(grid);
 			var gridMask = mask.Create(area.width, area.height);
