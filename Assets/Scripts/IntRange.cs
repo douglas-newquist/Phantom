@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Game
 {
+	[System.Serializable]
 	public struct IntRange : IRange<int>
 	{
 		[SerializeField]
@@ -30,6 +31,8 @@ namespace Game
 					Utilities.Swap(ref min, ref max);
 			}
 		}
+
+		public int Random => UnityEngine.Random.Range(Min, Max + 1);
 
 		/// <summary>
 		/// The difference between min and max

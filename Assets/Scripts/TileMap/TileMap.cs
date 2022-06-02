@@ -18,10 +18,48 @@ namespace Game
 		/// </summary>
 		public int Height => vertices.Height - 1;
 
+		/// <summary>
+		/// Gets the area in which all tiles other than Tile.None are contained
+		/// </summary>
+		public RectInt BoundingBox
+		{
+			get
+			{
+				int xMin = Width - 1, xMax = 0;
+				int yMin = Height - 1, yMax = 0;
+
+				for (int x = 0; x < Width; x++)
+				{
+					for (int y = 0; y < Height; y++)
+					{
+						if (Get(x, y) != Tile.None)
+						{
+							xMin = Mathf.Min(xMin, x);
+							xMax = Mathf.Max(xMax, x);
+							yMin = Mathf.Min(yMin, y);
+							yMax = Mathf.Max(yMax, y);
+						}
+					}
+				}
+
+				if (xMin > xMax || yMin > yMax)
+					return new RectInt(0, 0, 0, 0);
+
+				return new RectInt(xMin, yMin, xMax - xMin, yMax - yMin);
+			}
+		}
+
 		public TileMap(int width, int height)
 		{
 			vertices = new Grid2D<int>(width + 1, height + 1);
 		}
+
+		public TileMap(Grid2D<int> vertices)
+		{
+			this.vertices = vertices;
+		}
+
+		public TileMap(TileMap map) : this(map.vertices) { }
 
 		public bool InBounds(int x, int y)
 		{
@@ -54,6 +92,11 @@ namespace Game
 				vertices.Set(x, y + 1, 1);
 			if (value.HasFlag(Tile.TopRight))
 				vertices.Set(x + 1, y + 1, 1);
+		}
+
+		public IGrid2D<Tile> Clone()
+		{
+			return new TileMap(vertices);
 		}
 	}
 }

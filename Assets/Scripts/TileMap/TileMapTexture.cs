@@ -23,7 +23,6 @@ namespace Game
 		public Texture2D Draw(TileMap map)
 		{
 			var texture = new Texture2D(Width * map.Width, Height * map.Height);
-			Debug.Log(texture.width);
 			DrawOverride(texture, map);
 			return texture;
 		}

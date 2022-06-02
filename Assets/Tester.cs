@@ -9,15 +9,13 @@ namespace Game
 	{
 		public TileMapTexture tileMapTexture;
 		public TileMap tileMap;
+		public GridGen<int> tileMapGenerator;
 		// Start is called before the first frame update
 		void Start()
 		{
-			tileMap = new TileMap(32, 32);
+			tileMap = new TileMap(tileMapGenerator.Create(64, 64));
 
-			for (int x = 0; x < tileMap.vertices.Width; x++)
-				for (int y = 0; y < tileMap.vertices.Height; y++)
-					if (Random.Range(0f, 1f) < 0.5f)
-						tileMap.vertices.Set(x, y, 1);
+			Debug.Log(tileMap.BoundingBox);
 
 			var sprite = tileMapTexture.DrawSprite(tileMap);
 			var renderer = gameObject.GetComponent<SpriteRenderer>();

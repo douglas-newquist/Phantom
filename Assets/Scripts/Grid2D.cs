@@ -29,6 +29,13 @@ namespace Game
 			values = new T[width * height];
 		}
 
+		public Grid2D(Grid2D<T> grid) : this(grid.Width, grid.Height)
+		{
+			for (int x = 0; x < Width; x++)
+				for (int y = 0; y < Height; y++)
+					Set(x, y, grid.Get(x, y));
+		}
+
 		/// <summary>
 		/// Checks if the given coordinate is inside this grid
 		/// </summary>
@@ -51,6 +58,17 @@ namespace Game
 		public virtual void Set(int x, int y, T value)
 		{
 			values[x * width + y] = value;
+		}
+
+		public virtual IGrid2D<T> Clone()
+		{
+			var grid = new Grid2D<T>(Width, Height);
+
+			for (int x = 0; x < Width; x++)
+				for (int y = 0; y < Height; y++)
+					grid.Set(x, y, Get(x, y));
+
+			return grid;
 		}
 	}
 }

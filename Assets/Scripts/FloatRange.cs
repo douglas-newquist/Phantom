@@ -32,6 +32,8 @@ namespace Game
 			}
 		}
 
+		public float Random => UnityEngine.Random.Range(Min, Max);
+
 		/// <summary>
 		/// The difference between min and max
 		/// </summary>
