@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game
 {
@@ -21,6 +22,8 @@ namespace Game
 
 		public bool CanFire => Time.time >= nextShot;
 
+		public UnityEvent<ProjectileFiredEvent> OnProjectileFired;
+
 		public Vector3 PredictImpactLocation(Rigidbody2D target, ProjectileSO projectile)
 		{
 			return Math.PredictImpact(Position,
@@ -36,7 +39,9 @@ namespace Game
 			if (CanFire)
 			{
 				nextShot = Time.time + fireRate;
-				return projectile.Spawn(statSheet, Position, Forward);
+				var p = projectile.Spawn(statSheet, Position, Forward);
+				OnProjectileFired.Invoke(new ProjectileFiredEvent(this, p));
+				return p;
 			}
 
 			return null;
