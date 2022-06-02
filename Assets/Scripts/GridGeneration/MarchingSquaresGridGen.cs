@@ -7,6 +7,7 @@ namespace Game
 	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Marching Squares")]
 	public class MarchingSquaresGridGen : GridGen
 	{
+		[MinMax(0, 8)]
 		public IntRange n;
 
 		public int alive = 1, dead = 0;

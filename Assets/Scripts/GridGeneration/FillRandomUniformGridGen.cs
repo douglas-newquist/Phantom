@@ -5,6 +5,7 @@ namespace Game
 	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Random Uniform")]
 	public class FillRandomUniformGridGen : GridGen
 	{
+		[MinMax(0, 1)]
 		public FloatRange chance = new FloatRange(0.4f, 0.6f);
 
 		public int value = 1;

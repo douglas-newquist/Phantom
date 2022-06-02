@@ -5,6 +5,7 @@ namespace Game
 	[System.Serializable]
 	public abstract class GridGen : ScriptableObject
 	{
+		[MinMax(1, 16)]
 		public IntRange repeat = new IntRange(1, 1);
 
 		public GridGen mask;

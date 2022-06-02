@@ -76,5 +76,10 @@ namespace Game
 		public float ToPercentage(float value) => Math.ToPercentage(value, Min, Max);
 
 		public float FromPercentage(float value) => Math.FromPercentage(value, Min, Max);
+
+		public static implicit operator FloatRange(float f)
+		{
+			return new FloatRange(f, f);
+		}
 	}
 }

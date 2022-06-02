@@ -8,7 +8,7 @@ namespace Game
 
 		public Damage damage;
 
-		public float lifeSpan = 60;
+		public FloatRange lifeSpan = new FloatRange(60, 60);
 
 		public virtual float GetVelocity(StatSheet statSheet) => 0;
 

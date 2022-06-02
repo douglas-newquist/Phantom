@@ -9,17 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b900046ded45e7ef9f46acbd5d1b048, type: 3}
-  m_Name: Border 3-5
+  m_Script: {fileID: 11500000, guid: 9125cf3ff882cf31c9dd711978042283, type: 3}
+  m_Name: Marching Squares 3-6
   m_EditorClassIdentifier: 
   repeat:
-    min: 1
-    max: 1
+    min: 8
+    max: 12
   mask: {fileID: 0}
-  topBottom:
+  n:
     min: 3
-    max: 5
-  leftRight:
-    min: 3
-    max: 5
-  value: 1
+    max: 6
+  alive: 1
+  dead: 0

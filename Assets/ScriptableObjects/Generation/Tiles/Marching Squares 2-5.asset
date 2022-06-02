@@ -9,12 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fa0650cb6d7ae293aefd617151c64a6, type: 3}
-  m_Name: Random Mask
+  m_Script: {fileID: 11500000, guid: 9125cf3ff882cf31c9dd711978042283, type: 3}
+  m_Name: Marching Squares 2-5
   m_EditorClassIdentifier: 
   repeat:
-    min: 1
-    max: 1
-  mask: {fileID: 11400000, guid: 4fde8a2ecb6dff6ebb1ba2de8c8ca2fa, type: 2}
-  positiveMaskValue: 3
-  valueOutsideMask: 5
+    min: 8
+    max: 12
+  mask: {fileID: 0}
+  n:
+    min: 2
+    max: 5
+  alive: 1
+  dead: 0

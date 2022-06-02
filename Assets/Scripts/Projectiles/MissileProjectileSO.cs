@@ -5,14 +5,14 @@ namespace Game
 	[CreateAssetMenu(menuName = "Game/Projectiles/Missile")]
 	public class MissileProjectileSO : BulletProjectileSO
 	{
-		[Range(0, GameManager.SpeedLimit)]
-		public float acceleration = 0;
+		[MinMax(0, GameManager.SpeedLimit)]
+		public FloatRange acceleration = 0;
 
 		public StatSO accelerationStat;
 
 		public override float GetAcceleration(StatSheet statSheet)
 		{
-			var accel = acceleration;
+			var accel = acceleration.Random;
 			if (accelerationStat != null)
 				accel *= statSheet.GetValue(accelerationStat);
 			return accel;
