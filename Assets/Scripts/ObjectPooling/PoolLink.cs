@@ -7,15 +7,15 @@ namespace Game
 	/// </summary>
 	public class PoolLink : MonoBehaviour
 	{
-		public Pool Pool { get; set; }
+		public string pool;
 
 		/// <summary>
 		/// Despawns this object
 		/// </summary>
 		public void Despawn()
 		{
-			if (Pool != null)
-				Pool.Return(gameObject);
+			if (pool != null)
+				ObjectPool.Despawn(gameObject);
 			else
 				Destroy(gameObject);
 		}

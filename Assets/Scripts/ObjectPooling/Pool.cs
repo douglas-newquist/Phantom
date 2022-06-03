@@ -23,15 +23,15 @@ namespace Game
 		/// <param name="container">Where to store objects</param>
 		public Pool(GameObject master, Transform container)
 		{
-			this.master = master;
-			this.container = container;
-
 			// Check if master is a prefab
 			if (master.scene.rootCount == 0)
 				master = GameObject.Instantiate(master);
 
+			this.master = master;
+			this.container = container;
+
 			var link = master.AddComponent<PoolLink>();
-			link.Pool = this;
+			link.pool = container.name;
 
 			master.SetActive(false);
 			master.transform.SetParent(container);

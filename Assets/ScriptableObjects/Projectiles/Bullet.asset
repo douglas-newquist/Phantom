@@ -17,9 +17,9 @@ MonoBehaviour:
     damageType: {fileID: 11400000, guid: 3aa711e51be6346c4ba83012a4338f6d, type: 2}
     amount: 10
   lifeSpan:
-    min: 1
-    max: 2
+    min: 0.2
+    max: 0.5
   velocity:
     min: 12.189812
-    max: 58.456688
+    max: 18.839798
   velocityStat: {fileID: 11400000, guid: f8332add7f06f29d09b0a3fdaeb7cb1a, type: 2}

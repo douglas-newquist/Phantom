@@ -14,7 +14,7 @@ namespace Game
 
 		protected virtual void Start()
 		{
-			DeathTime = Time.time + ProjectileStats.GetLifeSpan(statSheet);
+
 		}
 
 		public virtual void Update()

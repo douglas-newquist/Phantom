@@ -19,11 +19,12 @@ namespace Game
 
 		public virtual Projectile Spawn(StatSheet statSheet, Vector3 position, Vector3 heading)
 		{
-			var obj = Instantiate(prefab, position, Quaternion.identity);
+			var obj = ObjectPool.Spawn(prefab, new PositionSpawner(position));
 			var projectile = obj.GetComponent<Projectile>();
 			projectile.damage = damage;
 			projectile.statSheet = statSheet;
 			projectile.ProjectileStats = this;
+			projectile.DeathTime = Time.time + GetLifeSpan(statSheet);
 			obj.transform.up = heading;
 			var body = obj.GetComponent<Rigidbody2D>();
 			body.velocity = heading * GetVelocity(statSheet);

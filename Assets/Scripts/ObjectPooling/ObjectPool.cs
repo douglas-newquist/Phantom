@@ -54,6 +54,19 @@ namespace Game
 			Instance.pools[id] = new Pool(obj, container);
 		}
 
+		public static GameObject Spawn(GameObject prefab, params ISpawner[] spawners)
+		{
+			return Spawn(prefab, null, spawners);
+		}
+
+		public static GameObject Spawn(GameObject prefab, Transform parent, params ISpawner[] spawners)
+		{
+			if (!ContainsPool(prefab.name + prefab.GetInstanceID()))
+				Register(prefab.name + prefab.GetInstanceID(), prefab);
+
+			return Spawn(prefab.name + prefab.GetInstanceID(), parent, spawners);
+		}
+
 		public static GameObject Spawn(string id, params ISpawner[] spawners)
 		{
 			return Spawn(id, null, spawners);
@@ -67,11 +80,11 @@ namespace Game
 			var spawn = pool.Spawn();
 			spawn.transform.SetParent(parent);
 
-			foreach (var spawner in spawners)
-				if (spawner != null)
-					spawner.Spawn(spawn);
+			if (spawners != null)
+				foreach (var spawner in spawners)
+					if (spawner != null)
+						spawner.Spawn(spawn);
 
-			spawn.BroadcastMessage("OnSpawn", SendMessageOptions.DontRequireReceiver);
 			return spawn;
 		}
 
@@ -85,8 +98,10 @@ namespace Game
 
 			var link = obj.GetComponent<PoolLink>();
 
-			if (link != null)
-				link.Despawn();
+			if (link == null || link.pool == null)
+				Destroy(obj);
+			else if (Instance.pools.TryGetValue(link.pool, out var pool))
+				pool.Return(obj);
 			else
 				Destroy(obj);
 		}
