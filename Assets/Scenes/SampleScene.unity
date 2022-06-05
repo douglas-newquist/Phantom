@@ -1105,6 +1105,9 @@ MonoBehaviour:
   statSheet: {fileID: 1387071765}
   angleTolerance: 45
   fireRate: 5
+  fireRateStat: {fileID: 0}
+  fireSpread: 5
+  fireSpreadStat: {fileID: 0}
   OnProjectileFired:
     m_PersistentCalls:
       m_Calls: []

@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ship Hull
+    uniqueID: 2491546907
+    locked: 0
+  - name: Ship Parts
+    uniqueID: 2956555991
+    locked: 0
+  - name: Ship Part Decorator
+    uniqueID: 281893621
+    locked: 0

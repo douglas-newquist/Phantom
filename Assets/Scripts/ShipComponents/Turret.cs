@@ -12,6 +12,13 @@ namespace Game
 		[Range(1f, 60f)]
 		public float fireRate = 1;
 
+		public StatSO fireRateStat;
+
+		[Range(0f, 90f)]
+		public float fireSpread = 5;
+
+		public StatSO fireSpreadStat;
+
 		public float FireDelay => 1f / fireRate;
 
 		private float nextShot = 0;
