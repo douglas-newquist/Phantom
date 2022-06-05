@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4effb7653d718d8fa0bad54b1a10784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statSheet: {fileID: 1387071763}
+  statSheet: {fileID: 0}
   body: {fileID: 1387071764}
   thrustStat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
   multiplier: 10
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4effb7653d718d8fa0bad54b1a10784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statSheet: {fileID: 1387071763}
+  statSheet: {fileID: 0}
   body: {fileID: 1387071764}
   thrustStat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
   multiplier: 10
@@ -518,9 +518,9 @@ GameObject:
   - component: {fileID: 1387071761}
   - component: {fileID: 1387071760}
   - component: {fileID: 1387071759}
-  - component: {fileID: 1387071762}
-  - component: {fileID: 1387071763}
   - component: {fileID: 1387071764}
+  - component: {fileID: 1387071766}
+  - component: {fileID: 1387071765}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -619,79 +619,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1387071762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387071758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ef3a24b46334e596a8c513557c0b10c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage:
-    damageType: {fileID: 11400000, guid: b83b78c6a2fc2402588f7d74e8ab0ef7, type: 2}
-    amount: 1
---- !u!114 &1387071763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387071758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dab3f69ac84ef0a180be333db904a68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryHealthStat: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
-  OnTakeDamage:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1387071762}
-        m_TargetAssemblyTypeName: Game.Entity, Assembly-CSharp
-        m_MethodName: OnTakeDamage
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnTakeFatalDamage:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1387071762}
-        m_TargetAssemblyTypeName: Game.Entity, Assembly-CSharp
-        m_MethodName: OnTakeFatalDamage
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1387071762}
-        m_TargetAssemblyTypeName: Game.Entity, Assembly-CSharp
-        m_MethodName: OnDeath
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!50 &1387071764
 Rigidbody2D:
   serializedVersion: 4
@@ -713,6 +640,46 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1387071765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387071758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dab3f69ac84ef0a180be333db904a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryHealthStat: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTakeFatalDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1387071766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387071758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5046ed67f084eee4fa12b0c5df16f976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    damageType: {fileID: 0}
+    amount: 0
+  thrusters: {fileID: 0}
+  gyros: {fileID: 0}
+  turrets: {fileID: 2106564235}
 --- !u!1 &1844752552
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,7 +725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4effb7653d718d8fa0bad54b1a10784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statSheet: {fileID: 1387071763}
+  statSheet: {fileID: 0}
   body: {fileID: 1387071764}
   thrustStat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
   multiplier: 10
@@ -859,7 +826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4effb7653d718d8fa0bad54b1a10784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statSheet: {fileID: 1387071763}
+  statSheet: {fileID: 0}
   body: {fileID: 1387071764}
   thrustStat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
   multiplier: 10
@@ -1014,7 +981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a9a0d285386db337ad3c8ec3ad6649d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statSheet: {fileID: 1387071763}
+  statSheet: {fileID: 0}
   angleTolerance: 45
   fireRate: 5
   OnProjectileFired:

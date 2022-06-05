@@ -10,8 +10,6 @@ namespace Game
 	{
 		public List<TurretGroup> groups = new List<TurretGroup>();
 
-		public Rigidbody2D target;
-
 		public TurretGroup GetGroup(int group)
 		{
 			if (group >= 0 && group < groups.Count)
@@ -73,12 +71,17 @@ namespace Game
 			return null;
 		}
 
-		private void Update()
+		public void Reset()
 		{
-			//	var mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			//	Aim(mouse, Reference.Absolute, 0, Input.GetMouseButton(0));
-			if (target != null)
-				Aim(target, Input.GetMouseButton(0));
+			for (int group = 0; group < groups.Count; group++)
+				Reset(group);
+		}
+
+		public void Reset(int group)
+		{
+			var turrets = GetGroup(group);
+			if (turrets != null)
+				turrets.Reset();
 		}
 	}
 }
