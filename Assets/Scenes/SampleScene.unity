@@ -218,7 +218,6 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -292,19 +291,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30230fb490c4f1f99bdf7db16f6b037d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 11400000, guid: dc2ab8ca48d81e9388ab018b083461e2, type: 2}
 --- !u!1 &1007272886
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,10 +336,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4effb7653d718d8fa0bad54b1a10784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statSheet: {fileID: 0}
-  body: {fileID: 1387071764}
+  statSheet: {fileID: 1387071765}
   thrustStat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
-  multiplier: 10
+  force: 10
 --- !u!212 &1007272889
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -503,10 +488,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4effb7653d718d8fa0bad54b1a10784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statSheet: {fileID: 0}
-  body: {fileID: 1387071764}
+  statSheet: {fileID: 1387071765}
   thrustStat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
-  multiplier: 10
+  force: 10
 --- !u!1 &1387071758
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +505,7 @@ GameObject:
   - component: {fileID: 1387071764}
   - component: {fileID: 1387071766}
   - component: {fileID: 1387071765}
+  - component: {fileID: 1387071767}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -677,9 +662,27 @@ MonoBehaviour:
   damage:
     damageType: {fileID: 0}
     amount: 0
-  thrusters: {fileID: 0}
+  thrusters: {fileID: 1387071767}
   gyros: {fileID: 0}
   turrets: {fileID: 2106564235}
+--- !u!114 &1387071767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387071758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84051179238d4e043b8f941c246c10fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  body: {fileID: 1387071764}
+  thrusters:
+  - {fileID: 1090682119}
+  - {fileID: 1853412787}
+  - {fileID: 1007272888}
+  - {fileID: 1844752554}
 --- !u!1 &1844752552
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,10 +728,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4effb7653d718d8fa0bad54b1a10784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statSheet: {fileID: 0}
-  body: {fileID: 1387071764}
+  statSheet: {fileID: 1387071765}
   thrustStat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
-  multiplier: 10
+  force: 10
 --- !u!212 &1844752555
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -826,10 +828,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4effb7653d718d8fa0bad54b1a10784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statSheet: {fileID: 0}
-  body: {fileID: 1387071764}
+  statSheet: {fileID: 1387071765}
   thrustStat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
-  multiplier: 10
+  force: 10
 --- !u!212 &1853412788
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -981,7 +982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a9a0d285386db337ad3c8ec3ad6649d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statSheet: {fileID: 0}
+  statSheet: {fileID: 1387071765}
   angleTolerance: 45
   fireRate: 5
   OnProjectileFired:
@@ -1006,4 +1007,3 @@ MonoBehaviour:
   - projectile: {fileID: 11400000, guid: d845323bf85addaa9a462a2cce11d4ae, type: 2}
     turrets:
     - {fileID: 2106564233}
-  target: {fileID: 1387071764}

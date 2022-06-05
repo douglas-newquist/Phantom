@@ -10,13 +10,11 @@ namespace Game
 	}
 	public class Thruster : ShipComponent, IThruster
 	{
-		public Rigidbody2D body;
 		public StatSO thrustStat;
-		public float multiplier = 1;
 
-		private Vector3 force;
+		public float force = 1;
 
-		public void Move(Vector3 vector, Reference mode)
+		public Vector2 Thrust(Vector3 vector, Reference mode)
 		{
 			switch (mode)
 			{
@@ -24,27 +22,10 @@ namespace Game
 					break;
 
 				case Reference.Relative:
-					break;
+					return vector * statSheet.GetValue(thrustStat) * force;
 			}
 
-			force += vector * multiplier * Time.deltaTime;
-		}
-
-		// Update is called once per frame
-		void Update()
-		{
-			var x = Input.GetAxis("Horizontal");
-			var y = Input.GetAxis("Vertical");
-			Move(new Vector2(x, y), Reference.Relative);
-		}
-
-		private void FixedUpdate()
-		{
-			if (force != Vector3.zero)
-			{
-				body.AddRelativeForce(force, ForceMode2D.Impulse);
-				force = Vector3.zero;
-			}
+			return Vector2.zero;
 		}
 	}
 }
