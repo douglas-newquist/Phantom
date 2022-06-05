@@ -6,7 +6,14 @@ namespace Game
 	{
 		public void Look(Vector3 vector, Reference mode)
 		{
+			switch (mode)
+			{
+				case Reference.Absolute:
+					vector -= transform.position;
+					break;
+			}
 
+			transform.up = vector;
 		}
 	}
 }

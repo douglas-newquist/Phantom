@@ -506,6 +506,7 @@ GameObject:
   - component: {fileID: 1387071766}
   - component: {fileID: 1387071765}
   - component: {fileID: 1387071767}
+  - component: {fileID: 1387071768}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -663,7 +664,7 @@ MonoBehaviour:
     damageType: {fileID: 0}
     amount: 0
   thrusters: {fileID: 1387071767}
-  gyros: {fileID: 0}
+  gyros: {fileID: 1387071768}
   turrets: {fileID: 2106564235}
 --- !u!114 &1387071767
 MonoBehaviour:
@@ -683,6 +684,18 @@ MonoBehaviour:
   - {fileID: 1853412787}
   - {fileID: 1007272888}
   - {fileID: 1844752554}
+--- !u!114 &1387071768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387071758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36de5846028b3eac99ccc47e84054bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1844752552
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,7 +29,7 @@ namespace Game
 		/// </summary>
 		public void Stop()
 		{
-			Move(-body.velocity / Time.deltaTime, Reference.Relative);
+			Move(-body.velocity, Reference.Relative);
 		}
 
 		private void FixedUpdate()

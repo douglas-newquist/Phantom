@@ -11,14 +11,25 @@ namespace Game
 
 		public TurretController turrets;
 
+		public Rigidbody2D target;
+
 		private void Update()
 		{
 			var x = Input.GetAxis("Horizontal");
 			var y = Input.GetAxis("Vertical");
+			var mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
 			if (Input.GetKey(KeyCode.X))
 				thrusters.Stop();
 			else
 				thrusters.Move(new Vector3(x, y, 0), Reference.Relative);
+
+			gyros.Look(mouse, Reference.Absolute);
+
+			if (target != null)
+				turrets.Aim(target, Input.GetMouseButton(0));
+			else
+				turrets.Aim(mouse, Reference.Absolute, Input.GetMouseButton(0));
 		}
 	}
 }
