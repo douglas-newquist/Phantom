@@ -1,12 +1,6 @@
 namespace Game
 {
 	[System.Serializable]
-	public struct StatPair
-	{
-		public StatSO stat;
-		public float baseValue;
-	}
-	[System.Serializable]
 	public class StatList
 	{
 		public StatPair[] stats;

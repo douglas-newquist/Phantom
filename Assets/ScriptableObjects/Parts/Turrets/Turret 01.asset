@@ -16,4 +16,8 @@ MonoBehaviour:
   width: 1
   height: 1
   placement: 16
-  baseStats: []
+  baseStats:
+  - stat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
+    baseValue: 25
+  - stat: {fileID: 11400000, guid: 1aa0fd03d7583554eb8bb53fd768e514, type: 2}
+    baseValue: 25
