@@ -47,6 +47,10 @@ namespace Game
 			}
 		}
 
+		public bool Empty => Current <= 0;
+
+		public bool Full => Current == Value;
+
 		[SerializeField]
 		protected UnityEvent<ValueChangedEvent> onCurrentChanged = new UnityEvent<ValueChangedEvent>();
 

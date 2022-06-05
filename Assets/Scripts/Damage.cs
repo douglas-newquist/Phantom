@@ -16,11 +16,34 @@ namespace Game
 			this.source = source;
 			this.damageType = damageType;
 			this.amount = amount;
+
+			if (damageType == null)
+				throw new System.ArgumentNullException("Damage type is null");
+		}
+
+		public Damage(Damage other)
+		{
+			if (other == null)
+				throw new System.ArgumentNullException("other");
+
+			this.source = other.source;
+			this.damageType = other.damageType;
+			this.amount = other.amount;
+		}
+
+		public override string ToString()
+		{
+			if (source != null)
+				return string.Format("{0} {1} Damage from {2}", amount, damageType, source);
+			return string.Format("{0} {1} Damage", amount, damageType);
 		}
 
 		public void Apply(StatSheet sheet)
 		{
 			float remaining = amount;
+
+			if (damageType == null)
+				throw new System.ArgumentNullException("Damage type is null");
 
 			foreach (var multiplier in damageType.multipliers)
 			{

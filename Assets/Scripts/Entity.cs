@@ -8,43 +8,32 @@ namespace Game
 	{
 		public StatSheet Stats => GetComponent<StatSheet>();
 
-		public ResourceStatSO primaryHealthStat;
+		public Damage damage;
 
-		public UnityEvent<DamagedEvent> OnTakeDamage;
-
-		public UnityEvent<DamagedEvent> OnTakeFatalDamage;
-
-		public UnityEvent<Entity> OnKilled;
-
-		public virtual void TakeDamage(Damage damage)
+		private void Start()
 		{
-			OnTakeDamage.Invoke(new DamagedEvent(this, damage));
+			Stats.GetStat(Stats.primaryHealthStat).AddModifier(new AdditiveModifier(null, 0, false, 1000));
+		}
 
-			damage.Apply(Stats);
+		private void Update()
+		{
+			Stats.ApplyDamage(damage);
+		}
 
-			var resource = Stats.GetStat<ResourceStat>(primaryHealthStat);
+		public void OnTakeDamage(DamagedEvent e)
+		{
+			Debug.Log(e);
+		}
 
-			if (resource.Current == 0)
-				OnTakeFatalDamage.Invoke(new DamagedEvent(this, damage));
-
-			if (resource.Current == 0)
-			{
-				OnDeath();
-				OnKilled.Invoke(this);
-			}
+		public void OnTakeFatalDamage(DamagedEvent e)
+		{
+			Debug.Log(e);
 		}
 
 		public virtual void OnDeath()
 		{
 			Destroy(gameObject);
+			Debug.Log("Death");
 		}
-	}
-	public class Ship : Entity
-	{
-
-	}
-	public class Homing : MonoBehaviour
-	{
-
 	}
 }

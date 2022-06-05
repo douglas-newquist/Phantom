@@ -9,5 +9,9 @@ namespace Game
 			Projectile = projectile;
 		}
 
+		public override string ToString()
+		{
+			return "Fired projectile " + Projectile;
+		}
 	}
 }

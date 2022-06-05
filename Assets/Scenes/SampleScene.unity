@@ -631,16 +631,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef3a24b46334e596a8c513557c0b10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryHealthStat: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
-  OnTakeDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTakeFatalDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  OnKilled:
-    m_PersistentCalls:
-      m_Calls: []
+  damage:
+    damageType: {fileID: 11400000, guid: b83b78c6a2fc2402588f7d74e8ab0ef7, type: 2}
+    amount: 1
 --- !u!114 &1387071763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,6 +646,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dab3f69ac84ef0a180be333db904a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  primaryHealthStat: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1387071762}
+        m_TargetAssemblyTypeName: Game.Entity, Assembly-CSharp
+        m_MethodName: OnTakeDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTakeFatalDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1387071762}
+        m_TargetAssemblyTypeName: Game.Entity, Assembly-CSharp
+        m_MethodName: OnTakeFatalDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1387071762}
+        m_TargetAssemblyTypeName: Game.Entity, Assembly-CSharp
+        m_MethodName: OnDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!50 &1387071764
 Rigidbody2D:
   serializedVersion: 4

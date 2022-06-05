@@ -14,7 +14,7 @@ namespace Game
 		// Start is called before the first frame update
 		void Start()
 		{
-			tileMap = new TileMap(tileMapGenerator.Create(256, 256));
+			tileMap = new TileMap(tileMapGenerator.Create(32, 32));
 
 			Debug.Log(tileMap.BoundingBox);
 

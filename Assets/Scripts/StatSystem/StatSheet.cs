@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game
 {
@@ -11,6 +12,40 @@ namespace Game
 
 		[SerializeField]
 		private Dictionary<StatSO, Stat> stats = new Dictionary<StatSO, Stat>();
+
+		public ResourceStatSO primaryHealthStat;
+
+		/// <summary>
+		/// Triggers whenever this entity takes damage
+		/// </summary>
+		public UnityEvent<DamagedEvent> OnTakeDamage;
+
+		/// <summary>
+		/// Triggers after taking an amount of damage that will kill this entity
+		/// </summary>
+		public UnityEvent<DamagedEvent> OnTakeFatalDamage;
+
+		/// <summary>
+		/// Triggers after OnTakeFatalDamage if this entity is still dying
+		/// </summary>
+		public UnityEvent<StatSheet> OnDeath;
+
+		public virtual void ApplyDamage(Damage damage)
+		{
+			if (damage.amount == 0) return;
+
+			OnTakeDamage.Invoke(new DamagedEvent(this, damage));
+
+			damage.Apply(this);
+
+			var resource = GetStat<ResourceStat>(primaryHealthStat);
+
+			if (resource.Empty)
+				OnTakeFatalDamage.Invoke(new DamagedEvent(this, damage));
+
+			if (resource.Empty)
+				OnDeath.Invoke(this);
+		}
 
 		public override string ToString()
 		{

@@ -77,7 +77,8 @@ namespace Game
 		{
 			//	var mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			//	Aim(mouse, Reference.Absolute, 0, Input.GetMouseButton(0));
-			Aim(target, Input.GetMouseButton(0));
+			if (target != null)
+				Aim(target, Input.GetMouseButton(0));
 		}
 	}
 }
