@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace Game
 {
-	public abstract class Turret : ShipComponent, ITurret
+	public abstract class Turret : ShipComponent
 	{
 		[Header("Fire Setting")]
 		[Range(0f, 180f)]

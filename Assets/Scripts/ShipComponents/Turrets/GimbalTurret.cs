@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game
 {
-	public class GimbalTurret : SwivelTurret, ITurret
+	public class GimbalTurret : SwivelTurret
 	{
 		[Range(0f, 180f)]
 		public float degreeLimit = 25;

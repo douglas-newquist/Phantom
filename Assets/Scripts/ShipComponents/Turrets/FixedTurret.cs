@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game
 {
-	public class FixedTurret : Turret, ITurret
+	public class FixedTurret : Turret
 	{
 		public override Vector3 Forward => transform.up;
 
