@@ -34,6 +34,7 @@ namespace Game
 			link.pool = container.name;
 
 			master.SetActive(false);
+			master.name = container.name;
 			master.transform.SetParent(container);
 		}
 
