@@ -598,7 +598,7 @@ MonoBehaviour:
       width: 0
       height: 0
       values: 
-  tileMapGenerator: {fileID: 11400000, guid: 7943138f1a8d5a19491f31a793aaa660, type: 2}
+  tileMapGenerator: {fileID: 11400000, guid: ff794b2c57e3de778a768f28470b89af, type: 2}
   colors: []
 --- !u!4 &1387071761
 Transform:
