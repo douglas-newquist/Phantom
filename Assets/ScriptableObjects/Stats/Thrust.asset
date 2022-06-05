@@ -18,4 +18,4 @@ MonoBehaviour:
   defaultValue: 1
   limits:
     min: 0
-    max: 3.4028235e+38
+    max: 10000
