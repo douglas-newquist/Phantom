@@ -18,6 +18,7 @@ namespace Game
 			var x = Input.GetAxis("Horizontal");
 			var y = Input.GetAxis("Vertical");
 			var mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mouse.z = 0;
 
 			if (Input.GetKey(KeyCode.X))
 				thrusters.Stop();

@@ -4,6 +4,8 @@ namespace Game
 {
 	public class GyroController : MonoBehaviour
 	{
+		public Rigidbody2D body;
+
 		public void Look(Vector3 vector, Reference mode)
 		{
 			switch (mode)
@@ -13,7 +15,7 @@ namespace Game
 					break;
 			}
 
-			transform.up = vector;
+			body.transform.up = vector;
 		}
 	}
 }
