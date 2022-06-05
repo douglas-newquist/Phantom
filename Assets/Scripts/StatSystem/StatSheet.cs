@@ -34,14 +34,20 @@ namespace Game
 		{
 			if (damage.amount == 0) return;
 
-			OnTakeDamage.Invoke(new DamagedEvent(this, damage));
+			var damageEvent = new DamagedEvent(this, damage);
+			OnTakeDamage.Invoke(damageEvent);
+			damage = damageEvent.Damage;
 
 			damage.Apply(this);
 
 			var resource = GetStat<ResourceStat>(primaryHealthStat);
 
 			if (resource.Empty)
-				OnTakeFatalDamage.Invoke(new DamagedEvent(this, damage));
+			{
+				damageEvent = new DamagedEvent(this, damage);
+				OnTakeFatalDamage.Invoke(damageEvent);
+				damage = damageEvent.Damage;
+			}
 
 			if (resource.Empty)
 				OnDeath.Invoke(this);

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Game
 {
 	[System.Serializable]
-	public class Damage
+	public struct Damage
 	{
 		public object source;
 
@@ -21,14 +21,8 @@ namespace Game
 				throw new System.ArgumentNullException("Damage type is null");
 		}
 
-		public Damage(Damage other)
+		public Damage(Damage other) : this(other.source, other.damageType, other.amount)
 		{
-			if (other == null)
-				throw new System.ArgumentNullException("other");
-
-			this.source = other.source;
-			this.damageType = other.damageType;
-			this.amount = other.amount;
 		}
 
 		public override string ToString()
