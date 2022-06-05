@@ -4,7 +4,7 @@ namespace Game
 	{
 		public Damage OriginalDamage { get; private set; }
 
-		public Damage Damage { get; protected set; }
+		public Damage Damage { get; set; }
 
 		public DamagedEvent(object context, Damage damage) : base(context)
 		{
