@@ -10,14 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 203a4144ddac1ec7c8a22d71e2281128, type: 3}
-  m_Name: Battery 02
+  m_Name: Fusion Reactor 02
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4311442497397369185, guid: 0fe28857f9c4edf6d9794da2eba5421f, type: 3}
-  width: 1
-  height: 2
-  placement: 20
+  prefab: {fileID: 1691334886146194492, guid: 68f3dd854236ad4c59b114988a0eb8e4, type: 3}
+  width: 5
+  height: 5
+  placement: 16
   baseStats:
-  - stat: {fileID: 11400000, guid: 707d7c58055e1022a9d05f959bcc04b8, type: 2}
-    baseValue: 75
   - stat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
-    baseValue: 5
+    baseValue: 50
+  - stat: {fileID: 11400000, guid: 1aa0fd03d7583554eb8bb53fd768e514, type: 2}
+    baseValue: 300
+  - stat: {fileID: 11400000, guid: 707d7c58055e1022a9d05f959bcc04b8, type: 2}
+    baseValue: 450
+  - stat: {fileID: 11400000, guid: a4721f0b45add341c95539ab35a4f964, type: 2}
+    baseValue: 125

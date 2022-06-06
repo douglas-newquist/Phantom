@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 203a4144ddac1ec7c8a22d71e2281128, type: 3}
-  m_Name: Turret 01
+  m_Name: Swivel Turret 01
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 1110029762826903062, guid: fb8c5a3af53134394891e5232c874205, type: 3}
   width: 1
   height: 1
   placement: 16

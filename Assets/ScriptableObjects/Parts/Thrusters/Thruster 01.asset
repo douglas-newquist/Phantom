@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203a4144ddac1ec7c8a22d71e2281128, type: 3}
   m_Name: Thruster 01
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 3862753755225041522, guid: 180a3d6d9ac75783696c55d589864389, type: 3}
   width: 1
   height: 1
   placement: 4

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203a4144ddac1ec7c8a22d71e2281128, type: 3}
   m_Name: Capacitor 02
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 9053061042749361945, guid: 0f67e5b6de095fd929312b264b754e4c, type: 3}
   width: 1
-  height: 2
+  height: 1
   placement: 16
   baseStats:
   - stat: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
