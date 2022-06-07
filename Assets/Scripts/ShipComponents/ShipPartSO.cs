@@ -21,6 +21,11 @@ namespace Phantom
 			return placement.HasFlag(tileShape);
 		}
 
+		public void Place(ShipDesign shipDesign, int x, int y)
+		{
+			shipDesign.parts.Set(x, y, new ShipPart(this, SlotState.Used, 0));
+		}
+
 		/// <summary>
 		///
 		/// </summary>

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[System.Serializable]
-	public class ShipPart
+	public struct ShipPart
 	{
 		public SlotState state;
 
@@ -11,5 +11,18 @@ namespace Phantom
 
 		[Range(-180, 180)]
 		public float rotation;
+
+		public bool Occupied => state != SlotState.Free || part != null;
+
+		public ShipPart(SlotState state) : this(null, state, 0) { }
+
+		public ShipPart(ShipPartSO part, float rotation) : this(part, SlotState.Used, rotation) { }
+
+		public ShipPart(ShipPartSO part, SlotState state, float rotation)
+		{
+			this.state = state;
+			this.part = part;
+			this.rotation = rotation;
+		}
 	}
 }

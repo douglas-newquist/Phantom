@@ -5,7 +5,7 @@ namespace Phantom
 	[System.Serializable]
 	public abstract class GridGen : ScriptableObject
 	{
-		[MinMax(1, 16)]
+		[MinMax(0, 16)]
 		public IntRange repeat = new IntRange(1, 1);
 
 		public GridGen mask;

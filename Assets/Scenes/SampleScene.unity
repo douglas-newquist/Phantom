@@ -623,7 +623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileMapTexture: {fileID: 11400000, guid: df9ab9085f1b95d2face880ee54503ac, type: 2}
-  shipGenerator: {fileID: 11400000, guid: 21a0c57103ec859ce93b6666190b40ef, type: 2}
+  shipGenerator: {fileID: 11400000, guid: e1a3d2c2c74e97562bcf496952851990, type: 2}
   shipDesign:
     tiles:
       vertices:
