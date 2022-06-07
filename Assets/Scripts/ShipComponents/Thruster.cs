@@ -20,7 +20,6 @@ namespace Phantom
 			{
 				case Reference.Relative:
 					vector = transform.TransformDirection(vector);
-					Debug.Log(vector);
 					break;
 			}
 

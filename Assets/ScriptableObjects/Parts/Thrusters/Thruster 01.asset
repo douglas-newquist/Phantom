@@ -23,7 +23,7 @@ MonoBehaviour:
   - stat: {fileID: 11400000, guid: 1aa0fd03d7583554eb8bb53fd768e514, type: 2}
     baseValue: 1
   - stat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
-    baseValue: 5
+    baseValue: 25
   resourceUsage:
     resource: {fileID: 11400000, guid: 707d7c58055e1022a9d05f959bcc04b8, type: 2}
     amount: 1
