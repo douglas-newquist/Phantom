@@ -13,15 +13,20 @@ namespace Phantom
 
 		public void Move(Vector3 vector, Reference mode)
 		{
+			if (vector.sqrMagnitude > 1)
+				vector.Normalize();
 			switch (mode)
 			{
 				case Reference.Relative:
 					if (vector.sqrMagnitude > 1)
 						vector.Normalize();
-					foreach (var thruster in thrusters)
-						force += thruster.Thrust(vector, mode);
+					//	foreach (var thruster in thrusters)
+					//		force += thruster.Thrust(vector, mode);
 					break;
 			}
+
+			foreach (var thruster in thrusters)
+				force += thruster.Thrust(vector, mode);
 		}
 
 		/// <summary>
@@ -29,12 +34,12 @@ namespace Phantom
 		/// </summary>
 		public void Stop()
 		{
-			Move(-body.velocity, Reference.Relative);
+			Move(-body.velocity, Reference.Absolute);
 		}
 
 		private void FixedUpdate()
 		{
-			body.AddRelativeForce(force * Time.fixedDeltaTime, ForceMode2D.Impulse);
+			body.AddForce(force * Time.fixedDeltaTime, ForceMode2D.Impulse);
 			force = Vector2.zero;
 			if (body.velocity.magnitude > GameManager.SpeedLimit)
 				body.velocity = body.velocity.normalized * GameManager.SpeedLimit;

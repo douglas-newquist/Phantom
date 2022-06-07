@@ -15,6 +15,8 @@ namespace Phantom
 
 		public StatSO massStat;
 
+		public Reference thrustReference = Reference.Absolute;
+
 		private void Update()
 		{
 			GetComponent<Rigidbody2D>().mass = Stats.GetValue(massStat);
@@ -26,7 +28,7 @@ namespace Phantom
 			if (Input.GetKey(KeyCode.X))
 				thrusters.Stop();
 			else
-				thrusters.Move(new Vector3(x, y, 0), Reference.Relative);
+				thrusters.Move(new Vector3(x, y, 0), thrustReference);
 
 			gyros.Look(mouse, Reference.Absolute);
 

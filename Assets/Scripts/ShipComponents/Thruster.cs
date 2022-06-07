@@ -18,14 +18,13 @@ namespace Phantom
 		{
 			switch (mode)
 			{
-				case Reference.Absolute:
-					break;
-
 				case Reference.Relative:
-					return vector * statSheet.GetValue(thrustStat) * force;
+					vector = transform.TransformDirection(vector);
+					Debug.Log(vector);
+					break;
 			}
 
-			return Vector2.zero;
+			return vector * statSheet.GetValue(thrustStat) * force;
 		}
 	}
 }
