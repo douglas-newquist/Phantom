@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4c707255e903c479dd613a909a020f, type: 3}
   m_Name: Half Shape
   m_EditorClassIdentifier: 
-  shape: 44
+  shape: 52

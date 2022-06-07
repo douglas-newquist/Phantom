@@ -111,6 +111,7 @@ MonoBehaviour:
   gyros: {fileID: 5414886017876530885}
   turrets: {fileID: 5065441348383330979}
   target: {fileID: 0}
+  massStat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
 --- !u!114 &5414886017876530885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84051179238d4e043b8f941c246c10fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrusters: []
 --- !u!114 &5065441348383330979
 MonoBehaviour:
   m_ObjectHideFlags: 0

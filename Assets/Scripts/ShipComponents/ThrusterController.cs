@@ -7,7 +7,7 @@ namespace Phantom
 	{
 		public Rigidbody2D body => GetComponent<Rigidbody2D>();
 
-		public List<Thruster> thrusters = new List<Thruster>();
+		public Thruster[] thrusters => GetComponentsInChildren<Thruster>();
 
 		private Vector2 force;
 

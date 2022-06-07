@@ -4,6 +4,6 @@ namespace Phantom
 {
 	public abstract class ShipComponent : MonoBehaviour
 	{
-		public StatSheet statSheet;
+		public StatSheet statSheet => GetComponentInParent<StatSheet>();
 	}
 }

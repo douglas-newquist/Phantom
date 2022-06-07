@@ -6,6 +6,8 @@ namespace Phantom
 	{
 		public Rigidbody2D body => GetComponent<Rigidbody2D>();
 
+		public Gyro[] Gyros => GetComponentsInChildren<Gyro>();
+
 		public void Look(Vector3 vector, Reference mode)
 		{
 			switch (mode)

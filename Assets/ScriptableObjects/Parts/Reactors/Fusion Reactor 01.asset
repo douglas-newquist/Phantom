@@ -16,7 +16,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   width: 3
   height: 3
-  placementRule: {fileID: 11400000, guid: 5fbaecf466f2f3d8eab1db6f73229dea, type: 2}
+  placementRule: {fileID: 11400000, guid: 106946b14d6978be0a7f1e121a5e43a8, type: 2}
   baseStats:
   - stat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
     baseValue: 50

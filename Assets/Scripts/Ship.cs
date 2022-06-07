@@ -13,8 +13,11 @@ namespace Phantom
 
 		public Rigidbody2D target;
 
+		public StatSO massStat;
+
 		private void Update()
 		{
+			GetComponent<Rigidbody2D>().mass = Stats.GetValue(massStat);
 			var x = Input.GetAxis("Horizontal");
 			var y = Input.GetAxis("Vertical");
 			var mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
