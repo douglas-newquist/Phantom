@@ -42,6 +42,7 @@ namespace Phantom
 		{
 			var sprite = hullType.GetSprite(tiles);
 			var hull = new GameObject("Hull");
+			hull.transform.position -= (Vector3)BoundingBox.center;
 			hull.transform.SetParent(ship.transform);
 			var renderer = hull.AddComponent<SpriteRenderer>();
 			renderer.sprite = sprite;
@@ -51,7 +52,7 @@ namespace Phantom
 		{
 			var parts = new GameObject("Parts");
 			parts.transform.SetParent(ship.transform);
-			parts.transform.position -= new Vector3(16f, 16f, 0);
+			parts.transform.position -= (Vector3)BoundingBox.center;
 
 			for (int x = 0; x < Width; x++)
 			{

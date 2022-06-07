@@ -15,7 +15,7 @@ namespace Phantom
 		// Start is called before the first frame update
 		void Start()
 		{
-			shipDesign = shipGenerator.Create(32, 32);
+			shipDesign = shipGenerator.Create(64, 64);
 
 			Debug.Log(shipDesign.BoundingBox);
 

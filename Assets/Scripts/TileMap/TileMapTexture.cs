@@ -46,7 +46,7 @@ namespace Phantom
 		{
 			var texture = Draw(map);
 			var rect = new Rect(0, 0, texture.width, texture.height);
-			var pivot = new Vector2(0.5f, 0.5f);
+			var pivot = Vector2.zero;
 			var sprite = Sprite.Create(texture, rect, pivot, this.sprite.pixelsPerUnit);
 			return sprite;
 		}
