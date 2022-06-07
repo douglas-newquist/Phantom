@@ -14,5 +14,18 @@ namespace Phantom
 		{
 			return texture.DrawSprite(map);
 		}
+
+		public void ApplyStats(StatSheet statSheet, TileMap map)
+		{
+			var counts = map.Itemize();
+			foreach (var count in counts)
+			{
+				var weight = weights.GetWeight(count.Key) * count.Value;
+				foreach (var stat in stats)
+				{
+					statSheet.GetStat(stat.stat).BaseValue += stat.baseValue * weight;
+				}
+			}
+		}
 	}
 }

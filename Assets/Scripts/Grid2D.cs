@@ -21,6 +21,8 @@ namespace Phantom
 		[SerializeField]
 		private T[] values;
 
+		public int Length => values.Length;
+
 		public Grid2D(int width, int height)
 		{
 			this.width = width;
@@ -58,12 +60,22 @@ namespace Phantom
 			return values[x * width + y];
 		}
 
+		public virtual T Get(int index)
+		{
+			return values[index];
+		}
+
 		/// <summary>
 		/// Sets the value of a given coordinate
 		/// </summary>
 		public virtual void Set(int x, int y, T value)
 		{
 			values[x * width + y] = value;
+		}
+
+		public virtual void Set(int index, T value)
+		{
+			values[index] = value;
 		}
 
 		public virtual IGrid2D<T> Clone()

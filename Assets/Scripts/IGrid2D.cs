@@ -51,6 +51,25 @@ namespace Phantom
 			return counts;
 		}
 
+		/// <summary>
+		///
+		/// </summary>
+		/// <typeparam name="T">Type of the values in the grid</typeparam>
+		/// <typeparam name="TResult">Type of the values after operation</typeparam>
+		/// <param name="grid"></param>
+		/// <param name="function">Function that takes in (x, y, T) and produces TResult</param>
+		/// <returns></returns>
+		public static Grid2D<TResult> Map<T, TResult>(this IGrid2D<T> grid, System.Func<int, int, T, TResult> function)
+		{
+			var result = new Grid2D<TResult>(grid.Width, grid.Height);
+
+			for (int x = 0; x < grid.Width; x++)
+				for (int y = 0; y < grid.Height; y++)
+					result.Set(x, y, function(x, y, grid.Get(x, y)));
+
+			return result;
+		}
+
 		public static IEnumerable<KeyValuePair<Vector2Int, T>> GetNeighbors<T>(this IGrid2D<T> grid, Vector2Int pos, int range, bool diagonal)
 		{
 			for (int x = pos.x - range; x <= pos.x + range; x++)

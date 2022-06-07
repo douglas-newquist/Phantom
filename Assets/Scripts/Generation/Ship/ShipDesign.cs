@@ -46,6 +46,9 @@ namespace Phantom
 			hull.transform.SetParent(ship.transform);
 			var renderer = hull.AddComponent<SpriteRenderer>();
 			renderer.sprite = sprite;
+
+			var stats = ship.GetComponent<StatSheet>();
+			hullType.ApplyStats(stats, tiles);
 		}
 
 		public void AddParts(GameObject ship)
