@@ -15,9 +15,8 @@ namespace Game
 		public virtual Grid2D<int> Apply(Grid2D<int> grid, RectInt area)
 		{
 			var result = new Grid2D<int>(grid);
-			int repeats = repeat.Random;
 
-			for (int i = 0; i < repeats; i++)
+			for (int i = repeat.Random; i > 0; i--)
 				result = ApplyOnce(result, area);
 
 			if (mask != null)

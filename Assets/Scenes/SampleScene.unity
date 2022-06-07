@@ -193,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 492162347}
   m_LocalRotation: {x: 0, y: 0, z: -0.26479888, w: 0.96430373}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -623,12 +623,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileMapTexture: {fileID: 11400000, guid: df9ab9085f1b95d2face880ee54503ac, type: 2}
-  tileMap:
-    vertices:
-      width: 0
-      height: 0
-      values: 
-  tileMapGenerator: {fileID: 11400000, guid: ff794b2c57e3de778a768f28470b89af, type: 2}
+  shipGenerator: {fileID: 11400000, guid: 21a0c57103ec859ce93b6666190b40ef, type: 2}
+  shipDesign:
+    tiles:
+      vertices:
+        width: 0
+        height: 0
+        values: 
+    parts:
+      width: 2
+      height: 2
+      values:
+      - state: 0
+        part: {fileID: 11400000, guid: 004257365a6c652569f14f196aa414f9, type: 2}
+        rotation: 0
+      - state: 0
+        part: {fileID: 11400000, guid: 45917dc1fefb46f69895db973474b505, type: 2}
+        rotation: 0
+      - state: 0
+        part: {fileID: 0}
+        rotation: 0
+      - state: 0
+        part: {fileID: 0}
+        rotation: 0
   colors: []
 --- !u!4 &1387071761
 Transform:

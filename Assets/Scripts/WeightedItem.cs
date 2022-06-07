@@ -4,7 +4,8 @@ namespace Game
 	public class WeightedItem<T>
 	{
 		public T value;
-		public float weight;
+
+		public float weight = 1;
 
 		public WeightedItem(T value, float weight)
 		{

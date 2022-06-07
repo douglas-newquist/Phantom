@@ -14,5 +14,24 @@ namespace Game
 		public TileShape placement = TileShape.Full;
 
 		public List<StatPair> baseStats;
+
+		public virtual bool CanPlace(ShipDesign shipDesign, int x, int y)
+		{
+			var tileShape = shipDesign.tiles.Get(x, y).Shape();
+			return placement.HasFlag(tileShape);
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="ship"></param>
+		/// <param name="design"></param>
+		/// <param name="x"></param>
+		/// <param name="y"></param>
+		/// <returns>Reference to the part added if any</returns>
+		public GameObject Place(GameObject ship, ShipDesign design, int x, int y)
+		{
+			return null;
+		}
 	}
 }
