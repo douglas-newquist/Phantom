@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generation/Ships/Selector")]
+	[CreateAssetMenu(menuName = "Game/Generators/Ships/Selector")]
 	public class SelectorShipGenerator : ShipGenerator
 	{
 		public WeightedList<ShipGenerator> generators;

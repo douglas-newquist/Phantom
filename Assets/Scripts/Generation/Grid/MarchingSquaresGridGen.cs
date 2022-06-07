@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Marching Squares")]
+	[CreateAssetMenu(menuName = "Game/Generators/Tiles/Marching Squares")]
 	public class MarchingSquaresGridGen : GridGen
 	{
 		[MinMax(0, 8)]

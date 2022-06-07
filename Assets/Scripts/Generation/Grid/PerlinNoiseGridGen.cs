@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Perlin Noise")]
+	[CreateAssetMenu(menuName = "Game/Generators/Tiles/Perlin Noise")]
 	public class PerlinNoiseGridGen : GridGen
 	{
 		[MinMax(0, 1)]

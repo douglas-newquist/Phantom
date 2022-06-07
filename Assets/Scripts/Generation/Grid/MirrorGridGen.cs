@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Mirror")]
+	[CreateAssetMenu(menuName = "Game/Generators/Tiles/Mirror")]
 	public class MirrorGridGen : GridGen
 	{
 		public Mirror mirror;

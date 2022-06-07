@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generation/Ships/Apply Tile Generator")]
+	[CreateAssetMenu(menuName = "Game/Generators/Ships/Apply Tile Generator")]
 	public class ShipApplyTileGenerator : ShipGenerator
 	{
 		public GridGen tileGenerator;

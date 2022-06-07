@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Mask")]
+	[CreateAssetMenu(menuName = "Game/Generators/Tiles/Mask")]
 	public class MaskGridGen : GridGen
 	{
 		public int positiveMaskValue = 1;

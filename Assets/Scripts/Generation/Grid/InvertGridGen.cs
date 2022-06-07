@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Invert")]
+	[CreateAssetMenu(menuName = "Game/Generators/Tiles/Invert")]
 	public class InvertGridGen : GridGen
 	{
 		protected override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)

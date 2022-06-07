@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Selector")]
+	[CreateAssetMenu(menuName = "Game/Generators/Tiles/Selector")]
 	public class SelectorGridGen : GridGen
 	{
 		public WeightedList<GridGen> choices;

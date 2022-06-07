@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Border")]
+	[CreateAssetMenu(menuName = "Game/Generators/Tiles/Border")]
 	public class BorderGridGen : GridGen
 	{
 		public IntRange topBottom = new IntRange(3, 3);
