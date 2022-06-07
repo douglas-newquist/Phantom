@@ -19,6 +19,8 @@ namespace Phantom
 			var stats = other.GetComponent<StatSheet>();
 			if (stats == null) return;
 			stats.ApplyDamage(BulletStats.damage);
+			OnExpired.Invoke(this);
+			OnHit.Invoke(new ProjectileHitEvent(stats, this));
 			ObjectPool.Despawn(gameObject);
 		}
 	}
