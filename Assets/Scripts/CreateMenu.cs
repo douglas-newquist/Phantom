@@ -15,5 +15,7 @@ namespace Phantom
 		public const string VertexGenerator = Generator + "Vertex/";
 
 		public const string ShipGenerator = Generator + "Ship/";
+
+		public const string PlacementRule = Game + "Placement Rule/";
 	}
 }

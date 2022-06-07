@@ -16,6 +16,7 @@ MonoBehaviour:
   width: 3
   height: 3
   placement: 16
+  placementRule: {fileID: 11400000, guid: f272a46cf14f965708aa115112aae4f3, type: 2}
   baseStats:
   - stat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
     baseValue: 50

@@ -1,6 +1,6 @@
 namespace Phantom
 {
-	[System.Flags]
+	//[System.Flags]
 	public enum Tile
 	{
 		None = 0,
