@@ -625,6 +625,7 @@ MonoBehaviour:
   tileMapTexture: {fileID: 11400000, guid: df9ab9085f1b95d2face880ee54503ac, type: 2}
   shipGenerator: {fileID: 11400000, guid: e1a3d2c2c74e97562bcf496952851990, type: 2}
   shipDesign:
+    hullType: {fileID: 11400000, guid: bb0e0ae8988d8bcc694708203a2f10ce, type: 2}
     tiles:
       vertices:
         width: 0

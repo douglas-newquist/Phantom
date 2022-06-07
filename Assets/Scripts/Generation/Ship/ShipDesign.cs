@@ -5,9 +5,11 @@ namespace Phantom
 	[System.Serializable]
 	public class ShipDesign
 	{
-		public TileMap tiles = new TileMap(64, 64);
+		public TileMapSO hullType;
 
-		public Grid2D<ShipPart> parts = new Grid2D<ShipPart>(64, 64);
+		public TileMap tiles;
+
+		public Grid2D<ShipPart> parts;
 
 		public int Width => tiles.Width;
 

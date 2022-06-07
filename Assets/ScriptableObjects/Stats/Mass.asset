@@ -17,5 +17,5 @@ MonoBehaviour:
   icon: {fileID: 0}
   defaultValue: 1
   limits:
-    min: 1
+    min: 0.01
     max: 1000

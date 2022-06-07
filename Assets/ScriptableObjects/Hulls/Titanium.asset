@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 324755543fac53b77a0dff40f93dd21e, type: 3}
+  m_Name: Titanium
+  m_EditorClassIdentifier: 
+  weights:
+    empty: 0
+    full: 1
+    edge: 0.5
+    smallCorner: 0.125
+    largeCorner: 0.875
+    diagonal: 0.75
+  stats:
+  - stat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
+    baseValue: 1
+  - stat: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
+    baseValue: 5
+  - stat: {fileID: 11400000, guid: 1aa0fd03d7583554eb8bb53fd768e514, type: 2}
+    baseValue: 2
