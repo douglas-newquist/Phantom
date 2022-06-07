@@ -1,9 +1,11 @@
+using System.Collections.Generic;
+
 namespace Phantom
 {
 	[System.Serializable]
 	public class StatList
 	{
-		public StatPair[] stats;
+		public List<StatPair> stats = new List<StatPair>();
 
 		public void PopulateStatSheet(StatSheet sheet)
 		{
