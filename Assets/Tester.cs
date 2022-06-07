@@ -7,7 +7,6 @@ namespace Phantom
 {
 	public class Tester : MonoBehaviour
 	{
-		public TileMapTexture tileMapTexture;
 		public ShipGenerator shipGenerator;
 		public ShipDesign shipDesign;
 		public Color[] colors;
@@ -19,7 +18,7 @@ namespace Phantom
 
 			Debug.Log(shipDesign.BoundingBox);
 
-			var sprite = tileMapTexture.DrawSprite(shipDesign.tiles);
+			var sprite = shipDesign.hullType.GetSprite(shipDesign.tiles);
 			var renderer = gameObject.GetComponent<SpriteRenderer>();
 			renderer.sprite = sprite;
 		}

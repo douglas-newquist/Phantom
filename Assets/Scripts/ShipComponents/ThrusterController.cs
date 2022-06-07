@@ -5,7 +5,7 @@ namespace Phantom
 {
 	public class ThrusterController : MonoBehaviour
 	{
-		public Rigidbody2D body;
+		public Rigidbody2D body => GetComponent<Rigidbody2D>();
 
 		public List<Thruster> thrusters = new List<Thruster>();
 

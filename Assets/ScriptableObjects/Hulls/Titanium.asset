@@ -19,6 +19,7 @@ MonoBehaviour:
     smallCorner: 0.125
     largeCorner: 0.875
     diagonal: 0.75
+  texture: {fileID: 11400000, guid: df9ab9085f1b95d2face880ee54503ac, type: 2}
   stats:
   - stat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
     baseValue: 1

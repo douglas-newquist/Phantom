@@ -4,7 +4,6 @@ using UnityEngine.Events;
 
 namespace Phantom
 {
-	[RequireComponent(typeof(Entity))]
 	[DisallowMultipleComponent]
 	public class StatSheet : MonoBehaviour
 	{

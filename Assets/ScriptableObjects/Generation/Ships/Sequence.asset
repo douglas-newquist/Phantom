@@ -18,3 +18,4 @@ MonoBehaviour:
   vertexGenerator: {fileID: 11400000, guid: ff794b2c57e3de778a768f28470b89af, type: 2}
   generators:
   - {fileID: 11400000, guid: e05390aef7fceac53b03cb1fa6c18b61, type: 2}
+  - {fileID: 11400000, guid: 4b06774c3d71b6f4da6dccbe1244f390, type: 2}
