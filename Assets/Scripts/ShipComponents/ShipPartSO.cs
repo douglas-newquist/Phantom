@@ -8,6 +8,8 @@ namespace Phantom
 	{
 		public GameObject prefab;
 
+		public Sprite sprite;
+
 		[Range(1, 16)]
 		public int width = 1, height = 1;
 
