@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	[CreateAssetMenu(menuName = "Game/Stats/Stat")]
 	public class StatSO : ScriptableObject

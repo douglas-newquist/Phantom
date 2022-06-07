@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	[CreateAssetMenu(menuName = "Game/Generation/Ships/Apply Tile Generator")]
 	public class ShipApplyTileGenerator : ShipGenerator

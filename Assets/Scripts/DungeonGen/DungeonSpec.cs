@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Game
+namespace Phantom
 {
 	/// <summary>
 	/// Describes the general structure of a dungeon

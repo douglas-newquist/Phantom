@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-namespace Game
+namespace Phantom
 {
 	public class Tester : MonoBehaviour
 	{

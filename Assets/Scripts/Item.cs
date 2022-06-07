@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Game
+namespace Phantom
 {
 	[System.Serializable]
 	public class Item

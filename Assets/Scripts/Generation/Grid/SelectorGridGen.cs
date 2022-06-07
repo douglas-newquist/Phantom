@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Selector")]
 	public class SelectorGridGen : GridGen

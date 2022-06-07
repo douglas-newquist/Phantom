@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	public class MissileProjectile : BulletProjectile
 	{

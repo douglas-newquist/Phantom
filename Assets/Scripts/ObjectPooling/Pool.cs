@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	/// <summary>
 	/// Manages spawning templates for a single object

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	[CreateAssetMenu(menuName = "Game/Generation/Ships/Sequence")]
 	public class SequenceShipGenerator : ShipGenerator

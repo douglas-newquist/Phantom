@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 
 #if UNITY_EDITOR
-namespace Game
+namespace Phantom
 {
 	[CustomPropertyDrawer(typeof(IntRange))]
 	[CustomPropertyDrawer(typeof(FloatRange))]

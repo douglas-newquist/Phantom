@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Game
+namespace Phantom
 {
 	[RequireComponent(typeof(Entity))]
 	[DisallowMultipleComponent]

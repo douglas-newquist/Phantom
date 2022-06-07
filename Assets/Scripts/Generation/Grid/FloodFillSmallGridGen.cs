@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	[CreateAssetMenu(menuName = "Game/Generation/Tiles/Flood Fill Small")]
 	public class FloodFillSmallGridGen : GridGen

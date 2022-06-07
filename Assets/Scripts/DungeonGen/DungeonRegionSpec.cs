@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Game
+namespace Phantom
 {
 	/// <summary>
 	/// Describes a collection of rooms that are related somehow

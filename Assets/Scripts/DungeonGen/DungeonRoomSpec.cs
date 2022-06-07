@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	/// <summary>
 	/// Outlines rough details about a room's size and components

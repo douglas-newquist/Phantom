@@ -1,4 +1,4 @@
-namespace Game
+namespace Phantom
 {
 	/// <summary>
 	/// Stores random useful functions

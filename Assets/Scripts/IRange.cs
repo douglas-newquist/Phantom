@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Game
+namespace Phantom
 {
 	public interface IRange<T>
 	{

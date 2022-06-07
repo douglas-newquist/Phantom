@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	public abstract class ShipComponent : MonoBehaviour
 	{

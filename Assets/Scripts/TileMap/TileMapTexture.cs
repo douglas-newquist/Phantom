@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Game
+namespace Phantom
 {
 	[CreateAssetMenu(menuName = "Game/Tile Map Texture")]
 	public class TileMapTexture : ScriptableObject

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	[System.Serializable]
 	public class TileMap : IGrid2D<Tile>

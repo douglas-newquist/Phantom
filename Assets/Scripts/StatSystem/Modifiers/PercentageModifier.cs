@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	/// <summary>
 	/// Increases a stat value by a percentage, stacks additively

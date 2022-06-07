@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	/// <summary>
 	/// Multiplies a stat value by a constant, stacks multiplicative

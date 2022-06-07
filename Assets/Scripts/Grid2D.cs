@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	[System.Serializable]
 	public class Grid2D<T> : IGrid2D<T>

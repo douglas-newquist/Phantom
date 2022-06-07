@@ -1,7 +1,7 @@
 using UnityEngine;
 
 #if UNITY_EDITOR
-namespace Game
+namespace Phantom
 {
 	public class MinMax : PropertyAttribute
 	{

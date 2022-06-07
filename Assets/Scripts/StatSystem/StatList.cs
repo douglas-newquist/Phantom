@@ -1,4 +1,4 @@
-namespace Game
+namespace Phantom
 {
 	[System.Serializable]
 	public class StatList

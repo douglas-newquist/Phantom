@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	/// <summary>
 	/// Adds a constant value to a stat value

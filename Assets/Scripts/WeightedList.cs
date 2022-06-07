@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	[System.Serializable]
 	public class WeightedList<T> : IList<WeightedItem<T>>
@@ -10,9 +10,11 @@ namespace Game
 		[SerializeField]
 		private List<WeightedItem<T>> items = new List<WeightedItem<T>>();
 
-		public WeightedItem<T> this[int index] {
+		public WeightedItem<T> this[int index]
+		{
 			get => items[index];
-			set => items[index] = value; }
+			set => items[index] = value;
+		}
 
 		public float TotalWeight
 		{

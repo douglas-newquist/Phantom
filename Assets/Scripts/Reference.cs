@@ -1,4 +1,4 @@
-namespace Game
+namespace Phantom
 {
 	public enum Reference
 	{

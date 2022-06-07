@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Phantom
 {
 	[RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
 	public class BulletProjectile : Projectile

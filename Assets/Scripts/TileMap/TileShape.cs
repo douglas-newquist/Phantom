@@ -1,4 +1,4 @@
-namespace Game
+namespace Phantom
 {
 	[System.Flags]
 	public enum TileShape

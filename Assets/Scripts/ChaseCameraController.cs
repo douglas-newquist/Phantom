@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace Game
+namespace Phantom
 {
 	[CreateAssetMenu(menuName = "Game/Controller/Chase Camera")]
 	public class ChaseCameraController : Controller
