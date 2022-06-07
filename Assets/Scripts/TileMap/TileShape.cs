@@ -4,12 +4,13 @@ namespace Phantom
 	public enum TileShape
 	{
 		None = 0,
-		SmallCorner = 1,
-		LargeCorner = 2,
+		Empty = 1,
+		SmallCorner = 2,
+		LargeCorner = 4,
 		Corner = SmallCorner | LargeCorner,
-		Edge = 4,
-		Diagonal = 8,
-		Full = 16,
+		Edge = 8,
+		Diagonal = 16,
+		Full = 32,
 		Border = Corner | Edge | Diagonal
 	}
 }

@@ -65,6 +65,9 @@ namespace Phantom
 
 				case Tile.Full:
 					return TileShape.Full;
+
+				case Tile.None:
+					return TileShape.Empty;
 			}
 
 			return TileShape.None;

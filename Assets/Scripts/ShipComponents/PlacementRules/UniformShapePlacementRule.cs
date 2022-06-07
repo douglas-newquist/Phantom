@@ -9,8 +9,20 @@ namespace Phantom
 
 		public override bool CanPlace(ShipPartSO part, ShipDesign design, int x, int y)
 		{
-			return false;
-			throw new System.NotImplementedException();
+			for (int xi = 0; xi < part.width; xi++)
+			{
+				for (int yi = 0; yi < part.height; yi++)
+				{
+					if (!design.parts.InBounds(x + xi, y + yi))
+						return false;
+					if (design.parts.Get(x + xi, y + yi).state != SlotState.Free)
+						return false;
+					if (!shape.HasFlag(design.tiles.Get(x + xi, y + yi).Shape()))
+						return false;
+				}
+			}
+
+			return true;
 		}
 	}
 }

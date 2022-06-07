@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeaa819eea342112ebedbf439c15661c, type: 3}
   m_Name: Full Tile
   m_EditorClassIdentifier: 
-  tiles: ffffffff
+  tiles: 0f000000
