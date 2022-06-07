@@ -19,7 +19,8 @@ namespace Phantom
 
 			Debug.Log(shipDesign.BoundingBox);
 
-			shipDesign.Create(prefab);
+			var ship = shipDesign.Create(prefab);
+			Debug.Log(ship.GetComponent<StatSheet>());
 		}
 
 		// Update is called once per frame

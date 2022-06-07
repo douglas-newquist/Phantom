@@ -41,6 +41,9 @@ namespace Phantom
 		public GameObject Place(GameObject ship, ShipDesign design, int x, int y)
 		{
 			GameObject part = null;
+			var statSheet = ship.GetComponent<StatSheet>();
+			foreach (var stat in baseStats)
+				statSheet.GetStat(stat.stat).BaseValue += stat.baseValue;
 
 			if (prefab != null)
 			{

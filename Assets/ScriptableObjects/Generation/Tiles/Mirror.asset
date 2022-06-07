@@ -18,8 +18,6 @@ MonoBehaviour:
   mask: {fileID: 0}
   choices:
     items:
-    - value: {fileID: 11400000, guid: ba3b0fc57e1867523990d3c728e42d83, type: 2}
-      weight: 25
     - value: {fileID: 11400000, guid: ba9244d740259b54c9530963f00515ff, type: 2}
       weight: 25
     - value: {fileID: 11400000, guid: ac782c49c9f721a92893a92577e233d4, type: 2}

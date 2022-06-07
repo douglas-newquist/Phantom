@@ -15,7 +15,7 @@ MonoBehaviour:
   prefab: {fileID: 1110029762826903062, guid: fb8c5a3af53134394891e5232c874205, type: 3}
   width: 1
   height: 1
-  placementRule: {fileID: 11400000, guid: 106946b14d6978be0a7f1e121a5e43a8, type: 2}
+  placementRule: {fileID: 11400000, guid: f272a46cf14f965708aa115112aae4f3, type: 2}
   baseStats:
   - stat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
     baseValue: 25

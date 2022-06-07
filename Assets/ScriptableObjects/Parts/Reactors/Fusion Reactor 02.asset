@@ -15,14 +15,13 @@ MonoBehaviour:
   prefab: {fileID: 1691334886146194492, guid: 68f3dd854236ad4c59b114988a0eb8e4, type: 3}
   width: 5
   height: 5
-  placement: 16
   placementRule: {fileID: 11400000, guid: f272a46cf14f965708aa115112aae4f3, type: 2}
   baseStats:
   - stat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
     baseValue: 50
   - stat: {fileID: 11400000, guid: 1aa0fd03d7583554eb8bb53fd768e514, type: 2}
-    baseValue: 300
+    baseValue: 4000
   - stat: {fileID: 11400000, guid: 707d7c58055e1022a9d05f959bcc04b8, type: 2}
-    baseValue: 450
+    baseValue: 4000
   - stat: {fileID: 11400000, guid: a4721f0b45add341c95539ab35a4f964, type: 2}
-    baseValue: 125
+    baseValue: 1500
