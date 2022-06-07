@@ -18,6 +18,6 @@ MonoBehaviour:
   defaultValue: 100
   limits:
     min: 1
-    max: 10000
+    max: 100000
   startingPercentage: 1
   maxChangedMode: 2

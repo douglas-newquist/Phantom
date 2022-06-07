@@ -15,6 +15,8 @@ namespace Phantom
 
 		public List<StatPair> baseStats;
 
+		public ResourceUsage resourceUsage;
+
 		public virtual bool CanPlace(ShipDesign shipDesign, int x, int y)
 		{
 			return placementRule.CanPlace(this, shipDesign, x, y);

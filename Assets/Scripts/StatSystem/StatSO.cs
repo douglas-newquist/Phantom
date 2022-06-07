@@ -21,10 +21,4 @@ namespace Phantom
 			return new Stat(this, defaultValue);
 		}
 	}
-	public struct ResourceUsage
-	{
-		public ResourceStatSO resource;
-
-		public float amount;
-	}
 }

@@ -15,14 +15,9 @@ MonoBehaviour:
   prefab: {fileID: 5801225726560230311, guid: c493286855162e6fca8583d62b49939d, type: 3}
   width: 1
   height: 1
-  placement: 16
   placementRule: {fileID: 11400000, guid: f272a46cf14f965708aa115112aae4f3, type: 2}
   baseStats:
-  - stat: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
+  - stat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
     baseValue: 1
   - stat: {fileID: 11400000, guid: f00840f3f4c31fb8d82e8f5e6f22b77d, type: 2}
-    baseValue: 100
-  - stat: {fileID: 11400000, guid: b47f482ac95dcd113b57507d40391096, type: 2}
-    baseValue: 5
-  - stat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
     baseValue: 5
