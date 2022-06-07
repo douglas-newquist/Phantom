@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Projectiles/Bullet")]
+	[CreateAssetMenu(menuName = CreateMenu.Projectile + "Bullet")]
 	public class BulletProjectileSO : ProjectileSO
 	{
 		[MinMax(0, GameManager.SpeedLimit)]

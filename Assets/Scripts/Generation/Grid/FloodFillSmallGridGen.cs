@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generators/Tiles/Flood Fill Small")]
+	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Flood Fill Small")]
 	public class FloodFillSmallGridGen : GridGen
 	{
 		public int areaSize = 4;

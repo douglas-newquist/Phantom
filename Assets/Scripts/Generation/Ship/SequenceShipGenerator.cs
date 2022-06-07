@@ -2,7 +2,10 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generators/Ships/Sequence")]
+	/// <summary>
+	/// Applies multiple ShipGenerators in a row
+	/// </summary>
+	[CreateAssetMenu(menuName = CreateMenu.ShipGenerator + "Sequence")]
 	public class SequenceShipGenerator : ShipGenerator
 	{
 		public ShipGenerator[] generators;

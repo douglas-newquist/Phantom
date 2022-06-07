@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generators/Tiles/Decaying Circle")]
+	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Decaying Circle")]
 	public class RandomCircleDecayingGridGen : GridGen
 	{
 		[MinMax(0, 1)]

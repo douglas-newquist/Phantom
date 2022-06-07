@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generators/Tiles/Sequence")]
+	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Sequence")]
 	public class SequenceGridGen : GridGen
 	{
 		public GridGen[] steps;

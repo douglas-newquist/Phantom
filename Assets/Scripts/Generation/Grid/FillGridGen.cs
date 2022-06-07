@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generators/Tiles/Fill")]
+	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Fill")]
 	public class FillGridGen : GridGen
 	{
 		public int value = 1;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Stats/Stat")]
+	[CreateAssetMenu(menuName = CreateMenu.Stats + "Basic")]
 	public class StatSO : ScriptableObject
 	{
 		public string displayName;

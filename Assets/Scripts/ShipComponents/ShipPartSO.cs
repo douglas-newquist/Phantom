@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Parts/Part")]
+	[CreateAssetMenu(menuName = CreateMenu.ShipPart + "Part")]
 	public class ShipPartSO : ScriptableObject
 	{
 		public GameObject prefab;

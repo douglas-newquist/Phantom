@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Parts/List")]
+	[CreateAssetMenu(menuName = CreateMenu.ShipPart + "List")]
 	public class ShipPartsListSO : ScriptableObject
 	{
 		public ShipPartSO[] parts;

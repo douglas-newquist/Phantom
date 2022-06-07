@@ -9,6 +9,7 @@ namespace Phantom
 		Corner = SmallCorner | LargeCorner,
 		Edge = 4,
 		Diagonal = 8,
-		Full = 16
+		Full = 16,
+		Border = Corner | Edge | Diagonal
 	}
 }

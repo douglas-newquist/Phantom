@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generators/Tiles/Random Uniform")]
+	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Random Uniform")]
 	public class FillRandomUniformGridGen : GridGen
 	{
 		[MinMax(0, 1)]

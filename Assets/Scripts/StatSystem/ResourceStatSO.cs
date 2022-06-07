@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Stats/Resource")]
+	[CreateAssetMenu(menuName = CreateMenu.Stats + "Resource")]
 	public class ResourceStatSO : StatSO
 	{
 		[Range(0f, 1f)]

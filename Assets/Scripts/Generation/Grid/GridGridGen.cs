@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generators/Tiles/Grid")]
+	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Grid")]
 	public class GridGridGen : GridGen
 	{
 		[MinMax(1, 64)]

@@ -2,17 +2,20 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Generators/Ships/Selector")]
+	/// <summary>
+	/// Chooses a random ShipGenerator to use and apply
+	/// </summary>
+	[CreateAssetMenu(menuName = CreateMenu.ShipGenerator + "Selector")]
 	public class SelectorShipGenerator : ShipGenerator
 	{
 		public WeightedList<ShipGenerator> generators;
 
 		public override ShipDesign ApplyOnce(ShipDesign design, RectInt area)
 		{
-			var choice = generators.GetRandom();
+			var generator = generators.GetRandom();
 
-			if (choice != null)
-				return choice.Apply(design, area);
+			if (generator != null)
+				return generator.Apply(design, area);
 			return design;
 		}
 	}
