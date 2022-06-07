@@ -19,9 +19,13 @@ namespace Phantom
 			{
 				for (int y = area.yMin; y < area.yMax; y++)
 				{
-					var part = parts.parts[Random.Range(0, parts.parts.Length)];
-					if (Random.Range(0f, 1f) <= thresh && part.CanPlace(design, x, y))
-						part.Place(design, x, y);
+					var placable = parts.GetPlaceableParts(design, x, y);
+					if (placable.Count > 0)
+					{
+						var part = placable[Random.Range(0, placable.Count)];
+						if (Random.Range(0f, 1f) <= thresh && part.CanPlace(design, x, y))
+							part.Place(design, x, y);
+					}
 				}
 			}
 

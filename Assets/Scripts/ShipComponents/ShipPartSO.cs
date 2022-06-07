@@ -17,6 +17,15 @@ namespace Phantom
 
 		public virtual bool CanPlace(ShipDesign shipDesign, int x, int y)
 		{
+			for (int xi = 0; xi < width; xi++)
+				for (int yi = 0; yi < height; yi++)
+				{
+					if (!shipDesign.parts.InBounds(x + xi, y + yi))
+						return false;
+					if (shipDesign.parts.Get(x + xi, y + yi).Occupied)
+						return false;
+				}
+
 			var tileShape = shipDesign.tiles.Get(x, y).Shape();
 			return tileShape == placement;
 		}
@@ -24,6 +33,11 @@ namespace Phantom
 		public void Place(ShipDesign shipDesign, int x, int y)
 		{
 			shipDesign.parts.Set(x, y, new ShipPart(this, SlotState.Used, 0));
+
+			for (int xi = 0; xi < width; xi++)
+				for (int yi = 0; yi < height; yi++)
+					if (xi != 0 || yi != 0)
+						shipDesign.parts.Set(x + xi, y + yi, new ShipPart(SlotState.Reserved));
 		}
 
 		/// <summary>

@@ -51,6 +51,7 @@ namespace Phantom
 		{
 			var parts = new GameObject("Parts");
 			parts.transform.SetParent(ship.transform);
+			parts.transform.position -= new Vector3(16.5f, 16.5f, 0);
 
 			for (int x = 0; x < Width; x++)
 			{
