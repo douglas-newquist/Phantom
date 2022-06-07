@@ -18,7 +18,7 @@ namespace Phantom
 		public virtual bool CanPlace(ShipDesign shipDesign, int x, int y)
 		{
 			var tileShape = shipDesign.tiles.Get(x, y).Shape();
-			return placement.HasFlag(tileShape);
+			return tileShape == placement;
 		}
 
 		public void Place(ShipDesign shipDesign, int x, int y)
@@ -36,7 +36,14 @@ namespace Phantom
 		/// <returns>Reference to the part added if any</returns>
 		public GameObject Place(GameObject ship, ShipDesign design, int x, int y)
 		{
-			return null;
+			GameObject part = null;
+
+			if (prefab != null)
+			{
+				part = Instantiate(prefab);
+			}
+
+			return part;
 		}
 	}
 }

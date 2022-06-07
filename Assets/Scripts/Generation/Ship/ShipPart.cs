@@ -24,5 +24,13 @@ namespace Phantom
 			this.part = part;
 			this.rotation = rotation;
 		}
+
+		public GameObject Place(GameObject ship, ShipDesign design, int x, int y)
+		{
+			if (part == null)
+				return null;
+
+			return part.Place(ship, design, x, y);
+		}
 	}
 }

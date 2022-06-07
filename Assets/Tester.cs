@@ -7,6 +7,7 @@ namespace Phantom
 {
 	public class Tester : MonoBehaviour
 	{
+		public GameObject prefab;
 		public ShipGenerator shipGenerator;
 		public ShipDesign shipDesign;
 		public Color[] colors;
@@ -18,9 +19,7 @@ namespace Phantom
 
 			Debug.Log(shipDesign.BoundingBox);
 
-			var sprite = shipDesign.hullType.GetSprite(shipDesign.tiles);
-			var renderer = gameObject.GetComponent<SpriteRenderer>();
-			renderer.sprite = sprite;
+			shipDesign.Create(prefab);
 		}
 
 		// Update is called once per frame

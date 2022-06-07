@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b95fb1794abd62c2beeea1025dd90f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hullType: {fileID: 11400000, guid: bb0e0ae8988d8bcc694708203a2f10ce, type: 2}
+  prefab: {fileID: 838161728438992593, guid: 39a653b251467604c9fe3b3b6567f58a, type: 3}
   shipGenerator: {fileID: 11400000, guid: e1a3d2c2c74e97562bcf496952851990, type: 2}
   shipDesign:
     hullType: {fileID: 11400000, guid: bb0e0ae8988d8bcc694708203a2f10ce, type: 2}
