@@ -15,13 +15,11 @@ namespace Phantom
 		{
 			if (vector.sqrMagnitude > 1)
 				vector.Normalize();
+
 			switch (mode)
 			{
 				case Reference.Relative:
-					if (vector.sqrMagnitude > 1)
-						vector.Normalize();
-					//	foreach (var thruster in thrusters)
-					//		force += thruster.Thrust(vector, mode);
+					vector = transform.TransformDirection(vector);
 					break;
 			}
 

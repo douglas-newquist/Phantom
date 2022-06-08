@@ -4,11 +4,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	public interface IThruster
-	{
-
-	}
-	public class Thruster : ShipComponent, IThruster
+	public class Thruster : ShipComponent
 	{
 		public StatSO thrustStat;
 
@@ -16,13 +12,6 @@ namespace Phantom
 
 		public Vector2 Thrust(Vector3 vector, Reference mode)
 		{
-			switch (mode)
-			{
-				case Reference.Relative:
-					vector = transform.TransformDirection(vector);
-					break;
-			}
-
 			return vector * statSheet.GetValue(thrustStat) * force;
 		}
 	}
