@@ -11,7 +11,12 @@ namespace Phantom
 
 		private Vector2 force;
 
-		public void Move(Vector3 vector, Reference mode)
+		/// <summary>
+		/// Converts the given thrust vector to the corresponding frame of reference
+		/// </summary>
+		/// <param name="vector">Vector to translate</param>
+		/// <param name="mode">Frame of reference</param>
+		public Vector2 TranslateVector(Vector2 vector, Reference mode)
 		{
 			if (vector.sqrMagnitude > 1)
 				vector.Normalize();
@@ -19,9 +24,27 @@ namespace Phantom
 			switch (mode)
 			{
 				case Reference.Relative:
-					vector = transform.TransformDirection(vector);
-					break;
+					return transform.TransformDirection(vector);
+
+				default:
+					return vector;
 			}
+		}
+
+		public Vector2 GetMaximumThrust(Vector2 vector, Reference mode)
+		{
+			vector = TranslateVector(vector, mode);
+			var max = Vector2.zero;
+
+			foreach (var thruster in thrusters)
+				max += thruster.GetMaximumThrust(vector);
+
+			return max;
+		}
+
+		public void Move(Vector2 vector, Reference mode)
+		{
+			vector = TranslateVector(vector, mode);
 
 			foreach (var thruster in thrusters)
 				force += thruster.Thrust(vector, mode);
