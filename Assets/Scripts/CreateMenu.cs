@@ -17,5 +17,11 @@ namespace Phantom
 		public const string ShipGenerator = Generator + "Ship/";
 
 		public const string PlacementRule = Game + "Placement Rule/";
+
+		public const string Pathing = Game + "Pathing/";
+
+		public const string Pathfinder = Pathing + "Pathfinder/";
+
+		public const string PathAgent = Pathing + "Agent/";
 	}
 }

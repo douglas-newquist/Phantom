@@ -5,8 +5,11 @@ using UnityEngine;
 namespace Phantom
 {
 	[System.Serializable]
-	public abstract class Pathfinder
+	public abstract class Pathfinder : ScriptableObject
 	{
+		[Range(100, 10000)]
+		public int maxIterations = 2000;
+
 		protected class Node<TCell>
 		{
 			public Node<TCell> previous;

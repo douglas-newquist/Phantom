@@ -5,22 +5,22 @@ namespace Phantom
 	[System.Serializable]
 	public class TileWeights
 	{
-		[Range(0f, 1f)]
+		[Range(-1f, 2f)]
 		public float empty = 0;
 
-		[Range(0f, 1f)]
+		[Range(-1f, 2f)]
 		public float full = 1;
 
-		[Range(0f, 1f)]
+		[Range(-1f, 2f)]
 		public float edge = 0.5f;
 
-		[Range(0f, 1f)]
+		[Range(-1f, 2f)]
 		public float smallCorner = 0.125f;
 
-		[Range(0f, 1f)]
+		[Range(-1f, 2f)]
 		public float largeCorner = 0.875f;
 
-		[Range(0f, 1f)]
+		[Range(-1f, 2f)]
 		public float diagonal = 0.75f;
 
 		public float GetWeight(TileShape shape)

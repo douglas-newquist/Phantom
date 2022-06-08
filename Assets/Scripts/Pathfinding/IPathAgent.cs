@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Phantom
 {
@@ -8,4 +9,6 @@ namespace Phantom
 
 		float GetPathCost(TMap map, TCell start, TCell end);
 	}
+
+	public interface IPathAgent<TMap> : IPathAgent<TMap, Vector2Int> { }
 }
