@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe55868502252dcf90e2dc850e39632, type: 3}
   m_Name: Tile Path Agent
   m_EditorClassIdentifier: 
+  pathfinder: {fileID: 11400000, guid: 2d1baba0d8befbdcfabe16736b2ddc28, type: 2}
   diagonal: 1
+  weights:
+    empty: 1
+    full: -1
+    edge: -1
+    smallCorner: 2
+    largeCorner: -1
+    diagonal: -1

@@ -1,4 +1,4 @@
-namespace Phantom
+namespace Phantom.Pathfinding
 {
 	public enum PathStatus
 	{

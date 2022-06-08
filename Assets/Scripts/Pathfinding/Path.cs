@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Phantom
+namespace Phantom.Pathfinding
 {
 	[System.Serializable]
 	public class Path<TCell>

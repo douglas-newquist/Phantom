@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.Pathfinding
 {
 	[CreateAssetMenu(menuName = CreateMenu.Pathfinder + "Dijkstra")]
 	public class DijkstraPathFinder : Pathfinder

@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.Pathfinding
 {
 	[System.Serializable]
 	public abstract class Pathfinder : ScriptableObject

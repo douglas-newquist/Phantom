@@ -1,13 +1,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.Pathfinding
 {
 	public abstract class PathAgent<TMap, TCell> : ScriptableObject, IPathAgent<TMap, TCell>
 	{
 		public Pathfinder pathfinder;
 
-		public abstract bool CanPathThrough(TMap map, TCell pos);
+		/// <summary>
+		/// Gets the cost of moving through a specific cell
+		/// </summary>
+		/// <param name="map">Map being pathed through</param>
+		/// <param name="pos">Cell be pathed over</param>
+		public abstract float PathThroughCost(TMap map, TCell pos);
+
+		/// <summary>
+		/// Checks if the given cell can be pathed over
+		/// </summary>
+		/// <param name="map">Map being pathed through</param>
+		/// <param name="pos">Cell be pathed over</param>
+		public virtual bool CanPathThrough(TMap map, TCell pos)
+		{
+			return PathThroughCost(map, pos) >= 0;
+		}
 
 		public abstract IEnumerable<TCell> GetNeighbors(TMap map, TCell pos);
 

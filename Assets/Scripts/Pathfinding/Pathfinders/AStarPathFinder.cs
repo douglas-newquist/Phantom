@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.Pathfinding
 {
 	[CreateAssetMenu(menuName = CreateMenu.Pathfinder + "A*")]
 	public class AStarPathFinder : Pathfinder

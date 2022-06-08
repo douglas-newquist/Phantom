@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55e0d64a973ce0f196abfabf2917bab, type: 3}
   m_Name: A Star
   m_EditorClassIdentifier: 
+  maxIterations: 4000

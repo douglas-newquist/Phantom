@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.Pathfinding
 {
 	public interface IPathAgent<TMap, TCell>
 	{
