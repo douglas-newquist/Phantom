@@ -42,7 +42,7 @@ namespace Phantom
 				case TileShape.Full:
 					return full;
 
-				case TileShape.None:
+				case TileShape.Empty:
 					return empty;
 
 				default:

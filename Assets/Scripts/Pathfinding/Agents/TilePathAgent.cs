@@ -11,7 +11,9 @@ namespace Phantom.Pathfinding
 		{
 			if (!map.InBounds(pos.x, pos.y))
 				return outOfBoundsCost;
-			return weights.GetWeight(map.Get(pos.x, pos.y));
+
+			var tile = map.Get(pos.x, pos.y);
+			return weights.GetWeight(tile);
 		}
 	}
 }

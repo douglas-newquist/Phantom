@@ -27,9 +27,9 @@ namespace Phantom.Pathfinding
 
 			public override string ToString()
 			{
-				var s = cell + "\tG:" + cost + "\tH:" + h + "\tF:" + FScore;
+				var s = pos + "\tG:" + cost + "\tH:" + h + "\tF:" + FScore;
 				if (previous != null)
-					s += " from " + previous.cell;
+					s += " from " + previous.pos;
 				return s;
 			}
 
@@ -54,16 +54,17 @@ namespace Phantom.Pathfinding
 			{
 				Debug.Log(cell);
 
-				if (Equals(cell, end))
+				if (Equals(cell.pos, end))
 				{
 					result.SetPath(BuildPath(cell), PathStatus.Found);
 					return;
 				}
 
-				foreach (var neighbor in agent.GetNeighbors(map, cell.cell))
+				foreach (var neighbor in agent.GetNeighbors(map, cell.pos))
 				{
-					float moveCost = agent.GetPathCost(map, cell.cell, neighbor);
+					float moveCost = agent.GetPathCost(map, cell.pos, neighbor);
 					float tentative = cell.cost + moveCost;
+					//Debug.Log(cell.pos + " -> " + neighbor + " cost: " + moveCost + " total: " + tentative);
 
 					if (!searched.TryGetValue(neighbor, out var neighborNode))
 					{

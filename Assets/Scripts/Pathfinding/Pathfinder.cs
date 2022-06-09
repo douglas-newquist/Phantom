@@ -7,21 +7,21 @@ namespace Phantom.Pathfinding
 	[System.Serializable]
 	public abstract class Pathfinder : ScriptableObject
 	{
-		[Range(100, 10000)]
+		[Range(1, 10000)]
 		public int maxIterations = 2000;
 
 		protected class Node<TCell> : IComparable<Node<TCell>>
 		{
 			public Node<TCell> previous;
 
-			public TCell cell;
+			public TCell pos;
 
 			public float cost;
 
 			public Node(Node<TCell> previous, TCell cell, float cost)
 			{
 				this.previous = previous;
-				this.cell = cell;
+				this.pos = cell;
 				this.cost = cost;
 			}
 
@@ -62,7 +62,7 @@ namespace Phantom.Pathfinding
 
 			while (end.previous != null)
 			{
-				cells.Add(end.cell);
+				cells.Add(end.pos);
 				end = end.previous;
 			}
 

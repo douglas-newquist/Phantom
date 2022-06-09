@@ -11,36 +11,36 @@ namespace Phantom.Pathfinding
 			int loop = 0;
 
 			var searched = new Dictionary<TCell, Node<TCell>>();
-			var toSearch = new Queue<Node<TCell>>();
+			var toSearch = new MinHeap<Node<TCell>>();
 
 			var startNode = new Node<TCell>(null, start, 0);
 			searched.Add(start, startNode);
-			toSearch.Enqueue(startNode);
+			toSearch.Insert(startNode);
 
-			while (loop++ < maxIterations && toSearch.TryDequeue(out var cell))
+			while (loop++ < maxIterations && toSearch.TryExtract(out var cell))
 			{
-				if (Equals(cell.cell, end))
+				if (Equals(cell.pos, end))
 				{
 					result.SetPath(BuildPath(cell), PathStatus.Found);
 					return;
 				}
 
-				foreach (var neighbor in agent.GetNeighbors(map, cell.cell))
+				foreach (var neighbor in agent.GetNeighbors(map, cell.pos))
 				{
-					float moveCost = agent.GetPathCost(map, cell.cell, neighbor);
+					float moveCost = agent.GetPathCost(map, cell.pos, neighbor);
 					float tentative = cell.cost + moveCost;
 
 					if (!searched.TryGetValue(neighbor, out var neighborNode))
 					{
 						neighborNode = new Node<TCell>(cell, neighbor, tentative);
 						searched.Add(neighbor, neighborNode);
-						toSearch.Enqueue(neighborNode);
+						toSearch.Insert(neighborNode);
 					}
 					else if (cell.cost + moveCost < neighborNode.cost)
 					{
 						neighborNode.cost = tentative;
 						neighborNode.previous = cell;
-						toSearch.Enqueue(neighborNode);
+						toSearch.Insert(neighborNode);
 					}
 				}
 			}

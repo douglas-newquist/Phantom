@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe55868502252dcf90e2dc850e39632, type: 3}
   m_Name: Tile Path Agent
   m_EditorClassIdentifier: 
-  pathfinder: {fileID: 11400000, guid: 2d1baba0d8befbdcfabe16736b2ddc28, type: 2}
-  diagonal: 1
+  pathfinder: {fileID: 11400000, guid: fdac6e95ec9b9f88ba5e2c244bb0ec14, type: 2}
+  diagonal: 0
   outOfBoundsCost: -1
   weights:
     empty: 1

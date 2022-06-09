@@ -24,7 +24,7 @@ namespace Phantom
 			var ship = shipDesign.Create(prefab);
 			Debug.Log(ship.GetComponent<StatSheet>());
 
-			path = pathAgent.FindPath(shipDesign.tiles, Vector2Int.zero, new Vector2Int(0, 16));
+			path = pathAgent.FindPath(shipDesign.tiles, Vector2Int.zero, new Vector2Int(63, 63));
 		}
 
 		// Update is called once per frame

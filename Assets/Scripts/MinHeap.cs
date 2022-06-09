@@ -36,6 +36,10 @@ namespace Phantom
 			}
 		}
 
+		public int IndexOf(T value) => elements.IndexOf(value);
+
+		public bool Contains(T value) => IndexOf(value) >= 0;
+
 		/// <summary>
 		/// Gets the current minimum value without removing it
 		/// </summary>
