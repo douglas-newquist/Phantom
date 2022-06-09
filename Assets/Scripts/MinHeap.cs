@@ -4,63 +4,86 @@ using System;
 namespace Phantom
 {
 	[System.Serializable]
-	public class MinHeap<TValue, TPriority> : IHeap<TValue, TPriority> where TPriority : IComparable<TPriority>
+	public class MinHeap<T> where T : IComparable<T>
 	{
-		[System.Serializable]
-		class HeapElement
-		{
-			public TValue element;
+		List<T> elements = new List<T>();
 
-			public TPriority priority;
-
-			public HeapElement(TValue element, TPriority priority)
-			{
-				this.element = element;
-				this.priority = priority;
-			}
-		}
-
-		List<HeapElement> elements = new List<HeapElement>();
+		public int Count => elements.Count;
 
 		public bool Empty => elements.Count == 0;
 
-		public void Insert(TValue element, TPriority priority)
+		protected int Parent(int i) => (i - 1) / 2;
+
+		protected int LeftChild(int i) => i * 2 + 1;
+
+		protected int RightChild(int i) => i * 2 + 2;
+
+		protected bool IsLeaf(int i) => i >= elements.Count / 2;
+
+		/// <summary>
+		/// Inserts a new element into this heap
+		/// </summary>
+		/// <param name="value">Value to insert</param>
+		public void Insert(T value)
 		{
-			int i = elements.Count;
-			int parent = i / 2;
-			elements.Add(new HeapElement(element, priority));
+			int i = Count;
+			elements.Add(value);
 
-			while (elements[i].priority.CompareTo(elements[parent].priority) < 0)
+			while (i > 0 && elements[i].CompareTo(elements[Parent(i)]) < 0)
 			{
-				var tmp = elements[i];
-				elements[i] = elements[parent];
-				elements[parent] = tmp;
-
-				i = parent;
-				parent = i / 2;
+				Utilities.Swap(elements, i, Parent(i));
+				i = Parent(i);
 			}
 		}
 
-		public TValue Peek()
-		{
-			return elements[0].element;
-		}
+		/// <summary>
+		/// Gets the current minimum value without removing it
+		/// </summary>
+		public T Peek() => elements[0];
 
-		public TValue Extract()
-		{
-			var element = elements[0];
-			elements[0] = elements[elements.Count - 1];
-			elements.RemoveAt(elements.Count - 1);
-			Heapify(0);
-
-			return element.element;
-		}
-
-		public bool TryExtract(out TValue element)
+		/// <summary>
+		/// Gets the current minimum value without removing it
+		/// </summary>
+		/// <param name="value">The minimum value</param>
+		/// <returns>True if the value is valid</returns>
+		public bool TryPeek(out T value)
 		{
 			if (Empty)
 			{
-				element = default(TValue);
+				value = default(T);
+				return false;
+			}
+
+			value = Peek();
+			return true;
+		}
+
+		/// <summary>
+		/// Pops the minimum value off this heap
+		/// </summary>
+		public T Extract()
+		{
+			var value = elements[0];
+
+			if (Count == 1)
+				elements.Clear();
+			else
+			{
+				Utilities.Swap(elements, 0, elements.Count - 1);
+				elements.RemoveAt(elements.Count - 1);
+
+				if (Count > 1)
+					MinHeapify(0);
+			}
+
+			return value;
+		}
+
+		public bool TryExtract(out T element)
+		{
+			if (Empty)
+			{
+				element = default(T);
 				return false;
 			}
 
@@ -68,26 +91,27 @@ namespace Phantom
 			return true;
 		}
 
-		void Heapify(int i)
+		protected void MinHeapify(int i)
 		{
-			int left = i * 2 + 1;
-			int right = left + 1;
+			int left = LeftChild(i);
+			int right = RightChild(i);
 			int smallest = i;
 
-			if (left < elements.Count && elements[left].priority.CompareTo(elements[smallest].priority) < 0)
-				smallest = left;
+			if (left < Count)
+				if (elements[left].CompareTo(elements[smallest]) < 0)
+					smallest = left;
 
-			if (right < elements.Count && elements[right].priority.CompareTo(elements[smallest].priority) < 0)
-				smallest = right;
+			if (right < elements.Count)
+				if (elements[right].CompareTo(elements[smallest]) < 0)
+					smallest = right;
 
 			if (smallest != i)
 			{
-				var tmp = elements[i];
-				elements[i] = elements[smallest];
-				elements[smallest] = tmp;
-
-				Heapify(smallest);
+				Utilities.Swap(elements, smallest, i);
+				MinHeapify(smallest);
 			}
 		}
+
+		public void Clear() => elements.Clear();
 	}
 }
