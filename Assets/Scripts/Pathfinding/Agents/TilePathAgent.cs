@@ -9,6 +9,8 @@ namespace Phantom.Pathfinding
 
 		public override float PathThroughCost(IGrid2D<Tile> map, Vector2Int pos)
 		{
+			if (!map.InBounds(pos.x, pos.y))
+				return outOfBoundsCost;
 			return weights.GetWeight(map.Get(pos.x, pos.y));
 		}
 	}

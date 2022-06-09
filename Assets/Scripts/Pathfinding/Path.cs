@@ -7,7 +7,7 @@ namespace Phantom.Pathfinding
 	{
 		public PathStatus Status { get; private set; }
 
-		public List<TCell> Cells { get; private set; }
+		public List<TCell> Cells;
 
 		public bool Finished => Status != PathStatus.Searching;
 

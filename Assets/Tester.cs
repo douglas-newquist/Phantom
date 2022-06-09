@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Phantom.Pathfinding;
 
 namespace Phantom
 {
@@ -11,6 +12,8 @@ namespace Phantom
 		public ShipGenerator shipGenerator;
 		public ShipDesign shipDesign;
 		public Color[] colors;
+		public TilePathAgent pathAgent;
+		public Path<Vector2Int> path;
 
 		// Start is called before the first frame update
 		void Start()
@@ -21,6 +24,8 @@ namespace Phantom
 
 			var ship = shipDesign.Create(prefab);
 			Debug.Log(ship.GetComponent<StatSheet>());
+
+			path = pathAgent.FindPath(shipDesign.tiles, Vector2Int.zero, shipDesign.BoundingBox.max);
 		}
 
 		// Update is called once per frame

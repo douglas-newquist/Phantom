@@ -315,6 +315,9 @@ MonoBehaviour:
         part: {fileID: 0}
         rotation: 0
   colors: []
+  pathAgent: {fileID: 11400000, guid: 18ab1456e1dab770d9938ea64065741c, type: 2}
+  path:
+    Cells: []
 --- !u!4 &1387071761
 Transform:
   m_ObjectHideFlags: 0

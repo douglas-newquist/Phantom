@@ -7,6 +7,9 @@ namespace Phantom.Pathfinding
 	{
 		public bool diagonal = true;
 
+		[Range(-1, 16)]
+		public float outOfBoundsCost = -1;
+
 		public override IEnumerable<Vector2Int> GetNeighbors(IGrid2D<T> map, Vector2Int pos)
 		{
 			for (int xi = -1; xi <= 1; xi++)
@@ -23,7 +26,7 @@ namespace Phantom.Pathfinding
 					int y = pos.y + yi;
 					var p = new Vector2Int(x, y);
 
-					if (CanPathThrough(map, p) && map.InBounds(x, y))
+					if (PathThroughCost(map, p) >= 0)
 						yield return p;
 				}
 			}

@@ -33,6 +33,9 @@ namespace Phantom.Pathfinding
 					{
 						neighborNode = new Node<TCell>(neighbor, float.MaxValue);
 						searched.Add(neighbor, neighborNode);
+
+						if (!toSearch.Contains(neighbor))
+							toSearch.Enqueue(neighbor);
 					}
 
 					float moveCost = agent.GetPathCost(map, cell, neighbor);
