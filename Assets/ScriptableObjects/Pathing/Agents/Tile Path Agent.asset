@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Tile Path Agent
   m_EditorClassIdentifier: 
   pathfinder: {fileID: 11400000, guid: fdac6e95ec9b9f88ba5e2c244bb0ec14, type: 2}
-  diagonal: 0
+  diagonal: 1
   outOfBoundsCost: -1
   weights:
     empty: 1
-    full: 1
-    edge: 1
-    smallCorner: 1
-    largeCorner: 1
-    diagonal: 1
+    full: 5
+    edge: 5
+    smallCorner: 5
+    largeCorner: 5
+    diagonal: 5

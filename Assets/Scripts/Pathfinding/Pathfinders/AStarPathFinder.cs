@@ -52,8 +52,6 @@ namespace Phantom.Pathfinding
 
 			while (loop++ < maxIterations && toSearch.TryExtract(out var cell))
 			{
-				Debug.Log(cell);
-
 				if (Equals(cell.pos, end))
 				{
 					result.SetPath(BuildPath(cell), PathStatus.Found);
@@ -64,7 +62,6 @@ namespace Phantom.Pathfinding
 				{
 					float moveCost = agent.GetPathCost(map, cell.pos, neighbor);
 					float tentative = cell.cost + moveCost;
-					//Debug.Log(cell.pos + " -> " + neighbor + " cost: " + moveCost + " total: " + tentative);
 
 					if (!searched.TryGetValue(neighbor, out var neighborNode))
 					{
