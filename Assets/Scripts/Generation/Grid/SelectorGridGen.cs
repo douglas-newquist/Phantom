@@ -7,7 +7,7 @@ namespace Phantom
 	{
 		public WeightedList<GridGen> choices;
 
-		protected override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
 		{
 			var generator = choices.GetRandom();
 			if (generator != null)

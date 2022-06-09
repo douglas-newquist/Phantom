@@ -12,7 +12,7 @@ namespace Phantom
 
 		public int alive = 1, dead = 0;
 
-		protected override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
 		{
 			var result = new Grid2D<int>(grid);
 

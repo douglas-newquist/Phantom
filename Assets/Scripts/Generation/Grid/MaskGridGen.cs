@@ -9,7 +9,7 @@ namespace Phantom
 
 		public int valueOutsideMask = 0;
 
-		protected override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
 		{
 			var result = new Grid2D<int>(grid);
 			var gridMask = mask.Create(area.width + 1, area.height + 1);

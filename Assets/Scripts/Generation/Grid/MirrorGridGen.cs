@@ -7,7 +7,7 @@ namespace Phantom
 	{
 		public Mirror mirror;
 
-		protected override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
 		{
 			grid = new Grid2D<int>(grid);
 

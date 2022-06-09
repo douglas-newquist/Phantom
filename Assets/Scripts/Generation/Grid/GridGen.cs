@@ -3,21 +3,13 @@ using UnityEngine;
 namespace Phantom
 {
 	[System.Serializable]
-	public abstract class GridGen : ScriptableObject
+	public abstract class GridGen : Generator<Grid2D<int>>
 	{
-		[MinMax(0, 16)]
-		public IntRange repeat = new IntRange(1, 1);
-
 		public GridGen mask;
 
-		protected abstract Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area);
-
-		public virtual Grid2D<int> Apply(Grid2D<int> grid, RectInt area)
+		public override Grid2D<int> Apply(Grid2D<int> grid, RectInt area)
 		{
-			var result = new Grid2D<int>(grid);
-
-			for (int i = repeat.Random; i > 0; i--)
-				result = ApplyOnce(result, area);
+			var result = base.Apply(grid, area);
 
 			if (mask != null)
 				return mask.ApplyMask(grid, result, area);
@@ -25,13 +17,13 @@ namespace Phantom
 			return result;
 		}
 
-		public virtual Grid2D<int> Apply(Grid2D<int> grid)
+		public override Grid2D<int> Apply(Grid2D<int> grid)
 		{
 			var area = new RectInt(0, 0, grid.Width, grid.Height);
 			return Apply(grid, area);
 		}
 
-		public virtual Grid2D<int> Create(int width, int height)
+		public override Grid2D<int> Create(int width, int height)
 		{
 			return Apply(new Grid2D<int>(width, height));
 		}

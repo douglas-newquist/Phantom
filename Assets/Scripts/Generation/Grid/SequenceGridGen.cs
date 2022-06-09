@@ -7,7 +7,7 @@ namespace Phantom
 	{
 		public GridGen[] steps;
 
-		protected override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
 		{
 			var result = grid;
 
