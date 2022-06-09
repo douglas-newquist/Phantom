@@ -11,39 +11,36 @@ namespace Phantom.Pathfinding
 			int loop = 0;
 
 			var searched = new Dictionary<TCell, Node<TCell>>();
-			searched.Add(start, new Node<TCell>(start, 0));
+			var toSearch = new Queue<Node<TCell>>();
 
-			var toSearch = new Queue<TCell>();
-			toSearch.Enqueue(start);
+			var startNode = new Node<TCell>(null, start, 0);
+			searched.Add(start, startNode);
+			toSearch.Enqueue(startNode);
 
-			while (loop++ < maxIterations && toSearch.Count > 0)
+			while (loop++ < maxIterations && toSearch.TryDequeue(out var cell))
 			{
-				TCell cell = toSearch.Dequeue();
-				var cellNode = searched[cell];
-
-				if (Equals(cell, end))
+				if (Equals(cell.cell, end))
 				{
-					result.SetPath(BuildPath(cellNode), PathStatus.Found);
+					result.SetPath(BuildPath(cell), PathStatus.Found);
 					return;
 				}
 
-				foreach (var neighbor in agent.GetNeighbors(map, cell))
+				foreach (var neighbor in agent.GetNeighbors(map, cell.cell))
 				{
+					float moveCost = agent.GetPathCost(map, cell.cell, neighbor);
+					float tentative = cell.cost + moveCost;
+
 					if (!searched.TryGetValue(neighbor, out var neighborNode))
 					{
-						neighborNode = new Node<TCell>(neighbor, float.MaxValue);
+						neighborNode = new Node<TCell>(cell, neighbor, tentative);
 						searched.Add(neighbor, neighborNode);
-
-						if (!toSearch.Contains(neighbor))
-							toSearch.Enqueue(neighbor);
+						toSearch.Enqueue(neighborNode);
 					}
-
-					float moveCost = agent.GetPathCost(map, cell, neighbor);
-
-					if (cellNode.cost + moveCost < neighborNode.cost)
+					else if (cell.cost + moveCost < neighborNode.cost)
 					{
-						neighborNode.cost = cellNode.cost + moveCost;
-						neighborNode.previous = cellNode;
+						neighborNode.cost = tentative;
+						neighborNode.previous = cell;
+						toSearch.Enqueue(neighborNode);
 					}
 				}
 			}

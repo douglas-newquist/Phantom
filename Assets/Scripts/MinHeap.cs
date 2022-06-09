@@ -63,6 +63,8 @@ namespace Phantom
 		/// </summary>
 		public T Extract()
 		{
+			for (int i = Count - 1; i >= 0; i--)
+				MinHeapify(i);
 			var value = elements[0];
 
 			if (Count == 1)

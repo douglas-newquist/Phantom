@@ -19,13 +19,12 @@ namespace Phantom
 		void Start()
 		{
 			shipDesign = shipGenerator.Create(64, 64);
-
 			Debug.Log(shipDesign.BoundingBox);
 
 			var ship = shipDesign.Create(prefab);
 			Debug.Log(ship.GetComponent<StatSheet>());
 
-			path = pathAgent.FindPath(shipDesign.tiles, Vector2Int.zero, shipDesign.BoundingBox.max);
+			path = pathAgent.FindPath(shipDesign.tiles, Vector2Int.zero, new Vector2Int(0, 16));
 		}
 
 		// Update is called once per frame
@@ -37,6 +36,21 @@ namespace Phantom
 		{
 			Debug.Log(e);
 			//Debug.Log(e.Context);
+		}
+
+		private void OnDrawGizmos()
+		{
+			var _color = Gizmos.color;
+
+			if (path == null || path.Cells == null) return;
+
+			Gizmos.color = Color.cyan;
+			foreach (var cell in path.Cells)
+			{
+				Gizmos.DrawWireSphere((Vector3Int)cell, 0.5f);
+			}
+
+			Gizmos.color = _color;
 		}
 
 		/*

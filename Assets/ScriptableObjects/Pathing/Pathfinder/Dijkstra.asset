@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d623ba48ab67ce5af5b32ade15b6dd, type: 3}
   m_Name: Dijkstra
   m_EditorClassIdentifier: 
+  maxIterations: 10000

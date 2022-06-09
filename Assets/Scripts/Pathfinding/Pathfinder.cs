@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Phantom.Pathfinding
 		[Range(100, 10000)]
 		public int maxIterations = 2000;
 
-		protected class Node<TCell>
+		protected class Node<TCell> : IComparable<Node<TCell>>
 		{
 			public Node<TCell> previous;
 
@@ -17,17 +18,16 @@ namespace Phantom.Pathfinding
 
 			public float cost;
 
-			public Node(TCell cell, float cost)
-			{
-				this.cell = cell;
-				this.cost = cost;
-			}
-
 			public Node(Node<TCell> previous, TCell cell, float cost)
 			{
 				this.previous = previous;
 				this.cell = cell;
 				this.cost = cost;
+			}
+
+			public int CompareTo(Node<TCell> other)
+			{
+				return cost.CompareTo(other.cost);
 			}
 		}
 
