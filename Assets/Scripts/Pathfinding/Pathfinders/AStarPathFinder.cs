@@ -50,12 +50,22 @@ namespace Phantom.Pathfinding
 			searched.Add(start, startNode);
 			toSearch.Insert(startNode);
 
-			while (loop++ < maxIterations && toSearch.TryExtract(out var cell))
+			PathStatus status = PathStatus.NoPathPossible;
+			var bestNode = startNode;
+
+			while (toSearch.TryExtract(out var cell))
 			{
+				if (loop++ > maxIterations)
+				{
+					status = PathStatus.TimedOut;
+					break;
+				}
+
 				if (Equals(cell.pos, end))
 				{
-					result.SetPath(BuildPath(cell), PathStatus.Found);
-					return;
+					status = PathStatus.Found;
+					bestNode = cell;
+					break;
 				}
 
 				foreach (var neighbor in agent.GetNeighbors(map, cell.pos))
@@ -79,11 +89,13 @@ namespace Phantom.Pathfinding
 						neighborNode.previous = cell;
 						toSearch.Insert(neighborNode);
 					}
+
+					if (neighborNode.h >= 0 && neighborNode.h < bestNode.h)
+						bestNode = neighborNode;
 				}
 			}
 
-			Debug.Log(loop);
-			result.SetPath(null, PathStatus.NoPathPossible);
+			result.SetPath(BuildPath(bestNode), status);
 		}
 	}
 }

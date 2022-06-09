@@ -45,6 +45,9 @@ namespace Phantom.Pathfinding
 				}
 			}
 
+			if (loop >= maxIterations)
+				result.SetPath(null, PathStatus.TimedOut);
+
 			result.SetPath(null, PathStatus.NoPathPossible);
 		}
 	}

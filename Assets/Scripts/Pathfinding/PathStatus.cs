@@ -15,6 +15,11 @@ namespace Phantom.Pathfinding
 		/// <summary>
 		/// Pathfinder has finished and no path is possible
 		/// </summary>
-		NoPathPossible
+		NoPathPossible,
+
+		/// <summary>
+		/// Pathfinder timed out
+		/// </summary>
+		TimedOut
 	}
 }
