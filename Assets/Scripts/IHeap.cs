@@ -1,15 +1,36 @@
+using System;
+
 namespace Phantom
 {
-	public interface IHeap<TValue, TPriority>
+	public interface IHeap<T> where T : IComparable<T>
 	{
+		int Count { get; }
 		bool Empty { get; }
 
-		TValue Extract();
+		void Clear();
 
-		void Insert(TValue element, TPriority priority);
+		/// <summary>
+		/// Pops the minimum value off this heap
+		/// </summary>
+		T Extract();
 
-		TValue Peek();
+		/// <summary>
+		/// Inserts a new element into this heap
+		/// </summary>
+		/// <param name="value">Value to insert</param>
+		void Insert(T value);
 
-		bool TryExtract(out TValue element);
+		/// <summary>
+		/// Gets the current minimum value without removing it
+		/// </summary>
+		T Peek();
+		bool TryExtract(out T element);
+
+		/// <summary>
+		/// Gets the current minimum value without removing it
+		/// </summary>
+		/// <param name="value">The minimum value</param>
+		/// <returns>True if the value is valid</returns>
+		bool TryPeek(out T value);
 	}
 }

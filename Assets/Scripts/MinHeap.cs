@@ -4,7 +4,7 @@ using System;
 namespace Phantom
 {
 	[System.Serializable]
-	public class MinHeap<T> where T : IComparable<T>
+	public class MinHeap<T> : IHeap<T> where T : IComparable<T>
 	{
 		List<T> elements = new List<T>();
 
