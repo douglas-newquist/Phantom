@@ -6,6 +6,8 @@ namespace Phantom
 
 		public const string Stats = Game + "Stat/";
 
+		public const string Modifiers = Game + "Modifier/";
+
 		public const string Projectile = Game + "Projectile/";
 
 		public const string ShipPart = Game + "Part/";
@@ -15,6 +17,8 @@ namespace Phantom
 		public const string VertexGenerator = Generator + "Vertex/";
 
 		public const string ShipGenerator = Generator + "Ship/";
+
+		public const string MapGenerator = Generator + "Level/";
 
 		public const string PlacementRule = Game + "Placement Rule/";
 

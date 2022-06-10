@@ -9,12 +9,12 @@ namespace Phantom
 		int Order { get; }
 		bool Stacks { get; }
 		float Stack(float magnitude);
-		float Apply(float value, float magnitude);
+		float Apply(StatSheet statSheet, float value, float magnitude);
 	}
 
 	public static class IModifierHelper
 	{
-		public static float ApplyModifiers(this IEnumerable<IModifier> modifiers, float value)
+		public static float ApplyModifiers(this IEnumerable<IModifier> modifiers, StatSheet statSheet, float value)
 		{
 			var groups = modifiers.OrderByDescending(mod => mod.Stacks).OrderBy(mod => mod.GetType().ToString()).GroupBy(mod => mod.Order);
 
@@ -29,7 +29,7 @@ namespace Phantom
 					magnitude = modifier.Stack(magnitude);
 				}
 
-				value = mod.Apply(value, magnitude);
+				value = mod.Apply(statSheet, value, magnitude);
 			}
 
 			return value;

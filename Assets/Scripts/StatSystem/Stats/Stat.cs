@@ -99,7 +99,7 @@ namespace Phantom
 		public virtual void Recalculate()
 		{
 			float old = value;
-			value = modifiers.ApplyModifiers(BaseValue);
+			value = modifiers.ApplyModifiers(Sheet, BaseValue);
 			if (Type != null)
 				value = Type.limits.Clamp(value);
 			Dirty = false;

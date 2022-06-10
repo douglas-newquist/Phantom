@@ -12,7 +12,15 @@ namespace Phantom
 
 		public virtual float Magnitude { get; protected set; }
 
-		public abstract float Apply(float value, float magnitude);
+		protected Modifier(object source, int order, bool stacks, float magnitude)
+		{
+			Source = source;
+			Order = order;
+			Stacks = stacks;
+			Magnitude = magnitude;
+		}
+
+		public abstract float Apply(StatSheet statSheet, float value, float magnitude);
 
 		public abstract float Stack(float magnitude);
 	}

@@ -7,15 +7,11 @@ namespace Phantom
 	/// </summary>
 	public class PercentageModifier : Modifier
 	{
-		public PercentageModifier(object source, int order, bool stacks, float magnitude)
+		public PercentageModifier(object source, int order, bool stacks, float magnitude) : base(source, order, stacks, magnitude)
 		{
-			Source = source;
-			Order = order;
-			Stacks = stacks;
-			Magnitude = magnitude;
 		}
 
-		public override float Apply(float value, float magnitude)
+		public override float Apply(StatSheet statSheet, float value, float magnitude)
 		{
 			return (magnitude + 1) * value;
 		}
