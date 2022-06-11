@@ -9,9 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cf2ee128c1d68f88a286e1aa13babe3, type: 3}
-  m_Name: Link Modifier
+  m_Script: {fileID: 11500000, guid: 2fbde41fb52cac5a8b9451dfff71e9f4, type: 3}
+  m_Name: Fill 35%-45%
   m_EditorClassIdentifier: 
-  order: 0
-  stacks: 1
-  stat: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
+  repeat:
+    min: 1
+    max: 1
+  mask: {fileID: 0}
+  chance:
+    min: 0.35
+    max: 0.45
+  value: 1

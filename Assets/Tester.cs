@@ -10,26 +10,56 @@ namespace Phantom
 	{
 		public GameObject prefab;
 		public ShipGenerator shipGenerator;
+		public MapGenerator mapGenerator;
+		public LevelDesign levelDesign;
 		public ShipDesign shipDesign;
 		public Color[] colors;
 		public TilePathAgent pathAgent;
 		public Path<Vector2Int> path;
+		public TileMapTexture mapTexture;
+		float nextPath = 0;
+
+		public StatSO stat1, stat2;
+		public float stat1Value;
+		public ModifierSO modifierType;
+		public float modifierMagnitude;
+
+		GameObject ship;
 
 		// Start is called before the first frame update
 		void Start()
 		{
+			var stats = GetComponent<StatSheet>();
+
+			stats.GetStat(stat1).BaseValue = stat1Value;
+			stats.GetStat(stat2).AddModifier(modifierType.Create(modifierMagnitude));
+
+			Debug.Log(stats);
+			stats.GetStat(stat1).AddModifier(new MultiplierModifier(null, 0, true, 2));
+			Debug.Log(stats);
+
 			shipDesign = shipGenerator.Create(64, 64);
 			Debug.Log(shipDesign.BoundingBox);
 
-			var ship = shipDesign.Create(prefab);
+			ship = shipDesign.Create(prefab);
 			Debug.Log(ship.GetComponent<StatSheet>());
 
-			path = pathAgent.FindPath(shipDesign.tiles, Vector2Int.zero, new Vector2Int(63, 63));
+			//	path = pathAgent.FindPath(shipDesign.tiles, Vector2Int.zero, new Vector2Int(63, 63));
+
+			levelDesign = mapGenerator.Create(128, 128);
+			levelDesign.tileMapTexture = mapTexture;
+			levelDesign.Create();
 		}
 
 		// Update is called once per frame
 		void Update()
 		{
+			if (Time.time >= nextPath)
+			{
+				nextPath = Time.time + 5;
+				var pos = ship.transform.position;
+				path = pathAgent.FindPath(levelDesign.tiles, Vector2Int.zero, new Vector2Int((int)pos.x, (int)pos.y));
+			}
 		}
 
 		public void OnChanged(Event e)

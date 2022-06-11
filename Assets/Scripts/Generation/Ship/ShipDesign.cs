@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Phantom
 {
+	/// <summary>
+	/// Defines specific information on how to construct a ship
+	/// </summary>
 	[System.Serializable]
 	public class ShipDesign
 	{

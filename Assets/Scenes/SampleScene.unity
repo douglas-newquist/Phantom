@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 1387071761}
   - component: {fileID: 1387071760}
   - component: {fileID: 1387071759}
+  - component: {fileID: 1387071762}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -291,6 +292,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 838161728438992593, guid: 39a653b251467604c9fe3b3b6567f58a, type: 3}
   shipGenerator: {fileID: 11400000, guid: e1a3d2c2c74e97562bcf496952851990, type: 2}
+  mapGenerator: {fileID: 11400000, guid: 627714bd157bc7bae85abde6d14dc672, type: 2}
+  levelDesign:
+    tileMapTexture: {fileID: 0}
+    tiles:
+      vertices:
+        width: 0
+        height: 0
+        values: 
+    objects: []
   shipDesign:
     hullType: {fileID: 11400000, guid: bb0e0ae8988d8bcc694708203a2f10ce, type: 2}
     tiles:
@@ -318,6 +328,12 @@ MonoBehaviour:
   pathAgent: {fileID: 11400000, guid: 18ab1456e1dab770d9938ea64065741c, type: 2}
   path:
     Cells: []
+  mapTexture: {fileID: 11400000, guid: df9ab9085f1b95d2face880ee54503ac, type: 2}
+  stat1: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
+  stat2: {fileID: 11400000, guid: c2ed9714dabb8e8c5b94697cf3566d6a, type: 2}
+  stat1Value: 100
+  modifierType: {fileID: 11400000, guid: 969ddff93bef5a3efb1620a2870da753, type: 2}
+  modifierMagnitude: 0.05
 --- !u!4 &1387071761
 Transform:
   m_ObjectHideFlags: 0
@@ -333,3 +349,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1387071762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387071758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dab3f69ac84ef0a180be333db904a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryHealthStat: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTakeFatalDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
