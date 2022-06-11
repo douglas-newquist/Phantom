@@ -16,7 +16,8 @@ namespace Phantom
 
 		public override float Stack(float magnitude)
 		{
-			throw new System.NotImplementedException();
+			// TODO handle different types
+			return Magnitude + magnitude;
 		}
 	}
 }

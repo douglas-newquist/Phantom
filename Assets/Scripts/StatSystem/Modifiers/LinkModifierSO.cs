@@ -9,7 +9,7 @@ namespace Phantom
 
 		public override IModifier Create(object source, float magnitude)
 		{
-			throw new System.NotImplementedException();
+			return new LinkModifier(source, order, stacks, magnitude, stat);
 		}
 	}
 }
