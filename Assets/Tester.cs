@@ -8,6 +8,8 @@ namespace Phantom
 {
 	public class Tester : MonoBehaviour
 	{
+		[SerializeField]
+		public IUsable usable;
 		public GameObject prefab;
 		public ShipGenerator shipGenerator;
 		public MapGenerator mapGenerator;

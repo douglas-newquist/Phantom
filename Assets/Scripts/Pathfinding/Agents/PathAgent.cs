@@ -30,11 +30,17 @@ namespace Phantom.Pathfinding
 
 		public Path<TCell> FindPath(TMap map, TCell start, TCell end)
 		{
+			if (pathfinder == null)
+				throw new System.NullReferenceException("Pathfinder not assigned in PathAgent");
+
 			return pathfinder.FindPath(this, map, start, end);
 		}
 
 		public Path<TCell> FindPathAsync(TMap map, TCell start, TCell end)
 		{
+			if (pathfinder == null)
+				throw new System.NullReferenceException("Pathfinder not assigned in PathAgent");
+
 			return pathfinder.FindPathAsync(this, map, start, end);
 		}
 	}
