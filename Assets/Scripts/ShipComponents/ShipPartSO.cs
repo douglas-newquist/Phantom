@@ -17,6 +17,8 @@ namespace Phantom
 
 		public List<StatPair> baseStats;
 
+		public Modifier[] modifiers;
+
 		public ResourceUsage resourceUsage;
 
 		public virtual bool CanPlace(ShipDesign shipDesign, int x, int y)
@@ -46,8 +48,12 @@ namespace Phantom
 		{
 			GameObject part = null;
 			var statSheet = ship.GetComponent<StatSheet>();
+
 			foreach (var stat in baseStats)
-				statSheet.GetStat(stat.stat).BaseValue += stat.baseValue;
+				stat.Apply(statSheet);
+
+			foreach (var modifier in modifiers)
+				modifier.Apply(statSheet, this);
 
 			if (prefab != null)
 			{

@@ -54,13 +54,15 @@ namespace Phantom
 
 		public override string ToString()
 		{
-			string s = "Stat Sheet " + stats.Count + " stats";
+			string s = "Stat Sheet with " + stats.Count + " stats";
 
 			foreach (var stat in stats.Values)
 				s += "\n" + stat.ToString();
 
 			return s;
 		}
+
+		public bool HasStat(StatSO type) => stats.ContainsKey(type);
 
 		/// <summary>
 		/// Adds a stat to this stat sheet, rejects if there is already a stat of the same type.
@@ -124,6 +126,17 @@ namespace Phantom
 		{
 			foreach (var stat in stats.Values)
 				stat.RemoveModifiersFromSource(source);
+		}
+
+		public void AddModifier(Modifier modifier, object source)
+		{
+			modifier.Apply(this, source);
+		}
+
+		public void AddModifiers(IEnumerable<Modifier> modifiers, object source)
+		{
+			foreach (var mod in modifiers)
+				mod.Apply(this, source);
 		}
 	}
 }
