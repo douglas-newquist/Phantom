@@ -7,9 +7,12 @@ namespace Phantom
 	{
 		public StatSO stat;
 
+		public ModifierSO linkStatRatio;
+
 		public override IModifier Create(object source, float magnitude)
 		{
-			return new LinkModifier(source, order, stacks, magnitude, stat);
+			var modifier = linkStatRatio.Create(magnitude);
+			return new LinkModifier(source, order, stacks, magnitude, stat, modifier);
 		}
 	}
 }

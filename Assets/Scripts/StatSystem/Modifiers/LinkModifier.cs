@@ -1,20 +1,35 @@
 namespace Phantom
 {
-	public class LinkModifier : Modifier
+	public sealed class LinkModifier : IModifier
 	{
-		public StatSO LinkedType { get; protected set; }
-
-		public LinkModifier(object source, int order, bool stacks, float magnitude, StatSO linkedType) : base(source, order, stacks, magnitude)
+		public LinkModifier(object source, int order, bool stacks, float magnitude, StatSO linkedType, IModifier linkedModifier)
 		{
+			Source = source;
+			Order = order;
+			Stacks = stacks;
+			Magnitude = magnitude;
 			LinkedType = linkedType;
+			LinkedModifier = linkedModifier;
 		}
 
-		public override float Apply(StatSheet statSheet, float value, float magnitude)
+		public object Source { get; private set; }
+
+		public int Order { get; private set; }
+
+		public bool Stacks { get; private set; }
+
+		public float Magnitude { get; private set; }
+
+		public StatSO LinkedType { get; private set; }
+
+		public IModifier LinkedModifier { get; private set; }
+
+		public float Apply(StatSheet statSheet, float value, float magnitude)
 		{
-			return value + statSheet.GetValue(LinkedType) * magnitude;
+			return value + LinkedModifier.Apply(statSheet, statSheet.GetValue(LinkedType), magnitude);
 		}
 
-		public override float Stack(float magnitude)
+		public float Stack(float magnitude)
 		{
 			// TODO handle different types
 			return Magnitude + magnitude;
