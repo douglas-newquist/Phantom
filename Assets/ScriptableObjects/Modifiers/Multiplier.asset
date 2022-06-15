@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cf2ee128c1d68f88a286e1aa13babe3, type: 3}
-  m_Name: Link Modifier
+  m_Script: {fileID: 11500000, guid: 1042bd78543f49368aa92f1b7f267e34, type: 3}
+  m_Name: Multiplier
   m_EditorClassIdentifier: 
-  order: 0
+  order: 2
   stacks: 1
-  stat: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}

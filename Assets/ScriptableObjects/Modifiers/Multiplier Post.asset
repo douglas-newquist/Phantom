@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1042bd78543f49368aa92f1b7f267e34, type: 3}
-  m_Name: Multiplier Modifier
+  m_Name: Multiplier Post
   m_EditorClassIdentifier: 
-  order: 2
+  order: 5
   stacks: 1

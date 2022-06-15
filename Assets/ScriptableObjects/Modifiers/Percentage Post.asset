@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1042bd78543f49368aa92f1b7f267e34, type: 3}
-  m_Name: Multiplier Post Modifier
+  m_Script: {fileID: 11500000, guid: 6adb24d109b6889d39f888cff2ab0048, type: 3}
+  m_Name: Percentage Post
   m_EditorClassIdentifier: 
-  order: 5
+  order: 4
   stacks: 1

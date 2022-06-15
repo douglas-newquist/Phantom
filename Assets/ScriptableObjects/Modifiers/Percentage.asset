@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6adb24d109b6889d39f888cff2ab0048, type: 3}
-  m_Name: Percentage Post Modifier
+  m_Name: Percentage
   m_EditorClassIdentifier: 
-  order: 4
+  order: 1
   stacks: 1
