@@ -13,5 +13,9 @@ namespace Phantom
 			this.max = max;
 		}
 	}
+	public class Sorted : PropertyAttribute
+	{
+
+	}
 }
 #endif

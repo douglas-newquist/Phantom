@@ -1,6 +1,23 @@
 using UnityEngine;
 using UnityEditor;
 
+namespace Phantom
+{
+	[CustomPropertyDrawer(typeof(Sorted))]
+	public class SortedPropertyDrawer : PropertyDrawer
+	{
+		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+		{
+			EditorGUI.BeginProperty(position, label, property);
+
+
+			var sorted = (Sorted)attribute;
+
+
+			EditorGUI.EndProperty();
+		}
+	}
+}
 #if UNITY_EDITOR
 namespace Phantom
 {

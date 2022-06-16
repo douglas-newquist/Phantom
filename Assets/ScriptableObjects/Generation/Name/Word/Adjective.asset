@@ -17,39 +17,40 @@ MonoBehaviour:
     max: 1
   words:
   - Adorable
-  - Annoying
-  - Awful
-  - Better
-  - Bloody
   - Adventurous
-  - Angry
-  - Attractive
   - Aggressive
   - Alive
+  - Angry
   - Annoyed
+  - Annoying
   - Arrogant
+  - Attractive
   - Average
+  - Awful
   - Beautiful
+  - Better
   - Black
+  - Bloody
   - Careful
   - Cautious
+  - Charming
+  - Zealous
+  - Clean
   - Clear
   - Clever
-  - Clean
-  - Charming
   - Cloudy
   - Colorfult
   - Combative
-  - Courageous
   - Confused
+  - Courageous
   - Crazy
   - Cruel
   - Curious
   - Cute
   - Dangerous
-  - Defiant
   - Dead
   - Defeated
+  - Defiant
   - Determined
   - Drab
   - Dull
@@ -63,10 +64,10 @@ MonoBehaviour:
   - Faithful
   - Famous
   - Fragile
-  - Frightened
   - Frail
-  - Grumpy
+  - Frightened
   - Gentle
+  - Grumpy
   - Horrible
   - Hurt
   - Ill
@@ -112,4 +113,3 @@ MonoBehaviour:
   - Weary
   - Wicked
   - Wild
-  - Zealous

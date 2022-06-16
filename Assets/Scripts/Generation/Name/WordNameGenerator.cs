@@ -1,23 +1,32 @@
 using UnityEngine;
+using System.Linq;
 
 namespace Phantom
 {
+	[ExecuteInEditMode]
 	[CreateAssetMenu(menuName = CreateMenu.NameGenerator + "Random Word")]
-	public class WordNameGenerator : NameGenerator
+	public class WordNameGenerator : WordGenerator
 	{
 		public string[] words;
 
-		public override string ApplyOnce(string name)
+		public override string GetWord()
 		{
 			if (words.Length == 0)
 				return "";
 
-			var chosen = words[Random.Range(0, words.Length)];
+			return words[Random.Range(0, words.Length)].ToString();
+		}
 
-			if (string.IsNullOrEmpty(name))
-				return chosen;
+		private void OnEnable()
+		{
+			if (words != null)
+				words = words.OrderBy((w) => w).ToArray();
+		}
 
-			return name + " " + chosen;
+		private void OnGUI()
+		{
+			if (words != null)
+				words = words.OrderBy((w) => w).ToArray();
 		}
 	}
 }

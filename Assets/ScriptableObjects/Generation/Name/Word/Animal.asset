@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a2e5d8e9c84b3ca9564ab586fb4b10, type: 3}
+  m_Name: Animal
+  m_EditorClassIdentifier: 
+  repeat:
+    min: 1
+    max: 1
+  separator: ' '
+  words:
+  - Alligator
+  - Armadillo
+  - Axolotl
+  - Badger
+  - Badger
+  - Bat
+  - Bear
+  - Bee
+  - Beetle
+  - Buffalo
+  - Butterfly
+  - Camel
+  - Camel
+  - Cat
+  - Centipede
+  - Cheetah
+  - Chicken
+  - Chinchilla
+  - Chipmunk
+  - Crab
+  - Deer
+  - Dog
+  - Dolphin
+  - Dragonfly
+  - Duck
+  - Eagle
+  - Eel
+  - Elk
+  - Falcon
+  - Ferret
+  - Fish
+  - Flamingo
+  - Fly
+  - Fox
+  - Gecko
+  - Goat
+  - Goose
+  - Hare
+  - Hippo
+  - Hornet
+  - Jaguar
+  - Jellyfish
+  - Koala
+  - Krill
+  - Lemming
+  - Lion
+  - Lizard
+  - Lobster
+  - Lynx
+  - Macaw
+  - Magpie
+  - Manatee
+  - Mantis
+  - Markhor
+  - Marten
+  - Meerkat
+  - Mole
+  - Mongoose
+  - Monkey
+  - Moth
+  - Mouse
+  - Ocelot
+  - Octopus
+  - Oryx
+  - Otter
+  - Owl
+  - Ox
+  - Panda
+  - Parrot
+  - Peacock
+  - Penguin
+  - Pig
+  - Platypus
+  - Quoll
+  - Racoon
+  - Recluse
+  - Rhino
+  - Seal
+  - Serpent
+  - Shark
+  - Shrimp
+  - Slug
+  - Snail
+  - Spider
+  - Spider
+  - Stoat
+  - Tiger
+  - Toad
+  - Toad
+  - Tortoise
+  - Trout
+  - Turtle
+  - Wasp
+  - Whale
+  - Wolf
+  - Wolf
+  - Worm
+  - Zibra

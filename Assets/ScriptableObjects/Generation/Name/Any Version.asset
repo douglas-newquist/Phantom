@@ -9,13 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c88fe13a55bbe7bbb8122898d5370d9d, type: 3}
-  m_Name: Ship Name
+  m_Script: {fileID: 11500000, guid: f7514c89597844c32b3d75c876979cb1, type: 3}
+  m_Name: Any Version
   m_EditorClassIdentifier: 
   repeat:
     min: 1
     max: 1
   generators:
-  - {fileID: 11400000, guid: e01e371342689990b9c331d9c5ca299c, type: 2}
-  - {fileID: 11400000, guid: de0d827269121814dbfdaa3cf0f80b9b, type: 2}
-  - {fileID: 11400000, guid: 89f6ea5fbf062c6d2b32bcc64d42ed93, type: 2}
+    items:
+    - value: {fileID: 11400000, guid: 770e8679840c1ff1cb22953fa712abcc, type: 2}
+      weight: 5
+    - value: {fileID: 0}
+      weight: 1

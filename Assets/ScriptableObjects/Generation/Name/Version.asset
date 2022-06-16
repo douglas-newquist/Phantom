@@ -9,20 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a2e5d8e9c84b3ca9564ab586fb4b10, type: 3}
-  m_Name: Animal
+  m_Script: {fileID: 11500000, guid: c88fe13a55bbe7bbb8122898d5370d9d, type: 3}
+  m_Name: Version
   m_EditorClassIdentifier: 
   repeat:
     min: 1
     max: 1
-  words:
-  - Cat
-  - Dog
-  - Bee
-  - Bear
-  - Serpent
-  - Tiger
-  - Lion
-  - Racoon
-  - Fly
-  - Zibra
+  generators:
+  - {fileID: 11400000, guid: fd97cb60d60a48fd58c04fb203257c42, type: 2}
+  - {fileID: 11400000, guid: 47e9526ce4a0d28919c2794956968e5b, type: 2}
