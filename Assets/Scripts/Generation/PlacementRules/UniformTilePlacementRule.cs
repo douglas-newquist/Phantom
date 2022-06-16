@@ -19,7 +19,7 @@ namespace Phantom
 				{
 					if (!map.InBounds(x + xi, y + yi))
 						return false;
-					if (!tiles.Contains(map.tiles.Get(x + xi, y + yi)))
+					if (!tiles.Contains(map.Tiles.Get(x + xi, y + yi)))
 						return false;
 					if (map.Get(x + xi, y + yi).Item2.Occupied)
 						return false;

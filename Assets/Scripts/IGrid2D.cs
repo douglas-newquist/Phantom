@@ -8,10 +8,13 @@ namespace Phantom
 		int Width { get; }
 		int Height { get; }
 
+		Vector2Int Size { get; }
+
 		bool InBounds(int x, int y);
 		T Get(int x, int y);
 		void Set(int x, int y, T value);
 		IGrid2D<T> Clone();
+		void Clear();
 	}
 
 	public static class IGrid2DHelper

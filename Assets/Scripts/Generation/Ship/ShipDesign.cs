@@ -33,7 +33,7 @@ namespace Phantom
 
 		public void AddHull(GameObject ship)
 		{
-			var sprite = hullType.GetSprite(tiles);
+			var sprite = hullType.GetSprite(Tiles);
 			var hull = new GameObject("Hull");
 			hull.transform.position -= (Vector3)BoundingBox.center;
 			hull.transform.SetParent(ship.transform);
@@ -41,7 +41,7 @@ namespace Phantom
 			renderer.sprite = sprite;
 
 			var stats = ship.GetComponent<StatSheet>();
-			hullType.ApplyStats(stats, tiles);
+			hullType.ApplyStats(stats, Tiles);
 		}
 
 		public void AddParts(GameObject ship)

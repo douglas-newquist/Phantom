@@ -14,7 +14,7 @@ namespace Phantom
 		{
 			var map = new ShipDesign(width, height);
 			if (map != null)
-				map.tiles.vertices = tileGenerator.Apply(map.tiles.vertices);
+				map.Tiles.Vertices = tileGenerator.Apply(map.Tiles.Vertices);
 			return map;
 		}
 	}

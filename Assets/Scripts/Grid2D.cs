@@ -18,6 +18,8 @@ namespace Phantom
 		/// </summary>
 		public int Height => height;
 
+		public Vector2Int Size => new Vector2Int(Width, Height);
+
 		[SerializeField]
 		private T[] values;
 
@@ -37,10 +39,11 @@ namespace Phantom
 				values[i] = value;
 		}
 
-		public Grid2D(int width, int height, System.Func<T> creator) : this(width, height)
+		public Grid2D(int width, int height, System.Func<int, int, T> creator) : this(width, height)
 		{
-			for (int i = 0; i < values.Length; i++)
-				values[i] = creator();
+			for (int x = 0; x < Width; x++)
+				for (int y = 0; y < Height; y++)
+					Set(x, y, creator(x, y));
 		}
 
 		public Grid2D(Grid2D<T> grid) : this(grid.Width, grid.Height)
@@ -93,6 +96,13 @@ namespace Phantom
 					grid.Set(x, y, Get(x, y));
 
 			return grid;
+		}
+
+		public void Clear()
+		{
+			for (int x = 0; x < Width; x++)
+				for (int y = 0; y < Height; y++)
+					Set(x, y, default(T));
 		}
 	}
 }

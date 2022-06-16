@@ -28,7 +28,7 @@ namespace Phantom
 		{
 			var design = new ShipDesign(width, height);
 			if (vertexGenerator != null)
-				design.tiles.vertices = vertexGenerator.Apply(design.tiles.vertices);
+				design.Tiles.Vertices = vertexGenerator.Apply(design.Tiles.Vertices);
 			return Apply(design);
 		}
 	}

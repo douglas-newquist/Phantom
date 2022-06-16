@@ -6,17 +6,32 @@ namespace Phantom
 	[System.Serializable]
 	public class TileMap : IGrid2D<Tile>
 	{
-		public Grid2D<int> vertices;
+		[SerializeField]
+		private Grid2D<int> vertices;
+
+		public Grid2D<int> Vertices
+		{
+			get => vertices;
+			set
+			{
+				if (value == null)
+					vertices.Clear();
+				else
+					vertices = value;
+			}
+		}
 
 		/// <summary>
 		/// How many tiles wide this map is
 		/// </summary>
-		public int Width => vertices.Width - 1;
+		public int Width => Vertices.Width - 1;
 
 		/// <summary>
 		/// How many tiles tall this map is
 		/// </summary>
-		public int Height => vertices.Height - 1;
+		public int Height => Vertices.Height - 1;
+
+		public Vector2Int Size => new Vector2Int(Width, Height);
 
 		/// <summary>
 		/// Gets the area in which all tiles other than Tile.None are contained
@@ -51,15 +66,15 @@ namespace Phantom
 
 		public TileMap(int width, int height)
 		{
-			vertices = new Grid2D<int>(width + 1, height + 1);
+			Vertices = new Grid2D<int>(width + 1, height + 1);
 		}
 
 		public TileMap(Grid2D<int> vertices)
 		{
-			this.vertices = vertices;
+			this.Vertices = vertices;
 		}
 
-		public TileMap(TileMap map) : this(map.vertices) { }
+		public TileMap(TileMap map) : this(map.Vertices) { }
 
 		public bool InBounds(int x, int y)
 		{
@@ -70,13 +85,13 @@ namespace Phantom
 		{
 			Tile tile = Tile.None;
 
-			if (vertices.Get(x, y) > 0)
+			if (Vertices.Get(x, y) > 0)
 				tile |= Tile.BottomLeft;
-			if (vertices.Get(x + 1, y) > 0)
+			if (Vertices.Get(x + 1, y) > 0)
 				tile |= Tile.BottomRight;
-			if (vertices.Get(x, y + 1) > 0)
+			if (Vertices.Get(x, y + 1) > 0)
 				tile |= Tile.TopLeft;
-			if (vertices.Get(x + 1, y + 1) > 0)
+			if (Vertices.Get(x + 1, y + 1) > 0)
 				tile |= Tile.TopRight;
 
 			return tile;
@@ -85,18 +100,23 @@ namespace Phantom
 		public void Set(int x, int y, Tile value)
 		{
 			if (value.HasFlag(Tile.BottomLeft))
-				vertices.Set(x, y, 1);
+				Vertices.Set(x, y, 1);
 			if (value.HasFlag(Tile.BottomRight))
-				vertices.Set(x + 1, y, 1);
+				Vertices.Set(x + 1, y, 1);
 			if (value.HasFlag(Tile.TopLeft))
-				vertices.Set(x, y + 1, 1);
+				Vertices.Set(x, y + 1, 1);
 			if (value.HasFlag(Tile.TopRight))
-				vertices.Set(x + 1, y + 1, 1);
+				Vertices.Set(x + 1, y + 1, 1);
 		}
 
 		public IGrid2D<Tile> Clone()
 		{
-			return new TileMap(vertices);
+			return new TileMap(Vertices);
+		}
+
+		public void Clear()
+		{
+			Vertices.Clear();
 		}
 	}
 }

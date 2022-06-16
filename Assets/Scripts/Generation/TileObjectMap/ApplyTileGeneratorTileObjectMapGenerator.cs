@@ -11,7 +11,7 @@ namespace Phantom
 		public override TileObjectMap ApplyOnce(TileObjectMap design, RectInt area)
 		{
 			design = (TileObjectMap)design.Clone();
-			design.tiles.vertices = tileGenerator.Apply(design.tiles.vertices, area);
+			design.Tiles.Vertices = tileGenerator.Apply(design.Tiles.Vertices, area);
 			return design;
 		}
 	}

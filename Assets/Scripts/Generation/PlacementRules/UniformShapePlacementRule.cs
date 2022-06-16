@@ -17,7 +17,7 @@ namespace Phantom
 						return false;
 					if (map.Get(x + xi, y + yi).Item2.Occupied)
 						return false;
-					if (!shape.HasFlag(map.tiles.Get(x + xi, y + yi).Shape()))
+					if (!shape.HasFlag(map.Tiles.Get(x + xi, y + yi).Shape()))
 						return false;
 				}
 			}
