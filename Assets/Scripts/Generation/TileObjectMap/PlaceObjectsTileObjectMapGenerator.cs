@@ -13,7 +13,7 @@ namespace Phantom
 
 		public override TileObjectMap ApplyOnce(TileObjectMap design, RectInt area)
 		{
-			design = new ShipDesign(design);
+			design = (TileObjectMap)design.Clone();
 			float thresh = density.Random;
 
 			for (int x = area.xMin; x < area.xMax; x++)
@@ -31,7 +31,6 @@ namespace Phantom
 			}
 
 			return design;
-			throw new System.NotImplementedException();
 		}
 
 		public List<TileObjectSO> GetPlaceable(TileObjectMap design, int x, int y)

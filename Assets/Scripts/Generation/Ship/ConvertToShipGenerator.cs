@@ -9,5 +9,13 @@ namespace Phantom
 		{
 			return new ShipDesign(design);
 		}
+
+		public override TileObjectMap Create(int width, int height)
+		{
+			var map = new ShipDesign(width, height);
+			if (map != null)
+				map.tiles.vertices = tileGenerator.Apply(map.tiles.vertices);
+			return map;
+		}
 	}
 }

@@ -28,7 +28,7 @@ namespace Phantom
 			objects = new Grid2D<TileObject>(map.objects);
 		}
 
-		public IGrid2D<Tuple<Tile, TileObject>> Clone()
+		public virtual IGrid2D<Tuple<Tile, TileObject>> Clone()
 		{
 			return new TileObjectMap(this);
 		}

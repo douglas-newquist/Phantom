@@ -301,17 +301,6 @@ MonoBehaviour:
         height: 0
         values: 
     objects: []
-  shipDesign:
-    tiles:
-      vertices:
-        width: 0
-        height: 0
-        values: 
-    objects:
-      width: 0
-      height: 0
-      values: []
-    hullType: {fileID: 11400000, guid: bb0e0ae8988d8bcc694708203a2f10ce, type: 2}
   colors: []
   pathAgent: {fileID: 11400000, guid: 18ab1456e1dab770d9938ea64065741c, type: 2}
   path:

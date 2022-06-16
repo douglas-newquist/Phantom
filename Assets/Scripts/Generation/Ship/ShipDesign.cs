@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Phantom
@@ -65,6 +66,11 @@ namespace Phantom
 					}
 				}
 			}
+		}
+
+		public override IGrid2D<Tuple<Tile, TileObject>> Clone()
+		{
+			return new ShipDesign(this);
 		}
 	}
 }

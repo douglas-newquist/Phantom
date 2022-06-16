@@ -15,7 +15,7 @@ MonoBehaviour:
   repeat:
     min: 1
     max: 1
-  tileGenerator: {fileID: 11400000, guid: ff794b2c57e3de778a768f28470b89af, type: 2}
+  tileGenerator: {fileID: 11400000, guid: 7943138f1a8d5a19491f31a793aaa660, type: 2}
   generators:
   - {fileID: 11400000, guid: 8f7b0deb725bece3fb053ad0f4d9b838, type: 2}
   - {fileID: 11400000, guid: 4b06774c3d71b6f4da6dccbe1244f390, type: 2}

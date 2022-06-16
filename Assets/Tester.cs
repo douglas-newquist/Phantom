@@ -12,6 +12,7 @@ namespace Phantom
 		public IUsable usable;
 		public GameObject prefab;
 		public TileObjectMapGenerator shipGenerator;
+		public ShipDesign shipDesign;
 		public MapGenerator mapGenerator;
 		public LevelDesign levelDesign;
 		public Color[] colors;
@@ -25,23 +26,25 @@ namespace Phantom
 		// Start is called before the first frame update
 		void Start()
 		{
-			var shipDesign = shipGenerator.Create(64, 64);
+			shipDesign = shipGenerator.Create(64, 64) as ShipDesign;
 			Debug.Log(shipDesign);
 			Debug.Log(shipDesign.BoundingBox);
+			Debug.Log(shipDesign.GetType());
 
-			//	ship = shipDesign.Create(prefab);
-			//		Debug.Log(ship.GetComponent<StatSheet>());
+			ship = shipDesign.Create(prefab);
+			Debug.Log(ship.GetComponent<StatSheet>());
 
 			//	path = pathAgent.FindPath(shipDesign.tiles, Vector2Int.zero, new Vector2Int(63, 63));
 
-			levelDesign = mapGenerator.Create(128, 128);
-			levelDesign.tileMapTexture = mapTexture;
-			levelDesign.Create();
+			//levelDesign = mapGenerator.Create(128, 128);
+			//levelDesign.tileMapTexture = mapTexture;
+			//levelDesign.Create();
 		}
 
 		// Update is called once per frame
 		void Update()
 		{
+			return;
 			if (Time.time >= nextPath)
 			{
 				nextPath = Time.time + 5;
