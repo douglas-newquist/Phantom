@@ -21,25 +21,11 @@ namespace Phantom
 		public TileMapTexture mapTexture;
 		float nextPath = 0;
 
-		public StatSO stat1, stat2;
-		public float stat1Value;
-		public ModifierSO modifierType;
-		public float modifierMagnitude;
-
 		GameObject ship;
 
 		// Start is called before the first frame update
 		void Start()
 		{
-			var stats = GetComponent<StatSheet>();
-
-			stats.GetStat(stat1).BaseValue = stat1Value;
-			stats.GetStat(stat2).AddModifier(modifierType.Create(modifierMagnitude));
-
-			Debug.Log(stats);
-			stats.GetStat(stat1).AddModifier(new MultiplierModifier(null, 0, true, 2));
-			Debug.Log(stats);
-
 			shipDesign = shipGenerator.Create(64, 64);
 			Debug.Log(shipDesign.BoundingBox);
 

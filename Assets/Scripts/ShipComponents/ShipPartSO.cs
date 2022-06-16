@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.ShipPart + "Part")]
-	public class ShipPartSO : ScriptableObject
+	public class ShipPartSO : TileObjectSO
 	{
 		public GameObject prefab;
 
@@ -13,7 +13,9 @@ namespace Phantom
 		[Range(1, 16)]
 		public int width = 1, height = 1;
 
-		public PlacementRule placementRule;
+		public override int Width => width;
+
+		public override int Height => height;
 
 		public List<StatPair> baseStats;
 
@@ -21,33 +23,13 @@ namespace Phantom
 
 		public ResourceUsage resourceUsage;
 
-		public virtual bool CanPlace(ShipDesign shipDesign, int x, int y)
-		{
-			return placementRule.CanPlace(this, shipDesign, x, y);
-		}
-
-		public void Place(ShipDesign shipDesign, int x, int y)
-		{
-			shipDesign.parts.Set(x, y, new ShipPart(this, Reservation.Used, 0));
-
-			for (int xi = 0; xi < width; xi++)
-				for (int yi = 0; yi < height; yi++)
-					if (xi != 0 || yi != 0)
-						shipDesign.parts.Set(x + xi, y + yi, new ShipPart(Reservation.Reserved));
-		}
-
-		/// <summary>
-		///
-		/// </summary>
-		/// <param name="ship"></param>
-		/// <param name="design"></param>
-		/// <param name="x"></param>
-		/// <param name="y"></param>
-		/// <returns>Reference to the part added if any</returns>
-		public GameObject Place(GameObject ship, ShipDesign design, int x, int y)
+		public override GameObject Place(GameObject obj, TileObjectMap map, int x, int y)
 		{
 			GameObject part = null;
-			var statSheet = ship.GetComponent<StatSheet>();
+			var statSheet = obj.GetComponent<StatSheet>();
+
+			if (statSheet == null)
+				throw new System.ArgumentNullException("Object has no stat sheet");
 
 			foreach (var stat in baseStats)
 				stat.Apply(statSheet);
@@ -61,6 +43,16 @@ namespace Phantom
 			}
 
 			return part;
+		}
+
+		public override void Place(TileObjectMap map, int x, int y)
+		{
+			map.Get(x, y).Item2.Object = this;
+
+			for (int xi = 0; xi < width; xi++)
+				for (int yi = 0; yi < height; yi++)
+					if (xi != 0 || yi != 0)
+						map.Get(x + xi, y + yi).Item2.Reference = new Vector2Int(x, y);
 		}
 	}
 }

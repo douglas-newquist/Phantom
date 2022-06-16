@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Phantom
 {
@@ -12,6 +13,8 @@ namespace Phantom
 		public int Width => tiles.Width;
 
 		public int Height => tiles.Height;
+
+		public RectInt BoundingBox => tiles.BoundingBox;
 
 		public TileObjectMap(int width, int height)
 		{
@@ -44,6 +47,16 @@ namespace Phantom
 		{
 			tiles.Set(x, y, value.Item1);
 			objects.Set(x, y, value.Item2);
+		}
+
+		public void SetTile(int x, int y, Tile value)
+		{
+			tiles.Set(x, y, value);
+		}
+
+		public void SetObject(int x, int y, TileObject value)
+		{
+			objects.Set(x, y, value);
 		}
 	}
 }

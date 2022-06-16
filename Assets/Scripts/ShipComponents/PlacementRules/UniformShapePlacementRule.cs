@@ -7,17 +7,17 @@ namespace Phantom
 	{
 		public TileShape shape;
 
-		public override bool CanPlace(ShipPartSO part, ShipDesign design, int x, int y)
+		public override bool CanPlace(TileObjectSO obj, TileObjectMap map, int x, int y)
 		{
-			for (int xi = 0; xi < part.width; xi++)
+			for (int xi = 0; xi < obj.Width; xi++)
 			{
-				for (int yi = 0; yi < part.height; yi++)
+				for (int yi = 0; yi < obj.Height; yi++)
 				{
-					if (!design.parts.InBounds(x + xi, y + yi))
+					if (!map.InBounds(x + xi, y + yi))
 						return false;
-					if (design.parts.Get(x + xi, y + yi).state != Reservation.Free)
+					if (map.Get(x + xi, y + yi).Item2.Occupied)
 						return false;
-					if (!shape.HasFlag(design.tiles.Get(x + xi, y + yi).Shape()))
+					if (!shape.HasFlag(map.tiles.Get(x + xi, y + yi).Shape()))
 						return false;
 				}
 			}

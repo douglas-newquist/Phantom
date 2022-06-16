@@ -6,30 +6,17 @@ namespace Phantom
 	/// Defines specific information on how to construct a ship
 	/// </summary>
 	[System.Serializable]
-	public class ShipDesign
+	public class ShipDesign : TileObjectMap
 	{
 		public TileMapSO hullType;
 
-		public TileMap tiles;
-
-		public Grid2D<ShipPart> parts;
-
-		public int Width => tiles.Width;
-
-		public int Height => tiles.Height;
-
-		public RectInt BoundingBox => tiles.BoundingBox;
-
-		public ShipDesign(int width, int height)
+		public ShipDesign(int width, int height) : base(width, height)
 		{
-			tiles = new TileMap(width, height);
-			parts = new Grid2D<ShipPart>(width, height);
 		}
 
-		public ShipDesign(ShipDesign design)
+		public ShipDesign(ShipDesign design) : base(design)
 		{
-			tiles = new TileMap(design.tiles);
-			parts = new Grid2D<ShipPart>(design.parts);
+			hullType = design.hullType;
 		}
 
 		public GameObject Create(GameObject prefab)
@@ -64,12 +51,15 @@ namespace Phantom
 			{
 				for (int y = 0; y < Height; y++)
 				{
-					var part = this.parts.Get(x, y);
-					var placed = part.Place(ship, this, x, y);
-					if (placed != null)
+					var part = Get(x, y).Item2;
+					if (part.State == Reservation.Used)
 					{
-						placed.transform.SetParent(parts.transform);
-						placed.transform.localPosition = new Vector3(x, y, 0);
+						var placed = part.Object.Place(ship, this, x, y);
+						if (placed != null)
+						{
+							placed.transform.SetParent(parts.transform);
+							placed.transform.localPosition = new Vector3(x, y, 0);
+						}
 					}
 				}
 			}

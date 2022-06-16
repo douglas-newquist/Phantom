@@ -12,16 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203a4144ddac1ec7c8a22d71e2281128, type: 3}
   m_Name: Capacitor 01
   m_EditorClassIdentifier: 
+  placementRules:
+  - {fileID: 11400000, guid: e3e29911c44b0952b8463336a10875ed, type: 2}
+  - {fileID: 11400000, guid: f272a46cf14f965708aa115112aae4f3, type: 2}
   prefab: {fileID: 5801225726560230311, guid: c493286855162e6fca8583d62b49939d, type: 3}
   sprite: {fileID: 21300000, guid: 0bcd7df0622727b7398521e386b3ee89, type: 3}
   width: 1
   height: 1
-  placementRule: {fileID: 11400000, guid: 0b949ba8cc584938c9b4f04231713546, type: 2}
   baseStats:
   - stat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
     baseValue: 1
   - stat: {fileID: 11400000, guid: f00840f3f4c31fb8d82e8f5e6f22b77d, type: 2}
     baseValue: 5
+  modifiers: []
   resourceUsage:
     resource: {fileID: 0}
     amount: 0

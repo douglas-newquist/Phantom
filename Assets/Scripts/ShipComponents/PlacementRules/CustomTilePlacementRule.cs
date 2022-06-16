@@ -7,7 +7,7 @@ namespace Phantom
 	{
 		public Grid2D<Tile> tiles;
 
-		public override bool CanPlace(ShipPartSO part, ShipDesign design, int x, int y)
+		public override bool CanPlace(TileObjectSO obj, TileObjectMap map, int x, int y)
 		{
 			throw new System.NotImplementedException();
 		}
