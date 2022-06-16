@@ -13,7 +13,7 @@ namespace Phantom
 		public GameObject prefab;
 		public TileObjectMapGenerator shipGenerator;
 		public ShipDesign shipDesign;
-		public MapGenerator mapGenerator;
+		public TileObjectMapGenerator mapGenerator;
 		public LevelDesign levelDesign;
 		public Color[] colors;
 		public TilePathAgent pathAgent;
@@ -34,9 +34,12 @@ namespace Phantom
 			ship = shipDesign.Create(prefab);
 			Debug.Log(ship.GetComponent<StatSheet>());
 
+			var camera = FindObjectOfType<SimpleCameraFollow>();
+			camera.target = ship;
+
 			//	path = pathAgent.FindPath(shipDesign.tiles, Vector2Int.zero, new Vector2Int(63, 63));
 
-			levelDesign = mapGenerator.Create(128, 128);
+			levelDesign = mapGenerator.Create(128, 128) as LevelDesign;
 			levelDesign.tileMapTexture = mapTexture;
 			levelDesign.Create();
 		}
@@ -49,7 +52,7 @@ namespace Phantom
 			{
 				nextPath = Time.time + 5;
 				var pos = ship.transform.position;
-				path = pathAgent.FindPath(levelDesign.tiles, Vector2Int.zero, new Vector2Int((int)pos.x, (int)pos.y));
+				path = pathAgent.FindPath(levelDesign.Tiles, Vector2Int.zero, new Vector2Int((int)pos.x, (int)pos.y));
 			}
 		}
 

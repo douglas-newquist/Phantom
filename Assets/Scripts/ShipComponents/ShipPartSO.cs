@@ -44,15 +44,5 @@ namespace Phantom
 
 			return part;
 		}
-
-		public override void Place(TileObjectMap map, int x, int y)
-		{
-			map.Get(x, y).Item2.Object = this;
-
-			for (int xi = 0; xi < width; xi++)
-				for (int yi = 0; yi < height; yi++)
-					if (xi != 0 || yi != 0)
-						map.Get(x + xi, y + yi).Item2.Reference = new Vector2Int(x, y);
-		}
 	}
 }

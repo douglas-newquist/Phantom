@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2182169dc624498696dff72fa044080, type: 3}
+  m_Name: Asteroid Field
+  m_EditorClassIdentifier: 
+  repeat:
+    min: 1
+    max: 1
+  tileGenerator: {fileID: 11400000, guid: 7587336b5fab9dd36a1e3b336c1b40c7, type: 2}
+  generators:
+  - {fileID: 11400000, guid: 6e4b5fd6e4f758af2bb5e918627a04a0, type: 2}
+  - {fileID: 11400000, guid: e23f5a2d86570ab98a37c57c2638f666, type: 2}

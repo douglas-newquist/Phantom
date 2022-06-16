@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e640edd1e909be298aafff098196482d, type: 3}
-  m_Name: Selector
+  m_Script: {fileID: 11500000, guid: f50f2117a34ca0fbfa50e458a9666acf, type: 3}
+  m_Name: Asteroid Field
   m_EditorClassIdentifier: 
   repeat:
     min: 1
     max: 1
-  generators:
-    items: []
+  mask: {fileID: 0}
+  steps:
+  - {fileID: 11400000, guid: 5499063ed6d083ea49f9decc9fc66936, type: 2}
+  - {fileID: 11400000, guid: 2ede90b45d4e9d25aa3b3c8a04398146, type: 2}

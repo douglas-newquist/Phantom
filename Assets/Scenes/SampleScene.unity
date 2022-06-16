@@ -177,7 +177,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 75
+  orthographic size: 250
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -318,15 +318,18 @@ MonoBehaviour:
       height: 0
       values: []
     hullType: {fileID: 0}
-  mapGenerator: {fileID: 11400000, guid: 627714bd157bc7bae85abde6d14dc672, type: 2}
+  mapGenerator: {fileID: 11400000, guid: b27cd2100de249d9f948c9b7eca14706, type: 2}
   levelDesign:
-    tileMapTexture: {fileID: 0}
     tiles:
       vertices:
         width: 0
         height: 0
         values: 
-    objects: []
+    objects:
+      width: 0
+      height: 0
+      values: []
+    tileMapTexture: {fileID: 0}
   colors: []
   pathAgent: {fileID: 11400000, guid: 18ab1456e1dab770d9938ea64065741c, type: 2}
   path:

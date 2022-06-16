@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd522dea031d650dbd66c0a5f4947ae, type: 3}
+  m_Name: Place Objects
+  m_EditorClassIdentifier: 
+  repeat:
+    min: 1
+    max: 1
+  tileGenerator: {fileID: 0}
+  density:
+    min: 0.5
+    max: 0.5
+  objects:
+  - {fileID: 11400000, guid: 004257365a6c652569f14f196aa414f9, type: 2}
