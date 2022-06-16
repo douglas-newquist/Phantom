@@ -10,6 +10,8 @@ namespace Phantom
 
 		public StatPair[] stats;
 
+		public Modifier[] modifiers;
+
 		public StatPair[] GetHullStats(TileMap map)
 		{
 			var baseStats = new StatPair[stats.Length];

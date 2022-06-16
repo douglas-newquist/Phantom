@@ -15,7 +15,7 @@ namespace Phantom
 				{
 					if (!design.parts.InBounds(x + xi, y + yi))
 						return false;
-					if (design.parts.Get(x + xi, y + yi).state != SlotState.Free)
+					if (design.parts.Get(x + xi, y + yi).state != Reservation.Free)
 						return false;
 					if (!shape.HasFlag(design.tiles.Get(x + xi, y + yi).Shape()))
 						return false;

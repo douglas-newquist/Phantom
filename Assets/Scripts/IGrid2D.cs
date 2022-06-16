@@ -16,6 +16,16 @@ namespace Phantom
 
 	public static class IGrid2DHelper
 	{
+		public static T Get<T>(this IGrid2D<T> grid, Vector2Int vector)
+		{
+			return grid.Get(vector.x, vector.y);
+		}
+
+		public static void Set<T>(this IGrid2D<T> grid, Vector2Int vector, T value)
+		{
+			grid.Set(vector.x, vector.y, value);
+		}
+
 		public static bool TryGet<T>(this IGrid2D<T> grid, int x, int y, out T result)
 		{
 			if (grid.InBounds(x, y))

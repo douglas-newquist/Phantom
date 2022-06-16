@@ -28,12 +28,12 @@ namespace Phantom
 
 		public void Place(ShipDesign shipDesign, int x, int y)
 		{
-			shipDesign.parts.Set(x, y, new ShipPart(this, SlotState.Used, 0));
+			shipDesign.parts.Set(x, y, new ShipPart(this, Reservation.Used, 0));
 
 			for (int xi = 0; xi < width; xi++)
 				for (int yi = 0; yi < height; yi++)
 					if (xi != 0 || yi != 0)
-						shipDesign.parts.Set(x + xi, y + yi, new ShipPart(SlotState.Reserved));
+						shipDesign.parts.Set(x + xi, y + yi, new ShipPart(Reservation.Reserved));
 		}
 
 		/// <summary>

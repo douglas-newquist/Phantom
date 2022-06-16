@@ -5,20 +5,20 @@ namespace Phantom
 	[System.Serializable]
 	public struct ShipPart
 	{
-		public SlotState state;
+		public Reservation state;
 
 		public ShipPartSO part;
 
 		[Range(-180, 180)]
 		public float rotation;
 
-		public bool Occupied => state != SlotState.Free || part != null;
+		public bool Occupied => state != Reservation.Free || part != null;
 
-		public ShipPart(SlotState state) : this(null, state, 0) { }
+		public ShipPart(Reservation state) : this(null, state, 0) { }
 
-		public ShipPart(ShipPartSO part, float rotation) : this(part, SlotState.Used, rotation) { }
+		public ShipPart(ShipPartSO part, float rotation) : this(part, Reservation.Used, rotation) { }
 
-		public ShipPart(ShipPartSO part, SlotState state, float rotation)
+		public ShipPart(ShipPartSO part, Reservation state, float rotation)
 		{
 			this.state = state;
 			this.part = part;

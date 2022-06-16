@@ -8,90 +8,118 @@ namespace Phantom
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Connect Areas")]
 	public class ConnectAreasGridGen : GridGen
 	{
+		public class Room
+		{
+			public List<Vector2Int> cells;
+
+			public Vector2 center;
+
+			public Room(List<Vector2Int> cells)
+			{
+				this.cells = cells;
+
+				foreach (var cell in cells)
+					center += cell;
+
+				center /= cells.Count;
+			}
+
+			public Vector2Int ClosestCellToPoint(Vector2 point)
+			{
+				var best = cells[0];
+				var bestDist = Vector2.Distance(point, best);
+
+				foreach (var cell in cells)
+				{
+					var dist = Vector2.Distance(point, cell);
+					if (dist < bestDist)
+					{
+						best = cell;
+						bestDist = dist;
+					}
+				}
+
+				return best;
+			}
+
+			public Vector2Int FindClosestCellToRoom(Room other)
+			{
+				return ClosestCellToPoint(other.center);
+			}
+		}
+
 		public int findAreasWith = 0;
 
 		public int connectWith;
+
+		[MinMax(0, 8)]
+		public IntRange connections = new IntRange(1, 2);
 
 		public VertexPathAgent pathAgent;
 
 		[Range(1, 16)]
 		public float pathRadius = 2;
 
-		[MinMax(0, 1)]
-		public FloatRange connectivity = 0.9f;
-
 		public override Grid2D<int> ApplyOnce(Grid2D<int> design, RectInt area)
 		{
 			design = new Grid2D<int>(design);
 
-			var rooms = design.FloodFindGroups(area, (a, b) => a == b);
+			var rooms = GetRooms(design, area);
 
-			rooms = rooms.Where((room) => design.Get(room[0].x, room[0].x) == findAreasWith).ToList();
-
-			var connections = connectivity.Random;
+			if (rooms.Count < 2)
+				return design;
 
 			for (int i = 0; i < rooms.Count; i++)
 			{
-				for (int j = i + 1; j < rooms.Count; j++)
+				for (int c = connections.Random; c > 0; c--)
 				{
-					if (Random.Range(0f, 1f) < connections)
-						ConnectRooms(design, rooms[i], rooms[j]);
+					int j = PickTargetRoom(rooms, i);
+					Debug.Log("Connecting room " + i + " to room " + j);
+					ConnectRooms(design, rooms[i], rooms[j]);
 				}
+				return design;
 			}
 
 			return design;
 		}
 
-		protected void ConnectRooms(Grid2D<int> design, List<Vector2Int> room1, List<Vector2Int> room2)
+		protected List<Room> GetRooms(Grid2D<int> design, RectInt area)
 		{
-			var start = FindClosestPoint(room1, room2);
-			var end = FindClosestPoint(room2, room1);
+			var rooms = new List<Room>();
+
+			foreach (var region in design.FloodFindGroups(area, (a, b) => a == b))
+				if (design.Get(region[0].x, region[0].y) == findAreasWith)
+					rooms.Add(new Room(region));
+
+			return rooms;
+		}
+
+		protected int PickTargetRoom(List<Room> rooms, int start)
+		{
+			int end;
+			{
+				end = Random.Range(0, rooms.Count);
+			} while (end == start) ;
+
+			return end;
+		}
+
+		protected void ConnectRooms(Grid2D<int> design, Room room1, Room room2)
+		{
+			var start = room1.FindClosestCellToRoom(room2);
+			var end = room2.FindClosestCellToRoom(room1);
 
 			var path = pathAgent.FindPath(design, start, end);
 
-			Debug.Log(path);
-
 			if (path.Status == PathStatus.Found)
 				PlacePath(design, path);
-		}
-
-		public Vector2 GetRoomCenter(List<Vector2Int> room)
-		{
-			var center = Vector2.zero;
-
-			if (room.Count == 0)
-				return center;
-
-			foreach (var cell in room)
-				center += center;
-
-			return center / room.Count;
-		}
-
-		protected Vector2Int FindClosestPoint(List<Vector2Int> room1, List<Vector2Int> room2)
-		{
-			var center = GetRoomCenter(room2);
-			var best = room1[0];
-			var bestDist = Vector2.Distance(center, best);
-
-			foreach (var cell in room1)
-			{
-				var dist = Vector2.Distance(center, cell);
-				if (dist < bestDist)
-				{
-					best = cell;
-					bestDist = dist;
-				}
-			}
-
-			return best;
 		}
 
 		protected void PlacePath(Grid2D<int> design, Path<Vector2Int> path)
 		{
 			foreach (var point in path)
 			{
-				design.Set(point.x, point.y, connectWith);
+				design.Set(point, connectWith);
 			}
 		}
 	}

@@ -21,7 +21,7 @@ namespace Phantom
 						return false;
 					if (!tiles.Contains(design.tiles.Get(x + xi, y + yi)))
 						return false;
-					if (design.parts.Get(x + xi, y + yi).state != SlotState.Free)
+					if (design.parts.Get(x + xi, y + yi).state != Reservation.Free)
 						return false;
 				}
 			}

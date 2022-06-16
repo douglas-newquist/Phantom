@@ -37,6 +37,12 @@ namespace Phantom
 				values[i] = value;
 		}
 
+		public Grid2D(int width, int height, System.Func<T> creator) : this(width, height)
+		{
+			for (int i = 0; i < values.Length; i++)
+				values[i] = creator();
+		}
+
 		public Grid2D(Grid2D<T> grid) : this(grid.Width, grid.Height)
 		{
 			for (int x = 0; x < Width; x++)
