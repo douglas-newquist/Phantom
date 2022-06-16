@@ -9,15 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ff7d03654b12e5dc8dd6e717aafe809, type: 3}
-  m_Name: A-Z
+  m_Script: {fileID: 11500000, guid: 129f3d33b806c0e4db542ed87c106d12, type: 3}
+  m_Name: Word Joiner
   m_EditorClassIdentifier: 
   repeat:
     min: 1
     max: 3
   prepend: 0
-  prefix: 
-  postfix: 
+  prefix: <
+  postfix: '>'
   separator: ' '
-  wordSeparator: 
-  letters: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+  wordSeparator: '-'
+  subWordSeparator: 
+  words:
+  - {fileID: 11400000, guid: 0c7720453305eecadb92121e7232a596, type: 2}
+  - {fileID: 11400000, guid: cdafee6ba5aa8b0d9b62eeaa88b6070e, type: 2}
