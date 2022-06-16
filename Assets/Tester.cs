@@ -36,9 +36,9 @@ namespace Phantom
 
 			//	path = pathAgent.FindPath(shipDesign.tiles, Vector2Int.zero, new Vector2Int(63, 63));
 
-			//levelDesign = mapGenerator.Create(128, 128);
-			//levelDesign.tileMapTexture = mapTexture;
-			//levelDesign.Create();
+			levelDesign = mapGenerator.Create(128, 128);
+			levelDesign.tileMapTexture = mapTexture;
+			levelDesign.Create();
 		}
 
 		// Update is called once per frame
