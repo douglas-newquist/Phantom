@@ -9,14 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 547af6a4ced58d4d4a190c0e15adb367, type: 3}
-  m_Name: Random Part
+  m_Script: {fileID: 11500000, guid: 2055752eccef5346ea97f7eed8314664, type: 3}
+  m_Name: Convert To Ship
   m_EditorClassIdentifier: 
   repeat:
     min: 1
     max: 1
-  vertexGenerator: {fileID: 0}
-  parts: {fileID: 11400000, guid: a945349d09430c326a17ff00cec8ed98, type: 2}
-  density:
-    min: 0.7
-    max: 0.75

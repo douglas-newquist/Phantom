@@ -16,6 +16,8 @@ namespace Phantom
 
 		public const string VertexGenerator = Generator + "Vertex/";
 
+		public const string TileObjectMapGenerator = Generator + "Tile Object Map/";
+
 		public const string ShipGenerator = Generator + "Ship/";
 
 		public const string MapGenerator = Generator + "Level/";

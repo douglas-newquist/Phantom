@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 838161728438992593, guid: 39a653b251467604c9fe3b3b6567f58a, type: 3}
-  shipGenerator: {fileID: 11400000, guid: e1a3d2c2c74e97562bcf496952851990, type: 2}
+  shipGenerator: {fileID: 11400000, guid: d1c6a7cdac5062b12a266b2427e6f080, type: 2}
   mapGenerator: {fileID: 11400000, guid: 627714bd157bc7bae85abde6d14dc672, type: 2}
   levelDesign:
     tileMapTexture: {fileID: 0}
@@ -302,38 +302,21 @@ MonoBehaviour:
         values: 
     objects: []
   shipDesign:
-    hullType: {fileID: 11400000, guid: bb0e0ae8988d8bcc694708203a2f10ce, type: 2}
     tiles:
       vertices:
         width: 0
         height: 0
         values: 
-    parts:
-      width: 2
-      height: 2
-      values:
-      - state: 0
-        part: {fileID: 11400000, guid: 004257365a6c652569f14f196aa414f9, type: 2}
-        rotation: 0
-      - state: 0
-        part: {fileID: 11400000, guid: 45917dc1fefb46f69895db973474b505, type: 2}
-        rotation: 0
-      - state: 0
-        part: {fileID: 0}
-        rotation: 0
-      - state: 0
-        part: {fileID: 0}
-        rotation: 0
+    objects:
+      width: 0
+      height: 0
+      values: []
+    hullType: {fileID: 11400000, guid: bb0e0ae8988d8bcc694708203a2f10ce, type: 2}
   colors: []
   pathAgent: {fileID: 11400000, guid: 18ab1456e1dab770d9938ea64065741c, type: 2}
   path:
     Cells: []
   mapTexture: {fileID: 11400000, guid: df9ab9085f1b95d2face880ee54503ac, type: 2}
-  stat1: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
-  stat2: {fileID: 11400000, guid: c2ed9714dabb8e8c5b94697cf3566d6a, type: 2}
-  stat1Value: 100
-  modifierType: {fileID: 11400000, guid: 969ddff93bef5a3efb1620a2870da753, type: 2}
-  modifierMagnitude: 0.05
 --- !u!4 &1387071761
 Transform:
   m_ObjectHideFlags: 0

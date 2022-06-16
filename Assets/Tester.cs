@@ -11,10 +11,9 @@ namespace Phantom
 		[SerializeField]
 		public IUsable usable;
 		public GameObject prefab;
-		public ShipGenerator shipGenerator;
+		public TileObjectMapGenerator shipGenerator;
 		public MapGenerator mapGenerator;
 		public LevelDesign levelDesign;
-		public ShipDesign shipDesign;
 		public Color[] colors;
 		public TilePathAgent pathAgent;
 		public Path<Vector2Int> path;
@@ -26,11 +25,12 @@ namespace Phantom
 		// Start is called before the first frame update
 		void Start()
 		{
-			shipDesign = shipGenerator.Create(64, 64);
+			var shipDesign = shipGenerator.Create(64, 64);
+			Debug.Log(shipDesign);
 			Debug.Log(shipDesign.BoundingBox);
 
-			ship = shipDesign.Create(prefab);
-			Debug.Log(ship.GetComponent<StatSheet>());
+			//	ship = shipDesign.Create(prefab);
+			//		Debug.Log(ship.GetComponent<StatSheet>());
 
 			//	path = pathAgent.FindPath(shipDesign.tiles, Vector2Int.zero, new Vector2Int(63, 63));
 
