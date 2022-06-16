@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a2e5d8e9c84b3ca9564ab586fb4b10, type: 3}
+  m_Name: Adjective
+  m_EditorClassIdentifier: 
+  repeat:
+    min: 1
+    max: 1
+  words:
+  - Adorable
+  - Annoying
+  - Awful
+  - Better
+  - Bloody
+  - Adventurous
+  - Angry
+  - Attractive
+  - Aggressive
+  - Alive
+  - Annoyed
+  - Arrogant
+  - Average
+  - Beautiful
+  - Black
+  - Careful
+  - Cautious
+  - Clear
+  - Clever
+  - Clean
+  - Charming
+  - Cloudy
+  - Colorfult
+  - Combative
+  - Courageous
+  - Confused
+  - Crazy
+  - Cruel
+  - Curious
+  - Cute
+  - Dangerous
+  - Defiant
+  - Dead
+  - Defeated
+  - Determined
+  - Drab
+  - Dull
+  - Eager
+  - Elegant
+  - Energetic
+  - Enthusiastic
+  - Envious
+  - Expensive
+  - Fairr
+  - Faithful
+  - Famous
+  - Fragile
+  - Frightened
+  - Frail
+  - Grumpy
+  - Gentle
+  - Horrible
+  - Hurt
+  - Ill
+  - Lazy
+  - Light
+  - Lively
+  - Long
+  - Lucky
+  - Magnificent
+  - Misty
+  - Modern
+  - Motionless
+  - Muddy
+  - Mysterious
+  - Obedient
+  - Obnoxious
+  - Old-Fashioned
+  - Perfect
+  - Poised
+  - Poor
+  - Powerful
+  - Precious
+  - Prickly
+  - Proud
+  - Repulsive
+  - Shiny
+  - Sky
+  - Sleepy
+  - Smiling
+  - Sparkling
+  - Spotless
+  - Stormy
+  - Strange
+  - Stupid
+  - Successful
+  - Super
+  - Talented
+  - Tame
+  - Terrible
+  - Tough
+  - Vast
+  - Wandering
+  - Weary
+  - Wicked
+  - Wild
+  - Zealous

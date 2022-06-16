@@ -21,11 +21,16 @@ namespace Phantom
 		public TileMapTexture mapTexture;
 		float nextPath = 0;
 
+		public NameGenerator nameGenerator;
+
 		GameObject ship;
 
 		// Start is called before the first frame update
 		void Start()
 		{
+			for (int i = 0; i < 10; i++)
+				Debug.Log(nameGenerator.Create());
+			return;
 			shipDesign = shipGenerator.Create(64, 64) as ShipDesign;
 			Debug.Log(shipDesign);
 			Debug.Log(shipDesign.BoundingBox);

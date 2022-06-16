@@ -317,6 +317,7 @@ MonoBehaviour:
       width: 0
       height: 0
       values: []
+    name: 
     hullType: {fileID: 0}
   mapGenerator: {fileID: 11400000, guid: b27cd2100de249d9f948c9b7eca14706, type: 2}
   levelDesign:
@@ -335,6 +336,7 @@ MonoBehaviour:
   path:
     Cells: []
   mapTexture: {fileID: 11400000, guid: df9ab9085f1b95d2face880ee54503ac, type: 2}
+  nameGenerator: {fileID: 11400000, guid: aecb1200a5651859e9e967f30c9f6ca0, type: 2}
 --- !u!4 &1387071761
 Transform:
   m_ObjectHideFlags: 0

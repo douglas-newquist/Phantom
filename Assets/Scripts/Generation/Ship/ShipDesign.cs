@@ -9,7 +9,13 @@ namespace Phantom
 	[System.Serializable]
 	public class ShipDesign : TileObjectMap
 	{
+		[SerializeField]
+		private string name;
+
+		public string Name { get => name; set => name = value; }
+
 		public TileMapSO hullType;
+
 
 		public ShipDesign(int width, int height) : base(width, height)
 		{

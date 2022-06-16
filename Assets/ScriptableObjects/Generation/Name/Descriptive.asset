@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a2e5d8e9c84b3ca9564ab586fb4b10, type: 3}
+  m_Name: Descriptive
+  m_EditorClassIdentifier: 
+  repeat:
+    min: 1
+    max: 1
+  words:
+  - Acrobatic
+  - Adventurous
+  - Brave
+  - Bright
+  - Brilliant
+  - Concrete
+  - Conventional
+  - Delirious
+  - Foolhardy
+  - Gregarious
+  - Grim
+  - Handsome
+  - Handy
+  - Intelligent
+  - Intrepid
+  - Joyful
+  - Keen
+  - Lazy
+  - Luxurious
+  - Mediocre
+  - Mellow
+  - Miserable
+  - Nocturnal
+  - Organic
+  - Ornate
+  - Ordinary
+  - Powerless
+  - Practical
+  - Precious
+  - Questionable
+  - Quirky
+  - Radiant
+  - Rustic
+  - Sly
+  - Sophisticated
+  - Stunning
+  - Tattered
+  - Thorny
+  - Verdant
+  - Weathered
