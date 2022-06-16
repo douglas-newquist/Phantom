@@ -19,7 +19,7 @@ namespace Phantom
 		{
 			var placed = Instantiate(prefab);
 			placed.transform.SetParent(obj.transform);
-			placed.transform.position = new Vector3(x, y, 0);
+			placed.transform.localPosition = new Vector3(x, y, 0);
 			return placed;
 		}
 	}

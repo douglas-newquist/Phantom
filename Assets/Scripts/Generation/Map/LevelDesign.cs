@@ -24,7 +24,6 @@ namespace Phantom
 			var level = new GameObject();
 			var renderer = level.AddComponent<SpriteRenderer>();
 			renderer.sprite = tileMapTexture.DrawSprite(Tiles);
-			level.transform.localScale = new Vector3(32, 32, 1);
 
 			for (int x = 0; x < Width; x++)
 			{
@@ -42,6 +41,8 @@ namespace Phantom
 					}
 				}
 			}
+
+			level.transform.localScale = new Vector3(32, 32, 1);
 
 			return level;
 		}
