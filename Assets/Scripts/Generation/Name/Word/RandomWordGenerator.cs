@@ -5,7 +5,7 @@ namespace Phantom
 {
 	[ExecuteInEditMode]
 	[CreateAssetMenu(menuName = CreateMenu.NameGenerator + "Random Word")]
-	public class WordNameGenerator : WordGenerator
+	public class RandomWordGenerator : WordGenerator
 	{
 		public string[] words;
 

@@ -7,6 +7,8 @@ namespace Phantom
 		[MinMax(0, 16)]
 		public IntRange repeat = new IntRange(1, 1);
 
+		public string prefix = "", postfix = "";
+
 		public abstract string ApplyOnce(string name);
 
 		public virtual string Apply(string name)
