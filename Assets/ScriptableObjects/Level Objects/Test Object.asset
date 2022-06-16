@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Test Object
   m_EditorClassIdentifier: 
   placementRules:
-  - {fileID: 0}
-  prefab: {fileID: 0}
+  - {fileID: 11400000, guid: 4d793559b73518854a0259a843ffa2f8, type: 2}
+  prefab: {fileID: 1691334886146194492, guid: 30ca6bc1b17c43b36aa73e882b4277fa, type: 3}
   width: 1
   height: 1

@@ -17,7 +17,7 @@ MonoBehaviour:
     max: 1
   tileGenerator: {fileID: 0}
   density:
-    min: 0.5
-    max: 0.5
+    min: 0.25
+    max: 0.35
   objects:
-  - {fileID: 11400000, guid: 004257365a6c652569f14f196aa414f9, type: 2}
+  - {fileID: 11400000, guid: 8d2229392fe3a6e178750cbf8581f3b0, type: 2}

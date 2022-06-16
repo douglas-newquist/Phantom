@@ -17,7 +17,6 @@ namespace Phantom
 
 		public override GameObject Place(GameObject obj, TileObjectMap map, int x, int y)
 		{
-			Debug.Log(this);
 			var placed = Instantiate(prefab);
 			placed.transform.SetParent(obj.transform);
 			placed.transform.position = new Vector3(x, y, 0);
