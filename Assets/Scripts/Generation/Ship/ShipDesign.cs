@@ -14,6 +14,8 @@ namespace Phantom
 		{
 		}
 
+		public ShipDesign(TileObjectMap map) : base(map) { }
+
 		public ShipDesign(ShipDesign design) : base(design)
 		{
 			hullType = design.hullType;
