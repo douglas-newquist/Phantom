@@ -2,40 +2,63 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[RequireComponent(typeof(StatSheet))]
-	public class Ship : Entity
+	public interface IMovable
 	{
+		void Move(Vector2 vector, Reference mode);
+
+		void Stop();
+	}
+	public interface ILookable
+	{
+		void Look(Vector2 vector2, Reference mode);
+	}
+	public interface IMoveLook : IMovable, ILookable { }
+	[RequireComponent(typeof(StatSheet))]
+	public class Ship : Entity, IMoveLook
+	{
+		public Rigidbody2D body => GetComponent<Rigidbody2D>();
+
 		public ThrusterController thrusters;
 
-		public GyroController gyros;
+		[SerializeField]
+		private GyroController gyros;
 
-		public TurretController turrets;
+		public GyroController Gyros => gyros;
+
+		[SerializeField]
+		private TurretController turrets;
+
+		public TurretController Turrets => turrets;
 
 		public Rigidbody2D target;
 
-		public StatSO massStat;
+		[SerializeField]
+		private StatSO massStat;
 
-		public Reference thrustReference = Reference.Absolute;
+		public ShipController controller;
 
-		private void Update()
+		private void Start()
 		{
-			GetComponent<Rigidbody2D>().mass = Stats.GetValue(massStat);
-			var x = Input.GetAxis("Horizontal");
-			var y = Input.GetAxis("Vertical");
-			var mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			mouse.z = 0;
+			var mass = Stats.GetStat(massStat);
+			body.mass = mass.Value;
+			// TODO Spawning might run this multiple times
+			mass.OnValueChanged.AddListener(stat => body.mass = stat.Current);
+			StartCoroutine(controller.Control(this));
+		}
 
-			if (Input.GetKey(KeyCode.X))
-				thrusters.Stop();
-			else
-				thrusters.Move(new Vector3(x, y, 0), thrustReference);
+		public void Move(Vector2 vector, Reference mode)
+		{
+			thrusters.Move(vector, mode);
+		}
 
-			gyros.Look(mouse, Reference.Absolute);
+		public void Look(Vector2 vector, Reference mode)
+		{
+			gyros.Look(vector, mode);
+		}
 
-			if (target != null)
-				turrets.Aim(target, Input.GetMouseButton(0));
-			else
-				turrets.Aim(mouse, Reference.Absolute, Input.GetMouseButton(0));
+		public void Stop()
+		{
+			thrusters.Stop();
 		}
 	}
 }

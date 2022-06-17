@@ -48,12 +48,14 @@ namespace Phantom
 		// Update is called once per frame
 		void Update()
 		{
-			return;
+			//return;
 			if (Time.time >= nextPath)
 			{
 				nextPath = Time.time + 5;
-				var pos = ship.transform.position;
-				path = pathAgent.FindPath(levelDesign.Tiles, Vector2Int.zero, new Vector2Int((int)pos.x, (int)pos.y));
+				var start = new Vector2Int((int)transform.position.x, (int)transform.position.y);
+				var end = new Vector2Int((int)ship.transform.position.x, (int)ship.transform.position.y);
+				path = pathAgent.FindPath(levelDesign.Tiles, start, end);
+				Debug.Log(path);
 			}
 		}
 

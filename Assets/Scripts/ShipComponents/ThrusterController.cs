@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	public class ThrusterController : MonoBehaviour
+	public class ThrusterController : MonoBehaviour, IMovable
 	{
 		public Rigidbody2D body => GetComponent<Rigidbody2D>();
 

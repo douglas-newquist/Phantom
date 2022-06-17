@@ -4,15 +4,13 @@ using System.Collections;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = "Game/Controller/Chase Camera")]
-	public class ChaseCameraController : Controller
+	public class ChaseCameraController : Controller<Camera>
 	{
 		public float snapDistance = 0.025f;
 
-		public override IEnumerator Control(Controllable controllable)
+		public override IEnumerator Control(Camera controllable)
 		{
-			Camera camera = controllable.GetComponent<Camera>();
-
-			while (true)
+			while (controllable != null)
 			{
 				yield return new WaitForEndOfFrame();
 			}

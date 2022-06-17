@@ -24,6 +24,14 @@ namespace Phantom
 			return Create(generator.Create(width, height));
 		}
 
+		protected override void PlaceTileObjects(GameObject gameObject, TileObjectMap map, GameObject container)
+		{
+			var design = map as ShipDesign;
+
+			base.PlaceTileObjects(gameObject, map, container);
+			container.transform.position -= (Vector3)design.BoundingBox.center;
+		}
+
 		protected override void PlaceTiles(GameObject gameObject, TileObjectMap map, GameObject container)
 		{
 			var design = map as ShipDesign;

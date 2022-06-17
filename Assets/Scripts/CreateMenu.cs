@@ -12,6 +12,8 @@ namespace Phantom
 
 		public const string ShipPart = Game + "Part/";
 
+		public const string Controller = Game + "Controller/";
+
 		public const string Generator = Game + "Generator/";
 
 		public const string NameGenerator = Generator + "Name/";

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92da0dcf35adf62379a8bff00a9dc431, type: 3}
-  m_Name: Player Controller
+  m_Script: {fileID: 11500000, guid: 41d8c55e4f6e22fc3bb6331616ab4efd, type: 3}
+  m_Name: Player Ship Controller
   m_EditorClassIdentifier: 
-  speedStat: {fileID: 11400000, guid: c258cf61c1e402ace9e0fffa54495f96, type: 2}
+  thrustReference: 0
