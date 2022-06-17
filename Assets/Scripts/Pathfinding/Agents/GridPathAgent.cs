@@ -7,6 +7,8 @@ namespace Phantom.Pathfinding
 	{
 		public DiagonalMode diagonal = DiagonalMode.Allow;
 
+		public DistanceMode distanceMode = DistanceMode.SquareRoot;
+
 		[Range(-1, 16)]
 		public float outOfBoundsCost = -1;
 
@@ -47,7 +49,25 @@ namespace Phantom.Pathfinding
 
 		public override float GetPathCost(IGrid2D<T> map, Vector2Int start, Vector2Int end)
 		{
-			return Vector2Int.Distance(start, end) * PathThroughCost(map, end);
+			float dist = 0;
+
+			switch (distanceMode)
+			{
+				case DistanceMode.Manhattan:
+					dist += Mathf.Abs(start.x - end.x);
+					dist += Mathf.Abs(start.y - end.y);
+					break;
+
+				case DistanceMode.Square:
+					dist = ((Vector2)(end - start)).sqrMagnitude;
+					break;
+
+				case DistanceMode.SquareRoot:
+					dist = Vector2Int.Distance(start, end);
+					break;
+			}
+
+			return dist * PathThroughCost(map, end);
 		}
 	}
 }

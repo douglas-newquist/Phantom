@@ -51,7 +51,7 @@ namespace Phantom
 			//return;
 			if (Time.time >= nextPath)
 			{
-				nextPath = Time.time + 5;
+				nextPath = Time.time + 2 * (float)path.Duration.TotalSeconds;
 				var start = new Vector2Int((int)transform.position.x, (int)transform.position.y);
 				var end = new Vector2Int((int)ship.transform.position.x, (int)ship.transform.position.y);
 				path = pathAgent.FindPath(levelDesign.Tiles, start, end);

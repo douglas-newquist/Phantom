@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d8c55e4f6e22fc3bb6331616ab4efd, type: 3}
   m_Name: Player Ship Controller
   m_EditorClassIdentifier: 
-  thrustReference: 0
+  thrustReference: 1

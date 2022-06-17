@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathfinder: {fileID: 11400000, guid: fdac6e95ec9b9f88ba5e2c244bb0ec14, type: 2}
   diagonal: 1
-  outOfBoundsCost: 1.5
+  distanceMode: 2
+  outOfBoundsCost: -1
   weights:
     empty: 1
     full: -1
     edge: -1
-    smallCorner: 2
+    smallCorner: -1
     largeCorner: -1
     diagonal: -1

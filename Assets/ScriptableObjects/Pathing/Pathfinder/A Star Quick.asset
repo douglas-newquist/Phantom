@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f55e0d64a973ce0f196abfabf2917bab, type: 3}
-  m_Name: A Star
+  m_Name: A Star Quick
   m_EditorClassIdentifier: 
-  maxIterations: 10000
+  maxIterations: 2500
   onlyReturnCompletePath: 0
-  reevaluateVisitedOnBetterPath: 1
+  reevaluateVisitedOnBetterPath: 0

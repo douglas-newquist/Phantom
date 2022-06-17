@@ -8,6 +8,10 @@ namespace Phantom.Pathfinding
 	[CreateAssetMenu(menuName = CreateMenu.Pathfinder + "A*")]
 	public class AStarPathFinder : Pathfinder
 	{
+		public bool onlyReturnCompletePath = false;
+
+		public bool reevaluateVisitedOnBetterPath = true;
+
 		protected class StarNode<T> : Node<T>, IComparable<StarNode<T>>
 		{
 			public float h;
@@ -68,6 +72,9 @@ namespace Phantom.Pathfinding
 					break;
 				}
 
+				if (cell.h < bestNode.h)
+					bestNode = cell;
+
 				foreach (var neighbor in agent.GetNeighbors(map, cell.pos))
 				{
 					float moveCost = agent.GetPathCost(map, cell.pos, neighbor);
@@ -87,15 +94,15 @@ namespace Phantom.Pathfinding
 					{
 						neighborNode.cost = tentative;
 						neighborNode.previous = cell;
-						toSearch.Insert(neighborNode);
+						if (reevaluateVisitedOnBetterPath)
+							toSearch.Insert(neighborNode);
 					}
-
-					if (neighborNode.h >= 0 && neighborNode.h < bestNode.h)
-						bestNode = neighborNode;
 				}
 			}
-
-			result.SetPath(BuildPath(bestNode), status);
+			if (onlyReturnCompletePath && status != PathStatus.Found)
+				result.SetPath(null, status);
+			else
+				result.SetPath(BuildPath(bestNode), status);
 		}
 	}
 }
