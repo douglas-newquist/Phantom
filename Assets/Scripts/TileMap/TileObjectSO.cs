@@ -29,6 +29,6 @@ namespace Phantom
 						map.Get(x + xi, y + yi).Item2.Reference = new Vector2Int(x, y);
 		}
 
-		public abstract GameObject Place(GameObject obj, TileObjectMap map, int x, int y);
+		public abstract GameObject Place(GameObject obj, TileObjectMap map, int x, int y, Transform container);
 	}
 }

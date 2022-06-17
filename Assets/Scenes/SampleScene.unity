@@ -307,30 +307,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 838161728438992593, guid: 39a653b251467604c9fe3b3b6567f58a, type: 3}
   shipGenerator: {fileID: 11400000, guid: d1c6a7cdac5062b12a266b2427e6f080, type: 2}
-  shipDesign:
-    tiles:
-      vertices:
-        width: 0
-        height: 0
-        values: 
-    objects:
-      width: 0
-      height: 0
-      values: []
-    name: 
-    hullType: {fileID: 0}
+  shipBuilder: {fileID: 11400000, guid: b5332ed8db87ff5e1af063eaeeca89ae, type: 2}
   mapGenerator: {fileID: 11400000, guid: b27cd2100de249d9f948c9b7eca14706, type: 2}
-  levelDesign:
-    tiles:
-      vertices:
-        width: 0
-        height: 0
-        values: 
-    objects:
-      width: 0
-      height: 0
-      values: []
-    tileMapTexture: {fileID: 0}
+  levelBuilder: {fileID: 11400000, guid: 7e730912c4ff95fdd98d28b466ff6905, type: 2}
   colors: []
   pathAgent: {fileID: 11400000, guid: 18ab1456e1dab770d9938ea64065741c, type: 2}
   path:

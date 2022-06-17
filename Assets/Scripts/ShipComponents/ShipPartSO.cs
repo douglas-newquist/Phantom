@@ -23,7 +23,7 @@ namespace Phantom
 
 		public ResourceUsage resourceUsage;
 
-		public override GameObject Place(GameObject obj, TileObjectMap map, int x, int y)
+		public override GameObject Place(GameObject obj, TileObjectMap map, int x, int y, Transform container)
 		{
 			GameObject part = null;
 			var statSheet = obj.GetComponent<StatSheet>();
@@ -40,6 +40,8 @@ namespace Phantom
 			if (prefab != null)
 			{
 				part = Instantiate(prefab);
+				part.transform.SetParent(container);
+				part.transform.localPosition = new Vector3(x, y, 0);
 			}
 
 			return part;

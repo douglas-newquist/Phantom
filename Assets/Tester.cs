@@ -12,9 +12,10 @@ namespace Phantom
 		public IUsable usable;
 		public GameObject prefab;
 		public TileObjectMapGenerator shipGenerator;
-		public ShipDesign shipDesign;
+		public ShipBuilder shipBuilder;
 		public TileObjectMapGenerator mapGenerator;
-		public LevelDesign levelDesign;
+		public LevelBuilder levelBuilder;
+		private LevelDesign levelDesign;
 		public Color[] colors;
 		public TilePathAgent pathAgent;
 		public Path<Vector2Int> path;
@@ -30,13 +31,8 @@ namespace Phantom
 		{
 			for (int i = 0; i < 10; i++)
 				Debug.Log(nameGenerator.Create());
-			return;
-			shipDesign = shipGenerator.Create(64, 64) as ShipDesign;
-			Debug.Log(shipDesign);
-			Debug.Log(shipDesign.BoundingBox);
-			Debug.Log(shipDesign.GetType());
 
-			ship = shipDesign.Create(prefab);
+			ship = shipBuilder.Create(shipGenerator, 64, 64);
 			Debug.Log(ship.GetComponent<StatSheet>());
 
 			var camera = FindObjectOfType<SimpleCameraFollow>();
@@ -46,7 +42,7 @@ namespace Phantom
 
 			levelDesign = mapGenerator.Create(128, 128) as LevelDesign;
 			levelDesign.tileMapTexture = mapTexture;
-			levelDesign.Create();
+			levelBuilder.Create(levelDesign);
 		}
 
 		// Update is called once per frame

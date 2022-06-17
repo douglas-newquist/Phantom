@@ -29,6 +29,12 @@ namespace Phantom
 		/// </summary>
 		public UnityEvent<StatSheet> OnDeath;
 
+		private void Start()
+		{
+			foreach (var resource in GetStatsOfType<ResourceStat>())
+				resource.Reset();
+		}
+
 		public virtual void ApplyDamage(Damage damage)
 		{
 			if (damage.amount == 0) return;
