@@ -5,7 +5,7 @@ namespace Phantom.Pathfinding
 {
 	public abstract class GridPathAgent<T> : PathAgent<IGrid2D<T>, Vector2Int>
 	{
-		public bool diagonal = true;
+		public DiagonalMode diagonal = DiagonalMode.Allow;
 
 		[Range(-1, 16)]
 		public float outOfBoundsCost = -1;
@@ -18,13 +18,26 @@ namespace Phantom.Pathfinding
 
 				for (int yi = -1; yi <= 1; yi++)
 				{
-					if (xi == 0 && yi == 0) continue;
-
-					if (!diagonal && xi != 0 && yi != 0)
-						continue;
-
 					int y = pos.y + yi;
 					var p = new Vector2Int(x, y);
+
+					if (xi == 0 && yi == 0) continue;
+
+					if (xi != 0 && yi != 0)
+					{
+						switch (diagonal)
+						{
+							case DiagonalMode.Disallow:
+								continue;
+
+							case DiagonalMode.AllowIfBothOrthogonal:
+								if (PathThroughCost(map, new Vector2Int(0, y)) < 0)
+									continue;
+								if (PathThroughCost(map, new Vector2Int(x, 0)) < 0)
+									continue;
+								break;
+						}
+					}
 
 					if (PathThroughCost(map, p) >= 0)
 						yield return p;

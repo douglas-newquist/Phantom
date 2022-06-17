@@ -10,12 +10,25 @@ namespace Phantom.Pathfinding
 		[Range(1, 10000)]
 		public int maxIterations = 2000;
 
+		/// <summary>
+		/// Stores information about nodes that have been searched
+		/// </summary>
+		/// <typeparam name="TCell">Coordinate type used in the map</typeparam>
 		protected class Node<TCell> : IComparable<Node<TCell>>
 		{
+			/// <summary>
+			/// Best node to reach this one from
+			/// </summary>
 			public Node<TCell> previous;
 
+			/// <summary>
+			/// Where this node is in the map
+			/// </summary>
 			public TCell pos;
 
+			/// <summary>
+			/// Cost of getting to this cell
+			/// </summary>
 			public float cost;
 
 			public Node(Node<TCell> previous, TCell cell, float cost)
@@ -35,7 +48,6 @@ namespace Phantom.Pathfinding
 		/// Finds a path between two points on the given map
 		/// </summary>
 		/// <typeparam name="TMap">Type of the map being pathfinded in</typeparam>
-		/// <typeparam name="TCoordinate"></typeparam>
 		/// <typeparam name="TCell">Type to index individual cells on the map</typeparam>
 		/// <param name="agent">Agent pathfinding in the map</param>
 		/// <param name="map">Map to pathfind in</param>
@@ -44,6 +56,16 @@ namespace Phantom.Pathfinding
 		/// <param name="result">Where to store the resulting path</param>
 		protected abstract void FindPath<TMap, TCell>(IPathAgent<TMap, TCell> agent, TMap map, TCell start, TCell end, Path<TCell> result);
 
+		/// <summary>
+		/// Finds a path between two points on the given map
+		/// </summary>
+		/// <typeparam name="TMap">Type of the map being pathfinded in</typeparam>
+		/// <typeparam name="TCell">Type to index individual cells on the map</typeparam>
+		/// <param name="agent">Agent pathfinding in the map</param>
+		/// <param name="map">Map to pathfind in</param>
+		/// <param name="start">Starting position on the map</param>
+		/// <param name="end">Ending position on the map</param>
+		/// <returns></returns>
 		public virtual Path<TCell> FindPath<TMap, TCell>(IPathAgent<TMap, TCell> agent, TMap map, TCell start, TCell end)
 		{
 			var result = new Path<TCell>();

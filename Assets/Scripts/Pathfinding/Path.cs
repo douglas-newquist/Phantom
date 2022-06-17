@@ -4,13 +4,26 @@ using System.Collections.Generic;
 
 namespace Phantom.Pathfinding
 {
+	/// <summary>
+	/// Defines a sequence of coordinates to reach the desired location
+	/// </summary>
+	/// <typeparam name="TCell">Coordinate type used in the map</typeparam>
 	[System.Serializable]
 	public class Path<TCell> : IEnumerable<TCell>
 	{
+		/// <summary>
+		/// When the pathfinder started search
+		/// </summary>
 		public DateTime Started { get; private set; }
 
+		/// <summary>
+		/// When the pathfinder finished or terminated searched
+		/// </summary>
 		public DateTime Ended { get; private set; }
 
+		/// <summary>
+		/// How long the pathfinder took finish
+		/// </summary>
 		public TimeSpan Duration
 		{
 			get
@@ -32,23 +45,32 @@ namespace Phantom.Pathfinding
 
 		public bool Finished => Status != PathStatus.Searching;
 
-		public Path(PathStatus status, List<TCell> path)
+		public Path(PathStatus status, List<TCell> path) : this()
 		{
-			Started = DateTime.Now;
-			Status = status;
-			Cells = path;
+			SetPath(path, status);
 		}
 
-		public Path() : this(PathStatus.Searching, null) { }
+		public Path()
+		{
+			Started = DateTime.Now;
+			Status = PathStatus.Searching;
+		}
 
 		public override string ToString()
 		{
-			if (Cells != null && Cells.Count > 0)
-				return "Path of length " + Cells.Count + " with status " + Status + " which took " + Duration.TotalSeconds + " seconds";
+			string s = "Path with status " + Status + " which took " + Duration.TotalSeconds + " seconds";
 
-			return "Path status " + Status + " which took " + Duration.TotalSeconds + " seconds";
+			if (Cells != null)
+				s += " of length " + Cells.Count;
+
+			return s;
 		}
 
+		/// <summary>
+		/// Marks this path as completed
+		/// </summary>
+		/// <param name="path">Found path, if any</param>
+		/// <param name="status">Final status</param>
 		public void SetPath(List<TCell> path, PathStatus status)
 		{
 			Ended = DateTime.Now;
