@@ -29,19 +29,13 @@ namespace Phantom
 
 		public TileBase tile;
 
-		public VertexTilePair<TileBase> weights;
+		public TileMapSO weights;
 
 		GameObject ship;
 
 		// Start is called before the first frame update
 		void Start()
 		{
-			for (int x = 0; x < 20; x += 1)
-			{
-				Debug.Log(x);
-				tilemap.SetTile(new Vector3Int(x, 0, 0), tile);
-				tilemap.RefreshTile(new Vector3Int(x, 0, 0));
-			}
 
 			//			tilemap.ResizeBounds();
 			//			tilemap.RefreshAllTiles();
@@ -60,7 +54,11 @@ namespace Phantom
 
 			levelDesign = mapGenerator.Create(128, 128) as LevelDesign;
 			levelDesign.tileMapTexture = mapTexture;
-			levelBuilder.Create(levelDesign);
+			//levelBuilder.Create(levelDesign);
+
+			for (int x = 0; x < levelDesign.Width; x++)
+				for (int y = 0; y < levelDesign.Height; y++)
+					tilemap.SetTile(new Vector3Int(x, y, 0), weights.hullTiles.Get(levelDesign.Tiles.Get(x, y)));
 		}
 
 		// Update is called once per frame

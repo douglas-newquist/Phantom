@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.ShipPart + "Hull")]
@@ -7,6 +9,8 @@ namespace Phantom
 		public VertexTileWeights weights = new VertexTileWeights();
 
 		public TileMapTexture texture;
+
+		public VertexTilePair<TileBase> hullTiles;
 
 		public StatPair[] stats;
 
