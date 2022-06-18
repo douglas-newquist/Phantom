@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Phantom.Pathfinding;
+using UnityEngine.Tilemaps;
 
 namespace Phantom
 {
@@ -24,11 +25,17 @@ namespace Phantom
 
 		public NameGenerator nameGenerator;
 
+		public Tilemap tilemap;
+
+		public TileBase tile;
+
 		GameObject ship;
 
 		// Start is called before the first frame update
 		void Start()
 		{
+			tilemap.SetTile(new Vector3Int(0, 0, 0), tile);
+
 			for (int i = 0; i < 10; i++)
 				Debug.Log(nameGenerator.Create());
 

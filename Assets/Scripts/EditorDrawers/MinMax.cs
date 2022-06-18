@@ -1,6 +1,5 @@
 using UnityEngine;
 
-#if UNITY_EDITOR
 namespace Phantom
 {
 	public class MinMax : PropertyAttribute
@@ -13,9 +12,4 @@ namespace Phantom
 			this.max = max;
 		}
 	}
-	public class Sorted : PropertyAttribute
-	{
-
-	}
 }
-#endif
