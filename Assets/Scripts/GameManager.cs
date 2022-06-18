@@ -2,7 +2,7 @@ namespace Phantom
 {
 	public class GameManager : MonoSingleton<GameManager>
 	{
-		public const float SpeedLimit = 100;
+		public const float SpeedLimit = Level.TotalSizeLimit / 1f;
 
 		public const float RotationSpeedLimit = 360 * 2;
 
