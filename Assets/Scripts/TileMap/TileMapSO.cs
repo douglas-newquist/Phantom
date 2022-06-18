@@ -6,7 +6,7 @@ namespace Phantom
 	[CreateAssetMenu(menuName = CreateMenu.ShipPart + "Hull")]
 	public class TileMapSO : ScriptableObject
 	{
-		public VertexTileWeights weights = new VertexTileWeights();
+		public VertexTileShapePair<float> weights;
 
 		public TileMapTexture texture;
 
@@ -27,7 +27,7 @@ namespace Phantom
 			}
 			foreach (var count in counts)
 			{
-				var weight = weights.GetWeight(count.Key) * count.Value;
+				var weight = weights.Get(count.Key) * count.Value;
 				foreach (var stat in stats)
 				{
 				}
@@ -46,7 +46,7 @@ namespace Phantom
 			var counts = map.Itemize();
 			foreach (var count in counts)
 			{
-				var weight = weights.GetWeight(count.Key) * count.Value;
+				var weight = weights.Get(count.Key) * count.Value;
 				foreach (var stat in stats)
 				{
 					statSheet.GetStat(stat.stat).BaseValue += stat.baseValue * weight;
