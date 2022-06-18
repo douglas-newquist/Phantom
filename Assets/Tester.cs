@@ -29,6 +29,8 @@ namespace Phantom
 
 		public TileBase tile;
 
+		public VertexTilePair<TileBase> weights;
+
 		GameObject ship;
 
 		// Start is called before the first frame update
