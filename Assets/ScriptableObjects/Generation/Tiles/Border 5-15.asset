@@ -9,15 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9ae8a1e782ba54f6acd93fb12742418, type: 3}
-  m_Name: Delete Small
+  m_Script: {fileID: 11500000, guid: 5b900046ded45e7ef9f46acbd5d1b048, type: 3}
+  m_Name: Border 5-15
   m_EditorClassIdentifier: 
   repeat:
     min: 1
     max: 1
   mask: {fileID: 0}
-  percentageSize:
-    min: 0
-    max: 0.01
-  areasSmallerThanPercentage: 1
-  value: 0
+  topBorder:
+    min: 5
+    max: 15
+  bottomBorder:
+    min: 5
+    max: 15
+  leftBorder:
+    min: 5
+    max: 15
+  rightBorder:
+    min: 5
+    max: 15
+  value: 1

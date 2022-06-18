@@ -9,15 +9,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9ae8a1e782ba54f6acd93fb12742418, type: 3}
-  m_Name: Delete Small
+  m_Script: {fileID: 11500000, guid: f9e0154e9ef4b3870b797ddd134d6df5, type: 3}
+  m_Name: 4x4 Grid
   m_EditorClassIdentifier: 
   repeat:
     min: 1
     max: 1
   mask: {fileID: 0}
-  percentageSize:
+  x:
+    min: 4
+    max: 6
+  y:
+    min: 4
+    max: 6
+  xSpacing:
     min: 0
-    max: 0.01
-  areasSmallerThanPercentage: 1
-  value: 0
+    max: 0
+  ySpacing:
+    min: 0
+    max: 0
+  slice: 0
+  cellGenerator: {fileID: 11400000, guid: 9e6a362ce3ce79e07bfdb260bba2f7de, type: 2}
+  borderGenerator: {fileID: 0}

@@ -9,24 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9e0154e9ef4b3870b797ddd134d6df5, type: 3}
-  m_Name: Grid
+  m_Script: {fileID: 11500000, guid: f50f2117a34ca0fbfa50e458a9666acf, type: 3}
+  m_Name: Test 3
   m_EditorClassIdentifier: 
   repeat:
     min: 1
     max: 1
   mask: {fileID: 0}
-  x:
-    min: 4
-    max: 4
-  y:
-    min: 4
-    max: 4
-  xSpacing:
-    min: 0
-    max: 0
-  ySpacing:
-    min: 0
-    max: 0
-  slice: 0
-  cell: {fileID: 11400000, guid: daf2f8d7ad4d84582ae60c71dd6d9e8b, type: 2}
+  steps:
+  - {fileID: 11400000, guid: b2d0cbbbdccf4b496adf8a0185b26d02, type: 2}
+  - {fileID: 11400000, guid: 1ea516b631f11fa2cb7b15a34143493e, type: 2}

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Phantom
@@ -22,48 +23,66 @@ namespace Phantom
 			CellSize
 		}
 
-		public GridGen cell;
+		public GridGen cellGenerator;
+
+		public GridGen borderGenerator;
 
 		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
 		{
-			grid = new Grid2D<int>(grid);
+			var cells = new Grid2D<int>(grid);
 
-			int xStep = 1, yStep = 1;
-			int xOffset = 0, yOffset = 0;
+			foreach (var region in GetRegions(area))
+			{
+				Debug.Log(region);
+				cells = cellGenerator.Apply(cells, region);
+			}
+
+			return cells;
+		}
+
+		public IEnumerable<RectInt> GetRegions(RectInt area)
+		{
+			int width = x.Random;
+			int height = y.Random;
 			int xSpace = xSpacing.Random;
 			int ySpace = ySpacing.Random;
 
-			switch (slice)
-			{
-				case Slice.CellSize:
-					xStep = x.Random;
-					yStep = y.Random;
-					break;
+			if (slice == Slice.CellCount)
+				return GetCountRegions(area, width, xSpace, height, ySpace);
 
-				case Slice.CellCount:
-					int xCells = x.Random;
-					int yCells = y.Random;
-					int width = area.width - xSpace * (xCells - 1);
-					int height = area.height - ySpace * (yCells - 1);
-					xStep = width / xCells;
-					xOffset = (width % xCells) / 2;
-					yStep = height / yCells;
-					yOffset = (height % yCells) / 2;
-					break;
-			}
+			return GetRegionsOfSize(area, x.Random, xSpace, y.Random, ySpace);
+		}
 
-			for (int x = area.xMin + xOffset; x < area.xMax; x += xStep + xSpace)
+		public IEnumerable<RectInt> GetCountRegions(RectInt area, int xCells, int xSpace, int yCells, int ySpace)
+		{
+			int width = area.width - (xCells - 1) * xSpace;
+			width /= xCells;
+
+			int height = area.height - (yCells - 1) * ySpace;
+			height /= yCells;
+
+			return GetRegionsOfSize(area, width, xSpace, height, ySpace);
+		}
+
+		/// <summary>
+		/// Breaks the given area into subregions
+		/// </summary>
+		/// <param name="area">Total area to slice</param>
+		/// <param name="width">Desired width of each sub region</param>
+		/// <param name="height">Desired height of each sub region</param>
+		/// <returns></returns>
+		public IEnumerable<RectInt> GetRegionsOfSize(RectInt area, int width, int xSpace, int height, int ySpace)
+		{
+			for (int x = area.xMin; x < area.xMax; x += width + xSpace)
 			{
-				for (int y = area.yMin + yOffset; y < area.yMax; y += yStep + ySpace)
+				for (int y = area.yMin; y < area.yMax; y += height + ySpace)
 				{
-					RectInt subArea = new RectInt(x, y, xStep, yStep);
-					subArea.xMax = Mathf.Clamp(subArea.xMax, area.xMin, area.xMax - 1);
-					subArea.yMax = Mathf.Clamp(subArea.yMax, area.yMin, area.yMax - 1);
-					grid = cell.Apply(grid, subArea);
+					var region = new RectInt(x, y, width, height);
+					region.xMax = Mathf.Clamp(region.xMax, area.xMin, area.xMax);
+					region.yMax = Mathf.Clamp(region.yMax, area.yMin, area.yMax);
+					yield return region;
 				}
 			}
-
-			return grid;
 		}
 	}
 }

@@ -120,6 +120,9 @@ namespace Phantom
 
 				foreach (var neighbor in grid.GetNeighbors(cell, 1, false))
 				{
+					if (!area.Contains(neighbor.Key))
+						continue;
+
 					if (group.Contains(neighbor.Key) || toSearch.Contains(neighbor.Key))
 						continue;
 

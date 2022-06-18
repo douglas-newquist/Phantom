@@ -3,9 +3,12 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Flood Fill Small")]
-	public class FloodFillSmallGridGen : GridGen
+	public class FloodFillGridGen : GridGen
 	{
-		public int areaSize = 4;
+		[MinMax(0f, 0.5f)]
+		public FloatRange percentageSize = 0.05f;
+
+		public bool areasSmallerThanPercentage = true;
 
 		public int value = 1;
 
@@ -13,9 +16,11 @@ namespace Phantom
 		{
 			grid = new Grid2D<int>(grid);
 
+			var minSize = area.width * area.height * percentageSize.Random;
+
 			foreach (var group in grid.FloodFindGroups(area, (v1, v2) => v1 == v2))
 			{
-				if (group.Count < areaSize && grid.Get(group[0].x, group[0].y) != value)
+				if (group.Count < minSize && grid.Get(group[0].x, group[0].y) != value)
 					foreach (var cell in group)
 						grid.Set(cell.x, cell.y, value);
 			}
