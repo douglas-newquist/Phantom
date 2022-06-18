@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9125cf3ff882cf31c9dd711978042283, type: 3}
-  m_Name: Marching Squares 3-6
+  m_Name: Marching Squares 2-6
   m_EditorClassIdentifier: 
   repeat:
     min: 8
     max: 12
   mask: {fileID: 0}
   n:
-    min: 3
+    min: 2
     max: 6
   alive: 1
   dead: 0
