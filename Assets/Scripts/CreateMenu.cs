@@ -14,6 +14,8 @@ namespace Phantom
 
 		public const string Controller = Game + "Controller/";
 
+		public const string Tiles = Game + "Tiles/";
+
 		public const string Generator = Game + "Generator/";
 
 		public const string NameGenerator = Generator + "Name/";

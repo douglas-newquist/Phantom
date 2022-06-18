@@ -32,10 +32,7 @@ namespace Phantom
 			var cells = new Grid2D<int>(grid);
 
 			foreach (var region in GetRegions(area))
-			{
-				Debug.Log(region);
 				cells = cellGenerator.Apply(cells, region);
-			}
 
 			return cells;
 		}

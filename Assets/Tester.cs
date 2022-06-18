@@ -34,7 +34,16 @@ namespace Phantom
 		// Start is called before the first frame update
 		void Start()
 		{
-			tilemap.SetTile(new Vector3Int(0, 0, 0), tile);
+			for (int x = 0; x < 20; x += 1)
+			{
+				Debug.Log(x);
+				tilemap.SetTile(new Vector3Int(x, 0, 0), tile);
+				tilemap.RefreshTile(new Vector3Int(x, 0, 0));
+			}
+
+			//			tilemap.ResizeBounds();
+			//			tilemap.RefreshAllTiles();
+			//		Debug.Log(tilemap.size);
 
 			for (int i = 0; i < 10; i++)
 				Debug.Log(nameGenerator.Create());
