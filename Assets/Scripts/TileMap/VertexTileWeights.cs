@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[System.Serializable]
-	public class TileWeights
+	public class VertexTileWeights
 	{
 		[Range(-1f, 16f)]
 		public float empty = 0;
@@ -23,26 +23,26 @@ namespace Phantom
 		[Range(-1f, 16f)]
 		public float diagonal = 0.75f;
 
-		public float GetWeight(TileShape shape)
+		public float GetWeight(VertexTileShape shape)
 		{
 			switch (shape)
 			{
-				case TileShape.SmallCorner:
+				case VertexTileShape.SmallCorner:
 					return smallCorner;
 
-				case TileShape.LargeCorner:
+				case VertexTileShape.LargeCorner:
 					return largeCorner;
 
-				case TileShape.Edge:
+				case VertexTileShape.Edge:
 					return edge;
 
-				case TileShape.Diagonal:
+				case VertexTileShape.Diagonal:
 					return diagonal;
 
-				case TileShape.Full:
+				case VertexTileShape.Full:
 					return full;
 
-				case TileShape.Empty:
+				case VertexTileShape.Empty:
 					return empty;
 
 				default:
@@ -50,7 +50,7 @@ namespace Phantom
 			}
 		}
 
-		public float GetWeight(Tile tile)
+		public float GetWeight(VertexTile tile)
 		{
 			return GetWeight(tile.Shape());
 		}

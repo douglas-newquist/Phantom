@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[System.Serializable]
-	public class TileMap : IGrid2D<Tile>
+	public class VertexTileMap : IGrid2D<VertexTile>
 	{
 		[SerializeField]
 		private Grid2D<int> vertices;
@@ -47,7 +47,7 @@ namespace Phantom
 				{
 					for (int y = 0; y < Height; y++)
 					{
-						if (Get(x, y) != Tile.None)
+						if (Get(x, y) != VertexTile.None)
 						{
 							xMin = Mathf.Min(xMin, x);
 							xMax = Mathf.Max(xMax, x);
@@ -64,54 +64,54 @@ namespace Phantom
 			}
 		}
 
-		public TileMap(int width, int height)
+		public VertexTileMap(int width, int height)
 		{
 			Vertices = new Grid2D<int>(width + 1, height + 1);
 		}
 
-		public TileMap(Grid2D<int> vertices)
+		public VertexTileMap(Grid2D<int> vertices)
 		{
 			this.Vertices = vertices;
 		}
 
-		public TileMap(TileMap map) : this(map.Vertices) { }
+		public VertexTileMap(VertexTileMap map) : this(map.Vertices) { }
 
 		public bool InBounds(int x, int y)
 		{
 			return x >= 0 && x < Width && y >= 0 && y < Height;
 		}
 
-		public Tile Get(int x, int y)
+		public VertexTile Get(int x, int y)
 		{
-			Tile tile = Tile.None;
+			VertexTile tile = VertexTile.None;
 
 			if (Vertices.Get(x, y) > 0)
-				tile |= Tile.BottomLeft;
+				tile |= VertexTile.BottomLeft;
 			if (Vertices.Get(x + 1, y) > 0)
-				tile |= Tile.BottomRight;
+				tile |= VertexTile.BottomRight;
 			if (Vertices.Get(x, y + 1) > 0)
-				tile |= Tile.TopLeft;
+				tile |= VertexTile.TopLeft;
 			if (Vertices.Get(x + 1, y + 1) > 0)
-				tile |= Tile.TopRight;
+				tile |= VertexTile.TopRight;
 
 			return tile;
 		}
 
-		public void Set(int x, int y, Tile value)
+		public void Set(int x, int y, VertexTile value)
 		{
-			if (value.HasFlag(Tile.BottomLeft))
+			if (value.HasFlag(VertexTile.BottomLeft))
 				Vertices.Set(x, y, 1);
-			if (value.HasFlag(Tile.BottomRight))
+			if (value.HasFlag(VertexTile.BottomRight))
 				Vertices.Set(x + 1, y, 1);
-			if (value.HasFlag(Tile.TopLeft))
+			if (value.HasFlag(VertexTile.TopLeft))
 				Vertices.Set(x, y + 1, 1);
-			if (value.HasFlag(Tile.TopRight))
+			if (value.HasFlag(VertexTile.TopRight))
 				Vertices.Set(x + 1, y + 1, 1);
 		}
 
-		public IGrid2D<Tile> Clone()
+		public IGrid2D<VertexTile> Clone()
 		{
-			return new TileMap(Vertices);
+			return new VertexTileMap(Vertices);
 		}
 
 		public void Clear()

@@ -12,7 +12,7 @@ namespace Phantom
 
 		public int Height => sprite.texture.height / 4;
 
-		public Color[] GetTilePixels(Tile tile)
+		public Color[] GetTilePixels(VertexTile tile)
 		{
 			int x = (int)tile % 4;
 			int y = (int)tile / 4;
@@ -20,14 +20,14 @@ namespace Phantom
 			return sprite.texture.GetPixels(x * Width, y * Height, Width, Height);
 		}
 
-		public Texture2D Draw(TileMap map)
+		public Texture2D Draw(VertexTileMap map)
 		{
 			var texture = new Texture2D(Width * map.Width, Height * map.Height);
 			DrawOverride(texture, map);
 			return texture;
 		}
 
-		public void DrawOverride(Texture2D texture, TileMap map)
+		public void DrawOverride(Texture2D texture, VertexTileMap map)
 		{
 			for (int x = 0; x < map.Width; x++)
 			{
@@ -42,7 +42,7 @@ namespace Phantom
 			texture.Apply();
 		}
 
-		public Sprite DrawSprite(TileMap map)
+		public Sprite DrawSprite(VertexTileMap map)
 		{
 			var texture = Draw(map);
 			var rect = new Rect(0, 0, texture.width, texture.height);

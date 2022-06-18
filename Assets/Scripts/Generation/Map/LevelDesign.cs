@@ -19,7 +19,7 @@ namespace Phantom
 		{
 		}
 
-		public override IGrid2D<Tuple<Tile, TileObject>> Clone()
+		public override IGrid2D<Tuple<VertexTile, TileObject>> Clone()
 		{
 			return new LevelDesign(this);
 		}

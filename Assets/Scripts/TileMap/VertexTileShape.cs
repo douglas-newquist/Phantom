@@ -1,7 +1,7 @@
 namespace Phantom
 {
 	[System.Flags]
-	public enum TileShape
+	public enum VertexTileShape
 	{
 		None = 0,
 		Empty = 1,

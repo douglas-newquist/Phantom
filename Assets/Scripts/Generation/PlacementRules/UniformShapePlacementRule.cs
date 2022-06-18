@@ -5,7 +5,7 @@ namespace Phantom
 	[CreateAssetMenu(menuName = CreateMenu.PlacementRule + "Uniform Tile Shapes")]
 	public class UniformShapePlacementRule : PlacementRule
 	{
-		public TileShape shape;
+		public VertexTileShape shape;
 
 		public override bool CanPlace(TileObjectSO obj, TileObjectMap map, int x, int y)
 		{

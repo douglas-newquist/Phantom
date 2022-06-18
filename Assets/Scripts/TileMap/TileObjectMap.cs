@@ -4,12 +4,12 @@ using UnityEngine;
 namespace Phantom
 {
 	[System.Serializable]
-	public class TileObjectMap : IGrid2D<Tuple<Tile, TileObject>>
+	public class TileObjectMap : IGrid2D<Tuple<VertexTile, TileObject>>
 	{
 		[SerializeField]
-		private TileMap tiles;
+		private VertexTileMap tiles;
 
-		public TileMap Tiles
+		public VertexTileMap Tiles
 		{
 			get => tiles;
 			set
@@ -50,22 +50,22 @@ namespace Phantom
 
 		public TileObjectMap(int width, int height)
 		{
-			tiles = new TileMap(width, height);
+			tiles = new VertexTileMap(width, height);
 			objects = new Grid2D<TileObject>(width, height, (x, y) => new TileObject());
 		}
 
 		public TileObjectMap(TileObjectMap map)
 		{
-			tiles = new TileMap(map.Tiles);
+			tiles = new VertexTileMap(map.Tiles);
 			objects = new Grid2D<TileObject>(map.Objects);
 		}
 
-		public virtual IGrid2D<Tuple<Tile, TileObject>> Clone()
+		public virtual IGrid2D<Tuple<VertexTile, TileObject>> Clone()
 		{
 			return new TileObjectMap(this);
 		}
 
-		public Tile GetTile(int x, int y)
+		public VertexTile GetTile(int x, int y)
 		{
 			return Tiles.Get(x, y);
 		}
@@ -75,9 +75,9 @@ namespace Phantom
 			return Objects.Get(x, y);
 		}
 
-		public Tuple<Tile, TileObject> Get(int x, int y)
+		public Tuple<VertexTile, TileObject> Get(int x, int y)
 		{
-			return new Tuple<Tile, TileObject>(GetTile(x, y), GetTileObject(x, y));
+			return new Tuple<VertexTile, TileObject>(GetTile(x, y), GetTileObject(x, y));
 		}
 
 		public bool InBounds(int x, int y)
@@ -85,13 +85,13 @@ namespace Phantom
 			return Tiles.InBounds(x, y);
 		}
 
-		public void Set(int x, int y, Tuple<Tile, TileObject> value)
+		public void Set(int x, int y, Tuple<VertexTile, TileObject> value)
 		{
 			SetTile(x, y, value.Item1);
 			SetObject(x, y, value.Item2);
 		}
 
-		public void SetTile(int x, int y, Tile value)
+		public void SetTile(int x, int y, VertexTile value)
 		{
 			Tiles.Set(x, y, value);
 		}
