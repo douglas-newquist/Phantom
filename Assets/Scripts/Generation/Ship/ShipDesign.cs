@@ -33,7 +33,11 @@ namespace Phantom
 		public TileMapSO HullType
 		{
 			get => hullType;
-			set => hullType = value;
+			set
+			{
+				hullType = value;
+				TileLayerMap.VertexTileTiles = hullType.hullTiles;
+			}
 		}
 
 

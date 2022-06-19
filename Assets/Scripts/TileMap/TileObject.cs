@@ -89,7 +89,7 @@ namespace Phantom
 			set => variant = value;
 		}
 
-		public int special;
+		public int[] special;
 
 		public TileObject() { }
 
@@ -114,7 +114,7 @@ namespace Phantom
 			state = Reservation.Free;
 			reference = Vector3Int.zero;
 			variant = 0;
-			special = 0;
+			special = null;
 		}
 	}
 }

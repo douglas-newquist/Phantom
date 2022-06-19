@@ -322,6 +322,7 @@ MonoBehaviour:
   shipDesign:
     name: 
     tileLayerMap:
+      vertexTileTiles: {fileID: 0}
       vertexTiles:
         vertices:
           width: 0
@@ -332,6 +333,7 @@ MonoBehaviour:
   levelDesign:
     name: 
     tileLayerMap:
+      vertexTileTiles: {fileID: 0}
       vertexTiles:
         vertices:
           width: 0
@@ -339,6 +341,13 @@ MonoBehaviour:
           values: 
       layers: []
     tileMapTexture: {fileID: 0}
+  grid:
+    rows: []
+    bounds:
+      x: 0
+      y: 0
+      width: 0
+      height: 0
 --- !u!4 &1387071761
 Transform:
   m_ObjectHideFlags: 0

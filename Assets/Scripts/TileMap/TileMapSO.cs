@@ -10,7 +10,7 @@ namespace Phantom
 
 		public TileMapTexture texture;
 
-		public VertexTilePair<TileBase> hullTiles;
+		public VertexTiles hullTiles;
 
 		public StatPair[] stats;
 

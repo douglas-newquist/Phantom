@@ -26,12 +26,12 @@ namespace Phantom
 		}
 
 		[SerializeField]
-		private TileMapTexture tileMapTexture;
+		private VertexTiles tileMapTexture;
 
-		public TileMapTexture TileMapTexture
+		public VertexTiles VertexTileTexture
 		{
-			get => tileMapTexture;
-			set => tileMapTexture = value;
+			get => TileLayerMap.VertexTileTiles;
+			set => TileLayerMap.VertexTileTiles = value;
 		}
 
 		private List<LevelObject> specialObjects;

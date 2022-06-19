@@ -7,6 +7,17 @@ namespace Phantom
 	[System.Serializable]
 	public partial class TileLayerMap
 	{
+		[SerializeField]
+		private VertexTiles vertexTileTiles;
+
+		/// <summary>
+		/// Set of tile definitions for TileBases foreach vertex tile
+		/// </summary>
+		public VertexTiles VertexTileTiles
+		{
+			get => vertexTileTiles;
+			set => vertexTileTiles = value;
+		}
 
 		[SerializeField]
 		private VertexTileMap vertexTiles;

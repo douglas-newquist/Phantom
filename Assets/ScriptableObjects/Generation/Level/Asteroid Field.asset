@@ -20,6 +20,6 @@ MonoBehaviour:
     max: 128
   nameGenerators:
   - {fileID: 11400000, guid: aecb1200a5651859e9e967f30c9f6ca0, type: 2}
-  vertexGenerators:
-  - {fileID: 11400000, guid: 9e6a362ce3ce79e07bfdb260bba2f7de, type: 2}
-  tileLayerMapGenerators: []
+  vertexGenerators: []
+  tileLayerMapGenerators:
+  - {fileID: 11400000, guid: e23f5a2d86570ab98a37c57c2638f666, type: 2}
