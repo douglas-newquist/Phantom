@@ -22,7 +22,7 @@ namespace Phantom
 			{
 				if (group.Count < minSize && grid.Vertices.Get(group[0].x, group[0].y) != value)
 					foreach (var cell in group)
-						grid.Vertices.Set(cell.x, cell.y, value);
+						grid.Vertices.TrySet(cell.x, cell.y, value);
 			}
 
 			return grid;

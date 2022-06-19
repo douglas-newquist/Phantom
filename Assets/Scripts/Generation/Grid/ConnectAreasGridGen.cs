@@ -89,9 +89,6 @@ namespace Phantom
 					if (room1 != room2)
 						graph.AddEdge(room1, room2, room1.Distance(room2));
 
-			var mst = graph.MST();
-			Debug.Log(mst);
-
 			foreach (var edge in graph.MST())
 			{
 				ConnectRooms(design, edge.source, edge.destination);
@@ -123,7 +120,6 @@ namespace Phantom
 
 		protected void ConnectRooms(VertexTileMap design, Room room1, Room room2)
 		{
-			Debug.Log("Connecting " + room1 + " to " + room2);
 			var start = room1.FindClosestCellToRoom(room2);
 			var end = room2.FindClosestCellToRoom(room1);
 

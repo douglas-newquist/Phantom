@@ -25,9 +25,9 @@ namespace Phantom
 							active++;
 
 					if (active <= n.Min)
-						result.Vertices.Set(x, y, dead);
+						result.Vertices.TrySet(x, y, dead);
 					else if (active >= n.Max)
-						result.Vertices.Set(x, y, alive);
+						result.Vertices.TrySet(x, y, alive);
 				}
 
 			return result;

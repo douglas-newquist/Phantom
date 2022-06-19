@@ -80,7 +80,8 @@ namespace Phantom
 
 			for (int x = 0; x < grid.Width; x++)
 				for (int y = 0; y < grid.Height; y++)
-					result.Set(x, y, function(x, y, grid.Get(x, y)));
+					if (grid.TryGet(x, y, out var value))
+						result.Set(x, y, function(x, y, value));
 
 			return result;
 		}
@@ -94,8 +95,8 @@ namespace Phantom
 						continue;
 
 					var p = new Vector2Int(x, y);
-					if (grid.InBounds(x, y) && p != pos)
-						yield return new KeyValuePair<Vector2Int, T>(p, grid.Get(x, y));
+					if (grid.TryGet(x, y, out var value))
+						yield return new KeyValuePair<Vector2Int, T>(p, value);
 				}
 		}
 
@@ -114,27 +115,29 @@ namespace Phantom
 			group.Add(start);
 
 			var toSearch = new Queue<Vector2Int>();
-			toSearch.Enqueue(start);
+			if (area.Contains(start))
+				toSearch.Enqueue(start);
 
 			while (toSearch.TryDequeue(out var cell))
 			{
-				T v1 = grid.Get(cell.x, cell.y);
+				if (grid.TryGet(cell.x, cell.y, out var v1) == false)
+					continue;
 
 				foreach (var neighbor in grid.GetNeighbors(cell, 1, false))
 				{
 					if (!area.Contains(neighbor.Key))
 						continue;
 
-					if (!grid.InBounds(neighbor.Key.x, neighbor.Key.y))
-						continue;
-
 					if (group.Contains(neighbor.Key) || toSearch.Contains(neighbor.Key))
 						continue;
 
-					if (equals(v1, grid.Get(neighbor.Key.x, neighbor.Key.y)))
+					if (grid.TryGet(neighbor.Key.x, neighbor.Key.y, out var value))
 					{
-						group.Add(neighbor.Key);
-						toSearch.Enqueue(neighbor.Key);
+						if (equals(v1, value))
+						{
+							group.Add(neighbor.Key);
+							toSearch.Enqueue(neighbor.Key);
+						}
 					}
 				}
 			}

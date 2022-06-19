@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathfinder: {fileID: 11400000, guid: 2384066ec36c7ab2786bd8a533bd4972, type: 2}
   diagonal: 0
-  distanceMode: 1
+  distanceMode: 2
   outOfBoundsCost: -1
   activeCost: 5
   inactiveCost: 1

@@ -29,7 +29,7 @@ namespace Phantom
 				for (int y = area.yMin; y <= area.yMax; y++, Y += yStep)
 				{
 					var height = Mathf.PerlinNoise(X, Y);
-					grid.Vertices.Set(x, y, height >= threshold ? high : low);
+					grid.Vertices.TrySet(x, y, height >= threshold ? high : low);
 				}
 			}
 

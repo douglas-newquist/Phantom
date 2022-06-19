@@ -43,7 +43,8 @@ namespace Phantom
 				int y2 = area.yMax;
 
 				for (; y1 < y2; y1++, y2--)
-					grid.Vertices.Set(x, y2, grid.Vertices.Get(x, y1));
+					if (grid.Vertices.TryGet(x, y2, out var vertex))
+						grid.Vertices.Set(x, y2, vertex);
 			}
 		}
 
@@ -55,7 +56,8 @@ namespace Phantom
 				int x2 = area.xMax;
 
 				for (; x1 < x2; x1++, x2--)
-					grid.Vertices.Set(x2, y, grid.Vertices.Get(x1, y));
+					if (grid.Vertices.TryGet(x1, y, out var vertex))
+						grid.Vertices.Set(x2, y, vertex);
 			}
 		}
 	}

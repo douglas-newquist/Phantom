@@ -18,7 +18,7 @@ namespace Phantom
 			for (int x = area.xMin; x <= area.xMax; x++)
 				for (int y = area.yMin; y < area.yMax; y++)
 					if (Random.Range(0f, 1f) <= threshold)
-						grid.Vertices.Set(x, y, value);
+						grid.Vertices.TrySet(x, y, value);
 
 			return grid;
 		}

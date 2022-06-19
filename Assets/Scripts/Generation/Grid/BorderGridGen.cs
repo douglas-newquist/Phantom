@@ -38,8 +38,7 @@ namespace Phantom
 				int depth = bottomBorder.Random;
 
 				for (int yi = 0; yi < depth; yi++)
-					if (grid.Vertices.InBounds(x, area.yMin + yi))
-						grid.Vertices.Set(x, area.yMin + yi, value);
+					grid.Vertices.TrySet(x, area.yMin + yi, value);
 			}
 		}
 
@@ -50,8 +49,7 @@ namespace Phantom
 				int depth = topBorder.Random;
 
 				for (int yi = 0; yi < depth; yi++)
-					if (grid.Vertices.InBounds(x, area.yMax - yi))
-						grid.Vertices.Set(x, area.yMax - yi, value);
+					grid.Vertices.TrySet(x, area.yMax - yi, value);
 			}
 		}
 
@@ -62,8 +60,7 @@ namespace Phantom
 				int depth = leftBorder.Random;
 
 				for (int xi = 0; xi < depth; xi++)
-					if (grid.Vertices.InBounds(area.xMin + xi, y))
-						grid.Vertices.Set(area.xMin + xi, y, value);
+					grid.Vertices.TrySet(area.xMin + xi, y, value);
 			}
 		}
 
@@ -74,8 +71,7 @@ namespace Phantom
 				int depth = rightBorder.Random;
 
 				for (int xi = 0; xi < depth; xi++)
-					if (grid.Vertices.InBounds(area.xMax - xi, y))
-						grid.Vertices.Set(area.xMax - xi, y, value);
+					grid.Vertices.TrySet(area.xMax - xi, y, value);
 			}
 		}
 	}

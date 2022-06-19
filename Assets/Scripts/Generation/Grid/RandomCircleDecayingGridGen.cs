@@ -25,7 +25,7 @@ namespace Phantom
 					distance /= maxDistance;
 					distance *= threshHold;
 					if (Random.Range(0f, 1f) >= distance)
-						grid.Vertices.Set(x, y, value);
+						grid.Vertices.TrySet(x, y, value);
 				}
 			}
 

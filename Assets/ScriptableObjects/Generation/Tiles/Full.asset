@@ -16,4 +16,13 @@ MonoBehaviour:
     min: 1
     max: 1
   mask: {fileID: 0}
-  value: 15
+  xStep:
+    min: 1
+    max: 1
+  yStep:
+    min: 1
+    max: 1
+  tiles:
+    items:
+    - value: 15
+      weight: 1
