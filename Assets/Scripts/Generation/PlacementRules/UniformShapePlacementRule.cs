@@ -7,14 +7,17 @@ namespace Phantom
 	{
 		public VertexTileShape shape;
 
-		public override bool CanPlace(MapTile obj, TileLayerMap map, Vector3Int position)
+		public override bool CanPlace(MapTile tile, TileLayerMap map, Vector3Int position)
 		{
-			for (int xi = 0; xi < obj.Width; xi++)
+			if (!base.CanPlace(tile, map, position))
+				return false;
+
+			for (int x = position.x; x < position.x + tile.Width; x++)
 			{
-				for (int yi = 0; yi < obj.Height; yi++)
+				for (int y = position.y; y < position.y + tile.Height; y++)
 				{
-					if (map.Tiles.TryGet(position.x + xi, position.y + yi, out var tile))
-						if (!shape.HasFlag(tile.Shape()))
+					if (map.Tiles.TryGet(x, y, out var t))
+						if (!shape.HasFlag(t.Shape()))
 							return false;
 				}
 			}

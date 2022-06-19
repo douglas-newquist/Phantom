@@ -18,6 +18,23 @@ namespace Phantom
 
 		public virtual bool CanPlace(TileLayerMap map, Vector3Int position)
 		{
+			for (int xi = 0, x = position.x; xi < Width; xi++, x++)
+			{
+				for (int yi = 0, y = position.y; yi < Height; yi++, y++)
+				{
+					if (!map.InBounds(x, y))
+						return false;
+
+					if (xi != 0 || yi != 0)
+					{
+						var p = new Vector3Int(x, y, position.z);
+						var tile = map.GetTile(p);
+						if (tile != null && tile.Occupied)
+							return false;
+					}
+				}
+			}
+
 			foreach (var rule in placementRules)
 				if (rule != null && !rule.CanPlace(this, map, position))
 					return false;

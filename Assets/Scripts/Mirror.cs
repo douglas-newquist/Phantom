@@ -2,6 +2,10 @@ namespace Phantom
 {
 	public enum Mirror
 	{
-		X, Y, XY, YX
+		None,
+		X,
+		Y,
+		XY,
+		YX
 	}
 }
