@@ -109,5 +109,15 @@ namespace Phantom
 				for (int y = 0; y < Height; y++)
 					GetTileObject(x, y).Clear();
 		}
+
+		public bool TryGet(int x, int y, out Tuple<VertexTile, TileObject> value)
+		{
+			throw new NotImplementedException();
+		}
+
+		public bool TrySet(int x, int y, Tuple<VertexTile, TileObject> value)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

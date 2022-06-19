@@ -69,6 +69,18 @@ namespace Phantom
 			return values[x * width + y];
 		}
 
+		public virtual bool TryGet(int x, int y, out T value)
+		{
+			if (InBounds(x, y))
+			{
+				value = Get(x, y);
+				return true;
+			}
+
+			value = default(T);
+			return false;
+		}
+
 		public virtual T Get(int index)
 		{
 			return values[index];
@@ -80,6 +92,17 @@ namespace Phantom
 		public virtual void Set(int x, int y, T value)
 		{
 			values[x * width + y] = value;
+		}
+
+		public virtual bool TrySet(int x, int y, T value)
+		{
+			if (InBounds(x, y))
+			{
+				Set(x, y, value);
+				return true;
+			}
+
+			return false;
 		}
 
 		public virtual void Set(int index, T value)

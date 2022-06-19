@@ -12,7 +12,9 @@ namespace Phantom
 
 		bool InBounds(int x, int y);
 		T Get(int x, int y);
+		bool TryGet(int x, int y, out T value);
 		void Set(int x, int y, T value);
+		bool TrySet(int x, int y, T value);
 		IGrid2D<T> Clone();
 		void Clear();
 	}

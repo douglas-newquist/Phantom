@@ -97,6 +97,18 @@ namespace Phantom
 			return tile;
 		}
 
+		public bool TryGet(int x, int y, out VertexTile value)
+		{
+			if (InBounds(x, y))
+			{
+				value = Get(x, y);
+				return true;
+			}
+
+			value = VertexTile.None;
+			return false;
+		}
+
 		public void Set(int x, int y, VertexTile value)
 		{
 			if (value.HasFlag(VertexTile.BottomLeft))
@@ -107,6 +119,17 @@ namespace Phantom
 				Vertices.Set(x, y + 1, 1);
 			if (value.HasFlag(VertexTile.TopRight))
 				Vertices.Set(x + 1, y + 1, 1);
+		}
+
+		public bool TrySet(int x, int y, VertexTile value)
+		{
+			if (InBounds(x, y))
+			{
+				Set(x, y, value);
+				return true;
+			}
+
+			return false;
 		}
 
 		public IGrid2D<VertexTile> Clone()
