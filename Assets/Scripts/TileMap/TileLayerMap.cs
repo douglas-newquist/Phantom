@@ -31,22 +31,40 @@ namespace Phantom
 		[SerializeField]
 		private List<TileLayer> layers = new List<TileLayer>();
 
+		/// <summary>
+		/// Number of tiles wide this map is
+		/// </summary>
 		public int Width => Tiles.Width;
 
+		/// <summary>
+		/// Number tile tall this map is
+		/// </summary>
 		public int Height => Tiles.Height;
 
+		/// <summary>
+		/// Size in tiles of this map
+		/// </summary>
 		public Vector2Int Size => Tiles.Size;
 
+		/// <summary>
+		/// Creates a blank map of the given size
+		/// </summary>
 		public TileLayerMap(int width, int height)
 		{
 			vertexTiles = new VertexTileMap(width, height);
 		}
 
+		/// <summary>
+		/// Creates a new layer map using the given vertex tiles
+		/// </summary>
 		public TileLayerMap(VertexTileMap vertexTiles)
 		{
 			this.vertexTiles = vertexTiles;
 		}
 
+		/// <summary>
+		/// Creates a deep copy of this map
+		/// </summary>
 		public TileLayerMap(TileLayerMap tileLayerMap)
 		{
 			vertexTiles = new VertexTileMap(tileLayerMap.Tiles);
