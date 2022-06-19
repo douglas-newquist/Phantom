@@ -17,6 +17,8 @@ namespace Phantom
 
 		public TileLayerMapGenerator[] tileLayerMapGenerators;
 
+		public WeightedList<VertexTiles> textures;
+
 		public LevelDesign Create()
 		{
 			return Create(width.Random, height.Random);
@@ -34,6 +36,8 @@ namespace Phantom
 
 			foreach (var generator in tileLayerMapGenerators)
 				level.TileLayerMap = generator.Apply(level.TileLayerMap);
+
+			level.VertexTileTexture = textures.GetRandom();
 
 			return level;
 		}

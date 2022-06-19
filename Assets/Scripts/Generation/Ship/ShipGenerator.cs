@@ -5,6 +5,12 @@ namespace Phantom
 	[CreateAssetMenu(menuName = CreateMenu.ShipGenerator + "Ship")]
 	public class ShipGenerator : ScriptableObject
 	{
+		[MinMax(1, 32)]
+		public IntRange width = new IntRange(24, 32);
+
+		[MinMax(1, 32)]
+		public IntRange height = new IntRange(24, 32);
+
 		public NameGenerator[] nameGenerators;
 
 		[Tooltip("Vertex generator to use if creating a new design")]
@@ -13,6 +19,11 @@ namespace Phantom
 		public TileLayerMapGenerator[] tileLayerMapGenerators;
 
 		public HullSelectorShipGenerator hullSelector;
+
+		public ShipDesign Create()
+		{
+			return Create(width.Random, height.Random);
+		}
 
 		/// <summary>
 		/// Creates a new ship design of the specified size

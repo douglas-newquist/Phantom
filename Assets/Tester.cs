@@ -38,9 +38,10 @@ namespace Phantom
 		// Start is called before the first frame update
 		void Start()
 		{
-			shipDesign = shipGenerator.Create(32, 32);
+			shipDesign = shipGenerator.Create();
 			shipBuilder.Create(shipDesign);
 			levelDesign = mapGenerator.Create(128, 128);
+			levelBuilder.Create(levelDesign);
 		}
 
 		// Update is called once per frame

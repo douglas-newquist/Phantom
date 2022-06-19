@@ -80,6 +80,7 @@ namespace Phantom
 		public TileLayerMap(TileLayerMap tileLayerMap)
 		{
 			vertexTiles = new VertexTileMap(tileLayerMap.Tiles);
+			vertexTileTiles = tileLayerMap.VertexTileTiles;
 
 			foreach (var layer in tileLayerMap.layers)
 				layers.Add(new TileLayer(layer));
