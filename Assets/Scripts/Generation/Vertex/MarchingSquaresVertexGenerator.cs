@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Marching Squares")]
-	public class MarchingSquaresGridGen : GridGen
+	public class MarchingSquaresVertexGenerator : VertexGenerator
 	{
 		[MinMax(0, 8)]
 		public IntRange n;

@@ -3,15 +3,9 @@ using UnityEngine;
 namespace Phantom
 {
 	[System.Serializable]
-	public abstract class GridGen : Generator<VertexTileMap>
+	public abstract class VertexGenerator : Generator<VertexTileMap>
 	{
-		public enum Mode
-		{
-			Vertices,
-			Tiles
-		}
-
-		public GridGen mask;
+		public VertexGenerator mask;
 
 		public override VertexTileMap Apply(VertexTileMap grid, RectInt area)
 		{

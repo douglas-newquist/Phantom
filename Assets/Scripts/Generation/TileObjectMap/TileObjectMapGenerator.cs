@@ -4,7 +4,7 @@ namespace Phantom
 {
 	public abstract class TileObjectMapGenerator : Generator<TileObjectMap>
 	{
-		public GridGen tileGenerator;
+		public VertexGenerator tileGenerator;
 
 		public override TileObjectMap Apply(TileObjectMap design)
 		{

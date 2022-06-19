@@ -3,9 +3,9 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Sequence")]
-	public class SequenceGridGen : GridGen
+	public class SequenceVertexGenerator : VertexGenerator
 	{
-		public GridGen[] steps;
+		public VertexGenerator[] steps;
 
 		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
 		{

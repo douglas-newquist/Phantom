@@ -6,7 +6,7 @@ namespace Phantom
 	public class ShipGenerator : ScriptableObject
 	{
 		[Tooltip("Vertex generator to use if creating a new design")]
-		public GridGen vertexGenerator;
+		public VertexGenerator vertexGenerator;
 
 		public TileObjectMapGenerator tileObjectMapGenerator;
 

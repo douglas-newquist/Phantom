@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Fill")]
-	public class FillGridGen : GridGen
+	public class FillVertexGenerator : VertexGenerator
 	{
 		[MinMax(1, 16)]
 		public IntRange xStep = new IntRange(1, 1);

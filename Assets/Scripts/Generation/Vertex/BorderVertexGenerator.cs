@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Border")]
-	public class BorderGridGen : GridGen
+	public class BorderVertexGenerator : VertexGenerator
 	{
 		[MinMax(0, 32)]
 		public IntRange topBorder = new IntRange(3, 3);

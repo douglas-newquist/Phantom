@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Grid")]
-	public class GridGridGen : GridGen
+	public class GridVertexGenerator : VertexGenerator
 	{
 		[MinMax(1, 64)]
 		public IntRange x = new IntRange(2, 4), y = new IntRange(2, 4);
@@ -23,9 +23,9 @@ namespace Phantom
 			CellSize
 		}
 
-		public GridGen cellGenerator;
+		public VertexGenerator cellGenerator;
 
-		public GridGen borderGenerator;
+		public VertexGenerator borderGenerator;
 
 		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
 		{

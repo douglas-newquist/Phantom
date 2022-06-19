@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Flood Fill Small")]
-	public class FloodFillGridGen : GridGen
+	public class FloodFillVertexGenerator : VertexGenerator
 	{
 		[MinMax(0f, 0.1f)]
 		public FloatRange percentageSize = 0.01f;

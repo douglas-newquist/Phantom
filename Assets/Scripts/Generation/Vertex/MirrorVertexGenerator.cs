@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Mirror")]
-	public class MirrorGridGen : GridGen
+	public class MirrorVertexGenerator : VertexGenerator
 	{
 		public Mirror mirror;
 

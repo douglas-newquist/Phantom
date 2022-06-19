@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Invert")]
-	public class InvertGridGen : GridGen
+	public class InvertVertexGenerator : VertexGenerator
 	{
 		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
 		{

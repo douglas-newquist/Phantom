@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Mask")]
-	public class MaskGridGen : GridGen
+	public class MaskGridGen : VertexGenerator
 	{
 		public int positiveMaskValue = 1;
 

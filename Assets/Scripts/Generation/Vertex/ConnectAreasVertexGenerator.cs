@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Connect Areas")]
-	public class ConnectAreasGridGen : GridGen
+	public class ConnectAreasVertexGenerator : VertexGenerator
 	{
 		public class Room
 		{

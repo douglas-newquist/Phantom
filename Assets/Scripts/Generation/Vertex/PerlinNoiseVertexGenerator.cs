@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Perlin Noise")]
-	public class PerlinNoiseGridGen : GridGen
+	public class PerlinNoiseVertexGenerator : VertexGenerator
 	{
 		[MinMax(0, 1)]
 		public FloatRange thresholdHeight = new FloatRange(0f, 1f);

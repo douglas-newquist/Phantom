@@ -3,9 +3,9 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Selector")]
-	public class SelectorGridGen : GridGen
+	public class SelectorVertexGenerator : VertexGenerator
 	{
-		public WeightedList<GridGen> choices;
+		public WeightedList<VertexGenerator> choices;
 
 		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
 		{

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Random Uniform")]
-	public class FillRandomUniformGridGen : GridGen
+	public class FillRandomUniformVertexGenerator : VertexGenerator
 	{
 		[MinMax(0, 1)]
 		public FloatRange chance = new FloatRange(0.4f, 0.6f);

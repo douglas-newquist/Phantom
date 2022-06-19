@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Decaying Circle")]
-	public class RandomCircleDecayingGridGen : GridGen
+	public class RandomCircleDecayingGridGen : VertexGenerator
 	{
 		[MinMax(0, 1)]
 		public FloatRange chance = new FloatRange(0.5f, 0.5f);

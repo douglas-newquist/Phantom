@@ -3,12 +3,12 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Random Sub Region")]
-	public class RandomRegionGridGen : GridGen
+	public class RandomRegionVertexGenerator : VertexGenerator
 	{
 		[MinMax(0f, 1f)]
 		public FloatRange width = 0.5f, height = 0.5f;
 
-		public GridGen regionGenerator;
+		public VertexGenerator regionGenerator;
 
 		public override VertexTileMap ApplyOnce(VertexTileMap design, RectInt area)
 		{
