@@ -21,14 +21,12 @@ namespace Phantom
 
 		public virtual void Place(TileLayerMap map, Vector3Int position)
 		{
-			/**
-			map.Get(x, y).Item2.Object = this;
+			map.SetTile(position, new TileObject(this));
 
 			for (int xi = 0; xi < Width; xi++)
 				for (int yi = 0; yi < Height; yi++)
 					if (xi != 0 || yi != 0)
-						map.Get(x + xi, y + yi).Item2.Reference = new Vector2Int(x, y);
-						*/
+						map.SetTile(position, new TileObject(position));
 		}
 
 		public abstract GameObject Place(GameObject obj, TileLayerMap map, int x, int y, Transform container);

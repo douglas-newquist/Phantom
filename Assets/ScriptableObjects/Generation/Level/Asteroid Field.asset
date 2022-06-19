@@ -9,12 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2182169dc624498696dff72fa044080, type: 3}
+  m_Script: {fileID: 11500000, guid: acfcc01607c6f5aa4945a6ffec770b5d, type: 3}
   m_Name: Asteroid Field
   m_EditorClassIdentifier: 
-  repeat:
-    min: 1
-    max: 1
-  tileGenerator: {fileID: 11400000, guid: d43737443be7ddf9f84057ae0a5d62c8, type: 2}
-  generators:
-  - {fileID: 11400000, guid: 6e4b5fd6e4f758af2bb5e918627a04a0, type: 2}
+  width:
+    min: 64
+    max: 128
+  height:
+    min: 64
+    max: 128
+  nameGenerators:
+  - {fileID: 11400000, guid: aecb1200a5651859e9e967f30c9f6ca0, type: 2}
+  vertexGenerators:
+  - {fileID: 11400000, guid: 9e6a362ce3ce79e07bfdb260bba2f7de, type: 2}
+  tileLayerMapGenerators: []

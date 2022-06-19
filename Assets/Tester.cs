@@ -16,7 +16,6 @@ namespace Phantom
 		public ShipBuilder shipBuilder;
 		public LevelGenerator mapGenerator;
 		public LevelBuilder levelBuilder;
-		private LevelDesign levelDesign;
 		public Color[] colors;
 		public TilePathAgent pathAgent;
 		public Path<Vector2Int> path;
@@ -31,13 +30,16 @@ namespace Phantom
 
 		public TileMapSO weights;
 
-		public TileLayerMap layerMap;
+		public ShipDesign shipDesign;
+		public LevelDesign levelDesign;
 
 		GameObject ship;
 
 		// Start is called before the first frame update
 		void Start()
 		{
+			shipDesign = shipGenerator.Create(32, 32);
+			levelDesign = mapGenerator.Create(128, 128);
 		}
 
 		// Update is called once per frame

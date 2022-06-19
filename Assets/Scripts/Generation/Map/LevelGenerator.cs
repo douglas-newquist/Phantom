@@ -8,11 +8,19 @@ namespace Phantom
 		[MinMax(1, Level.SizeLimit)]
 		public IntRange width = new IntRange(Level.SizeLimit / 2, Level.SizeLimit);
 
+		[MinMax(1, Level.SizeLimit)]
+		public IntRange height = new IntRange(Level.SizeLimit / 2, Level.SizeLimit);
+
 		public NameGenerator[] nameGenerators;
 
 		public VertexGenerator[] vertexGenerators;
 
 		public TileLayerMapGenerator[] tileLayerMapGenerators;
+
+		public LevelDesign Create()
+		{
+			return Create(width.Random, height.Random);
+		}
 
 		public LevelDesign Create(int width, int height)
 		{

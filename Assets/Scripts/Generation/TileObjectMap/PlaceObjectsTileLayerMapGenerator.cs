@@ -9,6 +9,7 @@ namespace Phantom
 		[MinMax(0, 1)]
 		public FloatRange density = 0.5f;
 
+		[MinMax(-8, 8)]
 		public IntRange zRange = new IntRange(0, 0);
 
 		public TileObjectSO[] objects;

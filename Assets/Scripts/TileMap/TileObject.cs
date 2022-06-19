@@ -61,12 +61,12 @@ namespace Phantom
 		public bool Occupied => !NotOccupied;
 
 		[SerializeField]
-		private Vector2Int reference;
+		private Vector3Int reference;
 
 		/// <summary>
 		/// Points to the cell containing the actual object
 		/// </summary>
-		public Vector2Int Reference
+		public Vector3Int Reference
 		{
 			get => reference;
 			set
@@ -91,11 +91,28 @@ namespace Phantom
 
 		public int special;
 
+		public TileObject() { }
+
+		public TileObject(TileObjectSO obj)
+		{
+			Object = obj;
+		}
+
+		public TileObject(Reservation state)
+		{
+			State = state;
+		}
+
+		public TileObject(Vector3Int reference)
+		{
+			Reference = reference;
+		}
+
 		public void Clear()
 		{
 			obj = null;
 			state = Reservation.Free;
-			reference = Vector2Int.zero;
+			reference = Vector3Int.zero;
 			variant = 0;
 			special = 0;
 		}
