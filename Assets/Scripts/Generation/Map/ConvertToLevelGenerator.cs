@@ -14,7 +14,7 @@ namespace Phantom
 		{
 			var level = new LevelDesign(width, height);
 			if (tileGenerator != null)
-				level.Tiles.Vertices = tileGenerator.Apply(level.Tiles.Vertices);
+				level.Tiles = tileGenerator.Apply(level.Tiles);
 			return Apply(level);
 		}
 	}

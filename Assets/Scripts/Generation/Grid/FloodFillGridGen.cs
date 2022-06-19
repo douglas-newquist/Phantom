@@ -5,24 +5,24 @@ namespace Phantom
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Flood Fill Small")]
 	public class FloodFillGridGen : GridGen
 	{
-		[MinMax(0f, 0.5f)]
-		public FloatRange percentageSize = 0.05f;
+		[MinMax(0f, 0.1f)]
+		public FloatRange percentageSize = 0.01f;
 
 		public bool areasSmallerThanPercentage = true;
 
 		public int value = 1;
 
-		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
 		{
-			grid = new Grid2D<int>(grid);
+			grid = new VertexTileMap(grid);
 
 			var minSize = area.width * area.height * percentageSize.Random;
 
-			foreach (var group in grid.FloodFindGroups(area, (v1, v2) => v1 == v2))
+			foreach (var group in grid.Vertices.FloodFindGroups(area, (v1, v2) => v1 == v2))
 			{
-				if (group.Count < minSize && grid.Get(group[0].x, group[0].y) != value)
+				if (group.Count < minSize && grid.Vertices.Get(group[0].x, group[0].y) != value)
 					foreach (var cell in group)
-						grid.Set(cell.x, cell.y, value);
+						grid.Vertices.Set(cell.x, cell.y, value);
 			}
 
 			return grid;

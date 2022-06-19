@@ -19,9 +19,9 @@ namespace Phantom
 
 		public int value = 1;
 
-		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
 		{
-			grid = new Grid2D<int>(grid);
+			grid = new VertexTileMap(grid);
 
 			TopBorder(grid, area);
 			BottomBorder(grid, area);
@@ -31,51 +31,51 @@ namespace Phantom
 			return grid;
 		}
 
-		public void TopBorder(Grid2D<int> grid, RectInt area)
+		public void BottomBorder(VertexTileMap grid, RectInt area)
 		{
-			for (int x = area.xMin; x < area.xMax; x++)
+			for (int x = area.xMin; x <= area.xMax; x++)
+			{
+				int depth = bottomBorder.Random;
+
+				for (int yi = 0; yi < depth; yi++)
+					if (grid.Vertices.InBounds(x, area.yMin + yi))
+						grid.Vertices.Set(x, area.yMin + yi, value);
+			}
+		}
+
+		public void TopBorder(VertexTileMap grid, RectInt area)
+		{
+			for (int x = area.xMin; x <= area.xMax; x++)
 			{
 				int depth = topBorder.Random;
 
 				for (int yi = 0; yi < depth; yi++)
-					if (grid.InBounds(x, area.yMin + yi))
-						grid.Set(x, area.yMin + yi, value);
+					if (grid.Vertices.InBounds(x, area.yMax - yi))
+						grid.Vertices.Set(x, area.yMax - yi, value);
 			}
 		}
 
-		public void BottomBorder(Grid2D<int> grid, RectInt area)
+		public void LeftBorder(VertexTileMap grid, RectInt area)
 		{
-			for (int x = area.xMin; x < area.xMax; x++)
-			{
-				int depth = topBorder.Random;
-
-				for (int yi = 0; yi < depth; yi++)
-					if (grid.InBounds(x, area.yMax - yi - 1))
-						grid.Set(x, area.yMax - yi - 1, value);
-			}
-		}
-
-		public void LeftBorder(Grid2D<int> grid, RectInt area)
-		{
-			for (int y = area.yMin; y < area.yMax; y++)
+			for (int y = area.yMin; y <= area.yMax; y++)
 			{
 				int depth = leftBorder.Random;
 
 				for (int xi = 0; xi < depth; xi++)
-					if (grid.InBounds(area.xMin + xi, y))
-						grid.Set(area.xMin + xi, y, value);
+					if (grid.Vertices.InBounds(area.xMin + xi, y))
+						grid.Vertices.Set(area.xMin + xi, y, value);
 			}
 		}
 
-		public void RightBorder(Grid2D<int> grid, RectInt area)
+		public void RightBorder(VertexTileMap grid, RectInt area)
 		{
-			for (int y = area.yMin; y < area.yMax; y++)
+			for (int y = area.yMin; y <= area.yMax; y++)
 			{
 				int depth = rightBorder.Random;
 
 				for (int xi = 0; xi < depth; xi++)
-					if (grid.InBounds(area.xMax - xi - 1, y))
-						grid.Set(area.xMax - xi - 1, y, value);
+					if (grid.Vertices.InBounds(area.xMax - xi, y))
+						grid.Vertices.Set(area.xMax - xi, y, value);
 			}
 		}
 	}

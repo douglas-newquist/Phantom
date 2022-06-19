@@ -5,15 +5,15 @@ namespace Phantom
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Fill")]
 	public class FillGridGen : GridGen
 	{
-		public int value = 1;
+		public WeightedList<VertexTile> tiles;
 
-		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
 		{
-			grid = new Grid2D<int>(grid);
+			grid = new VertexTileMap(grid);
 
 			for (int x = area.xMin; x < area.xMax; x++)
 				for (int y = area.yMin; y < area.yMax; y++)
-					grid.Set(x, y, value);
+					grid.Set(x, y, tiles.GetRandom());
 
 			return grid;
 		}

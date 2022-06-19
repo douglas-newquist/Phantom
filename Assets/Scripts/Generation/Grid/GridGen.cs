@@ -3,11 +3,17 @@ using UnityEngine;
 namespace Phantom
 {
 	[System.Serializable]
-	public abstract class GridGen : Generator<Grid2D<int>>
+	public abstract class GridGen : Generator<VertexTileMap>
 	{
+		public enum Mode
+		{
+			Vertices,
+			Tiles
+		}
+
 		public GridGen mask;
 
-		public override Grid2D<int> Apply(Grid2D<int> grid, RectInt area)
+		public override VertexTileMap Apply(VertexTileMap grid, RectInt area)
 		{
 			var result = base.Apply(grid, area);
 
@@ -17,27 +23,27 @@ namespace Phantom
 			return result;
 		}
 
-		public override Grid2D<int> Apply(Grid2D<int> grid)
+		public override VertexTileMap Apply(VertexTileMap grid)
 		{
 			var area = new RectInt(0, 0, grid.Width, grid.Height);
 			return Apply(grid, area);
 		}
 
-		public override Grid2D<int> Create(int width, int height)
+		public override VertexTileMap Create(int width, int height)
 		{
-			return Apply(new Grid2D<int>(width, height));
+			return Apply(new VertexTileMap(width, height));
 		}
 
-		public virtual Grid2D<int> ApplyMask(Grid2D<int> negative, Grid2D<int> positive, RectInt area)
+		public virtual VertexTileMap ApplyMask(VertexTileMap negative, VertexTileMap positive, RectInt area)
 		{
-			var result = new Grid2D<int>(negative);
+			var result = new VertexTileMap(negative);
 
 			var gridMask = Create(area.width, area.height);
 
 			for (int x = area.xMin, xMask = 0; x < area.xMax; x++, xMask++)
 				for (int y = area.yMin, yMask = 0; y < area.yMax; y++, yMask++)
-					if (gridMask.Get(xMask, yMask) == 1)
-						result.Set(x, y, positive.Get(x, y));
+					if (gridMask.Vertices.Get(xMask, yMask) == 1)
+						result.Vertices.Set(x, y, positive.Vertices.Get(x, y));
 
 			return result;
 		}

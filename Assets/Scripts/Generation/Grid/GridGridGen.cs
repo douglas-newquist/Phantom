@@ -27,9 +27,9 @@ namespace Phantom
 
 		public GridGen borderGenerator;
 
-		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
 		{
-			var cells = new Grid2D<int>(grid);
+			var cells = new VertexTileMap(grid);
 
 			foreach (var region in GetRegions(area))
 				cells = cellGenerator.Apply(cells, region);

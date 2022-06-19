@@ -12,9 +12,9 @@ namespace Phantom
 
 		public int high = 1, low = 0;
 
-		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
 		{
-			grid = new Grid2D<int>(grid);
+			grid = new VertexTileMap(grid);
 
 			float xScale = scale.Random, yScale = scale.Random;
 			float xStep = xScale / area.width;
@@ -23,13 +23,13 @@ namespace Phantom
 			float X = Random.Range(0f, 1f);
 			float threshold = thresholdHeight.Random;
 
-			for (int x = area.xMin; x < area.xMax; x++, X += xStep)
+			for (int x = area.xMin; x <= area.xMax; x++, X += xStep)
 			{
 				float Y = yStart;
-				for (int y = area.yMin; y < area.yMax; y++, Y += yStep)
+				for (int y = area.yMin; y <= area.yMax; y++, Y += yStep)
 				{
 					var height = Mathf.PerlinNoise(X, Y);
-					grid.Set(x, y, height >= threshold ? high : low);
+					grid.Vertices.Set(x, y, height >= threshold ? high : low);
 				}
 			}
 

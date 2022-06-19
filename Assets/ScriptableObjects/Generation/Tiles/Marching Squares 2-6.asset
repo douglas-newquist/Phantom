@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Marching Squares 2-6
   m_EditorClassIdentifier: 
   repeat:
-    min: 8
-    max: 12
+    min: 12
+    max: 16
   mask: {fileID: 0}
   n:
     min: 2

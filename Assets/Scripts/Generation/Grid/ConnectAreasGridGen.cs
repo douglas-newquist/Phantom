@@ -60,9 +60,9 @@ namespace Phantom
 		[Range(1, 16)]
 		public float pathRadius = 2;
 
-		public override Grid2D<int> ApplyOnce(Grid2D<int> design, RectInt area)
+		public override VertexTileMap ApplyOnce(VertexTileMap design, RectInt area)
 		{
-			design = new Grid2D<int>(design);
+			design = new VertexTileMap(design);
 
 			var rooms = GetRooms(design, area);
 
@@ -83,12 +83,12 @@ namespace Phantom
 			return design;
 		}
 
-		protected List<Room> GetRooms(Grid2D<int> design, RectInt area)
+		protected List<Room> GetRooms(VertexTileMap design, RectInt area)
 		{
 			var rooms = new List<Room>();
 
-			foreach (var region in design.FloodFindGroups(area, (a, b) => a == b))
-				if (design.Get(region[0].x, region[0].y) == findAreasWith)
+			foreach (var region in design.Vertices.FloodFindGroups(area, (a, b) => a == b))
+				if (design.Vertices.Get(region[0].x, region[0].y) == findAreasWith)
 					rooms.Add(new Room(region));
 
 			return rooms;
@@ -104,22 +104,22 @@ namespace Phantom
 			return end;
 		}
 
-		protected void ConnectRooms(Grid2D<int> design, Room room1, Room room2)
+		protected void ConnectRooms(VertexTileMap design, Room room1, Room room2)
 		{
 			var start = room1.FindClosestCellToRoom(room2);
 			var end = room2.FindClosestCellToRoom(room1);
 
-			var path = pathAgent.FindPath(design, start, end);
+			var path = pathAgent.FindPath(design.Vertices, start, end);
 
 			if (path.Status == PathStatus.Found)
 				PlacePath(design, path);
 		}
 
-		protected void PlacePath(Grid2D<int> design, Path<Vector2Int> path)
+		protected void PlacePath(VertexTileMap design, Path<Vector2Int> path)
 		{
 			foreach (var point in path)
 			{
-				design.Set(point, connectWith);
+				design.Vertices.Set(point, connectWith);
 			}
 		}
 	}

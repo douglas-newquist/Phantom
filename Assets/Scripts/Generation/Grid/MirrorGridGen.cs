@@ -7,9 +7,9 @@ namespace Phantom
 	{
 		public Mirror mirror;
 
-		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
 		{
-			grid = new Grid2D<int>(grid);
+			grid = new VertexTileMap(grid);
 
 			switch (mirror)
 			{
@@ -35,27 +35,27 @@ namespace Phantom
 			return grid;
 		}
 
-		public void MirrorX(Grid2D<int> grid, RectInt area)
+		public void MirrorX(VertexTileMap grid, RectInt area)
 		{
-			for (int x = area.xMin; x < area.xMax; x++)
+			for (int x = area.xMin; x <= area.xMax; x++)
 			{
 				int y1 = area.yMin;
-				int y2 = area.yMax - 1;
+				int y2 = area.yMax;
 
 				for (; y1 < y2; y1++, y2--)
-					grid.Set(x, y2, grid.Get(x, y1));
+					grid.Vertices.Set(x, y2, grid.Vertices.Get(x, y1));
 			}
 		}
 
-		public void MirrorY(Grid2D<int> grid, RectInt area)
+		public void MirrorY(VertexTileMap grid, RectInt area)
 		{
-			for (int y = area.yMin; y < area.yMax; y++)
+			for (int y = area.yMin; y <= area.yMax; y++)
 			{
 				int x1 = area.xMin;
-				int x2 = area.xMax - 1;
+				int x2 = area.xMax;
 
 				for (; x1 < x2; x1++, x2--)
-					grid.Set(x2, y, grid.Get(x1, y));
+					grid.Vertices.Set(x2, y, grid.Vertices.Get(x1, y));
 			}
 		}
 	}

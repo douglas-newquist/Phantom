@@ -26,7 +26,7 @@ namespace Phantom
 			if (tileObjectMapGenerator == null)
 				throw new System.ArgumentNullException("Tile object map generator not assigned on " + this.name + ".");
 
-			design.Tiles.Vertices = vertexGenerator.Apply(design.Tiles.Vertices);
+			design.Tiles = vertexGenerator.Apply(design.Tiles);
 			design = tileObjectMapGenerator.Apply(design) as ShipDesign;
 
 			if (design == null)

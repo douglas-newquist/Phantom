@@ -10,22 +10,22 @@ namespace Phantom
 
 		public int value = 1;
 
-		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
 		{
-			grid = new Grid2D<int>(grid);
+			grid = new VertexTileMap(grid);
 			var center = area.center;
 			var maxDistance = area.xMax - center.x;
 			var threshHold = chance.Random;
 
-			for (int x = area.xMin; x < area.xMax; x++)
+			for (int x = area.xMin; x <= area.xMax; x++)
 			{
-				for (int y = area.yMin; y < area.yMax; y++)
+				for (int y = area.yMin; y <= area.yMax; y++)
 				{
 					var distance = Vector2.Distance(center, new Vector2(x, y));
 					distance /= maxDistance;
 					distance *= threshHold;
 					if (Random.Range(0f, 1f) >= distance)
-						grid.Set(x, y, value);
+						grid.Vertices.Set(x, y, value);
 				}
 			}
 

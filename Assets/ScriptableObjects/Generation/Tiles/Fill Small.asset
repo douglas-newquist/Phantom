@@ -17,7 +17,7 @@ MonoBehaviour:
     max: 1
   mask: {fileID: 0}
   percentageSize:
-    min: 0.02
-    max: 0.02
+    min: 0
+    max: 0.005
   areasSmallerThanPercentage: 1
   value: 1

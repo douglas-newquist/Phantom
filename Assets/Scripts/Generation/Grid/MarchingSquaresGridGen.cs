@@ -12,22 +12,22 @@ namespace Phantom
 
 		public int alive = 1, dead = 0;
 
-		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
 		{
-			var result = new Grid2D<int>(grid);
+			var result = new VertexTileMap(grid);
 
-			for (int x = area.xMin; x < area.xMax; x++)
-				for (int y = area.yMin; y < area.yMax; y++)
+			for (int x = area.xMin; x <= area.xMax; x++)
+				for (int y = area.yMin; y <= area.yMax; y++)
 				{
 					int active = 0;
-					foreach (var neighbor in grid.GetNeighbors(new Vector2Int(x, y), 1, true))
+					foreach (var neighbor in grid.Vertices.GetNeighbors(new Vector2Int(x, y), 1, true))
 						if (neighbor.Value == alive)
 							active++;
 
 					if (active <= n.Min)
-						result.Set(x, y, dead);
-					else if (active > n.Max)
-						result.Set(x, y, alive);
+						result.Vertices.Set(x, y, dead);
+					else if (active >= n.Max)
+						result.Vertices.Set(x, y, alive);
 				}
 
 			return result;

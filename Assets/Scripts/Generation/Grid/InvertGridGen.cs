@@ -5,16 +5,16 @@ namespace Phantom
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Invert")]
 	public class InvertGridGen : GridGen
 	{
-		public override Grid2D<int> ApplyOnce(Grid2D<int> grid, RectInt area)
+		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
 		{
-			grid = new Grid2D<int>(grid);
+			grid = new VertexTileMap(grid);
 
-			for (int x = area.xMin; x < area.xMax; x++)
-				for (int y = area.yMin; y < area.yMax; y++)
-					if (grid.Get(x, y) == 0)
-						grid.Set(x, y, 1);
+			for (int x = area.xMin; x <= area.xMax; x++)
+				for (int y = area.yMin; y <= area.yMax; y++)
+					if (grid.Vertices.Get(x, y) == 0)
+						grid.Vertices.Set(x, y, 1);
 					else
-						grid.Set(x, y, 0);
+						grid.Vertices.Set(x, y, 0);
 
 			return grid;
 		}

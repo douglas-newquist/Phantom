@@ -10,7 +10,7 @@ namespace Phantom
 
 		public GridGen regionGenerator;
 
-		public override Grid2D<int> ApplyOnce(Grid2D<int> design, RectInt area)
+		public override VertexTileMap ApplyOnce(VertexTileMap design, RectInt area)
 		{
 			int regionWidth = (int)(area.width * width.Random);
 			int regionHeight = (int)(area.height * height.Random);
