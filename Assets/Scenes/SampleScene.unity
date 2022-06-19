@@ -319,6 +319,23 @@ MonoBehaviour:
   tilemap: {fileID: 1531368453}
   tile: {fileID: 11400000, guid: 48b8f0c191b317a2bb9fe8465794c784, type: 2}
   weights: {fileID: 11400000, guid: bb0e0ae8988d8bcc694708203a2f10ce, type: 2}
+  layerMap:
+    vertexTiles:
+      vertices:
+        width: 0
+        height: 0
+        values: 
+    layers:
+    - z: 0
+      tiles:
+        width: 0
+        height: 0
+        values: []
+    - z: 0
+      tiles:
+        width: 0
+        height: 0
+        values: []
 --- !u!4 &1387071761
 Transform:
   m_ObjectHideFlags: 0

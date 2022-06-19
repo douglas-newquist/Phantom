@@ -31,6 +31,8 @@ namespace Phantom
 
 		public TileMapSO weights;
 
+		public TileLayerMap layerMap;
+
 		GameObject ship;
 
 		// Start is called before the first frame update
