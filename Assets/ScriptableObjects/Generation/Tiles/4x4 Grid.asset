@@ -29,5 +29,5 @@ MonoBehaviour:
     min: 0
     max: 0
   slice: 0
-  cellGenerator: {fileID: 11400000, guid: 9e6a362ce3ce79e07bfdb260bba2f7de, type: 2}
+  cellGenerator: {fileID: 11400000, guid: 447aa6359d5b5372fab028921289cab0, type: 2}
   borderGenerator: {fileID: 0}

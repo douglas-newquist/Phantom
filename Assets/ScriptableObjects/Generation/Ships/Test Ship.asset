@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b42d47981599c4f4b3df4e2cfc56980, type: 3}
   m_Name: Test Ship
   m_EditorClassIdentifier: 
+  width:
+    min: 24
+    max: 32
+  height:
+    min: 24
+    max: 32
   nameGenerators:
   - {fileID: 11400000, guid: aecb1200a5651859e9e967f30c9f6ca0, type: 2}
   vertexGenerators:
@@ -21,4 +27,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 04409bde5b9402a86908ace3a52177f5, type: 2}
   tileLayerMapGenerators:
   - {fileID: 11400000, guid: 6895ac771b60c2bc7950877ac4470431, type: 2}
-  hullSelector: {fileID: 11400000, guid: 4b06774c3d71b6f4da6dccbe1244f390, type: 2}
+  hulls:
+    items:
+    - value: {fileID: 11400000, guid: bb0e0ae8988d8bcc694708203a2f10ce, type: 2}
+      weight: 1

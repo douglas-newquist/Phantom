@@ -5,11 +5,11 @@ namespace Phantom
 	[CreateAssetMenu(menuName = CreateMenu.ShipGenerator + "Ship")]
 	public class ShipGenerator : ScriptableObject
 	{
-		[MinMax(1, 32)]
-		public IntRange width = new IntRange(24, 32);
+		[MinMax(1, ShipDesign.SizeLimit)]
+		public IntRange width = new IntRange(24, ShipDesign.SizeLimit);
 
-		[MinMax(1, 32)]
-		public IntRange height = new IntRange(24, 32);
+		[MinMax(1, ShipDesign.SizeLimit)]
+		public IntRange height = new IntRange(24, ShipDesign.SizeLimit);
 
 		public NameGenerator[] nameGenerators;
 
@@ -18,7 +18,7 @@ namespace Phantom
 
 		public TileLayerMapGenerator[] tileLayerMapGenerators;
 
-		public HullSelectorShipGenerator hullSelector;
+		public WeightedList<TileMapSO> hulls;
 
 		public ShipDesign Create()
 		{
@@ -44,7 +44,7 @@ namespace Phantom
 			foreach (var generator in tileLayerMapGenerators)
 				design.TileLayerMap = generator.Apply(design.TileLayerMap);
 
-			design.HullType = hullSelector.GetHull();
+			design.HullType = hulls.GetRandom();
 
 			return design;
 		}

@@ -9,6 +9,8 @@ namespace Phantom
 	[System.Serializable]
 	public class ShipDesign
 	{
+		public const int SizeLimit = 32;
+
 		[SerializeField]
 		private string name;
 
