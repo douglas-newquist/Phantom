@@ -7,30 +7,46 @@ namespace Phantom
 	/// Defines specific information on how to construct a ship
 	/// </summary>
 	[System.Serializable]
-	public class ShipDesign : TileObjectMap
+	public class ShipDesign
 	{
 		[SerializeField]
 		private string name;
 
-		public string Name { get => name; set => name = value; }
-
-		public TileMapSO hullType;
-
-
-		public ShipDesign(int width, int height) : base(width, height)
+		public string Name
 		{
+			get => name;
+			set => name = value;
 		}
 
-		public ShipDesign(TileObjectMap map) : base(map) { }
+		[SerializeField]
+		private TileLayerMap tileLayerMap;
 
-		public ShipDesign(ShipDesign design) : base(design)
+		public TileLayerMap TileLayerMap
 		{
-			hullType = design.hullType;
+			get => tileLayerMap;
+			set => tileLayerMap = value;
 		}
 
-		public override IGrid2D<Tuple<VertexTile, TileObject>> Clone()
+		[SerializeField]
+		private TileMapSO hullType;
+
+		public TileMapSO HullType
 		{
-			return new ShipDesign(this);
+			get => hullType;
+			set => hullType = value;
+		}
+
+
+		public ShipDesign(int width, int height)
+		{
+			TileLayerMap = new TileLayerMap(width, height);
+		}
+
+		public ShipDesign(ShipDesign design)
+		{
+			TileLayerMap = new TileLayerMap(design.TileLayerMap);
+			Name = design.Name;
+			hullType = design.HullType;
 		}
 	}
 }

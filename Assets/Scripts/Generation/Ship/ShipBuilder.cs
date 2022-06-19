@@ -6,8 +6,9 @@ namespace Phantom
 	/// Creates a GameObject from a ShipDesign
 	/// </summary>
 	[CreateAssetMenu(menuName = CreateMenu.Generator + "Ship Builder")]
-	public class ShipBuilder : TileObjectMapBuilder
+	public class ShipBuilder : ScriptableObject
 	{
+		/*
 		public override GameObject Create(TileObjectMap map)
 		{
 			var design = map as ShipDesign;
@@ -19,7 +20,7 @@ namespace Phantom
 			return ship;
 		}
 
-		public GameObject Create(TileObjectMapGenerator generator, int width, int height)
+		public GameObject Create(TileLayerMapGenerator generator, int width, int height)
 		{
 			return Create(generator.Create(width, height));
 		}
@@ -39,12 +40,12 @@ namespace Phantom
 			container.transform.position -= (Vector3)design.BoundingBox.center;
 			container.transform.SetParent(gameObject.transform);
 
-			var sprite = design.hullType.GetSprite(design.Tiles);
+			var sprite = design.HullType.GetSprite(design.Tiles);
 			var renderer = container.AddComponent<SpriteRenderer>();
 			renderer.sprite = sprite;
 
 			var stats = gameObject.GetComponent<StatSheet>();
-			design.hullType.ApplyStats(stats, design.Tiles);
-		}
+			design.HullType.ApplyStats(stats, design.Tiles);
+		}*/
 	}
 }

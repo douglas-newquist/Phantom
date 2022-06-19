@@ -12,9 +12,6 @@ namespace Phantom
 		{
 			var placable = new List<ShipPartSO>();
 
-			foreach (var part in parts)
-				if (part.CanPlace(design, x, y))
-					placable.Add(part);
 
 			return placable;
 		}

@@ -5,10 +5,14 @@ namespace Phantom
 	[CreateAssetMenu(menuName = CreateMenu.ShipGenerator + "Ship")]
 	public class ShipGenerator : ScriptableObject
 	{
-		[Tooltip("Vertex generator to use if creating a new design")]
-		public VertexGenerator vertexGenerator;
+		public NameGenerator[] nameGenerators;
 
-		public TileObjectMapGenerator tileObjectMapGenerator;
+		[Tooltip("Vertex generator to use if creating a new design")]
+		public VertexGenerator[] vertexGenerators;
+
+		public TileLayerMapGenerator[] tileLayerMapGenerators;
+
+		public HullSelectorShipGenerator hullSelector;
 
 		/// <summary>
 		/// Creates a new ship design of the specified size
@@ -20,17 +24,16 @@ namespace Phantom
 		{
 			var design = new ShipDesign(width, height);
 
-			if (vertexGenerator == null)
-				throw new System.ArgumentNullException("Vertex generator not assigned on " + this.name + ".");
+			foreach (var generator in nameGenerators)
+				design.Name = generator.Apply(design.Name);
 
-			if (tileObjectMapGenerator == null)
-				throw new System.ArgumentNullException("Tile object map generator not assigned on " + this.name + ".");
+			foreach (var generator in vertexGenerators)
+				design.TileLayerMap.Tiles = generator.Apply(design.TileLayerMap.Tiles);
 
-			design.Tiles = vertexGenerator.Apply(design.Tiles);
-			design = tileObjectMapGenerator.Apply(design) as ShipDesign;
+			foreach (var generator in tileLayerMapGenerators)
+				design.TileLayerMap = generator.Apply(design.TileLayerMap);
 
-			if (design == null)
-				throw new System.RankException("Tile object map generator didn't return a ship design.");
+			design.HullType = hullSelector.GetHull();
 
 			return design;
 		}

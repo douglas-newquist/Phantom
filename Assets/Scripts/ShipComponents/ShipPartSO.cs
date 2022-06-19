@@ -23,7 +23,7 @@ namespace Phantom
 
 		public ResourceUsage resourceUsage;
 
-		public override GameObject Place(GameObject obj, TileObjectMap map, int x, int y, Transform container)
+		public override GameObject Place(GameObject obj, TileLayerMap map, int x, int y, Transform container)
 		{
 			GameObject part = null;
 			var statSheet = obj.GetComponent<StatSheet>();

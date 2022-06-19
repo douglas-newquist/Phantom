@@ -12,9 +12,9 @@ namespace Phantom
 		[SerializeField]
 		public IUsable usable;
 		public GameObject prefab;
-		public TileObjectMapGenerator shipGenerator;
+		public ShipGenerator shipGenerator;
 		public ShipBuilder shipBuilder;
-		public TileObjectMapGenerator mapGenerator;
+		public LevelGenerator mapGenerator;
 		public LevelBuilder levelBuilder;
 		private LevelDesign levelDesign;
 		public Color[] colors;
@@ -38,49 +38,6 @@ namespace Phantom
 		// Start is called before the first frame update
 		void Start()
 		{
-			var graph = new Graph<int>();
-			graph.AddEdge(0, 1, 4);
-			graph.AddEdge(0, 2, 3);
-			graph.AddEdge(1, 2, 1);
-			graph.AddEdge(1, 3, 2);
-			graph.AddEdge(2, 3, 4);
-			graph.AddEdge(3, 4, 2);
-			graph.AddEdge(4, 5, 6);
-
-			Debug.Log(graph);
-
-			var graph2 = graph.MST();
-
-			Debug.Log(graph2);
-			foreach (var edge in graph2)
-				Debug.Log(edge);
-
-			foreach (var edge in graph2.Vertices)
-				Debug.Log(edge);
-
-
-			//			tilemap.ResizeBounds();
-			//			tilemap.RefreshAllTiles();
-			//		Debug.Log(tilemap.size);
-
-			for (int i = 0; i < 10; i++)
-				Debug.Log(nameGenerator.Create());
-
-			ship = shipBuilder.Create(shipGenerator, 64, 64);
-			Debug.Log(ship.GetComponent<StatSheet>());
-
-			var camera = FindObjectOfType<SimpleCameraFollow>();
-			camera.target = ship;
-
-			//	path = pathAgent.FindPath(shipDesign.tiles, Vector2Int.zero, new Vector2Int(63, 63));
-
-			levelDesign = mapGenerator.Create(128, 128) as LevelDesign;
-			levelDesign.tileMapTexture = mapTexture;
-			//levelBuilder.Create(levelDesign);
-
-			for (int x = 0; x < levelDesign.Width; x++)
-				for (int y = 0; y < levelDesign.Height; y++)
-					tilemap.SetTile(new Vector3Int(x, y, 0), weights.hullTiles.Get(levelDesign.Tiles.Get(x, y)));
 		}
 
 		// Update is called once per frame
@@ -92,7 +49,7 @@ namespace Phantom
 				nextPath = Time.time + 2 * (float)path.Duration.TotalSeconds;
 				var start = new Vector2Int((int)transform.position.x, (int)transform.position.y);
 				var end = new Vector2Int((int)ship.transform.position.x, (int)ship.transform.position.y);
-				path = pathAgent.FindPath(levelDesign.Tiles, start, end);
+				//path = pathAgent.FindPath(levelDesign.Tiles, start, end);
 				//	Debug.Log(path);
 			}
 		}

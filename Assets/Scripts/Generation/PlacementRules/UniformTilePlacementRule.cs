@@ -8,7 +8,7 @@ namespace Phantom
 	{
 		public List<VertexTile> tiles;
 
-		public override bool CanPlace(TileObjectSO obj, TileObjectMap map, int x, int y)
+		public override bool CanPlace(TileObjectSO obj, TileLayerMap map, Vector3Int position)
 		{
 			if (tiles.Count == 0)
 				return false;
@@ -17,11 +17,9 @@ namespace Phantom
 			{
 				for (int yi = 0; yi < obj.Height; yi++)
 				{
-					if (!map.InBounds(x + xi, y + yi))
+					if (!map.InBounds(position.x + xi, position.y + yi))
 						return false;
-					if (!tiles.Contains(map.Tiles.Get(x + xi, y + yi)))
-						return false;
-					if (map.Get(x + xi, y + yi).Item2.Occupied)
+					if (!tiles.Contains(map.Tiles.Get(position.x + xi, position.y + yi)))
 						return false;
 				}
 			}

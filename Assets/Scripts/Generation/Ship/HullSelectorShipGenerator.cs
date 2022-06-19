@@ -3,15 +3,13 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.ShipGenerator + "Hull Selector")]
-	public class HullSelectorShipGenerator : TileObjectMapGenerator
+	public class HullSelectorShipGenerator : ScriptableObject
 	{
 		public WeightedList<TileMapSO> hulls;
 
-		public override TileObjectMap ApplyOnce(TileObjectMap design, RectInt area)
+		public TileMapSO GetHull()
 		{
-			var ship = new ShipDesign(design);
-			ship.hullType = hulls.GetRandom();
-			return ship;
+			return hulls.GetRandom();
 		}
 	}
 }

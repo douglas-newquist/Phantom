@@ -22,7 +22,7 @@ namespace Phantom
 
 		public const string VertexGenerator = Generator + "Vertex/";
 
-		public const string TileObjectMapGenerator = Generator + "Tile Object Map/";
+		public const string TileLayerMapGenerator = Generator + "Tile Map/";
 
 		public const string ShipGenerator = Generator + "Ship/";
 
@@ -30,7 +30,7 @@ namespace Phantom
 
 		public const string PlacementRule = Game + "Placement Rule/";
 
-		public const string Pathing = Game + "Pathing/";
+		public const string Pathing = Game + "Path Finding/";
 
 		public const string Pathfinder = Pathing + "Pathfinder/";
 

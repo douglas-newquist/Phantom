@@ -15,7 +15,7 @@ namespace Phantom
 
 		public override int Height => height;
 
-		public override GameObject Place(GameObject obj, TileObjectMap map, int x, int y, Transform container)
+		public override GameObject Place(GameObject obj, TileLayerMap map, int x, int y, Transform container)
 		{
 			var placed = Instantiate(prefab);
 			placed.transform.SetParent(container);

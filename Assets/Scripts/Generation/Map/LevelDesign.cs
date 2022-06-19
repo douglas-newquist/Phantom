@@ -5,23 +5,53 @@ using UnityEngine;
 namespace Phantom
 {
 	[System.Serializable]
-	public class LevelDesign : TileObjectMap
+	public class LevelDesign
 	{
-		public TileMapTexture tileMapTexture;
+		[SerializeField]
+		private string name;
 
-		public LevelDesign(int width, int height) : base(width, height)
+		public string Name
 		{
+			get => name;
+			set => name = value;
 		}
 
-		public LevelDesign(TileObjectMap map) : base(map) { }
+		[SerializeField]
+		private TileLayerMap tileLayerMap;
 
-		public LevelDesign(LevelDesign level) : base(level)
+		public TileLayerMap TileLayerMap
 		{
+			get => tileLayerMap;
+			set => tileLayerMap = value;
 		}
 
-		public override IGrid2D<Tuple<VertexTile, TileObject>> Clone()
+		[SerializeField]
+		private TileMapTexture tileMapTexture;
+
+		public TileMapTexture TileMapTexture
 		{
-			return new LevelDesign(this);
+			get => tileMapTexture;
+			set => tileMapTexture = value;
+		}
+
+		private List<LevelObject> specialObjects;
+
+		public List<LevelObject> SpecialObjects
+		{
+			get => specialObjects;
+			set => specialObjects = value;
+		}
+
+		public LevelDesign(int width, int height)
+		{
+			TileLayerMap = new TileLayerMap(width, height);
+		}
+
+		public LevelDesign(LevelDesign levelDesign)
+		{
+			TileLayerMap = new TileLayerMap(levelDesign.TileLayerMap);
+			SpecialObjects = new List<LevelObject>(levelDesign.SpecialObjects);
+			Name = levelDesign.Name;
 		}
 	}
 }
