@@ -38,6 +38,26 @@ namespace Phantom
 		// Start is called before the first frame update
 		void Start()
 		{
+			var graph = new Graph<int>();
+			graph.AddEdge(0, 1, 4);
+			graph.AddEdge(0, 2, 3);
+			graph.AddEdge(1, 2, 1);
+			graph.AddEdge(1, 3, 2);
+			graph.AddEdge(2, 3, 4);
+			graph.AddEdge(3, 4, 2);
+			graph.AddEdge(4, 5, 6);
+
+			Debug.Log(graph);
+
+			var graph2 = graph.MST();
+
+			Debug.Log(graph2);
+			foreach (var edge in graph2)
+				Debug.Log(edge);
+
+			foreach (var edge in graph2.Vertices)
+				Debug.Log(edge);
+
 
 			//			tilemap.ResizeBounds();
 			//			tilemap.RefreshAllTiles();
@@ -66,7 +86,7 @@ namespace Phantom
 		// Update is called once per frame
 		void Update()
 		{
-			//return;
+			return;
 			if (Time.time >= nextPath)
 			{
 				nextPath = Time.time + 2 * (float)path.Duration.TotalSeconds;

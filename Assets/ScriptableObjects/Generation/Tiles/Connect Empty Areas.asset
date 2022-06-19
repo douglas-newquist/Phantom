@@ -18,8 +18,8 @@ MonoBehaviour:
   mask: {fileID: 0}
   findAreasWith: 0
   connectWith: 0
-  pathAgent: {fileID: 11400000, guid: 171876c75c8b22c73bd56c6149ce80ce, type: 2}
-  pathRadius: 2
-  connectivity:
+  extraConnections:
     min: 0
-    max: 0.15000004
+    max: 0
+  pathAgent: {fileID: 11400000, guid: 171876c75c8b22c73bd56c6149ce80ce, type: 2}
+  pathRadius: 0.75

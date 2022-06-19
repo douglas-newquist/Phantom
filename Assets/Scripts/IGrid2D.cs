@@ -123,6 +123,9 @@ namespace Phantom
 					if (!area.Contains(neighbor.Key))
 						continue;
 
+					if (!grid.InBounds(neighbor.Key.x, neighbor.Key.y))
+						continue;
+
 					if (group.Contains(neighbor.Key) || toSearch.Contains(neighbor.Key))
 						continue;
 

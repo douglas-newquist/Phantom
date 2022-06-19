@@ -10,18 +10,26 @@ namespace Phantom
 	{
 		public class Room
 		{
+			public int id;
+
 			public List<Vector2Int> cells;
 
 			public Vector2 center;
 
-			public Room(List<Vector2Int> cells)
+			public Room(List<Vector2Int> cells, int id)
 			{
 				this.cells = cells;
+				this.id = id;
 
 				foreach (var cell in cells)
 					center += cell;
 
 				center /= cells.Count;
+			}
+
+			public override string ToString()
+			{
+				return "Room " + id + " at " + center;
 			}
 
 			public Vector2Int ClosestCellToPoint(Vector2 point)
@@ -46,6 +54,11 @@ namespace Phantom
 			{
 				return ClosestCellToPoint(other.center);
 			}
+
+			public float Distance(Room other)
+			{
+				return Vector2.Distance(center, other.center);
+			}
 		}
 
 		public int findAreasWith = 0;
@@ -53,11 +66,11 @@ namespace Phantom
 		public int connectWith;
 
 		[MinMax(0, 8)]
-		public IntRange connections = new IntRange(1, 2);
+		public IntRange extraConnections = new IntRange(1, 2);
 
 		public VertexPathAgent pathAgent;
 
-		[Range(1, 16)]
+		[Range(0, 16)]
 		public float pathRadius = 2;
 
 		public override VertexTileMap ApplyOnce(VertexTileMap design, RectInt area)
@@ -69,15 +82,19 @@ namespace Phantom
 			if (rooms.Count < 2)
 				return design;
 
-			for (int i = 0; i < rooms.Count; i++)
+			var graph = new Graph<Room>();
+
+			foreach (var room1 in rooms)
+				foreach (var room2 in rooms)
+					if (room1 != room2)
+						graph.AddEdge(room1, room2, room1.Distance(room2));
+
+			var mst = graph.MST();
+			Debug.Log(mst);
+
+			foreach (var edge in graph.MST())
 			{
-				for (int c = connections.Random; c > 0; c--)
-				{
-					int j = PickTargetRoom(rooms, i);
-					Debug.Log("Connecting room " + i + " to room " + j);
-					ConnectRooms(design, rooms[i], rooms[j]);
-				}
-				return design;
+				ConnectRooms(design, edge.source, edge.destination);
 			}
 
 			return design;
@@ -89,7 +106,7 @@ namespace Phantom
 
 			foreach (var region in design.Vertices.FloodFindGroups(area, (a, b) => a == b))
 				if (design.Vertices.Get(region[0].x, region[0].y) == findAreasWith)
-					rooms.Add(new Room(region));
+					rooms.Add(new Room(region, rooms.Count));
 
 			return rooms;
 		}
@@ -106,6 +123,7 @@ namespace Phantom
 
 		protected void ConnectRooms(VertexTileMap design, Room room1, Room room2)
 		{
+			Debug.Log("Connecting " + room1 + " to " + room2);
 			var start = room1.FindClosestCellToRoom(room2);
 			var end = room2.FindClosestCellToRoom(room1);
 
@@ -119,7 +137,16 @@ namespace Phantom
 		{
 			foreach (var point in path)
 			{
-				design.Vertices.Set(point, connectWith);
+				for (int xi = -(int)pathRadius; xi <= pathRadius; xi++)
+				{
+					for (int yi = -(int)pathRadius; yi <= pathRadius; yi++)
+					{
+						var p = new Vector2Int(point.x + xi, point.y + yi);
+						if (Vector2.Distance(point, p) <= pathRadius
+							&& design.Vertices.InBounds(p.x, p.y))
+							design.Vertices.Set(p, connectWith);
+					}
+				}
 			}
 		}
 	}
