@@ -39,6 +39,7 @@ namespace Phantom
 		void Start()
 		{
 			shipDesign = shipGenerator.Create(32, 32);
+			shipBuilder.Create(shipDesign);
 			levelDesign = mapGenerator.Create(128, 128);
 		}
 

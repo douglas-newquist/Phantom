@@ -10,14 +10,13 @@ namespace Phantom
 	{
 		public GameObject prefab;
 
-		public virtual GameObject Create(TileObjectMap map)
+		protected GameObject CreatePrefab()
 		{
-			return null;
+			if (prefab == null)
+				return new GameObject("Tile Layer Map GameObject");
+			return Instantiate(prefab);
 		}
 
-		protected virtual void PlaceTiles(GameObject gameObject, TileLayerMap tileLayerMap, Tilemap tilemap)
-		{
-
-		}
+		public abstract GameObject Create(T design);
 	}
 }

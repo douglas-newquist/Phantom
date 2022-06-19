@@ -1,15 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.ShipPart + "Part")]
-	public class ShipPartSO : TileObjectSO
+	public class ShipPartSO : MapTile
 	{
-		public GameObject prefab;
-
-		public Sprite sprite;
-
 		[Range(1, 16)]
 		public int width = 1, height = 1;
 
@@ -23,28 +20,24 @@ namespace Phantom
 
 		public ResourceUsage resourceUsage;
 
-		public override GameObject Place(GameObject obj, TileLayerMap map, int x, int y, Transform container)
+		public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
 		{
-			GameObject part = null;
-			var statSheet = obj.GetComponent<StatSheet>();
+			var success = base.StartUp(position, tilemap, go);
 
-			if (statSheet == null)
-				throw new System.ArgumentNullException("Object has no stat sheet");
+			var root = tilemap.GetComponent<Transform>();
 
-			foreach (var stat in baseStats)
-				stat.Apply(statSheet);
+			var statSheet = root.GetComponentInParent<StatSheet>();
 
-			foreach (var modifier in modifiers)
-				modifier.Apply(statSheet, this);
-
-			if (prefab != null)
+			if (statSheet != null)
 			{
-				part = Instantiate(prefab);
-				part.transform.SetParent(container);
-				part.transform.localPosition = new Vector3(x, y, 0);
+				foreach (var stat in baseStats)
+					stat.Apply(statSheet);
+
+				foreach (var modifier in modifiers)
+					modifier.Apply(statSheet, this);
 			}
 
-			return part;
+			return success;
 		}
 	}
 }

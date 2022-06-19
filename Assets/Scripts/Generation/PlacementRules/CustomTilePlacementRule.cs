@@ -7,7 +7,7 @@ namespace Phantom
 	{
 		public Grid2D<VertexTile> tiles;
 
-		public override bool CanPlace(TileObjectSO obj, TileLayerMap map, Vector3Int position)
+		public override bool CanPlace(MapTile obj, TileLayerMap map, Vector3Int position)
 		{
 			throw new System.NotImplementedException();
 		}

@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203a4144ddac1ec7c8a22d71e2281128, type: 3}
   m_Name: Swivel Turret 01
   m_EditorClassIdentifier: 
+  tile: {fileID: 11400000, guid: 367e377a60ebff0499bf4d0ab1458776, type: 2}
   placementRules:
   - {fileID: 11400000, guid: e3e29911c44b0952b8463336a10875ed, type: 2}
   - {fileID: 11400000, guid: f272a46cf14f965708aa115112aae4f3, type: 2}
-  prefab: {fileID: 1110029762826903062, guid: fb8c5a3af53134394891e5232c874205, type: 3}
-  sprite: {fileID: 0}
   width: 1
   height: 1
   baseStats:

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Phantom
 {
@@ -6,7 +7,7 @@ namespace Phantom
 	/// Creates a GameObject from a ShipDesign
 	/// </summary>
 	[CreateAssetMenu(menuName = CreateMenu.Generator + "Ship Builder")]
-	public class ShipBuilder : ScriptableObject
+	public class ShipBuilder : TileLayerMapBuilder<ShipDesign>
 	{
 		/*
 		public override GameObject Create(TileObjectMap map)
@@ -47,5 +48,13 @@ namespace Phantom
 			var stats = gameObject.GetComponent<StatSheet>();
 			design.HullType.ApplyStats(stats, design.Tiles);
 		}*/
+		public override GameObject Create(ShipDesign design)
+		{
+			var obj = CreatePrefab();
+			var tilemap = obj.GetComponentInChildren<Tilemap>();
+			design.TileLayerMap.AddTiles(obj, tilemap);
+			tilemap.transform.parent.position -= (Vector3)design.Bounds.center;
+			return obj;
+		}
 	}
 }

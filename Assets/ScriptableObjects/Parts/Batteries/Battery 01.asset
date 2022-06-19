@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203a4144ddac1ec7c8a22d71e2281128, type: 3}
   m_Name: Battery 01
   m_EditorClassIdentifier: 
+  tile: {fileID: 11400000, guid: 60b00a840c377018cb10d56c136f2ccc, type: 2}
   placementRules:
   - {fileID: 11400000, guid: e3e29911c44b0952b8463336a10875ed, type: 2}
   - {fileID: 11400000, guid: f272a46cf14f965708aa115112aae4f3, type: 2}
-  prefab: {fileID: 6137009468924656109, guid: e515beda0c628ec869276c1663670c84, type: 3}
-  sprite: {fileID: 21300000, guid: 8f2e64aca3fef0b3f971fd01ce73c5aa, type: 3}
   width: 1
   height: 1
   baseStats:

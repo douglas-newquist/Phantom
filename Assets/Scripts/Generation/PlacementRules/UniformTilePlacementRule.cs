@@ -8,7 +8,7 @@ namespace Phantom
 	{
 		public List<VertexTile> tiles;
 
-		public override bool CanPlace(TileObjectSO obj, TileLayerMap map, Vector3Int position)
+		public override bool CanPlace(MapTile obj, TileLayerMap map, Vector3Int position)
 		{
 			if (tiles.Count == 0)
 				return false;

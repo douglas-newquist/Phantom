@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203a4144ddac1ec7c8a22d71e2281128, type: 3}
   m_Name: Fusion Reactor 02
   m_EditorClassIdentifier: 
+  tile: {fileID: 11400000, guid: 7abdb07af55e1dcad949ee076f428190, type: 2}
   placementRules:
   - {fileID: 11400000, guid: e3e29911c44b0952b8463336a10875ed, type: 2}
   - {fileID: 11400000, guid: 106946b14d6978be0a7f1e121a5e43a8, type: 2}
-  prefab: {fileID: 1691334886146194492, guid: 68f3dd854236ad4c59b114988a0eb8e4, type: 3}
-  sprite: {fileID: 0}
   width: 5
   height: 5
   baseStats:

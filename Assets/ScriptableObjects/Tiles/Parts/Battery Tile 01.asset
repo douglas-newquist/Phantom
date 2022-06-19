@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78bb71913fddc5464b23a8a14b55315a, type: 3}
-  m_Name: Titanium R
+  m_Script: {fileID: 11500000, guid: 0ff4db201d29731ff9f10020a85c9549, type: 3}
+  m_Name: Battery Tile 01
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -931248655, guid: 80476c9f8b5159bfbaeb3b8cc2809d46, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8f2e64aca3fef0b3f971fd01ce73c5aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -34,8 +34,3 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  sprites:
-    items:
-    - value: {fileID: -931248655, guid: 80476c9f8b5159bfbaeb3b8cc2809d46, type: 3}
-      weight: 1
-  vertexTile: 10

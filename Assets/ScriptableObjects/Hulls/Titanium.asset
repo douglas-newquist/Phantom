@@ -20,23 +20,7 @@ MonoBehaviour:
     largeCorner: 0.875
     diagonal: 0.75
   texture: {fileID: 11400000, guid: df9ab9085f1b95d2face880ee54503ac, type: 2}
-  hullTiles:
-    full: {fileID: 11400000, guid: eedb5dd98f9ad3e92809defe0780d516, type: 2}
-    empty: {fileID: 0}
-    left: {fileID: 11400000, guid: e08dcbb19a06fbeb8841c73df4da2af0, type: 2}
-    right: {fileID: 11400000, guid: bce5e2429fce536bbaa8d8725926eab2, type: 2}
-    top: {fileID: 11400000, guid: 12b4aeebfeacdd58fa6757e4c81a66d3, type: 2}
-    bottom: {fileID: 11400000, guid: 124b5203edb593e4193966a8a7bb2798, type: 2}
-    bottomLeft: {fileID: 11400000, guid: b9bb0a0e0477d21e7a6ceb7a510d6244, type: 2}
-    bottomRight: {fileID: 11400000, guid: 7d30bf5ed5da02cef8d903204aa1a776, type: 2}
-    topLeft: {fileID: 11400000, guid: 8221d472bdd636eda9e3b92317480fc6, type: 2}
-    topRight: {fileID: 11400000, guid: e0afa8839fd88af119024a8999b4e891, type: 2}
-    bottomLeftLarge: {fileID: 11400000, guid: ff11bf226c7168de7964ac58e918ec35, type: 2}
-    bottomRightLarge: {fileID: 11400000, guid: 19e916fb224a332efaa079b50021ead6, type: 2}
-    topLeftLarge: {fileID: 11400000, guid: 3ce1d5c56b5750ae4956ea4c77f2ad43, type: 2}
-    topRightLarge: {fileID: 11400000, guid: 93d99114789a86da983e87b36b728605, type: 2}
-    bottomLeftTopRight: {fileID: 11400000, guid: e15aa1eb7c1c40b2a98d0150fbf19502, type: 2}
-    topLeftBottomRight: {fileID: 11400000, guid: 6428477054d311d1aac6d2b911aebb34, type: 2}
+  hullTiles: {fileID: 11400000, guid: 5a02cbd62acb6421c8654f0e04b837c5, type: 2}
   stats:
   - stat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
     baseValue: 0.2

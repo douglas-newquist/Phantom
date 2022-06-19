@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Phantom
 {
@@ -159,6 +160,34 @@ namespace Phantom
 		{
 			var layer = GetLayer(position.z, true);
 			layer.Set(position.x, position.y, tile);
+		}
+
+		public void AddTiles(GameObject root, Tilemap tilemap)
+		{
+			for (int x = 0; x < Width; x++)
+			{
+				for (int y = 0; y < Height; y++)
+				{
+					var position = new Vector3Int(x, y, 0);
+					if (Tiles.TryGet(x, y, out var tile))
+						tilemap.SetTile(position, VertexTileTiles.GetTile(tile));
+				}
+			}
+
+			foreach (var layer in layers)
+			{
+				for (int x = 0; x < Width; x++)
+				{
+					for (int y = 0; y < Height; y++)
+					{
+						var position = new Vector3Int(x, y, layer.z);
+						var tile = GetTile(position);
+
+						if (tile != null && tile.Tile != null)
+							tilemap.SetTile(position, tile.Tile);
+					}
+				}
+			}
 		}
 	}
 }

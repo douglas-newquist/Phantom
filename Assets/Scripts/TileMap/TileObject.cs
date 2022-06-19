@@ -6,14 +6,14 @@ namespace Phantom
 	public class TileObject
 	{
 		[SerializeField]
-		private TileObjectSO obj;
+		private MapTile tile;
 
 		/// <summary>
 		/// The object placed in this tile
 		/// </summary>
-		public TileObjectSO Object
+		public MapTile Tile
 		{
-			get => obj;
+			get => tile;
 			set
 			{
 				if (state == Reservation.Locked)
@@ -21,7 +21,7 @@ namespace Phantom
 
 				Clear();
 				if (value == null) return;
-				obj = value;
+				tile = value;
 				state = Reservation.Used;
 			}
 		}
@@ -56,7 +56,7 @@ namespace Phantom
 			}
 		}
 
-		public bool NotOccupied => State == Reservation.Free && Object == null;
+		public bool NotOccupied => State == Reservation.Free && Tile == null;
 
 		public bool Occupied => !NotOccupied;
 
@@ -93,9 +93,9 @@ namespace Phantom
 
 		public TileObject() { }
 
-		public TileObject(TileObjectSO obj)
+		public TileObject(MapTile obj)
 		{
-			Object = obj;
+			Tile = obj;
 		}
 
 		public TileObject(Reservation state)
@@ -110,7 +110,7 @@ namespace Phantom
 
 		public void Clear()
 		{
-			obj = null;
+			tile = null;
 			state = Reservation.Free;
 			reference = Vector3Int.zero;
 			variant = 0;

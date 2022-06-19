@@ -40,6 +40,11 @@ namespace Phantom
 			}
 		}
 
+		public int Width => TileLayerMap.Width;
+
+		public int Height => TileLayerMap.Height;
+
+		public RectInt Bounds => TileLayerMap.Tiles.BoundingBox;
 
 		public ShipDesign(int width, int height)
 		{

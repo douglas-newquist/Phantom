@@ -12,7 +12,7 @@ namespace Phantom
 		[MinMax(-8, 8)]
 		public IntRange zRange = new IntRange(0, 0);
 
-		public TileObjectSO[] objects;
+		public MapTile[] objects;
 
 		public override TileLayerMap ApplyOnce(TileLayerMap design, RectInt area)
 		{
@@ -40,9 +40,9 @@ namespace Phantom
 			return design;
 		}
 
-		public List<TileObjectSO> GetPlaceable(TileLayerMap design, Vector3Int position)
+		public List<MapTile> GetPlaceable(TileLayerMap design, Vector3Int position)
 		{
-			var placable = new List<TileObjectSO>();
+			var placable = new List<MapTile>();
 
 			foreach (var obj in objects)
 				if (obj.CanPlace(design, position))
