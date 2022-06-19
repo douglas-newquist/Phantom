@@ -35,15 +35,11 @@ namespace Phantom
 
 		GameObject ship;
 
-		public DynamicGrid2D<bool> grid;
-
 		// Start is called before the first frame update
 		void Start()
 		{
 			shipDesign = shipGenerator.Create(32, 32);
 			levelDesign = mapGenerator.Create(128, 128);
-			grid.Set(1, 1, true);
-			Debug.Log(grid.Get(1, 1));
 		}
 
 		// Update is called once per frame
