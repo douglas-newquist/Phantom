@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Phantom
 {
 	public interface IRange<T>

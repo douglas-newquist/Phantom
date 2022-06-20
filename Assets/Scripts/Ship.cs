@@ -2,16 +2,6 @@ using UnityEngine;
 
 namespace Phantom
 {
-	public interface IMovable
-	{
-		void Move(Vector2 vector, Reference mode);
-
-		void Stop();
-	}
-	public interface ILookable
-	{
-		void Look(Vector2 vector2, Reference mode);
-	}
 	public interface IMoveLook : IMovable, ILookable { }
 	[RequireComponent(typeof(StatSheet))]
 	public class Ship : Entity, IMoveLook
