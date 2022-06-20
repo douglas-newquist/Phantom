@@ -134,8 +134,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1522480691
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 4989767963441812730}
   - component: {fileID: 4989767963441812733}
   - component: {fileID: 4989767963441812732}
+  - component: {fileID: 253698476223392881}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -253,3 +254,27 @@ CompositeCollider2D:
     m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &253698476223392881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4989767963441812729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f78d4c9568102caab32efe809dcb06b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelDesign:
+    name: 
+    tileLayerMap:
+      vertexTileTiles: {fileID: 0}
+      vertexTiles:
+        vertices:
+          width: 0
+          height: 0
+          values: 
+      layers: []
+    tileMapTexture: {fileID: 0}
+  tilemap: {fileID: 4989767963283473325}

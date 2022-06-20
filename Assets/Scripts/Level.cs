@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Phantom
 {
@@ -19,24 +20,48 @@ namespace Phantom
 		/// </summary>
 		public const float TotalSizeLimit = TileSize * SizeLimit;
 
+		[SerializeField]
+		private LevelDesign levelDesign;
+
+		public LevelDesign LevelDesign
+		{
+			get => levelDesign;
+			set => levelDesign = value;
+		}
+
+		public Tilemap tilemap;
+
+		public BoundsInt TileBounds => tilemap.cellBounds;
+
+		public Rect WorldBounds
+		{
+			get
+			{
+				var min = GridToWorldPoint(TileBounds.min);
+				var max = GridToWorldPoint(TileBounds.max);
+				return new Rect(min, max - min);
+			}
+		}
+
 		/// <summary>
 		/// Converts a local tile grid coordinate to a world position
 		/// </summary>
-		public Vector2 GridToWorldPoint(Vector2Int coordinate)
+		public Vector3 GridToWorldPoint(Vector3Int coordinate)
 		{
-			float x = coordinate.x * TileSize;
-			float y = coordinate.y * TileSize;
-			return new Vector2(x, y);
+			return tilemap.CellToWorld(coordinate);
 		}
 
 		/// <summary>
 		/// Converts a world position vector to a local tile gird coordinate
 		/// </summary>
-		public Vector2Int WorldToGridPoint(Vector3 position)
+		public Vector3Int WorldToGridPoint(Vector3 position)
 		{
-			int x = Mathf.FloorToInt(position.x / TileSize);
-			int y = Mathf.FloorToInt(position.y / TileSize);
-			return new Vector2Int(x, y);
+			return tilemap.WorldToCell(position);
+		}
+
+		private void OnDrawGizmos()
+		{
+			Gizmos.DrawWireCube(WorldBounds.center, WorldBounds.size);
 		}
 	}
 }

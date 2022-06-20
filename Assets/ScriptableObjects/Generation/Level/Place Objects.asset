@@ -19,5 +19,8 @@ MonoBehaviour:
   density:
     min: 0.25
     max: 0.35
+  zRange:
+    min: 0
+    max: 0
   objects:
   - {fileID: 11400000, guid: 8d2229392fe3a6e178750cbf8581f3b0, type: 2}

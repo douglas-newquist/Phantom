@@ -23,6 +23,7 @@ MonoBehaviour:
   vertexGenerators:
   - {fileID: 11400000, guid: d47a30ed79c9c862481ab9c0e5727d9c, type: 2}
   - {fileID: 11400000, guid: 2ede90b45d4e9d25aa3b3c8a04398146, type: 2}
+  - {fileID: 11400000, guid: 2e2d18a23fb786b32a5aa14b85229f32, type: 2}
   tileLayerMapGenerators:
   - {fileID: 11400000, guid: e23f5a2d86570ab98a37c57c2638f666, type: 2}
   textures:

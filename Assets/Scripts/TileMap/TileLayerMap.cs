@@ -189,6 +189,8 @@ namespace Phantom
 					}
 				}
 			}
+
+			tilemap.CompressBounds();
 		}
 	}
 }

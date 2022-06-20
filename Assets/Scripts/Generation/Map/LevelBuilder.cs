@@ -11,6 +11,9 @@ namespace Phantom
 			var obj = CreatePrefab();
 			var tilemap = obj.GetComponentInChildren<Tilemap>();
 			map.TileLayerMap.AddTiles(obj, tilemap);
+
+			var level = obj.GetComponent<Level>();
+			level.LevelDesign = map;
 			return obj;
 		}
 

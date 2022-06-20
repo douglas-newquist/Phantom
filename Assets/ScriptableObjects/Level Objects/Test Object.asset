@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d20ab8bb1124ae9d887c84630d1e644, type: 3}
   m_Name: Test Object
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 47ae9645349c1df31a47516488025bfa, type: 2}
+  tile: {fileID: 11400000, guid: 8c0f42a1ce06ffe28ab8a80f0719d4b1, type: 2}
   placementRules:
   - {fileID: 11400000, guid: 4d793559b73518854a0259a843ffa2f8, type: 2}
   prefab: {fileID: 0}
