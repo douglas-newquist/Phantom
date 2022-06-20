@@ -29,6 +29,7 @@ namespace Phantom
 		}
 
 		[MinMax(1, 32)]
+		[SerializeField]
 		private IntRange damageTicks = new IntRange(3, 5);
 
 		public IntRange DamageTicks => damageTicks;
