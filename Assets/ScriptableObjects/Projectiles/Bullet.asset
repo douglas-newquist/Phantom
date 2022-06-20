@@ -21,5 +21,5 @@ MonoBehaviour:
     max: 9.442362
   velocity:
     min: 38.415443
-    max: 43.41543
+    max: 51.231426
   velocityStat: {fileID: 11400000, guid: f8332add7f06f29d09b0a3fdaeb7cb1a, type: 2}

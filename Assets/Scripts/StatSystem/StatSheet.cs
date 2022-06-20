@@ -12,6 +12,10 @@ namespace Phantom
 		[SerializeField]
 		private Dictionary<StatSO, Stat> stats = new Dictionary<StatSO, Stat>();
 
+		private List<IStatusEffect> statusEffects = new List<IStatusEffect>();
+
+		public IEnumerable<IStatusEffect> StatusEffects => statusEffects;
+
 		public ResourceStatSO primaryHealthStat;
 
 		/// <summary>

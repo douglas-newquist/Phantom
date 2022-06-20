@@ -8,6 +8,8 @@ namespace Phantom
 
 		public const string Modifiers = Game + "Modifier/";
 
+		public const string StatusEffect = Game + "Status Effect/";
+
 		public const string Projectile = Game + "Projectile/";
 
 		public const string ShipPart = Game + "Part/";
