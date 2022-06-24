@@ -23,7 +23,7 @@ namespace Phantom
 		/// <summary>
 		/// Gets the total playable area
 		/// </summary>
-		public static Rect Bounds
+		public static Rect WorldBounds
 		{
 			get
 			{
@@ -33,7 +33,7 @@ namespace Phantom
 
 		protected override void OnFirstRun()
 		{
-			DontDestroyOnLoad(gameObject);
+			//DontDestroyOnLoad(gameObject);
 		}
 	}
 }

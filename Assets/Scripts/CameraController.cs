@@ -67,7 +67,7 @@ namespace Phantom
 			if (GameManager.CurrentLevel != null)
 			{
 				var min = WorldMin;
-				var bounds = GameManager.Bounds;
+				var bounds = GameManager.WorldBounds;
 
 				min.x = Mathf.Clamp(min.x, bounds.xMin, bounds.xMax);
 				min.y = Mathf.Clamp(min.y, bounds.yMin, bounds.yMax);

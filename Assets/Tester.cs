@@ -33,29 +33,16 @@ namespace Phantom
 		public ShipDesign shipDesign;
 		public LevelDesign levelDesign;
 
-		GameObject ship;
 
 		// Start is called before the first frame update
 		void Start()
 		{
-			shipDesign = shipGenerator.Create(32, 32);
-			shipBuilder.Create(shipDesign);
 			levelDesign = mapGenerator.Create();
 			levelBuilder.Create(levelDesign);
-		}
 
-		// Update is called once per frame
-		void Update()
-		{
-			return;
-			if (Time.time >= nextPath)
-			{
-				nextPath = Time.time + 2 * (float)path.Duration.TotalSeconds;
-				var start = new Vector2Int((int)transform.position.x, (int)transform.position.y);
-				var end = new Vector2Int((int)ship.transform.position.x, (int)ship.transform.position.y);
-				//path = pathAgent.FindPath(levelDesign.Tiles, start, end);
-				//	Debug.Log(path);
-			}
+			shipDesign = shipGenerator.Create(32, 32);
+			var shipName = shipBuilder.CreateRegister(shipDesign);
+			ObjectPool.Spawn(shipName, new PositionSpawner(GameManager.CurrentLevel.WorldBounds));
 		}
 
 		public void OnChanged(Event e)
