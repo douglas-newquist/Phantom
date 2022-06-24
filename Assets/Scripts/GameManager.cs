@@ -20,6 +20,9 @@ namespace Phantom
 		/// </summary>
 		public static Level CurrentLevel => FindObjectOfType<Level>();
 
+		[SerializeField]
+		private Rect noLevelWorldBounds;
+
 		/// <summary>
 		/// Gets the total playable area
 		/// </summary>
@@ -27,6 +30,8 @@ namespace Phantom
 		{
 			get
 			{
+				if (CurrentLevel == null)
+					return Instance.noLevelWorldBounds;
 				return CurrentLevel.WorldBounds;
 			}
 		}
