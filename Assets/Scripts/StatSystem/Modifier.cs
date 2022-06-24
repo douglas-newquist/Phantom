@@ -20,12 +20,15 @@ namespace Phantom
 			return modifier.Create(source, magnitude);
 		}
 
-		public void Apply(StatSheet statSheet, object source = null)
+		public IModifier Apply(StatSheet statSheet, object source = null)
 		{
 			if (statSheet == null)
 				throw new System.ArgumentNullException("statSheet");
 
-			statSheet.GetStat(stat).AddModifier(Create(source));
+			var modifier = Create(source);
+
+			statSheet.GetStat(stat).AddModifier(modifier);
+			return modifier;
 		}
 	}
 }
