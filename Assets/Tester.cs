@@ -33,6 +33,8 @@ namespace Phantom
 		public ShipDesign shipDesign;
 		public LevelDesign levelDesign;
 
+		public SimpleFollowCameraExtension followCameraExtension;
+
 
 		// Start is called before the first frame update
 		void Start()
@@ -42,7 +44,9 @@ namespace Phantom
 
 			shipDesign = shipGenerator.Create(32, 32);
 			var shipName = shipBuilder.CreateRegister(shipDesign);
-			ObjectPool.Spawn(shipName, new PositionSpawner(GameManager.CurrentLevel.WorldBounds));
+			var ship = ObjectPool.Spawn(shipName, new PositionSpawner(GameManager.CurrentLevel.WorldBounds));
+
+			followCameraExtension.SetTarget(ship);
 		}
 
 		public void OnChanged(Event e)

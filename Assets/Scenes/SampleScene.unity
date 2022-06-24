@@ -226,6 +226,9 @@ MonoBehaviour:
     min: 50
     max: 400
   zoomLevel: 0.45
+  OnZoomLevelChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &519420036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,7 +256,9 @@ MonoBehaviour:
   target: {fileID: 0}
   body: {fileID: 0}
   speed: 5
-  leadTime: 1
+  OnTargetChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &997218442
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,6 +428,7 @@ MonoBehaviour:
           values: 
       layers: []
     tileMapTexture: {fileID: 0}
+  followCameraExtension: {fileID: 519420037}
 --- !u!4 &1387071761
 Transform:
   m_ObjectHideFlags: 0
