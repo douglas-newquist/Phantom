@@ -50,3 +50,6 @@ TagManager:
   - name: Projectile
     uniqueID: 1537236633
     locked: 0
+  - name: Icon
+    uniqueID: 1894514717
+    locked: 0

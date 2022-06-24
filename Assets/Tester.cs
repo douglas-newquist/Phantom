@@ -40,7 +40,7 @@ namespace Phantom
 		void Start()
 		{
 			levelDesign = mapGenerator.Create();
-			levelBuilder.Create(levelDesign);
+			GameManager.CurrentLevel = levelBuilder.Create(levelDesign).GetComponent<Level>();
 
 			shipDesign = shipGenerator.Create(32, 32);
 			var shipName = shipBuilder.CreateRegister(shipDesign);

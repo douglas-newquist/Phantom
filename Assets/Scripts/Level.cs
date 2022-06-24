@@ -43,6 +43,8 @@ namespace Phantom
 			}
 		}
 
+		public bool AllowMiniMap => true;
+
 		/// <summary>
 		/// Converts a local tile grid coordinate to a world position
 		/// </summary>

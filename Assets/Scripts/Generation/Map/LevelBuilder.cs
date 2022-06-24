@@ -18,6 +18,5 @@ namespace Phantom
 			level.LevelDesign = map;
 			return obj;
 		}
-
 	}
 }

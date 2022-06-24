@@ -8,7 +8,7 @@ namespace Phantom
 	public class ZoomCameraExtension : CameraExtension
 	{
 		[SerializeField]
-		[MinMax(1, 1000)]
+		[MinMax(1, 5000)]
 		private FloatRange zoomRange = new FloatRange(100, 300);
 
 		public FloatRange ZoomRange

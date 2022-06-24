@@ -20,10 +20,19 @@ namespace Phantom
 		/// </summary>
 		public static bool IsRunning => Time.time > 0;
 
+		private Level currentLevel;
+
 		/// <summary>
 		/// Gets the currently loaded level
 		/// </summary>
-		public static Level CurrentLevel => FindObjectOfType<Level>();
+		public static Level CurrentLevel
+		{
+			get => Instance.currentLevel;
+			set
+			{
+				Instance.currentLevel = value;
+			}
+		}
 
 		[SerializeField]
 		private Rect noLevelWorldBounds;
