@@ -17,6 +17,6 @@ MonoBehaviour:
     max: 1
   mask: {fileID: 0}
   chance:
-    min: 0.5
-    max: 0.5
+    min: 0.48
+    max: 0.49
   value: 1

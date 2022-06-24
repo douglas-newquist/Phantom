@@ -9,6 +9,8 @@ namespace Phantom
 		public override GameObject Create(LevelDesign map)
 		{
 			var obj = CreatePrefab();
+			obj.name = map.Name;
+
 			var tilemap = obj.GetComponentInChildren<Tilemap>();
 			map.TileLayerMap.AddTiles(obj, tilemap);
 

@@ -45,5 +45,10 @@ namespace Phantom
 		{
 			//DontDestroyOnLoad(gameObject);
 		}
+
+		private void OnDrawGizmos()
+		{
+			Gizmos.DrawWireCube(WorldBounds.center, WorldBounds.size);
+		}
 	}
 }
