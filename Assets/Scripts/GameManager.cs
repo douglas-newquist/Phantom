@@ -16,6 +16,11 @@ namespace Phantom
 		public const float ProjectileAgeLimit = 60 * 5;
 
 		/// <summary>
+		/// Is the game currently running
+		/// </summary>
+		public static bool IsRunning => Time.time > 0;
+
+		/// <summary>
 		/// Gets the currently loaded level
 		/// </summary>
 		public static Level CurrentLevel => FindObjectOfType<Level>();

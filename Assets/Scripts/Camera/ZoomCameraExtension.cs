@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Phantom
 {
@@ -29,10 +30,16 @@ namespace Phantom
 			get => zoomLevel;
 			set
 			{
+				var old = zoomLevel;
 				zoomLevel = Mathf.Clamp01(value);
 				Camera.orthographicSize = zoomRange.FromPercentage(1f - zoomLevel);
+
+				if (GameManager.IsRunning && zoomLevel != old)
+					OnZoomLevelChanged.Invoke(new ValueChangedEvent(this, old, zoomLevel));
 			}
 		}
+
+		public UnityEvent<ValueChangedEvent> OnZoomLevelChanged;
 
 		private void OnGUI()
 		{
