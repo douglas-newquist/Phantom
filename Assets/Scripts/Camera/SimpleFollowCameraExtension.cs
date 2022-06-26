@@ -17,20 +17,48 @@ namespace Phantom
 
 		public UnityEvent<GameObject> OnTargetChanged;
 
+		public Vector3 TargetPosition
+		{
+			get
+			{
+				if (target == null) return transform.position;
+
+				Vector3 pos = target.transform.position;
+				pos.z = transform.position.z;
+				return pos;
+			}
+		}
+
+		public Vector3 PredictedTargetPosition
+		{
+			get
+			{
+				Vector3 pos = TargetPosition;
+
+				if (body != null)
+				{
+					pos.x += body.velocity.x * Time.fixedDeltaTime;
+					pos.y += body.velocity.y * Time.fixedDeltaTime;
+				}
+
+				return pos;
+			}
+		}
+
+		private Vector3 position;
+
+		private void Start()
+		{
+			position = transform.position;
+		}
+
 		private void FixedUpdate()
 		{
 			if (target == null) return;
 
-			Vector3 pos = target.transform.position;
-			pos.z = transform.position.z;
+			position = Vector3.Lerp(position, PredictedTargetPosition, Time.fixedDeltaTime * speed);
 
-			if (body != null)
-			{
-				pos.x += body.velocity.x * Time.fixedDeltaTime;
-				pos.y += body.velocity.y * Time.fixedDeltaTime;
-			}
-
-			transform.position = Vector3.Lerp(transform.position, pos, Time.fixedDeltaTime * speed);
+			transform.position = position;
 		}
 
 		public void SetTarget(GameObject obj)

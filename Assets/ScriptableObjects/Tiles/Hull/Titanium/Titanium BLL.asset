@@ -36,6 +36,6 @@ MonoBehaviour:
   m_ColliderType: 1
   sprites:
     items:
-    - value: {fileID: 1843227068, guid: 80476c9f8b5159bfbaeb3b8cc2809d46, type: 3}
+    - value: {fileID: -350287818, guid: 80476c9f8b5159bfbaeb3b8cc2809d46, type: 3}
       weight: 1
   vertexTile: 7
