@@ -4,6 +4,8 @@ namespace Phantom
 	{
 		public const string Game = "Game/";
 
+		public const string Condition = Game + "Condition/";
+
 		public const string Stats = Game + "Stat/";
 
 		public const string Modifiers = Game + "Modifier/";

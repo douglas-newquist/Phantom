@@ -16,7 +16,10 @@ namespace Phantom
 
 		public IEnumerable<IStatusEffect> StatusEffects => statusEffects;
 
-		public ResourceStatSO primaryHealthStat;
+		[SerializeField]
+		private ResourceStatSO primaryHealthStat;
+
+		public ResourceStatSO PrimaryHealthStat => primaryHealthStat;
 
 		/// <summary>
 		/// Triggers whenever this entity takes damage
@@ -49,7 +52,7 @@ namespace Phantom
 
 			damage.Apply(this);
 
-			var resource = GetStat<ResourceStat>(primaryHealthStat);
+			var resource = GetStat<ResourceStat>(PrimaryHealthStat);
 
 			if (resource.Empty)
 			{

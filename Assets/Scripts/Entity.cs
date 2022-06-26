@@ -12,7 +12,7 @@ namespace Phantom
 
 		private void Start()
 		{
-			Stats.GetStat(Stats.primaryHealthStat).AddModifier(new AdditiveModifier(null, 0, false, 1000));
+			Stats.GetStat(Stats.PrimaryHealthStat).AddModifier(new AdditiveModifier(null, 0, false, 1000));
 		}
 
 		private void Update()
