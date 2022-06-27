@@ -5,7 +5,7 @@ using UnityEngine.Events;
 namespace Phantom
 {
 	[System.Serializable]
-	public class Stat
+	public class Stat : IModifiableStat
 	{
 		/// <summary>
 		/// The stat sheet this stat is associated with

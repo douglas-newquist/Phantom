@@ -21,8 +21,11 @@ namespace Phantom
 				throw new System.ArgumentNullException("Damage type is null");
 		}
 
-		public Damage(Damage other) : this(other.source, other.damageType, other.amount)
+		public Damage(Damage other)
 		{
+			source = other.source;
+			damageType = other.damageType;
+			amount = other.amount;
 		}
 
 		public override string ToString()

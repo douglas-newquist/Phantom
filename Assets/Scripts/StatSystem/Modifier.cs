@@ -27,7 +27,7 @@ namespace Phantom
 
 			var modifier = Create(source);
 
-			statSheet.GetStat(stat).AddModifier(modifier);
+			statSheet.GetStat<IModifiableStat>(stat).AddModifier(modifier);
 			return modifier;
 		}
 	}

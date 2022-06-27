@@ -3,9 +3,8 @@ using UnityEngine.Events;
 
 namespace Phantom
 {
-
 	[System.Serializable]
-	public class ResourceStat : Stat
+	public class ResourceStat : Stat, IResourceStat
 	{
 		public ResourceStatSO ResourceType => (ResourceStatSO)Type;
 

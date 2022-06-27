@@ -5,13 +5,12 @@ using UnityEngine.Events;
 namespace Phantom
 {
 	[DisallowMultipleComponent]
-	public class StatSheet : MonoBehaviour
+	public class StatSheet : MonoBehaviour, IDamageable
 	{
-		public Entity Entity => GetComponent<Entity>();
+		[SerializeField]
+		private Dictionary<StatSO, IStat> stats = new Dictionary<StatSO, IStat>();
 
 		[SerializeField]
-		private Dictionary<StatSO, Stat> stats = new Dictionary<StatSO, Stat>();
-
 		private List<IStatusEffect> statusEffects = new List<IStatusEffect>();
 
 		public IEnumerable<IStatusEffect> StatusEffects => statusEffects;
@@ -38,7 +37,7 @@ namespace Phantom
 
 		private void Start()
 		{
-			foreach (var resource in GetStatsOfType<ResourceStat>())
+			foreach (var resource in GetStatsOfType<IResourceStat>())
 				resource.Reset();
 		}
 
@@ -100,7 +99,7 @@ namespace Phantom
 			return stat;
 		}
 
-		public Stat GetStat(StatSO type)
+		public IStat GetStat(StatSO type)
 		{
 			if (type == null)
 			{
@@ -108,15 +107,17 @@ namespace Phantom
 				return null;
 			}
 
-			if (stats.TryGetValue(type, out Stat stat))
+			if (stats.TryGetValue(type, out IStat stat))
 				return stat;
 
 			return AddStat(type, type.Create());
 		}
 
-		public T GetStat<T>(StatSO type) where T : Stat
+		public T GetStat<T>(StatSO type) where T : IStat
 		{
-			return GetStat(type) as T;
+			IStat stat = GetStat(type);
+			if (stat is T) return (T)stat;
+			return default(T);
 		}
 
 		public float GetValue(StatSO type) => GetStat(type).Value;
@@ -125,11 +126,11 @@ namespace Phantom
 		/// Gets all stats of a given type
 		/// </summary>
 		/// <typeparam name="T">Stat class type to filter</typeparam>
-		public IEnumerable<T> GetStatsOfType<T>() where T : Stat
+		public IEnumerable<T> GetStatsOfType<T>() where T : IStat
 		{
 			foreach (var stat in stats.Values)
 				if (stat is T)
-					yield return stat as T;
+					yield return (T)stat;
 		}
 
 		/// <summary>
@@ -137,7 +138,7 @@ namespace Phantom
 		/// </summary>
 		public void RemoveAllModifiersFromSource(object source)
 		{
-			foreach (var stat in stats.Values)
+			foreach (var stat in GetStatsOfType<IModifiableStat>())
 				stat.RemoveModifiersFromSource(source);
 		}
 
