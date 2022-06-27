@@ -9,18 +9,6 @@ namespace Phantom
 	{
 		public StatSheet Stats => GetComponent<StatSheet>();
 
-		public Damage damage;
-
-		private void Start()
-		{
-			Stats.GetStat<IModifiableStat>(Stats.PrimaryHealthStat).AddModifier(new AdditiveModifier(null, 0, false, 1000));
-		}
-
-		private void Update()
-		{
-			Stats.ApplyDamage(damage);
-		}
-
 		public void OnTakeDamage(DamagedEvent e)
 		{
 			Debug.Log(e);

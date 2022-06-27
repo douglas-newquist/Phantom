@@ -7,6 +7,8 @@ namespace Phantom
 	{
 		IWeapon GetWeaponGroup(int group);
 
+		void Add(int group, IWeapon weapon);
+
 		float Aim(int group, Vector2 vector, Reference mode);
 
 		float Aim(int group, Rigidbody2D target);

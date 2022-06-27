@@ -97,5 +97,10 @@ namespace Phantom
 		{
 			throw new System.NotImplementedException();
 		}
+
+		public void Add(int group, IWeapon weapon)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

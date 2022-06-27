@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 281893621
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d36af1cf1e488e1c9b927852118c4c81, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -157,7 +157,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 281893621
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c32c1e70ee3031b1b8e6300a41b110a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -182,11 +182,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a9a0d285386db337ad3c8ec3ad6649d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectile: {fileID: 11400000, guid: d845323bf85addaa9a462a2cce11d4ae, type: 2}
   angleTolerance: 1
   fireRate: 1
   fireRateStat: {fileID: 11400000, guid: d3353567f804d13078b11f5fdf9ee33f, type: 2}
   fireSpread: 1
   fireSpreadStat: {fileID: 11400000, guid: 43496153cbb91176c98f4af90bf46180, type: 2}
+  projectilesFired:
+    min: 1
+    max: 1
   OnProjectileFired:
     m_PersistentCalls:
       m_Calls: []

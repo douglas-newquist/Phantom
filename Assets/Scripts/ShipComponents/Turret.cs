@@ -10,6 +10,9 @@ namespace Phantom
 		[Header("Fire Setting")]
 		public ProjectileSO projectile;
 
+		[MinMax(0, 16)]
+		public IntRange projectilesFired = new IntRange(1, 1);
+
 		[Range(0f, 180f)]
 		public float angleTolerance = 15;
 

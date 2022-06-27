@@ -12,6 +12,7 @@ namespace Phantom
 		{
 			IMover movable = gameObject.GetComponent<IMover>();
 			ILooker lookable = gameObject.GetComponent<ILooker>();
+			IWeaponSystem weaponSystem = gameObject.GetComponent<IWeaponSystem>();
 
 			while (gameObject != null)
 			{
@@ -45,7 +46,10 @@ namespace Phantom
 				//				if (target != null)
 				//					Turrets.Aim(target, Input.GetMouseButton(0));
 				//				else
-				//					Turrets.Aim(mouse, Reference.Absolute, Input.GetMouseButton(0));
+				if (Input.GetMouseButton(0))
+					weaponSystem.Fire(mouse, Reference.Absolute);
+				else
+					weaponSystem.Aim(mouse, Reference.Absolute);
 				yield return null;
 			}
 		}
