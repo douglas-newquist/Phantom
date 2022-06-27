@@ -7,9 +7,17 @@ namespace Phantom
 	{
 		public Rigidbody2D body => GetComponent<Rigidbody2D>();
 
-		public Thruster[] thrusters => GetComponentsInChildren<Thruster>();
+		public Thruster[] thrusters;
 
 		private Vector2 force;
+
+		[Range(0f, 1f)]
+		public float brakeMaxVelocityToSetZero = 0.1f;
+
+		private void Awake()
+		{
+			thrusters = GetComponentsInChildren<Thruster>();
+		}
 
 		/// <summary>
 		/// Converts the given thrust vector to the corresponding frame of reference
@@ -55,7 +63,20 @@ namespace Phantom
 		/// </summary>
 		public void Brake()
 		{
-			Move(-body.velocity, Reference.Absolute);
+			if (body.velocity.magnitude < brakeMaxVelocityToSetZero)
+			{
+				body.velocity = Vector2.zero;
+				force = Vector2.zero;
+				return;
+			}
+
+			var maxThrust = GetMaximumThrust(-body.velocity, Reference.Absolute);
+			var maxDeltaV = maxThrust * Time.fixedDeltaTime / body.mass;
+
+			if (body.velocity.magnitude > maxDeltaV.magnitude)
+				Move(-body.velocity, Reference.Absolute);
+			else
+				Move(maxDeltaV, Reference.Absolute);
 		}
 
 		private void FixedUpdate()
