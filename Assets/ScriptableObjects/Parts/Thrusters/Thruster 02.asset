@@ -24,6 +24,8 @@ MonoBehaviour:
     baseValue: 5
   - stat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
     baseValue: 20
+  - stat: {fileID: 11400000, guid: a4721f0b45add341c95539ab35a4f964, type: 2}
+    baseValue: -10
   modifiers: []
   resourceUsage:
     resource: {fileID: 11400000, guid: 707d7c58055e1022a9d05f959bcc04b8, type: 2}
