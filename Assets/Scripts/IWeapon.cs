@@ -1,4 +1,4 @@
 namespace Phantom
 {
-	public interface IWeapon : IAim, IFire { }
+	public interface IWeapon : IAim, IFire, IReset { }
 }
