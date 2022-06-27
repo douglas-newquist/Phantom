@@ -26,6 +26,7 @@ namespace Phantom.StatSystem
 
 		public override void OnInspectorGUI()
 		{
+			serializedObject.Update();
 			EditorGUILayout.PropertyField(displayName);
 			EditorGUILayout.PropertyField(description);
 			EditorGUILayout.PropertyField(icon);
@@ -35,6 +36,7 @@ namespace Phantom.StatSystem
 
 			EditorGUILayout.PropertyField(limits);
 			EditorGUILayout.PropertyField(canBeModified);
+			serializedObject.ApplyModifiedProperties();
 		}
 	}
 }

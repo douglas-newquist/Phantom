@@ -15,8 +15,10 @@ namespace Phantom.StatSystem
 		{
 			base.OnInspectorGUI();
 
+			serializedObject.Update();
 			EditorGUILayout.PropertyField(startingPercentage);
 			EditorGUILayout.PropertyField(maxChangedMode);
+			serializedObject.ApplyModifiedProperties();
 		}
 	}
 }
