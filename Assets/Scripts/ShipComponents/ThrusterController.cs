@@ -14,7 +14,7 @@ namespace Phantom
 		[Range(0f, 1f)]
 		public float brakeMaxVelocityToSetZero = 0.1f;
 
-		private void Awake()
+		private void Start()
 		{
 			thrusters = GetComponentsInChildren<Thruster>();
 		}
