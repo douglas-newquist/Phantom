@@ -5,28 +5,40 @@ namespace Phantom
 	[CreateAssetMenu(menuName = CreateMenu.Stats + "Basic")]
 	public class StatType : ScriptableObject, ITooltip
 	{
-		public string displayName;
+		[SerializeField]
+		private string displayName;
 
 		public string DisplayName => displayName;
 
+		[SerializeField]
 		[TextArea]
-		public string description = "No description provided.";
+		private string description = "No description provided.";
 
 		public string Description => description;
 
-		public Sprite icon;
+		[SerializeField]
+		private Sprite icon;
 
 		public Sprite Icon => icon;
 
-		public float defaultValue;
+		[SerializeField]
+		private float defaultValue;
 
-		public FloatRange limits = new FloatRange(0, float.MaxValue);
+		public float DefaultValue => defaultValue;
 
-		public bool canBeModified = true;
+		[SerializeField]
+		private FloatRange limits = new FloatRange(0, float.MaxValue);
+
+		public FloatRange Limits => limits;
+
+		[SerializeField]
+		private bool canBeModified = true;
+
+		public bool CanBeModified => canBeModified;
 
 		public virtual IStat Create()
 		{
-			return new Stat(this, defaultValue);
+			return new Stat(this, DefaultValue);
 		}
 	}
 }

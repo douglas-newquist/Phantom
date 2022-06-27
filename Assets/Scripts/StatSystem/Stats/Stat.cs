@@ -33,7 +33,7 @@ namespace Phantom
 				float old = baseValue;
 
 				if (Type != null)
-					baseValue = Type.limits.Clamp(value);
+					baseValue = Type.Limits.Clamp(value);
 				else
 					baseValue = value;
 
@@ -101,7 +101,7 @@ namespace Phantom
 			float old = value;
 			value = modifiers.ApplyModifiers(Sheet, BaseValue);
 			if (Type != null)
-				value = Type.limits.Clamp(value);
+				value = Type.Limits.Clamp(value);
 			Dirty = false;
 
 			if (old != value)

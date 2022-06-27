@@ -24,7 +24,7 @@ namespace Phantom
 			if (stat.objectReferenceValue != null)
 			{
 				StatType s = (StatType)stat.objectReferenceValue;
-				EditorGUI.Slider(valueRect, value, -s.limits.Max, s.limits.Max, GUIContent.none);
+				EditorGUI.Slider(valueRect, value, -s.Limits.Max, s.Limits.Max, GUIContent.none);
 			}
 			else
 				EditorGUI.LabelField(valueRect, "Select stat");

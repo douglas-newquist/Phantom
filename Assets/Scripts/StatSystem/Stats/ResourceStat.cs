@@ -146,7 +146,7 @@ namespace Phantom
 		/// </summary>
 		public void Reset()
 		{
-			Percentage = ResourceType.startingPercentage;
+			Percentage = ResourceType.StartingPercentage;
 		}
 	}
 }
