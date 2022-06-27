@@ -17,6 +17,8 @@ namespace Phantom
 				throw new System.ArgumentNullException("design");
 
 			var obj = CreatePrefab();
+			obj.name = design.Name;
+
 			var tilemap = obj.GetComponentInChildren<Tilemap>();
 			var statSheet = obj.GetComponent<StatSheet>();
 
