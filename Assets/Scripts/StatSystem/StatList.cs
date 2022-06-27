@@ -11,8 +11,9 @@ namespace Phantom
 		{
 			foreach (var pair in stats)
 			{
-				var stat = sheet.AddStat(pair.stat, pair.stat.Create());
+				var stat = pair.stat.Create();
 				stat.BaseValue = pair.baseValue;
+				sheet.AddStat<IStat>(pair.stat, stat);
 			}
 		}
 	}

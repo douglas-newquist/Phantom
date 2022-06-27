@@ -83,16 +83,16 @@ namespace Phantom
 		/// <param name="type">The stat type</param>
 		/// <param name="stat">The stat to add</param>
 		/// <returns>The stat</returns>
-		public T AddStat<T>(StatType type, T stat) where T : Stat
+		public T AddStat<T>(StatType type, T stat) where T : IStat
 		{
 			if (type == null)
 			{
 				Debug.LogError("Null stat type");
-				return null;
+				return default(T);
 			}
 
 			if (stats.ContainsKey(type))
-				return stats[type] as T;
+				return (T)stats[type];
 
 			stats[type] = stat;
 			stat.Sheet = this;
