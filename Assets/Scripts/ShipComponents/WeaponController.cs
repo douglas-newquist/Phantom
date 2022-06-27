@@ -8,7 +8,7 @@ namespace Phantom
 	/// </summary>
 	public class WeaponController : MonoBehaviour, IWeaponSystem
 	{
-		public List<WeaponGroup> groups = new List<WeaponGroup>();
+		private List<WeaponGroup> groups = new List<WeaponGroup>();
 
 		public IWeaponGroup GetWeaponGroup(int group)
 		{
