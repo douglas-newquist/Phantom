@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	[CreateAssetMenu(menuName = "Game/Damage Type")]
 	public class DamageType : ScriptableObject

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	[CreateAssetMenu(menuName = CreateMenu.StatusEffect + "Damage Over Time")]
 	public class DamageOverTimeStatusEffect : StatusEffect

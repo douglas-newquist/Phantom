@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	public interface IModifier
 	{

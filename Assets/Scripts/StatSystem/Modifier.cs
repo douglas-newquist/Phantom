@@ -1,4 +1,4 @@
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	/// <summary>
 	/// Defines a modifier, its strength and what stat it applies to

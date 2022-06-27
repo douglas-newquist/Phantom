@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	/// <summary>
 	/// Sets a stat value to a constant value

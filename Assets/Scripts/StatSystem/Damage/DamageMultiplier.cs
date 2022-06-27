@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	[System.Serializable]
 	public struct DamageMultiplier

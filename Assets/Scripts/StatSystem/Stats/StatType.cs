@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	[CreateAssetMenu(menuName = CreateMenu.Stats + "Basic")]
 	public class StatType : ScriptableObject, ITooltip

@@ -1,4 +1,4 @@
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	[System.Serializable]
 	public struct ResourceUsage

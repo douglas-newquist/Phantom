@@ -2,7 +2,7 @@ using UnityEditor;
 
 #if UNITY_EDITOR
 
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	[CustomEditor(typeof(ResourceStatType))]
 	public class ResourceStatTypeEditor : StatTypeEditor

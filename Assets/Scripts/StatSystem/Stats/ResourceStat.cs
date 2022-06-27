@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	[System.Serializable]
 	public class ResourceStat : Stat, IResourceStat

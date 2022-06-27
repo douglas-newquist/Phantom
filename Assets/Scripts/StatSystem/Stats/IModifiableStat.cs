@@ -1,4 +1,4 @@
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	public interface IModifiableStat : IStat, IModifiable
 	{

@@ -1,3 +1,5 @@
+using Phantom.StatSystem;
+
 namespace Phantom
 {
 	public class Gyro : ShipComponent

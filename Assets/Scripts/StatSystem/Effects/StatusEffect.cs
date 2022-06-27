@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	public abstract class StatusEffect : ScriptableObject
 	{

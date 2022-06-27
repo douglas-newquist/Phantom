@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	[CreateAssetMenu(menuName = CreateMenu.Modifiers + "Link")]
 	public class LinkModifierSO : ModifierSO

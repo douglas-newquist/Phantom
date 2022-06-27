@@ -1,4 +1,5 @@
 using UnityEngine;
+using Phantom.StatSystem;
 
 namespace Phantom
 {

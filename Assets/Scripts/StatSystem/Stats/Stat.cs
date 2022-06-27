@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	[System.Serializable]
 	public class Stat : IModifiableStat

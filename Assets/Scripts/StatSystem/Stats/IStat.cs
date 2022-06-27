@@ -1,6 +1,6 @@
 using UnityEngine.Events;
 
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	public interface IStat
 	{

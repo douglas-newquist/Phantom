@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.StatSystem
 {
 	/// <summary>
 	/// Increases a stat value by a percentage (1 + magnitude)%, stacks additively
