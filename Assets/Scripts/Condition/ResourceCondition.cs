@@ -9,7 +9,7 @@ namespace Phantom
 	public class ResourceCondition : Condition
 	{
 		[Tooltip("Leave empty to use the primary health stat")]
-		public ResourceStatSO resource;
+		public ResourceStatType resource;
 
 		[MinMax(0f, 1f)]
 		public FloatRange percentage = new FloatRange(0, 0.5f);

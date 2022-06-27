@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774407bb1aa6c33059d1b7161bfecf5e, type: 3}
+  m_Name: Combat State
+  m_EditorClassIdentifier: 
+  priority: 1
+  preConditions:
+  - {fileID: 11400000, guid: 59806a8432e73b00a94e9df9ab283fcd, type: 2}
+  transitions:
+  - {fileID: 11400000, guid: 5ae9fd92a1f558d79b531e5a0d4a1b9d, type: 2}
+  - {fileID: 11400000, guid: 96cc6e62d179cfd62898981cd8d0427a, type: 2}
