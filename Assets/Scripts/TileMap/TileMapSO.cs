@@ -50,7 +50,7 @@ namespace Phantom
 				var weight = weights.Get(count.Key) * count.Value;
 				foreach (var stat in stats)
 				{
-					statSheet.GetStat(stat.stat).BaseValue += stat.baseValue * weight;
+					statSheet.GetStat(stat.type).BaseValue += stat.value * weight;
 				}
 			}
 		}

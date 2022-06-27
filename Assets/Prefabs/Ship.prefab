@@ -73,6 +73,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dab3f69ac84ef0a180be333db904a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statSheetValues:
+    stats: []
+    modifiers: []
   primaryHealthStat: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
   OnTakeDamage:
     m_PersistentCalls:
@@ -107,13 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5046ed67f084eee4fa12b0c5df16f976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage:
-    damageType: {fileID: 0}
-    amount: 0
-  thrusters: {fileID: 6882654671146568372}
-  gyros: {fileID: 5414886017876530885}
-  turrets: {fileID: 5065441348383330979}
-  target: {fileID: 0}
   massStat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
   controller: {fileID: 11400000, guid: 2aadf2ee469ae5d6e9bf21f068d7736d, type: 2}
 --- !u!114 &5414886017876530885
@@ -140,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84051179238d4e043b8f941c246c10fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  brakeMaxVelocityToSetZero: 0.1
 --- !u!114 &5065441348383330979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d325c6e15aa2ded7877e52dbee63f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groups: []
 --- !u!58 &-3590059326517004536
 CircleCollider2D:
   m_ObjectHideFlags: 0

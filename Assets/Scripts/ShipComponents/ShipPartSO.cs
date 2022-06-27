@@ -15,11 +15,7 @@ namespace Phantom
 
 		public override int Height => height;
 
-		public List<StatValue> baseStats;
-
-		public Modifier[] modifiers;
-
-		public ResourceUsage resourceUsage;
+		public StatSheetDefaults baseStats;
 
 		public override void RefreshTile(Vector3Int position, ITilemap tilemap)
 		{
@@ -35,11 +31,7 @@ namespace Phantom
 
 			if (statSheet != null)
 			{
-				foreach (var stat in baseStats)
-					stat.Apply(statSheet);
-
-				foreach (var modifier in modifiers)
-					modifier.Apply(statSheet, this);
+				baseStats.Apply(statSheet);
 			}
 
 			return success;

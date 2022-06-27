@@ -18,12 +18,13 @@ MonoBehaviour:
   width: 1
   height: 2
   baseStats:
-  - stat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
-    baseValue: 2
-  - stat: {fileID: 11400000, guid: 707d7c58055e1022a9d05f959bcc04b8, type: 2}
-    baseValue: 10
-  modifiers: []
+    stats:
+    - type: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
+      value: 1
+    - type: {fileID: 11400000, guid: 707d7c58055e1022a9d05f959bcc04b8, type: 2}
+      value: 15
+    modifiers: []
   resourceUsage:
-    resource: {fileID: 0}
+    type: {fileID: 0}
     amount: 0
     continuous: 0

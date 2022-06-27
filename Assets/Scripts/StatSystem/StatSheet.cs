@@ -9,6 +9,8 @@ namespace Phantom.StatSystem
 	public class StatSheet : MonoBehaviour, IDamageable, IEnumerable<IStat>, IReset
 	{
 		[SerializeField]
+		private StatSheetDefaults statSheetValues;
+		[SerializeField]
 		private Dictionary<StatType, IStat> stats = new Dictionary<StatType, IStat>();
 
 		public int StatCount => stats.Count;

@@ -11,19 +11,22 @@ namespace Phantom.StatSystem
 		{
 			EditorGUI.BeginProperty(position, label, property);
 
-			position = EditorGUI.PrefixLabel(position, label);
+			if (!label.text.StartsWith("Element "))
+				position = EditorGUI.PrefixLabel(position, label);
 
 			var statRect = new Rect(position.x, position.y, position.width / 2 - 5, position.height);
 			var valueRect = new Rect(statRect.xMax + 5, position.y, statRect.width, position.height);
 
-			var stat = property.FindPropertyRelative("stat");
-			var value = property.FindPropertyRelative("baseValue");
+			var type = property.FindPropertyRelative("type");
+			var value = property.FindPropertyRelative("value");
 
-			EditorGUI.PropertyField(statRect, stat, GUIContent.none);
+			EditorGUI.PropertyField(statRect, type, GUIContent.none);
 
-			if (stat.objectReferenceValue != null)
+			if (type.objectReferenceValue != null)
 			{
-				StatType s = (StatType)stat.objectReferenceValue;
+				StatType s = (StatType)type.objectReferenceValue;
+				if (value.floatValue == 0)
+					value.floatValue = s.DefaultValue;
 				EditorGUI.Slider(valueRect, value, -s.Limits.Max, s.Limits.Max, GUIContent.none);
 			}
 			else

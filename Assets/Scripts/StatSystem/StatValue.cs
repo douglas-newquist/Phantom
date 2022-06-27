@@ -3,16 +3,16 @@ namespace Phantom.StatSystem
 	[System.Serializable]
 	public struct StatValue
 	{
-		public StatType stat;
+		public StatType type;
 
-		public float baseValue;
+		public float value;
 
 		public float GetValue(StatSheet statSheet)
 		{
 			if (statSheet == null)
 				throw new System.ArgumentNullException("statSheet");
 
-			return statSheet.GetValue(stat) * baseValue;
+			return statSheet.GetValue(type) * value;
 		}
 
 		public void Apply(StatSheet statSheet)
@@ -20,7 +20,7 @@ namespace Phantom.StatSystem
 			if (statSheet == null)
 				throw new System.ArgumentNullException("statSheet");
 
-			statSheet.GetStat(stat).BaseValue += baseValue;
+			statSheet.GetStat(type).BaseValue += value;
 		}
 	}
 }
