@@ -6,15 +6,19 @@ namespace Phantom
 	/// <summary>
 	/// Manages and issues commands to multiple groups of turrets
 	/// </summary>
-	public class TurretController : MonoBehaviour, IWeaponSystem
+	public class WeaponController : MonoBehaviour, IWeaponSystem
 	{
-		public List<TurretGroup> groups = new List<TurretGroup>();
+		public List<WeaponGroup> groups = new List<WeaponGroup>();
 
-		public IWeapon GetWeaponGroup(int group)
+		public IWeaponGroup GetWeaponGroup(int group)
 		{
-			if (group >= 0 && group < groups.Count)
-				return groups[group];
-			return null;
+			if (group < 0)
+				throw new System.IndexOutOfRangeException("Weapon group must be non-negative.");
+
+			while (groups.Count <= group)
+				groups.Add(new WeaponGroup());
+
+			return groups[group];
 		}
 
 		public float Aim(Vector2 vector, Reference mode)
@@ -100,7 +104,7 @@ namespace Phantom
 
 		public void Add(int group, IWeapon weapon)
 		{
-			throw new System.NotImplementedException();
+			GetWeaponGroup(group).Add(weapon);
 		}
 	}
 }

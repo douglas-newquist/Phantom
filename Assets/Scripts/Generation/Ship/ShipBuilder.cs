@@ -25,6 +25,12 @@ namespace Phantom
 			design.TileLayerMap.AddTiles(obj, tilemap);
 			tilemap.transform.parent.position -= (Vector3)design.Bounds.center;
 
+			IWeaponSystem weaponSystem = obj.GetComponent<IWeaponSystem>();
+			var weapons = obj.GetComponentsOnlyInChildren<IWeapon>();
+
+			foreach (var weapon in weapons)
+				weaponSystem.Add(0, weapon);
+
 			statSheet.Reset();
 
 			return obj;

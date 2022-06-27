@@ -4,17 +4,17 @@ using UnityEngine;
 namespace Phantom
 {
 	[System.Serializable]
-	public class TurretGroup : IWeapon
+	public class WeaponGroup : IWeaponGroup
 	{
-		public List<Turret> turrets = new List<Turret>();
+		public List<IWeapon> weapons = new List<IWeapon>();
 
-		public int Count => turrets.Count;
+		public int Count => weapons.Count;
 
 		public IEnumerable<Projectile> Fire()
 		{
 			var projectiles = new List<Projectile>();
 
-			foreach (var turret in turrets)
+			foreach (var turret in weapons)
 				projectiles.AddRange(turret.Fire());
 
 			return projectiles;
@@ -30,8 +30,12 @@ namespace Phantom
 		{
 			var projectiles = new List<Projectile>();
 
-			foreach (var turret in turrets)
-				projectiles.AddRange(turret.Fire(vector, mode));
+			foreach (var turret in weapons)
+			{
+				var fired = turret.Fire(vector, mode);
+				if (fired != null)
+					projectiles.AddRange(fired);
+			}
 
 			return projectiles;
 		}
@@ -40,8 +44,12 @@ namespace Phantom
 		{
 			var projectiles = new List<Projectile>();
 
-			foreach (var turret in turrets)
-				projectiles.AddRange(turret.Fire(target));
+			foreach (var turret in weapons)
+			{
+				var fired = turret.Fire(target);
+				if (fired != null)
+					projectiles.AddRange(fired);
+			}
 
 			return projectiles;
 		}
@@ -55,7 +63,7 @@ namespace Phantom
 		{
 			float delta = 0;
 
-			foreach (var turret in turrets)
+			foreach (var turret in weapons)
 				delta += Mathf.Abs(turret.Aim(vector, mode));
 
 			return delta / Count;
@@ -65,7 +73,7 @@ namespace Phantom
 		{
 			float delta = 0;
 
-			foreach (var turret in turrets)
+			foreach (var turret in weapons)
 				delta += Mathf.Abs(turret.Aim(target));
 
 			return delta / Count;
@@ -73,8 +81,18 @@ namespace Phantom
 
 		public void Reset()
 		{
-			foreach (var turret in turrets)
+			foreach (var turret in weapons)
 				turret.Reset();
+		}
+
+		public void Add(IWeapon weapon)
+		{
+			weapons.Add(weapon);
+		}
+
+		public bool Remove(IWeapon weapon)
+		{
+			return weapons.Remove(weapon);
 		}
 	}
 }

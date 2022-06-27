@@ -5,7 +5,7 @@ namespace Phantom
 {
 	public interface IWeaponSystem : IWeapon
 	{
-		IWeapon GetWeaponGroup(int group);
+		IWeaponGroup GetWeaponGroup(int group);
 
 		void Add(int group, IWeapon weapon);
 
