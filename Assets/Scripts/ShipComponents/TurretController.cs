@@ -6,69 +6,85 @@ namespace Phantom
 	/// <summary>
 	/// Manages and issues commands to multiple groups of turrets
 	/// </summary>
-	public class TurretController : MonoBehaviour
+	public class TurretController : MonoBehaviour, IWeaponSystem
 	{
 		public List<TurretGroup> groups = new List<TurretGroup>();
 
-		public TurretGroup GetGroup(int group)
+		public IWeapon GetWeaponGroup(int group)
 		{
 			if (group >= 0 && group < groups.Count)
 				return groups[group];
 			return null;
 		}
 
-		public List<Projectile> Aim(Rigidbody2D target, bool fire)
+		public float Aim(Vector2 vector, Reference mode)
+		{
+			float delta = 0;
+
+			foreach (var group in groups)
+				delta += group.Aim(vector, mode);
+
+			return delta;
+		}
+
+		public float Aim(Rigidbody2D target)
+		{
+			float delta = 0;
+
+			foreach (var group in groups)
+				delta += group.Aim(target);
+
+			return delta;
+		}
+
+		public IEnumerable<Projectile> Fire()
 		{
 			var projectiles = new List<Projectile>();
 
-			for (int group = 0; group < groups.Count; group++)
-			{
-				var fired = Aim(target, group, fire);
-				if (fired != null)
-					projectiles.AddRange(fired);
-			}
+			foreach (var group in groups)
+				projectiles.AddRange(group.Fire());
 
 			return projectiles;
 		}
 
-		public List<Projectile> Aim(Rigidbody2D target, int group, bool fire)
-		{
-			var turrets = GetGroup(group);
-			if (turrets == null)
-				return null;
-
-			if (fire)
-				return turrets.Fire(target);
-
-			turrets.Look(target.position, Reference.Absolute);
-			return null;
-		}
-
-		public List<Projectile> Aim(Vector3 vector, Reference mode, bool fire)
+		public IEnumerable<Projectile> Fire(Vector2 vector, Reference mode)
 		{
 			var projectiles = new List<Projectile>();
 
-			for (int group = 0; group < groups.Count; group++)
-			{
-				var fired = Aim(vector, mode, group, fire);
-				if (fired != null)
-					projectiles.AddRange(fired);
-			}
+			foreach (var group in groups)
+				projectiles.AddRange(group.Fire(vector, mode));
 
 			return projectiles;
 		}
 
-		public List<Projectile> Aim(Vector3 vector, Reference mode, int group, bool fire)
+		public IEnumerable<Projectile> Fire(Rigidbody2D target)
 		{
-			var turrets = GetGroup(group);
-			if (turrets == null)
-				return null;
+			var projectiles = new List<Projectile>();
 
-			if (fire)
-				return turrets.Fire(vector, mode);
+			foreach (var group in groups)
+				projectiles.AddRange(group.Fire(target));
 
-			turrets.Look(vector, mode);
-			return null;
+			return projectiles;
+		}
+
+		public float Aim(int group, Vector2 vector, Reference mode)
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public float Aim(int group, Rigidbody2D target)
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public IEnumerable<Projectile> Fire(int group, Vector2 vector, Reference mode)
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public IEnumerable<Projectile> Fire(int group, Rigidbody2D target)
+		{
+			throw new System.NotImplementedException();
 		}
 
 		public void Reset()
@@ -79,9 +95,7 @@ namespace Phantom
 
 		public void Reset(int group)
 		{
-			var turrets = GetGroup(group);
-			if (turrets != null)
-				turrets.Reset();
+			throw new System.NotImplementedException();
 		}
 	}
 }

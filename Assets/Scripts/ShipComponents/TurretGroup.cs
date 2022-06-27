@@ -4,11 +4,21 @@ using UnityEngine;
 namespace Phantom
 {
 	[System.Serializable]
-	public class TurretGroup
+	public class TurretGroup : IWeapon
 	{
-		public ProjectileSO projectile;
-
 		public List<Turret> turrets = new List<Turret>();
+
+		public int Count => turrets.Count;
+
+		public IEnumerable<Projectile> Fire()
+		{
+			var projectiles = new List<Projectile>();
+
+			foreach (var turret in turrets)
+				projectiles.AddRange(turret.Fire());
+
+			return projectiles;
+		}
 
 		/// <summary>
 		/// Fires this group of turrets at the given vector
@@ -16,30 +26,22 @@ namespace Phantom
 		/// <param name="vector">Vector to fire at</param>
 		/// <param name="mode">What the vector is relative too</param>
 		/// <returns>List of projectiles fired</returns>
-		public List<Projectile> Fire(Vector3 vector, Reference mode)
+		public IEnumerable<Projectile> Fire(Vector2 vector, Reference mode)
 		{
 			var projectiles = new List<Projectile>();
 
 			foreach (var turret in turrets)
-			{
-				var p = turret.Fire(vector, projectile, mode);
-				if (p != null)
-					projectiles.Add(p);
-			}
+				projectiles.AddRange(turret.Fire(vector, mode));
 
 			return projectiles;
 		}
 
-		public List<Projectile> Fire(Rigidbody2D target)
+		public IEnumerable<Projectile> Fire(Rigidbody2D target)
 		{
 			var projectiles = new List<Projectile>();
 
 			foreach (var turret in turrets)
-			{
-				var p = turret.Fire(target, projectile);
-				if (p != null)
-					projectiles.Add(p);
-			}
+				projectiles.AddRange(turret.Fire(target));
 
 			return projectiles;
 		}
@@ -49,15 +51,24 @@ namespace Phantom
 		/// </summary>
 		/// <param name="vector">Vector to look at</param>
 		/// <param name="mode">What the vector is relative too</param>
-		public void Look(Vector3 vector, Reference mode)
+		public float Aim(Vector2 vector, Reference mode)
 		{
+			float delta = 0;
+
 			foreach (var turret in turrets)
-				turret.Look(vector, mode);
+				delta += Mathf.Abs(turret.Aim(vector, mode));
+
+			return delta / Count;
 		}
 
-		public Vector3 PredictImpactLocation(Rigidbody2D target, Vector3 acceleration)
+		public float Aim(Rigidbody2D target)
 		{
-			return target.position;
+			float delta = 0;
+
+			foreach (var turret in turrets)
+				delta += Mathf.Abs(turret.Aim(target));
+
+			return delta / Count;
 		}
 
 		public void Reset()

@@ -21,14 +21,12 @@ namespace Phantom
 
 		public StatType trackSpeed;
 
-		public override float Look(Vector3 vector, Reference mode)
+		public override float Aim(Vector2 vector, Reference mode)
 		{
-			vector.z = head.transform.position.z;
-
 			switch (mode)
 			{
 				case Reference.Absolute:
-					vector -= head.transform.position;
+					vector -= (Vector2)head.transform.position;
 					break;
 			}
 
@@ -41,7 +39,7 @@ namespace Phantom
 
 		public override void Reset()
 		{
-			Look(transform.up, Reference.Relative);
+			Aim(transform.up, Reference.Relative);
 		}
 	}
 }

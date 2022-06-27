@@ -8,12 +8,12 @@ namespace Phantom
 
 		public override Vector3 Position => transform.position;
 
-		public override float Look(Vector3 vector, Reference mode)
+		public override float Aim(Vector2 vector, Reference mode)
 		{
 			switch (mode)
 			{
 				case Reference.Absolute:
-					vector -= Position;
+					vector -= (Vector2)Position;
 					break;
 			}
 

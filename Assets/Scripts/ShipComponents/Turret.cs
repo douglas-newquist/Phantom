@@ -1,12 +1,15 @@
+using Phantom.StatSystem;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using Phantom.StatSystem;
 
 namespace Phantom
 {
-	public abstract class Turret : ShipComponent
+	public abstract class Turret : ShipComponent, IWeapon
 	{
 		[Header("Fire Setting")]
+		public ProjectileSO projectile;
+
 		[Range(0f, 180f)]
 		public float angleTolerance = 15;
 
@@ -32,7 +35,7 @@ namespace Phantom
 
 		public UnityEvent<ProjectileFiredEvent> OnProjectileFired;
 
-		public Vector3 PredictImpactLocation(Rigidbody2D target, ProjectileSO projectile)
+		public Vector3 PredictImpactLocation(Rigidbody2D target)
 		{
 			return Math.PredictImpact(Position,
 					target.position,
@@ -42,36 +45,39 @@ namespace Phantom
 					Vector2.zero);
 		}
 
-		public virtual Projectile Fire(ProjectileSO projectile)
+		public virtual IEnumerable<Projectile> Fire()
 		{
 			if (CanFire)
 			{
 				nextShot = Time.time + FireDelay;
 				var p = projectile.Spawn(StatSheet, Position, Forward);
 				OnProjectileFired.Invoke(new ProjectileFiredEvent(this, p));
-				return p;
+				yield return p;
 			}
-
-			return null;
 		}
 
-		public virtual Projectile Fire(Vector3 vector, ProjectileSO projectile, Reference mode)
+		public virtual IEnumerable<Projectile> Fire(Vector2 vector, Reference mode)
 		{
-			var angle = Look(vector, mode);
+			var angle = Aim(vector, mode);
 
 			if (CanFire && Mathf.Abs(angle) <= angleTolerance)
-				return Fire(projectile);
+				return Fire();
 
 			return null;
 		}
 
-		public virtual Projectile Fire(Rigidbody2D target, ProjectileSO projectile)
+		public virtual IEnumerable<Projectile> Fire(Rigidbody2D target)
 		{
-			var location = PredictImpactLocation(target, projectile);
-			return Fire(location, projectile, Reference.Absolute);
+			var location = PredictImpactLocation(target);
+			return Fire(location, Reference.Absolute);
 		}
 
-		public abstract float Look(Vector3 vector, Reference mode);
+		public abstract float Aim(Vector2 vector, Reference mode);
+
+		public float Aim(Rigidbody2D target)
+		{
+			return Aim(target.transform.position, Reference.Absolute);
+		}
 
 		public virtual void Reset() { }
 	}
