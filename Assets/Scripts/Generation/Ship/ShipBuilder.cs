@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Phantom.StatSystem;
+using Phantom.ObjectPooling;
 
 namespace Phantom
 {
@@ -51,8 +52,7 @@ namespace Phantom
 			if (design == null)
 				throw new System.ArgumentNullException("design");
 
-			var ship = Create(design);
-			ObjectPool.Register(design.Name, ship);
+			ObjectPool.Register(design.Name, new ShipSpawnCreator(this, design));
 			return design.Name;
 		}
 	}

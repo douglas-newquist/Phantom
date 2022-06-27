@@ -1,16 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.ObjectPooling
 {
 	/// <summary>
 	/// Manages spawning templates for a single object
 	/// </summary>
 	public class Pool
 	{
-		private GameObject master;
+		private IPoolSpawnCreator spawner;
 
 		private Transform container;
+
+		public Transform Container => container;
+
+		public string Name => container.name;
 
 		private int availableCount = 0;
 
@@ -21,30 +25,24 @@ namespace Phantom
 		/// </summary>
 		/// <param name="master">Object to use as a template</param>
 		/// <param name="container">Where to store objects</param>
-		public Pool(GameObject master, Transform container)
+		public Pool(IPoolSpawnCreator spawner, Transform container)
 		{
-			// Check if master is a prefab
-			if (master.scene.rootCount == 0)
-				master = GameObject.Instantiate(master);
-
-			this.master = master;
+			this.spawner = spawner;
 			this.container = container;
-
-			var link = master.AddComponent<PoolLink>();
-			link.pool = container.name;
-
-			master.SetActive(false);
-			master.name = container.name;
-			master.transform.SetParent(container);
 		}
 
 		/// <summary>
 		/// Creates a new object
 		/// </summary>
-		public GameObject CreateSpawn()
+		public GameObject Create()
 		{
-			var spawn = GameObject.Instantiate(master);
-			spawn.transform.SetParent(container);
+			var spawn = spawner.Create();
+
+			if (spawn.TryGetComponent<PoolLink>(out var link) == false)
+				link = spawn.AddComponent<PoolLink>();
+
+			link.pool = Name;
+
 			return spawn;
 		}
 
@@ -73,7 +71,7 @@ namespace Phantom
 				spawn = available.Pop();
 			}
 			else
-				spawn = CreateSpawn();
+				spawn = Create();
 
 			spawn.SetActive(true);
 			return spawn;

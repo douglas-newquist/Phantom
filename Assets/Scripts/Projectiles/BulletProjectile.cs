@@ -1,5 +1,6 @@
 using UnityEngine;
 using Phantom.StatSystem;
+using Phantom.ObjectPooling;
 
 namespace Phantom
 {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.ObjectPooling
 {
 	public class ObjectPool : MonoSingleton<ObjectPool>
 	{
@@ -26,6 +26,20 @@ namespace Phantom
 			return Instance.pools.ContainsKey(id);
 		}
 
+		public static void Register(string id, IPoolSpawnCreator spawnCreator)
+		{
+			if (ContainsPool(id))
+			{
+				Debug.LogWarning("Object pool with the name '" + id + "' already exists");
+				return;
+			}
+
+			var container = new GameObject(id).transform;
+			container.SetParent(Instance.transform);
+
+			Instance.pools[id] = new Pool(spawnCreator, container);
+		}
+
 		/// <summary>
 		/// Registers a new object to the pool, uses the object name as the id
 		/// </summary>
@@ -42,16 +56,7 @@ namespace Phantom
 		/// <param name="obj">Object to register</param>
 		public static void Register(string id, GameObject obj)
 		{
-			if (ContainsPool(id))
-			{
-				Debug.LogWarning("Object pool with the name '" + id + "' already exists");
-				return;
-			}
-
-			var container = new GameObject(id).transform;
-			container.SetParent(Instance.transform);
-
-			Instance.pools[id] = new Pool(obj, container);
+			Register(id, new InstantiatePoolSpawner(obj));
 		}
 
 		public static GameObject Spawn(GameObject prefab, params ISpawner[] spawners)

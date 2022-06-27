@@ -21,12 +21,16 @@ namespace Phantom
 
 		public ResourceUsage resourceUsage;
 
+		public override void RefreshTile(Vector3Int position, ITilemap tilemap)
+		{
+			base.RefreshTile(position, tilemap);
+		}
+
 		public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
 		{
 			var success = base.StartUp(position, tilemap, go);
 
 			var root = tilemap.GetComponent<Transform>();
-
 			var statSheet = root.GetComponentInParent<StatSheet>();
 
 			if (statSheet != null)
@@ -36,6 +40,7 @@ namespace Phantom
 
 				foreach (var modifier in modifiers)
 					modifier.Apply(statSheet, this);
+				Debug.Log(statSheet.transform.name + " " + name + " " + statSheet);
 			}
 
 			return success;

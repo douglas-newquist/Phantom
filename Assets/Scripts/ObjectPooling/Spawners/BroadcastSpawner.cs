@@ -1,7 +1,10 @@
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.ObjectPooling
 {
+	/// <summary>
+	/// Calls the given method on the newly spawned object
+	/// </summary>
 	public struct BroadcastSpawner : ISpawner
 	{
 		public string[] methods;

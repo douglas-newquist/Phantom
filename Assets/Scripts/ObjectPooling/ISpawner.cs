@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.ObjectPooling
 {
 	public interface ISpawner
 	{

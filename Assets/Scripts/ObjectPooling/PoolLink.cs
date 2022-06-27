@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Phantom
+namespace Phantom.ObjectPooling
 {
 	/// <summary>
 	/// Specifies what object pool this object belongs to

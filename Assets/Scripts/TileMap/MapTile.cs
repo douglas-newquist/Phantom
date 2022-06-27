@@ -59,7 +59,6 @@ namespace Phantom
 
 		public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
 		{
-			Debug.Log(this.name);
 			return Tile.StartUp(position, tilemap, go);
 		}
 

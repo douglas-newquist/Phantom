@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Phantom.StatSystem;
 
 namespace Phantom
@@ -12,6 +13,13 @@ namespace Phantom
 		private StatType massStat;
 
 		public Controller controller;
+
+		private void Awake()
+		{
+			GetComponent<StatSheet>().Clear();
+			var tilemap = GetComponentInChildren<Tilemap>();
+			tilemap.RefreshAllTiles();
+		}
 
 		private void Start()
 		{
