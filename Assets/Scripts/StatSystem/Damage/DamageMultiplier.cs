@@ -15,5 +15,9 @@ namespace Phantom
 			this.resource = resource;
 			this.multiplier = multiplier;
 		}
+
+		public float Scale(float amount) => amount * multiplier;
+
+		public float Descale(float amount) => amount / multiplier;
 	}
 }
