@@ -2,7 +2,7 @@ using UnityEngine.Events;
 
 namespace Phantom.StatSystem
 {
-	public interface IResourceStat : IModifiableStat
+	public interface IResourceStat : IModifiableStat, IReset
 	{
 		ResourceStatType ResourceType { get; }
 		ResourceStat.Changed MaxChangedMode { get; set; }
@@ -12,7 +12,6 @@ namespace Phantom.StatSystem
 		bool Full { get; }
 		UnityEvent<ValueChangedEvent> OnCurrentChanged { get; }
 
-		void Reset();
 		float Deposit(float amount, bool allOrNothing = false);
 		float Withdraw(float amount, bool allOrNothing = false);
 	}
