@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Phantom.StatSystem;
 
 namespace Phantom
 {
@@ -16,8 +17,13 @@ namespace Phantom
 
 			var obj = CreatePrefab();
 			var tilemap = obj.GetComponentInChildren<Tilemap>();
+			var statSheet = obj.GetComponent<StatSheet>();
+
 			design.TileLayerMap.AddTiles(obj, tilemap);
 			tilemap.transform.parent.position -= (Vector3)design.Bounds.center;
+
+			statSheet.Reset();
+
 			return obj;
 		}
 
