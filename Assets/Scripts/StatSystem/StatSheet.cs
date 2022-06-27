@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -5,10 +6,12 @@ using UnityEngine.Events;
 namespace Phantom.StatSystem
 {
 	[DisallowMultipleComponent]
-	public class StatSheet : MonoBehaviour, IDamageable
+	public class StatSheet : MonoBehaviour, IDamageable, IEnumerable<IStat>, IReset
 	{
 		[SerializeField]
 		private Dictionary<StatType, IStat> stats = new Dictionary<StatType, IStat>();
+
+		public int StatCount => stats.Count;
 
 		[SerializeField]
 		private List<IStatusEffect> statusEffects = new List<IStatusEffect>();
@@ -37,8 +40,7 @@ namespace Phantom.StatSystem
 
 		private void Start()
 		{
-			foreach (var resource in GetStatsOfType<IResourceStat>())
-				resource.Reset();
+			Reset();
 		}
 
 		public virtual void ApplyDamage(Damage damage)
@@ -126,7 +128,7 @@ namespace Phantom.StatSystem
 		/// Gets all stats of a given type
 		/// </summary>
 		/// <typeparam name="T">Stat class type to filter</typeparam>
-		public IEnumerable<T> GetStatsOfType<T>() where T : IStat
+		public IEnumerable<T> GetStatsOfType<T>()
 		{
 			foreach (var stat in stats.Values)
 				if (stat is T)
@@ -151,6 +153,36 @@ namespace Phantom.StatSystem
 		{
 			foreach (var mod in modifiers)
 				mod.Apply(this, source);
+		}
+
+		public IEnumerator<IStat> GetEnumerator()
+		{
+			foreach (var stat in stats)
+				yield return stat.Value;
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			foreach (var stat in stats)
+				yield return stat.Value;
+		}
+
+		/// <summary>
+		/// Runs reset on all stats
+		/// </summary>
+		public void Reset()
+		{
+			foreach (var stat in GetStatsOfType<IReset>())
+				stat.Reset();
+		}
+
+		/// <summary>
+		/// Removes all stats and status effects
+		/// </summary>
+		public void Clear()
+		{
+			stats.Clear();
+			statusEffects.Clear();
 		}
 	}
 }
