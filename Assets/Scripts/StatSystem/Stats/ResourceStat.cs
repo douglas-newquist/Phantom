@@ -6,7 +6,7 @@ namespace Phantom
 	[System.Serializable]
 	public class ResourceStat : Stat, IResourceStat
 	{
-		public ResourceStatSO ResourceType => (ResourceStatSO)Type;
+		public ResourceStatType ResourceType => (ResourceStatType)Type;
 
 		public enum Changed
 		{
@@ -64,7 +64,7 @@ namespace Phantom
 		public ResourceStat() : base()
 		{ }
 
-		public ResourceStat(ResourceStatSO type, float maximum, float startPercent = 1) : base(type, maximum)
+		public ResourceStat(ResourceStatType type, float maximum, float startPercent = 1) : base(type, maximum)
 		{
 			Percentage = startPercent;
 		}

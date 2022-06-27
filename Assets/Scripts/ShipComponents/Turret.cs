@@ -12,12 +12,12 @@ namespace Phantom
 		[Range(1f, 60f)]
 		public float fireRate = 1;
 
-		public StatSO fireRateStat;
+		public StatType fireRateStat;
 
 		[Range(0f, 90f)]
 		public float fireSpread = 5;
 
-		public StatSO fireSpreadStat;
+		public StatType fireSpreadStat;
 
 		public float FireDelay => 1f / fireRate;
 
@@ -35,9 +35,9 @@ namespace Phantom
 		{
 			return Math.PredictImpact(Position,
 					target.position,
-					projectile.GetVelocity(statSheet),
+					projectile.GetVelocity(StatSheet),
 					target.velocity,
-					projectile.GetAcceleration(statSheet),
+					projectile.GetAcceleration(StatSheet),
 					Vector2.zero);
 		}
 
@@ -46,7 +46,7 @@ namespace Phantom
 			if (CanFire)
 			{
 				nextShot = Time.time + FireDelay;
-				var p = projectile.Spawn(statSheet, Position, Forward);
+				var p = projectile.Spawn(StatSheet, Position, Forward);
 				OnProjectileFired.Invoke(new ProjectileFiredEvent(this, p));
 				return p;
 			}

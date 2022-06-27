@@ -6,18 +6,18 @@ namespace Phantom
 {
 	public class Thruster : ShipComponent
 	{
-		public StatSO thrustStat;
+		public StatType thrustStat;
 
 		public float force = 1;
 
 		public Vector2 GetMaximumThrust(Vector3 vector)
 		{
-			return vector * statSheet.GetValue(thrustStat) * force;
+			return vector * StatSheet.GetValue(thrustStat) * force;
 		}
 
 		public Vector2 Thrust(Vector3 vector, Reference mode)
 		{
-			return vector * statSheet.GetValue(thrustStat) * force;
+			return vector * StatSheet.GetValue(thrustStat) * force;
 		}
 	}
 }

@@ -23,7 +23,7 @@ namespace Phantom
 
 			if (stat.objectReferenceValue != null)
 			{
-				StatSO s = (StatSO)stat.objectReferenceValue;
+				StatType s = (StatType)stat.objectReferenceValue;
 				EditorGUI.Slider(valueRect, value, -s.limits.Max, s.limits.Max, GUIContent.none);
 			}
 			else

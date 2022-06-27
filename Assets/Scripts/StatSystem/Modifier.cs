@@ -6,7 +6,7 @@ namespace Phantom
 	[System.Serializable]
 	public struct Modifier
 	{
-		public StatSO stat;
+		public StatType stat;
 
 		public ModifierSO modifier;
 

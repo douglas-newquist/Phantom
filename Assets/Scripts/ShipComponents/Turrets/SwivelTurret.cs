@@ -10,7 +10,7 @@ namespace Phantom
 		[Range(0, GameManager.RotationSpeedLimit)]
 		public float degreePerSec;
 
-		public float DegreesPerSec => Mathf.Clamp(degreePerSec * statSheet.GetValue(trackSpeed), 0, GameManager.RotationSpeedLimit);
+		public float DegreesPerSec => Mathf.Clamp(degreePerSec * StatSheet.GetValue(trackSpeed), 0, GameManager.RotationSpeedLimit);
 
 		public float MaxDeltaDegrees => DegreesPerSec * Time.deltaTime;
 
@@ -18,7 +18,7 @@ namespace Phantom
 
 		public override Vector3 Position => head.transform.position;
 
-		public StatSO trackSpeed;
+		public StatType trackSpeed;
 
 		public override float Look(Vector3 vector, Reference mode)
 		{

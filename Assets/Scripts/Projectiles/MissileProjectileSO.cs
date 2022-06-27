@@ -8,7 +8,7 @@ namespace Phantom
 		[MinMax(0, GameManager.SpeedLimit)]
 		public FloatRange acceleration = 0;
 
-		public StatSO accelerationStat;
+		public StatType accelerationStat;
 
 		public override float GetAcceleration(StatSheet statSheet)
 		{

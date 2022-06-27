@@ -2,7 +2,7 @@ namespace Phantom
 {
 	public class Gyro : ShipComponent
 	{
-		public StatSO torqueStat;
+		public StatType torqueStat;
 
 		public float force = 1;
 

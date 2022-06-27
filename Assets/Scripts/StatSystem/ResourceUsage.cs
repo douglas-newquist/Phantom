@@ -3,7 +3,7 @@ namespace Phantom
 	[System.Serializable]
 	public struct ResourceUsage
 	{
-		public ResourceStatSO resource;
+		public ResourceStatType resource;
 
 		public float amount;
 

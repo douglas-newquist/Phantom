@@ -5,7 +5,7 @@ namespace Phantom
 	[CreateAssetMenu(menuName = CreateMenu.Modifiers + "Link")]
 	public class LinkModifierSO : ModifierSO
 	{
-		public StatSO stat;
+		public StatType stat;
 
 		public ModifierSO linkStatRatio;
 

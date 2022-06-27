@@ -4,7 +4,7 @@ namespace Phantom
 {
 	public interface IResourceStat : IModifiableStat
 	{
-		ResourceStatSO ResourceType { get; }
+		ResourceStatType ResourceType { get; }
 		ResourceStat.Changed MaxChangedMode { get; set; }
 		float Current { get; set; }
 		float Percentage { get; set; }

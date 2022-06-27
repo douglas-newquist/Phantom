@@ -2,7 +2,7 @@ namespace Phantom
 {
 	public sealed class LinkModifier : IModifier
 	{
-		public LinkModifier(object source, int order, bool stacks, float magnitude, StatSO linkedType, IModifier linkedModifier)
+		public LinkModifier(object source, int order, bool stacks, float magnitude, StatType linkedType, IModifier linkedModifier)
 		{
 			Source = source;
 			Order = order;
@@ -20,7 +20,7 @@ namespace Phantom
 
 		public float Magnitude { get; private set; }
 
-		public StatSO LinkedType { get; private set; }
+		public StatType LinkedType { get; private set; }
 
 		public IModifier LinkedModifier { get; private set; }
 

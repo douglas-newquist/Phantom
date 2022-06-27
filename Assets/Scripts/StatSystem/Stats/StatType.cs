@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.Stats + "Basic")]
-	public class StatSO : ScriptableObject, ITooltip
+	public class StatType : ScriptableObject, ITooltip
 	{
 		public string displayName;
 
@@ -24,7 +24,7 @@ namespace Phantom
 
 		public bool canBeModified = true;
 
-		public virtual Stat Create()
+		public virtual IStat Create()
 		{
 			return new Stat(this, defaultValue);
 		}

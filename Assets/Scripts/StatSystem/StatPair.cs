@@ -3,7 +3,7 @@ namespace Phantom
 	[System.Serializable]
 	public struct StatPair
 	{
-		public StatSO stat;
+		public StatType stat;
 
 		public float baseValue;
 

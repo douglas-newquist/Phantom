@@ -8,7 +8,7 @@ namespace Phantom
 	public class StatSheet : MonoBehaviour, IDamageable
 	{
 		[SerializeField]
-		private Dictionary<StatSO, IStat> stats = new Dictionary<StatSO, IStat>();
+		private Dictionary<StatType, IStat> stats = new Dictionary<StatType, IStat>();
 
 		[SerializeField]
 		private List<IStatusEffect> statusEffects = new List<IStatusEffect>();
@@ -16,9 +16,9 @@ namespace Phantom
 		public IEnumerable<IStatusEffect> StatusEffects => statusEffects;
 
 		[SerializeField]
-		private ResourceStatSO primaryHealthStat;
+		private ResourceStatType primaryHealthStat;
 
-		public ResourceStatSO PrimaryHealthStat => primaryHealthStat;
+		public ResourceStatType PrimaryHealthStat => primaryHealthStat;
 
 		/// <summary>
 		/// Triggers whenever this entity takes damage
@@ -74,7 +74,7 @@ namespace Phantom
 			return s;
 		}
 
-		public bool HasStat(StatSO type) => stats.ContainsKey(type);
+		public bool HasStat(StatType type) => stats.ContainsKey(type);
 
 		/// <summary>
 		/// Adds a stat to this stat sheet, rejects if there is already a stat of the same type.
@@ -83,7 +83,7 @@ namespace Phantom
 		/// <param name="type">The stat type</param>
 		/// <param name="stat">The stat to add</param>
 		/// <returns>The stat</returns>
-		public T AddStat<T>(StatSO type, T stat) where T : Stat
+		public T AddStat<T>(StatType type, T stat) where T : Stat
 		{
 			if (type == null)
 			{
@@ -99,7 +99,7 @@ namespace Phantom
 			return stat;
 		}
 
-		public IStat GetStat(StatSO type)
+		public IStat GetStat(StatType type)
 		{
 			if (type == null)
 			{
@@ -113,14 +113,14 @@ namespace Phantom
 			return AddStat(type, type.Create());
 		}
 
-		public T GetStat<T>(StatSO type) where T : IStat
+		public T GetStat<T>(StatType type) where T : IStat
 		{
 			IStat stat = GetStat(type);
 			if (stat is T) return (T)stat;
 			return default(T);
 		}
 
-		public float GetValue(StatSO type) => GetStat(type).Value;
+		public float GetValue(StatType type) => GetStat(type).Value;
 
 		/// <summary>
 		/// Gets all stats of a given type

@@ -3,7 +3,14 @@ using UnityEngine.Events;
 
 namespace Phantom
 {
-	public class Projectile : MonoBehaviour
+	public interface IProjectile
+	{
+		float DeathTime { get; set; }
+
+		void Update();
+	}
+
+	public class Projectile : MonoBehaviour, IProjectile
 	{
 		public StatSheet statSheet;
 

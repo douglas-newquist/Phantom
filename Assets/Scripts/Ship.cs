@@ -23,7 +23,7 @@ namespace Phantom
 		public Rigidbody2D target;
 
 		[SerializeField]
-		private StatSO massStat;
+		private StatType massStat;
 
 		public ShipController controller;
 

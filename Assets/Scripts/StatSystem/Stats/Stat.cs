@@ -15,7 +15,7 @@ namespace Phantom
 		/// <summary>
 		/// What type of stat this stat is
 		/// </summary>
-		public StatSO Type { get; protected set; }
+		public StatType Type { get; protected set; }
 
 		public bool Dirty { get; protected set; } = true;
 
@@ -81,7 +81,7 @@ namespace Phantom
 			onBaseValueChanged = new UnityEvent<ValueChangedEvent>();
 		}
 
-		public Stat(StatSO type, float baseValue) : this()
+		public Stat(StatType type, float baseValue) : this()
 		{
 			this.baseValue = baseValue;
 			this.value = baseValue;
