@@ -13,13 +13,13 @@ namespace Phantom
 
 		public VertexTiles hullTiles;
 
-		public StatPair[] stats;
+		public StatValue[] stats;
 
 		public Modifier[] modifiers;
 
-		public StatPair[] GetHullStats(VertexTileMap map)
+		public StatValue[] GetHullStats(VertexTileMap map)
 		{
-			var baseStats = new StatPair[stats.Length];
+			var baseStats = new StatValue[stats.Length];
 			var counts = map.Itemize();
 
 			for (int i = 0; i < stats.Length; i++)

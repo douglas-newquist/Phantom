@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEditor;
-using Phantom.StatSystem;
 
 #if UNITY_EDITOR
-namespace Phantom
+namespace Phantom.StatSystem
 {
-	[CustomPropertyDrawer(typeof(StatPair))]
-	public class StatPairDrawer : PropertyDrawer
+	[CustomPropertyDrawer(typeof(StatValue))]
+	public class StatValueDrawer : PropertyDrawer
 	{
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{

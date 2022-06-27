@@ -1,7 +1,7 @@
 namespace Phantom.StatSystem
 {
 	[System.Serializable]
-	public struct StatPair
+	public struct StatValue
 	{
 		public StatType stat;
 

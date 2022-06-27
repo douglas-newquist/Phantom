@@ -12,7 +12,7 @@ namespace Phantom
 
 		public int level = 1;
 
-		public List<StatPair> stats = new List<StatPair>();
+		public List<StatValue> stats = new List<StatValue>();
 
 		public void Equip(StatSheet sheet)
 		{

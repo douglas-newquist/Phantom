@@ -15,7 +15,7 @@ namespace Phantom
 
 		public override int Height => height;
 
-		public List<StatPair> baseStats;
+		public List<StatValue> baseStats;
 
 		public Modifier[] modifiers;
 
