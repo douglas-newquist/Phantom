@@ -4,13 +4,16 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.Controller + "Player Ship Controller")]
-	public class PlayerShipController : ShipController
+	public class PlayerShipController : Controller
 	{
 		public Reference thrustReference;
 
-		public override IEnumerator Control(Ship controllable)
+		public override IEnumerator Control(GameObject gameObject)
 		{
-			while (controllable != null)
+			IMover movable = gameObject.GetComponent<IMover>();
+			ILooker lookable = gameObject.GetComponent<ILooker>();
+
+			while (gameObject != null)
 			{
 				if (Input.GetKeyDown(KeyCode.R))
 				{
@@ -32,11 +35,12 @@ namespace Phantom
 				mouse.z = 0;
 
 				if (Input.GetKey(KeyCode.X))
-					controllable.Stop();
+					movable.Brake();
 				else
-					controllable.Move(new Vector2(x, y), thrustReference);
+					movable.Move(new Vector2(x, y), thrustReference);
 
-				controllable.Look(mouse, Reference.Absolute);
+				if (lookable != null)
+					lookable.Look(mouse, Reference.Absolute);
 
 				//				if (target != null)
 				//					Turrets.Aim(target, Input.GetMouseButton(0));

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	public class GyroController : MonoBehaviour, ILookable
+	public class GyroController : MonoBehaviour, ILooker
 	{
 		public Rigidbody2D body => GetComponent<Rigidbody2D>();
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	public class ThrusterController : MonoBehaviour, IMovable
+	public class ThrusterController : MonoBehaviour, IMover
 	{
 		public Rigidbody2D body => GetComponent<Rigidbody2D>();
 
@@ -53,7 +53,7 @@ namespace Phantom
 		/// <summary>
 		/// Brings the ship's velocity to zero
 		/// </summary>
-		public void Stop()
+		public void Brake()
 		{
 			Move(-body.velocity, Reference.Absolute);
 		}

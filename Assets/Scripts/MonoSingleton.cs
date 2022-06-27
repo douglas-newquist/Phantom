@@ -2,6 +2,10 @@ using UnityEngine;
 
 namespace Phantom
 {
+	/// <summary>
+	/// Forces this MonoBehavior to only exist once in the scene
+	/// </summary>
+	/// <typeparam name="T">Type of this type</typeparam>
 	public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 	{
 		private static T instance = null;

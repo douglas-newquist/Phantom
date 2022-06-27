@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace Phantom
 {
-	public abstract class Controller<T> : ScriptableObject
+	public abstract class Controller : ScriptableObject
 	{
-		public void Control(MonoBehaviour monoBehaviour, T controllable)
+		public void Control(MonoBehaviour monoBehaviour, GameObject gameObject)
 		{
 			if (monoBehaviour == null)
 				throw new System.ArgumentNullException("Given MonoBehaviour is null.");
 
-			monoBehaviour.StartCoroutine(Control(controllable));
+			monoBehaviour.StartCoroutine(Control(gameObject));
 		}
 
-		public abstract IEnumerator Control(T controllable);
+		public abstract IEnumerator Control(GameObject gameObject);
 	}
 }

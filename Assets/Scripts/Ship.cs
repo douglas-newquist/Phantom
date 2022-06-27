@@ -3,9 +3,8 @@ using Phantom.StatSystem;
 
 namespace Phantom
 {
-	public interface IMoveLook : IMovable, ILookable { }
 	[RequireComponent(typeof(StatSheet))]
-	public class Ship : Entity, IMoveLook
+	public class Ship : Entity
 	{
 		public Rigidbody2D body => GetComponent<Rigidbody2D>();
 
@@ -26,7 +25,7 @@ namespace Phantom
 		[SerializeField]
 		private StatType massStat;
 
-		public ShipController controller;
+		public Controller controller;
 
 		private void Start()
 		{
@@ -34,7 +33,7 @@ namespace Phantom
 			body.mass = mass.Value;
 			// TODO Spawning might run this multiple times
 			mass.OnValueChanged.AddListener(stat => body.mass = stat.Current);
-			StartCoroutine(controller.Control(this));
+			StartCoroutine(controller.Control(gameObject));
 		}
 
 		public void Move(Vector2 vector, Reference mode)
@@ -49,7 +48,7 @@ namespace Phantom
 
 		public void Stop()
 		{
-			thrusters.Stop();
+			thrusters.Brake();
 		}
 	}
 }
