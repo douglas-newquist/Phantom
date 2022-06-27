@@ -40,7 +40,6 @@ namespace Phantom
 
 				foreach (var modifier in modifiers)
 					modifier.Apply(statSheet, this);
-				Debug.Log(statSheet.transform.name + " " + name + " " + statSheet);
 			}
 
 			return success;
