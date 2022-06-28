@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 namespace Phantom
 {
 	[System.Serializable]
-	public partial class TileLayerMap
+	public class TileLayerMap
 	{
 		[SerializeField]
 		private VertexTiles vertexTileTiles;
@@ -41,7 +41,7 @@ namespace Phantom
 		}
 
 		[SerializeField]
-		private List<TileLayer> layers = new List<TileLayer>();
+		private SerialDictionary<Vector3Int, TileObject> tiles = new SerialDictionary<Vector3Int, TileObject>();
 
 		/// <summary>
 		/// Number of tiles wide this map is
@@ -82,56 +82,8 @@ namespace Phantom
 			vertexTiles = new VertexTileMap(tileLayerMap.Tiles);
 			vertexTileTiles = tileLayerMap.VertexTileTiles;
 
-			foreach (var layer in tileLayerMap.layers)
-				layers.Add(new TileLayer(layer));
-		}
-
-		private int GetLayerIndex(int z)
-		{
-			for (int i = 0; i < layers.Count; i++)
-				if (layers[i].z == z)
-					return i;
-
-			return -1;
-		}
-
-		public void SetLayer(int z, Grid2D<TileObject> tiles)
-		{
-			int i = GetLayerIndex(z);
-
-			if (tiles.Size != Size)
-				throw new System.InvalidOperationException("Tile layer size of " + tiles.Size + " is incompatible with " + Size + ".");
-
-			if (i == -1)
-			{
-				layers.Add(new TileLayer(z, tiles));
-			}
-			else
-				layers[i].tiles = tiles;
-		}
-
-		/// <summary>
-		/// Gets a tile layer on this map
-		/// </summary>
-		/// <param name="z">What layer to get</param>
-		/// <param name="autoCreate">If the layer didn't exist create one</param>
-		public Grid2D<TileObject> GetLayer(int z, bool autoCreate = false)
-		{
-			int i = GetLayerIndex(z);
-
-			if (i == -1)
-			{
-				if (autoCreate)
-				{
-					var layer = new Grid2D<TileObject>(Width, Height);
-					SetLayer(z, layer);
-					return layer;
-				}
-
-				return null;
-			}
-
-			return layers[i].tiles;
+			foreach (var tile in tileLayerMap.tiles)
+				tiles[tile.Key] = tile.Value;
 		}
 
 		public bool InBounds(int x, int y)
@@ -146,10 +98,9 @@ namespace Phantom
 		/// <returns></returns>
 		public TileObject GetTile(Vector3Int position)
 		{
-			var layer = GetLayer(position.z);
-			if (layer == null)
-				return null;
-			return layer.Get(position.x, position.y);
+			if (tiles.TryGetValue(position, out var tile))
+				return tile;
+			return null;
 		}
 
 		/// <summary>
@@ -159,8 +110,7 @@ namespace Phantom
 		/// <param name="tile">Tile to assign to</param>
 		public void SetTile(Vector3Int position, TileObject tile)
 		{
-			var layer = GetLayer(position.z, true);
-			layer.Set(position.x, position.y, tile);
+			tiles[position] = tile;
 		}
 
 		public void AddTiles(GameObject root, Tilemap tilemap)
@@ -175,19 +125,13 @@ namespace Phantom
 				}
 			}
 
-			foreach (var layer in layers)
+			foreach (var keyValuePair in tiles)
 			{
-				for (int x = 0; x < Width; x++)
-				{
-					for (int y = 0; y < Height; y++)
-					{
-						var position = new Vector3Int(x, y, layer.z);
-						var tile = GetTile(position);
+				var position = keyValuePair.Key;
+				var tile = keyValuePair.Value;
 
-						if (tile != null && tile.Tile != null)
-							tilemap.SetTile(position, tile.Tile);
-					}
-				}
+				if (tile != null && tile.Tile != null)
+					tilemap.SetTile(position, tile.Tile);
 			}
 
 			tilemap.CompressBounds();
