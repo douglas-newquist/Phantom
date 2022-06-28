@@ -136,7 +136,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84051179238d4e043b8f941c246c10fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 0}
   brakeMaxVelocityToSetZero: 0.1
+  lookAheadRange: 2
+  collisionAvoidanceStrength: 0.75
+  collisionExtraRays: 4
+  collisionRayAngle: 15
 --- !u!114 &5065441348383330979
 MonoBehaviour:
   m_ObjectHideFlags: 0

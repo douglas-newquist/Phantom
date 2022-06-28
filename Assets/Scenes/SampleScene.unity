@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 92991665}
   - component: {fileID: 92991664}
   - component: {fileID: 92991668}
+  - component: {fileID: 92991669}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -158,6 +159,7 @@ MonoBehaviour:
   priority: 1
   conditions:
   - {fileID: 11400000, guid: bd69551b9abce115c8f7c8c126b03112, type: 2}
+  - {fileID: 11400000, guid: ab575be3cca567eae98e160484f87cea, type: 2}
   points: []
   loopsBackToStart: 0
 --- !u!114 &92991665
@@ -190,6 +192,11 @@ MonoBehaviour:
   priority: 0
   conditions:
   - {fileID: 11400000, guid: bd69551b9abce115c8f7c8c126b03112, type: 2}
+  origin: {x: 0, y: 0}
+  target: {x: 0, y: 0}
+  wanderDistance:
+    min: 0
+    max: 400
 --- !u!4 &92991667
 Transform:
   m_ObjectHideFlags: 0
@@ -219,8 +226,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 10
   conditions:
-  - {fileID: 11400000, guid: e410177fa51cce7baa9db5f8debc3475, type: 2}
   - {fileID: 11400000, guid: eabba4c1ff397b5b28eedd9de9f1aead, type: 2}
+--- !u!114 &92991669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92991663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6af4f4131c7ec682983cb8e4da2f6af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 0
+  conditions:
+  - {fileID: 11400000, guid: 5a4d157c636eb4bf4be52370f672eb6c, type: 2}
+  origin: {x: 0, y: 0}
+  target: {x: 0, y: 0}
+  wanderDistance:
+    min: 50
+    max: 100
 --- !u!1 &274788797
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,7 +846,8 @@ MonoBehaviour:
           width: 0
           height: 0
           values: 
-      layers: []
+      tiles:
+        items: []
     hullType: {fileID: 0}
   levelDesign:
     name: 
@@ -831,7 +858,8 @@ MonoBehaviour:
           width: 0
           height: 0
           values: 
-      layers: []
+      tiles:
+        items: []
     tileMapTexture: {fileID: 0}
   followCameraExtension: {fileID: 519420037}
 --- !u!4 &1387071761
@@ -861,6 +889,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dab3f69ac84ef0a180be333db904a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statSheetValues:
+    stats: []
+    modifiers: []
   primaryHealthStat: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
   OnTakeDamage:
     m_PersistentCalls:
