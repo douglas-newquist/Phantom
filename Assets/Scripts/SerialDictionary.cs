@@ -11,10 +11,7 @@ namespace Phantom
 	public class SerialDictionary<TKey, TValue> : ISerializationCallbackReceiver, IDictionary<TKey, TValue>
 	{
 		[SerializeField]
-		private List<TKey> keys = new List<TKey>();
-
-		[SerializeField]
-		private List<TValue> values = new List<TValue>();
+		private List<SerialKeyValuePair<TKey, TValue>> items;
 
 		[System.NonSerialized]
 		private IDictionary<TKey, TValue> dict = new Dictionary<TKey, TValue>();
@@ -71,14 +68,16 @@ namespace Phantom
 		public void OnAfterDeserialize()
 		{
 			dict = new Dictionary<TKey, TValue>();
-			for (int i = 0; i < keys.Count && i < values.Count; i++)
-				dict[keys[i]] = values[i];
+			foreach (var item in items)
+				if (!ContainsKey(item.Key))
+					dict.Add(item);
 		}
 
 		public void OnBeforeSerialize()
 		{
-			keys = new List<TKey>(dict.Keys);
-			values = new List<TValue>(dict.Values);
+			items = new List<SerialKeyValuePair<TKey, TValue>>();
+			foreach (var item in dict)
+				items.Add(item);
 		}
 
 		public bool Remove(TKey key)
