@@ -18,41 +18,7 @@ namespace Phantom
 		[Range(0f, 1f)]
 		public float brakeMaxVelocityToSetZero = 0.1f;
 
-		[Header("Collision Avoidance")]
-		public float lookAheadRange = 2;
-
-		[Range(0f, 10f)]
-		public float collisionAvoidanceStrength = 0.2f;
-
-		[Range(0, 16)]
-		public int collisionExtraRays = 4;
-
-		[Range(0f, 90f)]
-		public float collisionRayAngle = 45;
-
-		public float CollisionRayAngle => collisionRayAngle;
-
-		public float DeltaRayAngle => CollisionRayAngle / collisionExtraRays;
-
-		public float RayDistance => Speed * lookAheadRange;
-
-		public int TotalCollisionRays => 1 + collisionExtraRays * 2;
-
-		public IEnumerable<Vector2> CollisionRayDirections
-		{
-			get
-			{
-				var mainRay = body.velocity.normalized;
-				yield return mainRay;
-				var deltaAngle = DeltaRayAngle * Mathf.Deg2Rad;
-
-				for (int i = 0; i < collisionExtraRays; i++)
-				{
-					yield return Math.RotateVector2(mainRay, deltaAngle * i);
-					yield return Math.RotateVector2(mainRay, -deltaAngle * i);
-				}
-			}
-		}
+		public CollisionAvoidance collisionAvoidance = new CollisionAvoidance();
 
 		private void Start()
 		{
@@ -91,37 +57,10 @@ namespace Phantom
 			return max;
 		}
 
-		public RaycastHit2D CastCollisionRay(Vector2 direction)
-		{
-			return Physics2D.Raycast(transform.position, direction.normalized, RayDistance);
-		}
-
-
-		public Vector2 GetCollisionRayPush(RaycastHit2D hit)
-		{
-			if (hit.transform == null) return Vector2.zero;
-			var direction = hit.normal * collisionAvoidanceStrength;
-			direction /= hit.fraction * TotalCollisionRays;
-			return direction;
-		}
-
-		public Vector2 GetCollisionAvoidancePush()
-		{
-			Vector2 push = Vector2.zero;
-
-			foreach (var ray in CollisionRayDirections)
-			{
-				var hit = CastCollisionRay(ray);
-				push += GetCollisionRayPush(hit);
-			}
-
-			return push;
-		}
-
 		public void Move(Vector2 vector, Reference mode)
 		{
 			vector = TranslateVector(vector, mode);
-			vector += GetCollisionAvoidancePush();
+			vector += collisionAvoidance.GetCollisionPush(body);
 
 			foreach (var thruster in thrusters)
 				force += thruster.Thrust(vector, mode);
@@ -163,27 +102,8 @@ namespace Phantom
 
 		private void OnDrawGizmos()
 		{
-			var _color = Gizmos.color;
-			if (body == null) return;
-
-			foreach (var direction in CollisionRayDirections)
-			{
-				var hit = CastCollisionRay(direction);
-				var push = GetCollisionRayPush(hit);
-				if (hit.transform != null)
-				{
-					Gizmos.color = new Color(1, 0, 0, 1f / hit.fraction);
-					Gizmos.DrawRay(transform.position, hit.point - (Vector2)transform.position);
-					Gizmos.DrawRay(transform.position, push);
-				}
-				else
-				{
-					Gizmos.color = Color.white;
-					Gizmos.DrawRay(transform.position, direction * RayDistance);
-				}
-			}
-
-			Gizmos.color = _color;
+			if (body != null)
+				collisionAvoidance.DrawGizmos(body);
 		}
 	}
 }
