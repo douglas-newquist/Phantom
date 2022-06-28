@@ -7,6 +7,8 @@ namespace Phantom
 	/// </summary>
 	public interface ILooker
 	{
+		Transform transform { get; }
+
 		void Look(Vector2 vector2, Reference mode);
 	}
 }
