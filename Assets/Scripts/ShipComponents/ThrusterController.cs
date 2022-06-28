@@ -97,12 +97,12 @@ namespace Phantom
 		}
 
 
-		public Vector2 GetCollisionRayPush(RaycastHit2D hit, Vector2 direction)
+		public Vector2 GetCollisionRayPush(RaycastHit2D hit)
 		{
 			if (hit.transform == null) return Vector2.zero;
-			if (hit.fraction != 0)
-				direction /= hit.fraction;
-			return -direction * collisionAvoidanceStrength / TotalCollisionRays;
+			var direction = hit.normal * collisionAvoidanceStrength;
+			direction /= hit.fraction * TotalCollisionRays;
+			return direction;
 		}
 
 		public Vector2 GetCollisionAvoidancePush()
@@ -112,8 +112,7 @@ namespace Phantom
 			foreach (var ray in CollisionRayDirections)
 			{
 				var hit = CastCollisionRay(ray);
-				push += GetCollisionRayPush(hit, ray);
-				Debug.Log(GetCollisionRayPush(hit, ray));
+				push += GetCollisionRayPush(hit);
 			}
 
 			return push;
@@ -170,10 +169,10 @@ namespace Phantom
 			foreach (var direction in CollisionRayDirections)
 			{
 				var hit = CastCollisionRay(direction);
-				var push = GetCollisionRayPush(hit, direction);
+				var push = GetCollisionRayPush(hit);
 				if (hit.transform != null)
 				{
-					Gizmos.color = Color.red;
+					Gizmos.color = new Color(1, 0, 0, 1f / hit.fraction);
 					Gizmos.DrawRay(transform.position, hit.point - (Vector2)transform.position);
 					Gizmos.DrawRay(transform.position, push);
 				}

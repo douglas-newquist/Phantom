@@ -139,9 +139,9 @@ MonoBehaviour:
   body: {fileID: 0}
   brakeMaxVelocityToSetZero: 0.1
   lookAheadRange: 2
-  collisionAvoidanceStrength: 0.75
-  collisionExtraRays: 4
-  collisionRayAngle: 15
+  collisionAvoidanceStrength: 1
+  collisionExtraRays: 8
+  collisionRayAngle: 30
 --- !u!114 &5065441348383330979
 MonoBehaviour:
   m_ObjectHideFlags: 0
