@@ -58,6 +58,11 @@ namespace Phantom
 				force += thruster.Thrust(vector, mode);
 		}
 
+		public void MoveTo(Vector2 position)
+		{
+			throw new System.NotImplementedException();
+		}
+
 		/// <summary>
 		/// Brings the ship's velocity to zero
 		/// </summary>
