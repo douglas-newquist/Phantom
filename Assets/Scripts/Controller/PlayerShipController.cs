@@ -43,7 +43,7 @@ namespace Phantom
 				if (Input.GetKey(KeyCode.X))
 					movable.Brake();
 				else if (direction != Vector2.zero)
-					movable.Move(direction, thrustReference);
+					movable.MoveRelative(direction, thrustReference);
 				else
 					movable.MoveTo(target);
 

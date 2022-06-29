@@ -69,7 +69,7 @@ namespace Phantom
 			return max;
 		}
 
-		public void Move(Vector2 vector, Reference mode)
+		public void MoveRelative(Vector2 vector, Reference mode)
 		{
 			vector = TranslateVector(vector, mode);
 			vector += collisionAvoidance.GetCollisionPush(body);
@@ -97,7 +97,7 @@ namespace Phantom
 			{
 				var error = target - (Vector2)transform.position;
 				var move = PID.Correction(error, Time.fixedDeltaTime);
-				Move(move, Reference.Absolute);
+				MoveRelative(move, Reference.Absolute);
 			}
 			else
 			{
@@ -117,7 +117,7 @@ namespace Phantom
 			}
 
 			var move = PID.Correction(-Velocity, Time.fixedDeltaTime);
-			Move(move, Reference.Absolute);
+			MoveRelative(move, Reference.Absolute);
 		}
 
 		private void FixedUpdate()
