@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom.StatSystem
 {
-	public abstract class ModifierSO : ScriptableObject
+	public abstract class ModifierType : ScriptableObject
 	{
 		[Range(0, 100)]
 		public int order = 0;
@@ -11,6 +11,6 @@ namespace Phantom.StatSystem
 
 		public abstract IModifier Create(object source, float magnitude);
 
-		public virtual IModifier Create(float magnitude) => Create(this, magnitude);
+		public virtual IModifier Create(float magnitude) => Create(null, magnitude);
 	}
 }

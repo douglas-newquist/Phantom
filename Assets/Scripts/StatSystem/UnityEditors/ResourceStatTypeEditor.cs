@@ -1,9 +1,8 @@
 using UnityEditor;
 
-#if UNITY_EDITOR
-
-namespace Phantom.StatSystem
+namespace Phantom.StatSystem.Editors
 {
+#if UNITY_EDITOR
 	[CustomEditor(typeof(ResourceStatType))]
 	public class ResourceStatTypeEditor : StatTypeEditor
 	{
@@ -21,6 +20,5 @@ namespace Phantom.StatSystem
 			serializedObject.ApplyModifiedProperties();
 		}
 	}
-}
-
 #endif
+}

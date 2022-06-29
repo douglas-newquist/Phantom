@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Phantom.StatSystem
 {
 	/// <summary>
@@ -6,18 +8,31 @@ namespace Phantom.StatSystem
 	[System.Serializable]
 	public struct Modifier
 	{
-		public StatType stat;
+		[SerializeField]
+		private StatType stat;
 
-		public ModifierSO modifier;
+		public StatType StatType { get => stat; set => stat = value; }
 
-		public float magnitude;
+		[SerializeField]
+		private ModifierType modifier;
 
+		public ModifierType ModifierType { get => modifier; set => modifier = value; }
+
+		[SerializeField]
+		private float magnitude;
+
+		public float Magnitude { get => magnitude; set => magnitude = value; }
+
+		/// <summary>
+		/// Creates a new runtime version of this modifier
+		/// </summary>
+		/// <param name="source">What is giving this modifier</param>
 		public IModifier Create(object source = null)
 		{
-			if (modifier == null)
+			if (ModifierType == null)
 				throw new System.ArgumentNullException("Modifier is not selected");
 
-			return modifier.Create(source, magnitude);
+			return ModifierType.Create(source, Magnitude);
 		}
 
 		public IModifier Apply(StatSheet statSheet, object source = null)
@@ -27,7 +42,7 @@ namespace Phantom.StatSystem
 
 			var modifier = Create(source);
 
-			statSheet.GetStat<IModifiableStat>(stat).AddModifier(modifier);
+			statSheet.GetStat<IModifiableStat>(StatType).AddModifier(modifier);
 			return modifier;
 		}
 	}

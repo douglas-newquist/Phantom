@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEditor;
 
-#if UNITY_EDITOR
-namespace Phantom.StatSystem
+namespace Phantom.StatSystem.Editors
 {
+#if UNITY_EDITOR
 	[CustomPropertyDrawer(typeof(StatValue))]
 	public class StatValueDrawer : PropertyDrawer
 	{
@@ -35,5 +35,5 @@ namespace Phantom.StatSystem
 			EditorGUI.EndProperty();
 		}
 	}
-}
 #endif
+}

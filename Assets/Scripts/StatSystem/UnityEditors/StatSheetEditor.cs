@@ -1,9 +1,8 @@
 using UnityEditor;
 
-#if UNITY_EDITOR
-
-namespace Phantom.StatSystem
+namespace Phantom.StatSystem.Editors
 {
+#if UNITY_EDITOR
 	[CustomEditor(typeof(StatSheet))]
 	public class StatSheetEditor : Editor
 	{
@@ -29,6 +28,5 @@ namespace Phantom.StatSystem
 			}
 		}
 	}
-}
-
 #endif
+}

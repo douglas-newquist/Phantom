@@ -5,5 +5,6 @@ namespace Phantom.StatSystem
 		void AddModifier(IModifier modifier);
 		bool RemoveModifier(IModifier modifier);
 		void RemoveModifiersFromSource(object source);
+		void RemoveAllModifiers();
 	}
 }

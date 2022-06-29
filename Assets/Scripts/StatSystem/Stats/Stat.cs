@@ -143,6 +143,12 @@ namespace Phantom.StatSystem
 				}
 		}
 
+		public void RemoveAllModifiers()
+		{
+			modifiers.Clear();
+			MarkDirty();
+		}
+
 		/// <summary>
 		/// Marks this stat's current value as dirty
 		/// </summary>

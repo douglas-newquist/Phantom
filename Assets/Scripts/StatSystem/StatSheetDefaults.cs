@@ -1,13 +1,16 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Phantom.StatSystem
 {
 	[System.Serializable]
 	public class StatSheetDefaults
 	{
-		public List<StatValue> stats = new List<StatValue>();
+		[SerializeField]
+		private List<StatValue> stats = new List<StatValue>();
 
-		public List<Modifier> modifiers = new List<Modifier>();
+		[SerializeField]
+		private List<Modifier> modifiers = new List<Modifier>();
 
 		public void Apply(StatSheet statSheet)
 		{

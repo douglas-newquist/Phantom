@@ -5,11 +5,19 @@ namespace Phantom.StatSystem
 	[System.Serializable]
 	public struct Damage
 	{
-		public object source;
+		private object source;
 
-		public DamageType damageType;
+		public object Source { get => source; set => source = value; }
 
-		public float amount;
+		[SerializeField]
+		private DamageType damageType;
+
+		public DamageType DamageType { get => damageType; set => damageType = value; }
+
+		[SerializeField]
+		private float amount;
+
+		public float Amount { get => amount; set => amount = value; }
 
 		public Damage(object source, DamageType damageType, float amount)
 		{
@@ -23,26 +31,26 @@ namespace Phantom.StatSystem
 
 		public Damage(Damage other)
 		{
-			source = other.source;
-			damageType = other.damageType;
-			amount = other.amount;
+			this.source = other.Source;
+			this.damageType = other.DamageType;
+			this.amount = other.Amount;
 		}
 
 		public override string ToString()
 		{
-			if (source != null)
-				return string.Format("{0} {1} Damage from {2}", amount, damageType, source);
-			return string.Format("{0} {1} Damage", amount, damageType);
+			if (Source != null)
+				return string.Format("{0} {1} Damage from {2}", Amount, DamageType, Source);
+			return string.Format("{0} {1} Damage", Amount, DamageType);
 		}
 
 		public void Apply(StatSheet sheet)
 		{
-			float remaining = amount;
+			float remaining = Amount;
 
-			if (damageType == null)
+			if (DamageType == null)
 				throw new System.ArgumentNullException("Damage type is null");
 
-			foreach (var multiplier in damageType.multipliers)
+			foreach (var multiplier in DamageType.multipliers)
 			{
 				if (Mathf.Abs(remaining) < 0.1f)
 					return;

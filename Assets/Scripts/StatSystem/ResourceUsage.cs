@@ -1,12 +1,17 @@
+using UnityEngine;
+
 namespace Phantom.StatSystem
 {
 	[System.Serializable]
 	public struct ResourceUsage
 	{
-		public ResourceStatType type;
+		[SerializeField]
+		private ResourceStatType type;
 
-		public float amount;
+		[SerializeField]
+		private float amount;
 
-		public bool continuous;
+		[SerializeField]
+		private bool continuous;
 	}
 }

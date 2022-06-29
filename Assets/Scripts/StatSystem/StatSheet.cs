@@ -47,7 +47,7 @@ namespace Phantom.StatSystem
 
 		public virtual void ApplyDamage(Damage damage)
 		{
-			if (damage.amount == 0) return;
+			if (damage.Amount == 0) return;
 
 			var damageEvent = new DamagedEvent(this, damage);
 			OnTakeDamage.Invoke(damageEvent);
@@ -66,16 +66,6 @@ namespace Phantom.StatSystem
 
 			if (resource.Empty)
 				OnDeath.Invoke(this);
-		}
-
-		public override string ToString()
-		{
-			string s = "Stat Sheet with " + stats.Count + " stats";
-
-			foreach (var stat in stats.Values)
-				s += "\n" + stat.ToString();
-
-			return s;
 		}
 
 		public bool HasStat(StatType type) => stats.ContainsKey(type);

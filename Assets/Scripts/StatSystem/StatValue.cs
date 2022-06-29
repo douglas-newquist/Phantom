@@ -1,18 +1,37 @@
+using UnityEngine;
+
 namespace Phantom.StatSystem
 {
+	/// <summary>
+	/// Defines a specific stat with some value
+	/// </summary>
 	[System.Serializable]
 	public struct StatValue
 	{
-		public StatType type;
+		[SerializeField]
+		private StatType type;
 
-		public float value;
+		public StatType Type
+		{
+			get => type;
+			set => type = value;
+		}
+
+		[SerializeField]
+		private float value;
+
+		public float Value
+		{
+			get => value;
+			set => this.value = value;
+		}
 
 		public float GetValue(StatSheet statSheet)
 		{
 			if (statSheet == null)
 				throw new System.ArgumentNullException("statSheet");
 
-			return statSheet.GetValue(type) * value;
+			return statSheet.GetValue(Type) * Value;
 		}
 
 		public void Apply(StatSheet statSheet)
@@ -20,7 +39,7 @@ namespace Phantom.StatSystem
 			if (statSheet == null)
 				throw new System.ArgumentNullException("statSheet");
 
-			statSheet.GetStat(type).BaseValue += value;
+			statSheet.GetStat(Type).BaseValue += Value;
 		}
 	}
 }

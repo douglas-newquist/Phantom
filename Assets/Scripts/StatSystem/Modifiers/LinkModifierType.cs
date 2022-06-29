@@ -3,11 +3,11 @@ using UnityEngine;
 namespace Phantom.StatSystem
 {
 	[CreateAssetMenu(menuName = CreateMenu.Modifiers + "Link")]
-	public class LinkModifierSO : ModifierSO
+	public class LinkModifierType : ModifierType
 	{
 		public StatType stat;
 
-		public ModifierSO linkStatRatio;
+		public ModifierType linkStatRatio;
 
 		public override IModifier Create(object source, float magnitude)
 		{

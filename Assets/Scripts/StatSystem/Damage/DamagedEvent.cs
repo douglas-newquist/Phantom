@@ -2,8 +2,14 @@ namespace Phantom.StatSystem
 {
 	public class DamagedEvent : Event
 	{
+		/// <summary>
+		/// How much damage was to be applied originally
+		/// </summary>
 		public Damage OriginalDamage { get; private set; }
 
+		/// <summary>
+		/// Current amount of damage to apply
+		/// </summary>
 		public Damage Damage { get; set; }
 
 		public DamagedEvent(object context, Damage damage) : base(context)
