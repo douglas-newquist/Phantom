@@ -43,6 +43,8 @@ namespace Phantom.Pathfinding
 
 			return pathfinder.FindPathAsync(this, map, start, end);
 		}
+
+		public virtual void OnFinishedPathFinding(Path<TCell> path) { }
 	}
 
 	public abstract class PathAgent<TMap> : PathAgent<TMap, Vector2Int> { }

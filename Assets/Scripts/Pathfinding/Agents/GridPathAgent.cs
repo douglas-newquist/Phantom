@@ -9,6 +9,8 @@ namespace Phantom.Pathfinding
 
 		public DistanceMode distanceMode = DistanceMode.SquareRoot;
 
+		public bool simplifyPath = false;
+
 		[Range(-1, 16)]
 		public float outOfBoundsCost = -1;
 
@@ -68,6 +70,20 @@ namespace Phantom.Pathfinding
 			}
 
 			return dist * PathThroughCost(map, end);
+		}
+
+		public override void OnFinishedPathFinding(Path<Vector2Int> path)
+		{
+			if (path.Length < 3) return;
+
+			for (int i = path.Length - 2; i >= 1; i--)
+			{
+				Vector2 d1 = path[i] - path[i - 1];
+				Vector2 d2 = path[i + 1] - path[i];
+
+				if (Vector2.Angle(d1.normalized, d2.normalized) < 5)
+					path.RemoveAt(i);
+			}
 		}
 	}
 }

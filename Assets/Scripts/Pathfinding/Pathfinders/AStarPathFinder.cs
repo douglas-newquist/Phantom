@@ -103,6 +103,8 @@ namespace Phantom.Pathfinding
 				result.SetPath(null, status);
 			else
 				result.SetPath(BuildPath(bestNode), status);
+
+			agent.OnFinishedPathFinding(result);
 		}
 	}
 }

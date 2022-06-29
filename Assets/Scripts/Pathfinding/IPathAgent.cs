@@ -26,6 +26,12 @@ namespace Phantom.Pathfinding
 		/// <param name="end">Desired cell, may not be a neighbor</param>
 		/// <returns></returns>
 		float GetPathCost(TMap map, TCell start, TCell end);
+
+		/// <summary>
+		/// Called when the pathfinder finishes
+		/// </summary>
+		/// <param name="path">Resultant path object</param>
+		void OnFinishedPathFinding(Path<TCell> path);
 	}
 
 	/// <summary>

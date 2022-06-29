@@ -47,6 +47,8 @@ namespace Phantom.Pathfinding
 
 		public bool Finished => Status != PathStatus.Searching;
 
+		public int Length => Cells.Count;
+
 		public Path(PathStatus status, List<TCell> path) : this()
 		{
 			SetPath(path, status);
@@ -66,6 +68,12 @@ namespace Phantom.Pathfinding
 				s += " of length " + Cells.Count;
 
 			return s;
+		}
+
+		public TCell this[int i]
+		{
+			get => Cells[i];
+			set => Cells[i] = value;
 		}
 
 		public void NextWaypoint()
@@ -111,6 +119,11 @@ namespace Phantom.Pathfinding
 
 			cell = default(TCell);
 			return false;
+		}
+
+		public void RemoveAt(int index)
+		{
+			Cells.RemoveAt(index);
 		}
 
 		public void Reset()

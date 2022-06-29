@@ -22,6 +22,7 @@ namespace Phantom.Pathfinding
 				if (Equals(cell.pos, end))
 				{
 					result.SetPath(BuildPath(cell), PathStatus.Found);
+					agent.OnFinishedPathFinding(result);
 					return;
 				}
 
@@ -47,8 +48,10 @@ namespace Phantom.Pathfinding
 
 			if (loop >= maxIterations)
 				result.SetPath(null, PathStatus.TimedOut);
+			else
+				result.SetPath(null, PathStatus.NoPathPossible);
 
-			result.SetPath(null, PathStatus.NoPathPossible);
+			agent.OnFinishedPathFinding(result);
 		}
 	}
 }
