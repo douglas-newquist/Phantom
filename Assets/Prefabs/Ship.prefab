@@ -136,7 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84051179238d4e043b8f941c246c10fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goal: 0
   body: {fileID: 0}
   brakeMaxVelocityToSetZero: 0.2
   moveToBrakeDistance: 1
@@ -152,8 +151,7 @@ MonoBehaviour:
     integralSaturation: 1
     useVelocity: 0
   pathAgent: {fileID: 11400000, guid: b0b3238c84dbf85949091bfeb8d3e654, type: 2}
-  pathFollowTolerance: 1
-  target: {x: 0, y: 0}
+  pathFollowTolerance: 16
 --- !u!114 &5065441348383330979
 MonoBehaviour:
   m_ObjectHideFlags: 0
