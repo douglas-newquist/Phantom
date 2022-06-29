@@ -6,6 +6,15 @@ namespace Phantom
 {
 	public class ThrusterController : MonoBehaviour, IMover
 	{
+		public enum Goal
+		{
+			Direction,
+			Position,
+			Brake
+		}
+
+		private Goal goal;
+
 		public Rigidbody2D body;
 
 		public Vector2 Velocity
@@ -18,8 +27,6 @@ namespace Phantom
 
 		private Thruster[] thrusters;
 
-		private Vector2 force;
-
 		[Range(0f, 1f)]
 		public float brakeMaxVelocityToSetZero = 0.1f;
 
@@ -30,7 +37,7 @@ namespace Phantom
 
 		public VectorPIDController PID = new VectorPIDController(1, 0, 0);
 
-		public Vector2 target;
+		private Vector2 target;
 
 		private void Start()
 		{
@@ -71,38 +78,38 @@ namespace Phantom
 
 		public void MoveRelative(Vector2 vector, Reference mode)
 		{
-			vector = TranslateVector(vector, mode);
-			vector += collisionAvoidance.GetCollisionPush(body);
+			goal = Goal.Direction;
 
-			foreach (var thruster in thrusters)
-				force += thruster.Thrust(vector, mode);
+			if (vector.magnitude > 1)
+				vector.Normalize();
+
+			if (mode == Reference.Relative)
+				target = transform.TransformDirection(vector);
+			else
+				target = vector;
 		}
 
-		public void MoveTo(Vector2 position)
+		public float MoveTo(Vector2 position)
 		{
+			if (goal != Goal.Position)
+				PID.Reset();
+
+			goal = Goal.Position;
+
 			var delta = position - (Vector2)transform.position;
 			var direction = delta.normalized;
 			var hit = collisionAvoidance.CastRay(body, direction, delta.magnitude);
 
-			if (Vector2.Distance(position, target) > Level.TileSize)
-				PID.Reset();
-
-			target = position;
-
-			if (delta.magnitude < moveToBrakeDistance)
+			if (hit.transform == null)
 			{
-				Brake();
-			}
-			else if (hit.transform == null)
-			{
-				var error = target - (Vector2)transform.position;
-				var move = PID.Correction(error, Time.fixedDeltaTime);
-				MoveRelative(move, Reference.Absolute);
+				target = position;
 			}
 			else
 			{
-				Debug.LogWarning("Pathfinder needed");
+				Debug.LogWarning("Need Path finder");
 			}
+
+			return Vector2.Distance(transform.position, position);
 		}
 
 		/// <summary>
@@ -110,20 +117,57 @@ namespace Phantom
 		/// </summary>
 		public void Brake()
 		{
-			if (Speed <= brakeMaxVelocityToSetZero)
-			{
-				Velocity = Vector2.zero;
-				return;
-			}
+			if (goal != Goal.Brake)
+				PID.Reset();
 
-			var move = PID.Correction(-Velocity, Time.fixedDeltaTime);
-			MoveRelative(move, Reference.Absolute);
+			goal = Goal.Brake;
 		}
 
 		private void FixedUpdate()
 		{
+			Vector2 force = Vector2.zero;
+			Vector2 direction = Vector2.zero;
+
+			switch (goal)
+			{
+				case Goal.Direction:
+					direction = target;
+					break;
+
+				case Goal.Position:
+					if (Vector2.Distance(transform.position, target) < moveToBrakeDistance
+						&& Speed < brakeMaxVelocityToSetZero)
+					{
+						Velocity = Vector2.zero;
+						return;
+					}
+					direction = PID.Correction(transform.position, target, Time.fixedDeltaTime);
+					break;
+
+				case Goal.Brake:
+					if (Speed < brakeMaxVelocityToSetZero)
+					{
+						Velocity = Vector2.zero;
+						return;
+					}
+
+					direction = PID.Correction(Velocity, Vector2.zero, Time.fixedDeltaTime);
+					break;
+			}
+
+			direction += collisionAvoidance.GetCollisionPush(body);
+
+			if (direction.magnitude == 0)
+				return;
+
+			if (direction.magnitude > 1)
+				direction.Normalize();
+
+			foreach (var thruster in thrusters)
+				force += thruster.Thrust(direction, Reference.Absolute);
+
 			body.AddForce(force * Time.fixedDeltaTime, ForceMode2D.Impulse);
-			force = Vector2.zero;
+
 			if (body.velocity.magnitude > GameManager.SpeedLimit)
 				body.velocity = body.velocity.normalized * GameManager.SpeedLimit;
 		}

@@ -22,7 +22,7 @@ MonoBehaviour:
     - type: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
       value: 1
     - type: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
-      value: 50
+      value: 400
     modifiers:
     - stat: {fileID: 11400000, guid: a4721f0b45add341c95539ab35a4f964, type: 2}
       modifier: {fileID: 11400000, guid: 05111833f4d890de298726d77e752065, type: 2}

@@ -17,7 +17,7 @@ namespace Phantom
 		/// Moves to the given position
 		/// </summary>
 		/// <param name="position"></param>
-		void MoveTo(Vector2 position);
+		float MoveTo(Vector2 position);
 
 		void Brake();
 	}

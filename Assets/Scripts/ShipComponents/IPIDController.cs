@@ -11,7 +11,7 @@ namespace Phantom
 
 		float DerivativeGain { get; set; }
 
-		T Correction(T error, float deltaTime);
+		T Correction(T current, T target, float deltaTime);
 
 		void Reset();
 	}

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[System.Serializable]
-	public class VectorPIDController : IPIDController<Vector3>, IPIDController<Vector2>
+	public class VectorPIDController : IPIDController<Vector3>
 	{
 		[SerializeField]
 		private float proportionalGain = 1, integralGain = 1, derivativeGain = 1;
@@ -35,7 +35,11 @@ namespace Phantom
 			set => derivativeGain = value;
 		}
 
+		[SerializeField]
+		private bool useVelocity = false;
+
 		private Vector3 lastError;
+		private Vector3 lastValue;
 		private bool lastErrorValid = false;
 		private Vector3 integral;
 
@@ -50,8 +54,9 @@ namespace Phantom
 		{
 		}
 
-		public Vector3 Correction(Vector3 error, float deltaTime)
+		public Vector3 Correction(Vector3 current, Vector3 target, float deltaTime)
 		{
+			Vector3 error = target - current;
 			Vector3 P = Vector3.zero, I = Vector3.zero, D = Vector3.zero;
 
 			P = error * ProportionalGain;
@@ -61,7 +66,13 @@ namespace Phantom
 				Vector3 errorRateOfChange = (error - lastError) / deltaTime;
 				lastError = error;
 
-				D = DerivativeGain * errorRateOfChange;
+				Vector3 valueRateOfChance = (current - lastValue) / deltaTime;
+				lastValue = current;
+
+				if (useVelocity)
+					D = DerivativeGain * valueRateOfChance;
+				else
+					D = DerivativeGain * errorRateOfChange;
 			}
 
 			lastErrorValid = true;
@@ -73,11 +84,6 @@ namespace Phantom
 			I = IntegralGain * integral;
 
 			return P + I + D;
-		}
-
-		public Vector2 Correction(Vector2 error, float deltaTime)
-		{
-			return Correction((Vector3)error, deltaTime);
 		}
 
 		public void Reset()

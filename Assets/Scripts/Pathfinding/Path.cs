@@ -41,15 +41,11 @@ namespace Phantom.Pathfinding
 
 		public PathStatus Status { get; private set; }
 
-		public List<TCell> Cells;
+		private List<TCell> Cells;
 
-		public int waypoint = 0;
-
-		public TCell Waypoint => Cells[0];
+		private int waypointNumber = 0;
 
 		public bool Finished => Status != PathStatus.Searching;
-
-		public bool LastWaypoint => waypoint >= Cells.Count - 1;
 
 		public Path(PathStatus status, List<TCell> path) : this()
 		{
@@ -74,7 +70,7 @@ namespace Phantom.Pathfinding
 
 		public void NextWaypoint()
 		{
-			waypoint++;
+			waypointNumber++;
 		}
 
 		/// <summary>
@@ -97,6 +93,29 @@ namespace Phantom.Pathfinding
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return ((IEnumerable)Cells).GetEnumerator();
+		}
+
+		public bool TryGetWaypoint(out TCell cell)
+		{
+			switch (Status)
+			{
+				case PathStatus.Found:
+				case PathStatus.TimedOut:
+					if (waypointNumber < Cells.Count)
+					{
+						cell = Cells[waypointNumber];
+						return true;
+					}
+					break;
+			}
+
+			cell = default(TCell);
+			return false;
+		}
+
+		public void Reset()
+		{
+			waypointNumber = 0;
 		}
 	}
 }
