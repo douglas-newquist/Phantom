@@ -10,7 +10,8 @@ namespace Phantom
 		{
 			Direction,
 			Position,
-			Brake
+			Brake,
+			PathFinding
 		}
 
 		private Goal goal;
@@ -37,7 +38,14 @@ namespace Phantom
 
 		public VectorPIDController PID = new VectorPIDController(1, 0, 0);
 
-		private Vector2 target;
+		public VertexPathAgent pathAgent;
+
+		public Path<Vector2Int> path;
+
+		[Range(0f, Level.TileSize)]
+		public float pathFollowTolerance = Level.TileSize / 2;
+
+		public Vector2 Target { get; private set; }
 
 		private void Start()
 		{
@@ -84,17 +92,15 @@ namespace Phantom
 				vector.Normalize();
 
 			if (mode == Reference.Relative)
-				target = transform.TransformDirection(vector);
+				Target = transform.TransformDirection(vector);
 			else
-				target = vector;
+				Target = vector;
 		}
 
 		public float MoveTo(Vector2 position)
 		{
-			if (goal != Goal.Position)
+			if (goal != Goal.Position && goal != Goal.PathFinding)
 				PID.Reset();
-
-			goal = Goal.Position;
 
 			var delta = position - (Vector2)transform.position;
 			var direction = delta.normalized;
@@ -102,11 +108,19 @@ namespace Phantom
 
 			if (hit.transform == null)
 			{
-				target = position;
+				goal = Goal.Position;
+				Target = position;
 			}
 			else
 			{
-				Debug.LogWarning("Need Path finder");
+				if (Target != position)
+				{
+					Target = position;
+					goal = Goal.PathFinding;
+					var start = (Vector2Int)GameManager.CurrentLevel.GetClosestVertex(transform.position);
+					var end = (Vector2Int)GameManager.CurrentLevel.GetClosestVertex(position);
+					path = pathAgent.FindPath(GameManager.CurrentLevel.Vertices, start, end);
+				}
 			}
 
 			return Vector2.Distance(transform.position, position);
@@ -127,6 +141,24 @@ namespace Phantom
 		{
 			Vector2 force = Vector2.zero;
 			Vector2 direction = Vector2.zero;
+			Vector2 target = Target;
+
+			if (goal == Goal.PathFinding)
+			{
+				if (path.TryGetWaypoint(out var waypoint))
+				{
+					target = GameManager.CurrentLevel.GridToWorldPoint((Vector3Int)waypoint);
+					if (Vector2.Distance(target, transform.position) < pathFollowTolerance)
+						path.NextWaypoint();
+				}
+
+				if (path.TryGetWaypoint(out waypoint))
+				{
+					target = GameManager.CurrentLevel.GridToWorldPoint((Vector3Int)waypoint);
+				}
+				else
+					target = transform.position;
+			}
 
 			switch (goal)
 			{
@@ -134,6 +166,7 @@ namespace Phantom
 					direction = target;
 					break;
 
+				case Goal.PathFinding:
 				case Goal.Position:
 					if (Vector2.Distance(transform.position, target) < moveToBrakeDistance
 						&& Speed < brakeMaxVelocityToSetZero)
@@ -177,7 +210,21 @@ namespace Phantom
 			if (body != null)
 				collisionAvoidance.DrawGizmos(body);
 
-			Gizmos.DrawSphere(target, Level.TileSize / 4);
+			if (path.Finished)
+			{
+				var start = GameManager.CurrentLevel.GridToWorldPoint(GameManager.CurrentLevel.GetClosestVertex(transform.position));
+				Gizmos.DrawWireSphere(start, Level.TileSize / 4);
+				var lastCell = transform.position;
+				foreach (var cell in path)
+				{
+					var pos = GameManager.CurrentLevel.GridToWorldPoint((Vector3Int)cell);
+					Gizmos.DrawWireSphere(pos, pathFollowTolerance);
+					Gizmos.DrawLine(lastCell, pos);
+					lastCell = pos;
+				}
+			}
+
+			Gizmos.DrawSphere(Target, Level.TileSize / 4);
 		}
 	}
 }

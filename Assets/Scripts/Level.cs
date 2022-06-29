@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -44,6 +45,47 @@ namespace Phantom
 		}
 
 		public bool AllowMiniMap => true;
+
+		public TileLayerMap TileLayerMap => LevelDesign.TileLayerMap;
+
+		public VertexTileMap VertexTileMap => TileLayerMap.Tiles;
+
+		public Grid2D<int> Vertices => VertexTileMap.Vertices;
+
+		public Vector3Int[] GetVerticesNear(Vector3 position)
+		{
+			var vertices = new Vector3Int[4];
+
+			vertices[0] = WorldToGridPoint(position);
+			vertices[1] = vertices[0];
+			vertices[1].x++;
+			vertices[2] = vertices[0];
+			vertices[2].y++;
+			vertices[3] = vertices[0];
+			vertices[3].x++;
+			vertices[3].y++;
+
+			return vertices;
+		}
+
+		public Vector3Int GetClosestVertex(Vector3 position)
+		{
+			Vector3Int best = Vector3Int.zero;
+			float bestDist = float.PositiveInfinity;
+
+			foreach (var vertex in GetVerticesNear(position))
+			{
+				var pos = GridToWorldPoint(vertex);
+				var dist = Vector2.Distance(pos, position);
+				if (dist < bestDist)
+				{
+					best = vertex;
+					bestDist = dist;
+				}
+			}
+
+			return best;
+		}
 
 		/// <summary>
 		/// Converts a local tile grid coordinate to a world position

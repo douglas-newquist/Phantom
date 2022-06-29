@@ -15,6 +15,7 @@ MonoBehaviour:
   pathfinder: {fileID: 11400000, guid: fdac6e95ec9b9f88ba5e2c244bb0ec14, type: 2}
   diagonal: 1
   distanceMode: 2
+  simplifyPath: 0
   outOfBoundsCost: -1
   weights:
     empty: 1

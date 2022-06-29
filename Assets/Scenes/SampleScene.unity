@@ -247,6 +247,37 @@ MonoBehaviour:
   wanderDistance:
     min: 50
     max: 100
+--- !u!1 &151217005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 151217006}
+  m_Layer: 0
+  m_Name: End
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &151217006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151217005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &274788797
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,20 +854,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b95fb1794abd62c2beeea1025dd90f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 838161728438992593, guid: 39a653b251467604c9fe3b3b6567f58a, type: 3}
   shipGenerator: {fileID: 11400000, guid: b5eeb1027146b191d9d85c7775ec3336, type: 2}
   shipBuilder: {fileID: 11400000, guid: b5332ed8db87ff5e1af063eaeeca89ae, type: 2}
   mapGenerator: {fileID: 11400000, guid: 92d2c30bbd609fcb88b0e66757c1f447, type: 2}
   levelBuilder: {fileID: 11400000, guid: 7e730912c4ff95fdd98d28b466ff6905, type: 2}
-  colors: []
-  pathAgent: {fileID: 11400000, guid: 18ab1456e1dab770d9938ea64065741c, type: 2}
-  path:
-    Cells: []
-  mapTexture: {fileID: 11400000, guid: df9ab9085f1b95d2face880ee54503ac, type: 2}
-  nameGenerator: {fileID: 11400000, guid: aecb1200a5651859e9e967f30c9f6ca0, type: 2}
-  tilemap: {fileID: 0}
-  tile: {fileID: 11400000, guid: 48b8f0c191b317a2bb9fe8465794c784, type: 2}
-  weights: {fileID: 11400000, guid: bb0e0ae8988d8bcc694708203a2f10ce, type: 2}
   shipDesign:
     name: 
     tileLayerMap:
@@ -862,6 +883,9 @@ MonoBehaviour:
         items: []
     tileMapTexture: {fileID: 0}
   followCameraExtension: {fileID: 519420037}
+  start: {fileID: 1777662707}
+  end: {fileID: 151217006}
+  pathAgent: {fileID: 11400000, guid: b0b3238c84dbf85949091bfeb8d3e654, type: 2}
 --- !u!4 &1387071761
 Transform:
   m_ObjectHideFlags: 0
@@ -902,6 +926,37 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1777662706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1777662707}
+  m_Layer: 0
+  m_Name: Start
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1777662707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777662706}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2080254409
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Ship Vertex Path Agent
   m_EditorClassIdentifier: 
   pathfinder: {fileID: 11400000, guid: 2384066ec36c7ab2786bd8a533bd4972, type: 2}
-  diagonal: 1
+  diagonal: 2
   distanceMode: 2
+  simplifyPath: 1
   outOfBoundsCost: -1
   activeCost: -1
   inactiveCost: 1
