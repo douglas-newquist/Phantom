@@ -35,9 +35,9 @@ namespace Phantom.Pathfinding
 								continue;
 
 							case DiagonalMode.AllowIfBothOrthogonal:
-								if (PathThroughCost(map, new Vector2Int(0, y)) < 0)
+								if (PathThroughCost(map, new Vector2Int(pos.x, y)) < 0)
 									continue;
-								if (PathThroughCost(map, new Vector2Int(x, 0)) < 0)
+								if (PathThroughCost(map, new Vector2Int(x, pos.y)) < 0)
 									continue;
 								break;
 						}
@@ -74,6 +74,7 @@ namespace Phantom.Pathfinding
 
 		public override void OnFinishedPathFinding(Path<Vector2Int> path)
 		{
+			if (!simplifyPath) return;
 			if (path.Length < 3) return;
 
 			for (int i = path.Length - 2; i >= 1; i--)
