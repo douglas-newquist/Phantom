@@ -5,7 +5,7 @@ namespace Phantom.ObjectPooling
 	/// <summary>
 	/// Creates/Copies a GameObject to add to a Pool
 	/// </summary>
-	public interface IPoolSpawnCreator
+	public interface ISpawnFactory
 	{
 		/// <summary>
 		/// Generates a new GameObject

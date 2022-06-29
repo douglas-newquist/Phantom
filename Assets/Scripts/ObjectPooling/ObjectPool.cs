@@ -7,11 +7,6 @@ namespace Phantom.ObjectPooling
 	{
 		private Dictionary<string, Pool> pools = new Dictionary<string, Pool>();
 
-		protected override void OnFirstRun()
-		{
-
-		}
-
 		public static Pool GetPool(string id)
 		{
 			if (Instance.pools.TryGetValue(id, out var tmp))
@@ -23,10 +18,11 @@ namespace Phantom.ObjectPooling
 
 		public static bool ContainsPool(string id)
 		{
+			if (id == null) return false;
 			return Instance.pools.ContainsKey(id);
 		}
 
-		public static void Register(string id, IPoolSpawnCreator spawnCreator)
+		public static void Register(string id, ISpawnFactory spawnCreator)
 		{
 			if (ContainsPool(id))
 			{

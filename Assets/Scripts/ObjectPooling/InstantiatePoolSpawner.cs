@@ -5,7 +5,7 @@ namespace Phantom.ObjectPooling
 	/// <summary>
 	/// Uses GameObject.Instantiate to create copies of a prefab
 	/// </summary>
-	public class InstantiatePoolSpawner : IPoolSpawnCreator
+	public class InstantiatePoolSpawner : ISpawnFactory
 	{
 		public GameObject master;
 

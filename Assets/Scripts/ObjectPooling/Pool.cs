@@ -8,7 +8,7 @@ namespace Phantom.ObjectPooling
 	/// </summary>
 	public class Pool
 	{
-		private IPoolSpawnCreator spawner;
+		private ISpawnFactory spawner;
 
 		private Transform container;
 
@@ -25,7 +25,7 @@ namespace Phantom.ObjectPooling
 		/// </summary>
 		/// <param name="master">Object to use as a template</param>
 		/// <param name="container">Where to store objects</param>
-		public Pool(IPoolSpawnCreator spawner, Transform container)
+		public Pool(ISpawnFactory spawner, Transform container)
 		{
 			this.spawner = spawner;
 			this.container = container;

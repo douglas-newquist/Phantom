@@ -41,6 +41,6 @@ namespace Phantom
 			}
 		}
 
-		protected abstract void OnFirstRun();
+		protected virtual void OnFirstRun() { }
 	}
 }
