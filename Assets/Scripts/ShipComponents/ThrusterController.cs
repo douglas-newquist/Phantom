@@ -23,6 +23,9 @@ namespace Phantom
 		[Range(0f, 1f)]
 		public float brakeMaxVelocityToSetZero = 0.1f;
 
+		[Range(0, Level.TileSize)]
+		public float moveToBrakeDistance = 2f;
+
 		public CollisionAvoidance collisionAvoidance = new CollisionAvoidance();
 
 		public VectorPIDController PID = new VectorPIDController(1, 0, 0);
@@ -80,19 +83,26 @@ namespace Phantom
 			var delta = position - (Vector2)transform.position;
 			var direction = delta.normalized;
 			var hit = collisionAvoidance.CastRay(body, direction, delta.magnitude);
+
 			if (Vector2.Distance(position, target) > Level.TileSize)
 				PID.Reset();
 
 			target = position;
 
-			if (hit.transform == null)
+			if (delta.magnitude < moveToBrakeDistance)
+			{
+				Brake();
+			}
+			else if (hit.transform == null)
 			{
 				var error = target - (Vector2)transform.position;
 				var move = PID.Correction(error, Time.fixedDeltaTime);
 				Move(move, Reference.Absolute);
 			}
 			else
+			{
 				Debug.LogWarning("Pathfinder needed");
+			}
 		}
 
 		/// <summary>
@@ -103,7 +113,6 @@ namespace Phantom
 			if (Speed <= brakeMaxVelocityToSetZero)
 			{
 				Velocity = Vector2.zero;
-				PID.Reset();
 				return;
 			}
 

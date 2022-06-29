@@ -144,9 +144,10 @@ MonoBehaviour:
     extraRays: 6
     totalRayAngle: 30
   PID:
-    proportionalGain: 1.88
-    integralGain: 0.2
+    proportionalGain: 1
+    integralGain: 1
     derivativeGain: 1
+    integralSaturation: 1
   target: {x: 0, y: 0}
 --- !u!114 &5065441348383330979
 MonoBehaviour:
