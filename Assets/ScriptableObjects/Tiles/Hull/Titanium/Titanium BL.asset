@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bb71913fddc5464b23a8a14b55315a, type: 3}
   m_Name: Titanium BL
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 1803640784, guid: 80476c9f8b5159bfbaeb3b8cc2809d46, type: 3}
+  m_Sprite: {fileID: 970737575, guid: 80476c9f8b5159bfbaeb3b8cc2809d46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
