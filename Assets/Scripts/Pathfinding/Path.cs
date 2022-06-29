@@ -43,7 +43,13 @@ namespace Phantom.Pathfinding
 
 		public List<TCell> Cells;
 
+		public int waypoint = 0;
+
+		public TCell Waypoint => Cells[0];
+
 		public bool Finished => Status != PathStatus.Searching;
+
+		public bool LastWaypoint => waypoint >= Cells.Count - 1;
 
 		public Path(PathStatus status, List<TCell> path) : this()
 		{
@@ -64,6 +70,11 @@ namespace Phantom.Pathfinding
 				s += " of length " + Cells.Count;
 
 			return s;
+		}
+
+		public void NextWaypoint()
+		{
+			waypoint++;
 		}
 
 		/// <summary>

@@ -42,6 +42,11 @@ namespace Phantom
 			}
 		}
 
+		public RaycastHit2D CastRay(Rigidbody2D body, Vector2 direction, float maxDistance)
+		{
+			return Physics2D.Raycast(body.position, direction.normalized, maxDistance);
+		}
+
 		/// <summary>
 		/// Casts the given ray from the given body
 		/// </summary>

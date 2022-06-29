@@ -13,6 +13,7 @@ namespace Phantom
 			IMover movable = gameObject.GetComponent<IMover>();
 			ILooker lookable = gameObject.GetComponent<ILooker>();
 			IWeaponSystem weaponSystem = gameObject.GetComponent<IWeaponSystem>();
+			Vector2 target = gameObject.transform.position;
 
 			while (gameObject != null)
 			{
@@ -32,13 +33,19 @@ namespace Phantom
 
 				var x = Input.GetAxis("Horizontal");
 				var y = Input.GetAxis("Vertical");
+				var direction = new Vector2(x, y);
 				var mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				mouse.z = 0;
 
+				if (Input.GetMouseButton(1))
+					target = mouse;
+
 				if (Input.GetKey(KeyCode.X))
 					movable.Brake();
+				else if (direction != Vector2.zero)
+					movable.Move(direction, thrustReference);
 				else
-					movable.Move(new Vector2(x, y), thrustReference);
+					movable.MoveTo(target);
 
 				if (lookable != null)
 					lookable.Look(mouse, Reference.Absolute);

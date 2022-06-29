@@ -138,10 +138,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 0}
   brakeMaxVelocityToSetZero: 0.1
-  lookAheadRange: 2
-  collisionAvoidanceStrength: 1
-  collisionExtraRays: 8
-  collisionRayAngle: 30
+  collisionAvoidance:
+    lookAheadRange: 2
+    strength: 1
+    extraRays: 6
+    totalRayAngle: 30
+  PID:
+    proportionalGain: 1.88
+    integralGain: 0.2
+    derivativeGain: 1
+  target: {x: 0, y: 0}
 --- !u!114 &5065441348383330979
 MonoBehaviour:
   m_ObjectHideFlags: 0

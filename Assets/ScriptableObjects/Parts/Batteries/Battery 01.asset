@@ -23,8 +23,6 @@ MonoBehaviour:
       value: 0.5
     - type: {fileID: 11400000, guid: 707d7c58055e1022a9d05f959bcc04b8, type: 2}
       value: 5
+    - type: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
+      value: 36430
     modifiers: []
-  resourceUsage:
-    type: {fileID: 0}
-    amount: 0
-    continuous: 0

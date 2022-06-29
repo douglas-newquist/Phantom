@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Phantom.Pathfinding;
 
 namespace Phantom
 {
@@ -7,7 +8,11 @@ namespace Phantom
 	{
 		public Rigidbody2D body;
 
-		public Vector2 Velocity => body.velocity;
+		public Vector2 Velocity
+		{
+			get => body.velocity;
+			set => body.velocity = value;
+		}
 
 		public float Speed => Velocity.magnitude;
 
@@ -19,6 +24,10 @@ namespace Phantom
 		public float brakeMaxVelocityToSetZero = 0.1f;
 
 		public CollisionAvoidance collisionAvoidance = new CollisionAvoidance();
+
+		public VectorPIDController PID = new VectorPIDController(1, 0, 0);
+
+		public Vector2 target;
 
 		private void Start()
 		{
@@ -68,7 +77,22 @@ namespace Phantom
 
 		public void MoveTo(Vector2 position)
 		{
-			throw new System.NotImplementedException();
+			var delta = position - (Vector2)transform.position;
+			var direction = delta.normalized;
+			var hit = collisionAvoidance.CastRay(body, direction, delta.magnitude);
+			if (Vector2.Distance(position, target) > Level.TileSize)
+				PID.Reset();
+
+			target = position;
+
+			if (hit.transform == null)
+			{
+				var error = target - (Vector2)transform.position;
+				var move = PID.Correction(error, Time.fixedDeltaTime);
+				Move(move, Reference.Absolute);
+			}
+			else
+				Debug.LogWarning("Pathfinder needed");
 		}
 
 		/// <summary>
@@ -76,20 +100,15 @@ namespace Phantom
 		/// </summary>
 		public void Brake()
 		{
-			if (body.velocity.magnitude < brakeMaxVelocityToSetZero)
+			if (Speed <= brakeMaxVelocityToSetZero)
 			{
-				body.velocity = Vector2.zero;
-				force = Vector2.zero;
+				Velocity = Vector2.zero;
+				PID.Reset();
 				return;
 			}
 
-			var maxThrust = GetMaximumThrust(-body.velocity, Reference.Absolute);
-			var maxDeltaV = maxThrust * Time.fixedDeltaTime / body.mass;
-
-			if (body.velocity.magnitude > maxDeltaV.magnitude)
-				Move(-body.velocity, Reference.Absolute);
-			else
-				Move(maxDeltaV, Reference.Absolute);
+			var move = PID.Correction(-Velocity, Time.fixedDeltaTime);
+			Move(move, Reference.Absolute);
 		}
 
 		private void FixedUpdate()
@@ -104,6 +123,8 @@ namespace Phantom
 		{
 			if (body != null)
 				collisionAvoidance.DrawGizmos(body);
+
+			Gizmos.DrawSphere(target, Level.TileSize / 4);
 		}
 	}
 }
