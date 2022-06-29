@@ -16,7 +16,7 @@ namespace Phantom.Pathfinding
 			if (!map.InBounds(pos.x, pos.y))
 				return outOfBoundsCost;
 
-			return map.Get(pos.x, pos.x) == 0 ? inactiveCost : activeCost;
+			return map.Get(pos.x, pos.y) == 0 ? inactiveCost : activeCost;
 		}
 	}
 }
