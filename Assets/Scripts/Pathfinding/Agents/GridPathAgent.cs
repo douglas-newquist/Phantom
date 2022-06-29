@@ -14,6 +14,9 @@ namespace Phantom.Pathfinding
 		[Range(-1, 16)]
 		public float outOfBoundsCost = -1;
 
+		[Range(0, 16)]
+		public float directionChangedCost = 0;
+
 		public override IEnumerable<Vector2Int> GetNeighbors(IGrid2D<T> map, Vector2Int pos)
 		{
 			for (int xi = -1; xi <= 1; xi++)
@@ -70,6 +73,17 @@ namespace Phantom.Pathfinding
 			}
 
 			return dist * PathThroughCost(map, end);
+		}
+
+		public override float GetSubPathExtraCost(IGrid2D<T> map, Vector2Int a, Vector2Int b, Vector2Int c)
+		{
+			Vector2 d1 = b - a;
+			Vector2 d2 = c - b;
+
+			if (Vector2.Angle(d1.normalized, d2.normalized) < 5)
+				return 0;
+
+			return directionChangedCost;
 		}
 
 		public override void OnFinishedPathFinding(Path<Vector2Int> path)
