@@ -38,6 +38,9 @@ namespace Phantom.StatSystem
 
 		public bool IsDead => !IsAlive;
 
+		[SerializeField]
+		private List<DamageTypeMultiplier> damageTypeMultipliers = new List<DamageTypeMultiplier>();
+
 		public UnityEvent<DamagedEvent> OnTakeDamage;
 
 		/// <summary>
@@ -64,6 +67,10 @@ namespace Phantom.StatSystem
 		{
 			if (Invulnerable || IsDead || damage.Amount == 0) return;
 
+			foreach (var multiplier in damageTypeMultipliers)
+				if (multiplier.damageType == damage.DamageType)
+					damage.Amount *= multiplier.multiplier;
+
 			var damageEvent = new DamagedEvent(Stats, damage);
 			OnTakeDamage.Invoke(damageEvent);
 			damage = damageEvent.Damage;
@@ -74,7 +81,6 @@ namespace Phantom.StatSystem
 			{
 				damageEvent = new DamagedEvent(Stats, damage);
 				OnTakeFatalDamage.Invoke(damageEvent);
-				damage = damageEvent.Damage;
 			}
 
 			if (IsDead)
