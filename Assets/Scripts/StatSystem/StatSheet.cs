@@ -6,7 +6,7 @@ using UnityEngine.Events;
 namespace Phantom.StatSystem
 {
 	[DisallowMultipleComponent]
-	public class StatSheet : MonoBehaviour, IDamageable, IEnumerable<IStat>, IReset
+	public class StatSheet : MonoBehaviour, IEnumerable<IStat>, IReset
 	{
 		[SerializeField]
 		private StatSheetDefaults statSheetDefaults;
@@ -41,45 +41,10 @@ namespace Phantom.StatSystem
 		[Header("Events")]
 		public UnityEvent<IStat> OnStatAdded;
 
-		public UnityEvent<DamagedEvent> OnTakeDamage;
-
-		/// <summary>
-		/// Triggers after taking an amount of damage that will kill this entity
-		/// </summary>
-		public UnityEvent<DamagedEvent> OnTakeFatalDamage;
-
-		/// <summary>
-		/// Triggers after OnTakeFatalDamage if this entity is still dying
-		/// </summary>
-		public UnityEvent<StatSheet> OnDeath;
-
 		private void Start()
 		{
 			statSheetDefaults.Apply(this);
 			Reset();
-		}
-
-		public virtual void ApplyDamage(Damage damage)
-		{
-			if (damage.Amount == 0) return;
-
-			var damageEvent = new DamagedEvent(this, damage);
-			OnTakeDamage.Invoke(damageEvent);
-			damage = damageEvent.Damage;
-
-			damage.Apply(this);
-
-			var resource = GetStat<ResourceStat>(PrimaryHealthStat);
-
-			if (resource.Empty)
-			{
-				damageEvent = new DamagedEvent(this, damage);
-				OnTakeFatalDamage.Invoke(damageEvent);
-				damage = damageEvent.Damage;
-			}
-
-			if (resource.Empty)
-				OnDeath.Invoke(this);
 		}
 
 		public bool HasStat(StatType type) => stats.ContainsKey(type);
