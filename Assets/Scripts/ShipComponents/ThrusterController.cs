@@ -167,6 +167,7 @@ namespace Phantom
 			if (body != null)
 				collisionAvoidance.DrawGizmos(body);
 
+			pathSeeker.DrawGizmos();
 			/*
 						if (path.Finished)
 						{

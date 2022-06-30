@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Phantom.Pathfinding
 {
@@ -129,6 +130,32 @@ namespace Phantom.Pathfinding
 		public void Reset()
 		{
 			waypointNumber = 0;
+		}
+
+		public void DrawGizmos(Func<TCell, Vector3> cellToWorld, float radius)
+		{
+			var _color = Gizmos.color;
+
+			for (int i = 0; i < Length; i++)
+			{
+				if (i < waypointNumber)
+					Gizmos.color = Color.green;
+				else if (i == waypointNumber)
+					Gizmos.color = Color.yellow;
+				else
+					Gizmos.color = Color.white;
+
+				var start = cellToWorld(this[i]);
+				Gizmos.DrawWireSphere(start, radius);
+
+				if (i > 0)
+				{
+					var end = cellToWorld(this[i - 1]);
+					Gizmos.DrawLine(start, end);
+				}
+			}
+
+			Gizmos.color = _color;
 		}
 	}
 }

@@ -39,6 +39,8 @@ namespace Phantom
 
 		private Path<Vector2Int> path;
 
+		private bool followingPath = false;
+
 		private Vector3 lastPathTarget = Vector3.positiveInfinity;
 
 		/// <summary>
@@ -78,12 +80,16 @@ namespace Phantom
 		public Vector3 GetWaypoint(Vector3 current, Vector3 target)
 		{
 			if (NeedsPathFinder(current, target) == false)
+			{
+				followingPath = false;
 				return target;
+			}
 
 			if (lastPathTarget != target)
 			{
 				path = pathAgent.FindPath(Vertices, WorldToMapCell(current), WorldToMapCell(target));
 				lastPathTarget = target;
+				followingPath = true;
 			}
 
 			if (path.TryGetWaypoint(out var waypoint))
@@ -97,6 +103,12 @@ namespace Phantom
 				return MapToWorldCell(waypoint);
 
 			return current;
+		}
+
+		public void DrawGizmos()
+		{
+			if (followingPath && path.Status == PathStatus.Found)
+				path.DrawGizmos(MapToWorldCell, FollowTolerance);
 		}
 	}
 }
