@@ -16,7 +16,7 @@ namespace Phantom
 			{
 				for (int y = position.y; y < position.y + tile.Height; y++)
 				{
-					if (map.Tiles.TryGet(x, y, out var t))
+					if (map.VertexTiles.TryGet(x, y, out var t))
 						if (!shape.HasFlag(t.Shape()))
 							return false;
 				}

@@ -17,7 +17,12 @@ namespace Phantom
 		public VertexTiles VertexTileTiles
 		{
 			get => vertexTileTiles;
-			set => vertexTileTiles = value;
+			set
+			{
+				if (value == null)
+					throw new System.ArgumentNullException("VertexTileTiles");
+				vertexTileTiles = value;
+			}
 		}
 
 		[SerializeField]
@@ -26,15 +31,13 @@ namespace Phantom
 		/// <summary>
 		/// The vertex based tile layer
 		/// </summary>
-		public VertexTileMap Tiles
+		public VertexTileMap VertexTiles
 		{
 			get => vertexTiles;
 			set
 			{
 				if (value == null)
-					vertexTiles.Clear();
-				else if (value.Size != Size)
-					throw new System.InvalidOperationException("Foreground tile layer size " + value.Size + " is incompatible with " + Size + ".");
+					throw new System.ArgumentNullException("Tiles");
 				else
 					vertexTiles = value;
 			}
@@ -46,17 +49,17 @@ namespace Phantom
 		/// <summary>
 		/// Number of tiles wide this map is
 		/// </summary>
-		public int Width => Tiles.Width;
+		public int Width => VertexTiles.Width;
 
 		/// <summary>
 		/// Number tile tall this map is
 		/// </summary>
-		public int Height => Tiles.Height;
+		public int Height => VertexTiles.Height;
 
 		/// <summary>
 		/// Size in tiles of this map
 		/// </summary>
-		public Vector2Int Size => Tiles.Size;
+		public Vector2Int Size => VertexTiles.Size;
 
 		/// <summary>
 		/// Creates a blank map of the given size
@@ -71,7 +74,7 @@ namespace Phantom
 		/// </summary>
 		public TileLayerMap(VertexTileMap vertexTiles)
 		{
-			this.vertexTiles = vertexTiles;
+			VertexTiles = vertexTiles;
 		}
 
 		/// <summary>
@@ -79,7 +82,7 @@ namespace Phantom
 		/// </summary>
 		public TileLayerMap(TileLayerMap tileLayerMap)
 		{
-			vertexTiles = new VertexTileMap(tileLayerMap.Tiles);
+			VertexTiles = new VertexTileMap(tileLayerMap.VertexTiles);
 			vertexTileTiles = tileLayerMap.VertexTileTiles;
 
 			foreach (var tile in tileLayerMap.tiles)
@@ -88,7 +91,7 @@ namespace Phantom
 
 		public bool InBounds(int x, int y)
 		{
-			return Tiles.InBounds(x, y);
+			return VertexTiles.InBounds(x, y);
 		}
 
 		/// <summary>
@@ -120,7 +123,7 @@ namespace Phantom
 				for (int y = 0; y < Height; y++)
 				{
 					var position = new Vector3Int(x, y, 0);
-					if (Tiles.TryGet(x, y, out var tile))
+					if (VertexTiles.TryGet(x, y, out var tile))
 						tilemap.SetTile(position, VertexTileTiles.GetTile(tile));
 				}
 			}

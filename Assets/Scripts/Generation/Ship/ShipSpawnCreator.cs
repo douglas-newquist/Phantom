@@ -8,18 +8,43 @@ namespace Phantom
 	/// </summary>
 	public class ShipSpawnCreator : ISpawnFactory
 	{
-		public ShipBuilder builder;
-		public ShipDesign design;
+		[SerializeField]
+		private ShipBuilder builder;
+
+		public ShipBuilder Builder
+		{
+			get => builder;
+			set
+			{
+				if (value == null)
+					throw new System.ArgumentNullException("Builder");
+				builder = value;
+			}
+		}
+
+		[SerializeField]
+		private ShipDesign design;
+
+		public ShipDesign Design
+		{
+			get => design;
+			set
+			{
+				if (value == null)
+					throw new System.ArgumentNullException("Design");
+				design = value;
+			}
+		}
 
 		public ShipSpawnCreator(ShipBuilder builder, ShipDesign design)
 		{
-			this.builder = builder;
-			this.design = design;
+			Builder = builder;
+			Design = design;
 		}
 
 		public GameObject Create()
 		{
-			return builder.Create(design);
+			return Builder.Create(Design);
 		}
 	}
 }

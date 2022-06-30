@@ -6,36 +6,64 @@ namespace Phantom
 	[System.Serializable]
 	public class CollisionAvoidance
 	{
-		public float lookAheadRange = 2;
+		[SerializeField]
+		private float lookAheadRange = 2;
+
+		public float LookAheadRange
+		{
+			get => lookAheadRange;
+			set => lookAheadRange = Mathf.Clamp(value, 0, float.MaxValue);
+		}
 
 		[Range(0f, 10f)]
-		public float strength = 1f;
+		[SerializeField]
+		private float strength = 1f;
+
+		public float Strength
+		{
+			get => strength;
+			set => strength = Mathf.Clamp(value, 0f, 10f);
+		}
 
 		[Range(0, 16)]
-		public int extraRays = 6;
+		[SerializeField]
+		private int extraRays = 6;
+
+		public int ExtraRays
+		{
+			get => extraRays;
+			set => extraRays = Mathf.Clamp(value, 0, 16);
+		}
 
 		[Range(0f, 90f)]
-		public float totalRayAngle = 30;
+		[SerializeField]
+		private float totalRayAngle = 30;
 
-		public float DeltaRayAngle => totalRayAngle / extraRays;
+		public float TotalRayAngle
+		{
+			get => totalRayAngle;
+			set => totalRayAngle = Mathf.Clamp(value, 0f, 90f);
+		}
 
-		public int TotalCollisionRays => 1 + extraRays * 2;
+		public float DeltaRayAngle => TotalRayAngle / ExtraRays;
+
+		public int TotalCollisionRays => 1 + ExtraRays * 2;
 
 		public float GetMaxRayDistance(Rigidbody2D body)
 		{
-			return body.velocity.magnitude * lookAheadRange;
+			return body.velocity.magnitude * LookAheadRange;
 		}
 
 		/// <summary>
 		/// Gets all the normalized ray directions for the given body
 		/// </summary>
-		public IEnumerable<Vector2> GetRayDirections(Rigidbody2D body)
+		private IEnumerable<Vector2> GetRayDirections(Rigidbody2D body)
 		{
 			var mainRay = body.velocity.normalized;
 			yield return mainRay;
 			var deltaAngle = DeltaRayAngle * Mathf.Deg2Rad;
 
-			for (int i = 0; i < extraRays; i++)
+			for (int i = 0; i < ExtraRays; i++)
 			{
 				yield return Math.RotateVector2(mainRay, deltaAngle * i);
 				yield return Math.RotateVector2(mainRay, -deltaAngle * i);
@@ -52,7 +80,7 @@ namespace Phantom
 		/// </summary>
 		/// <param name="body">Where to cast from</param>
 		/// <param name="direction">Direction to cast in</param>
-		public RaycastHit2D CastRay(Rigidbody2D body, Vector2 direction)
+		private RaycastHit2D CastRay(Rigidbody2D body, Vector2 direction)
 		{
 			return Physics2D.Raycast(body.position, direction.normalized, GetMaxRayDistance(body));
 		}
@@ -62,10 +90,10 @@ namespace Phantom
 		/// </summary>
 		/// <param name="body">Body being used</param>
 		/// <param name="hit">Where the ray hit</param>
-		public Vector2 GetRayPush(Rigidbody2D body, RaycastHit2D hit)
+		private Vector2 GetRayPush(Rigidbody2D body, RaycastHit2D hit)
 		{
 			if (hit.transform == null) return Vector2.zero;
-			var direction = hit.normal * strength;
+			var direction = hit.normal * Strength;
 			direction /= hit.fraction * TotalCollisionRays;
 			return direction;
 		}
@@ -96,7 +124,7 @@ namespace Phantom
 				var hit = CastRay(body, direction);
 				if (hit.transform != null)
 				{
-					Gizmos.color = new Color(1f / hit.fraction, 0, 0);
+					Gizmos.color = Color.red;
 					Gizmos.DrawRay(body.position, hit.point - (Vector2)body.position);
 				}
 				else

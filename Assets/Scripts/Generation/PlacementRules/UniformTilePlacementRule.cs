@@ -20,7 +20,7 @@ namespace Phantom
 			{
 				for (int y = position.y; y < position.y + tile.Height; y++)
 				{
-					if (!tiles.Contains(map.Tiles.Get(x, y)))
+					if (!tiles.Contains(map.VertexTiles.Get(x, y)))
 						return false;
 				}
 			}

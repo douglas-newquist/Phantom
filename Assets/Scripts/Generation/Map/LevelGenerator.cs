@@ -32,7 +32,7 @@ namespace Phantom
 				level.Name = generator.Apply(level.Name);
 
 			foreach (var generator in vertexGenerators)
-				level.TileLayerMap.Tiles = generator.Apply(level.TileLayerMap.Tiles);
+				level.TileLayerMap.VertexTiles = generator.Apply(level.TileLayerMap.VertexTiles);
 
 			foreach (var generator in tileLayerMapGenerators)
 				level.TileLayerMap = generator.Apply(level.TileLayerMap);

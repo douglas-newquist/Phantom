@@ -17,13 +17,13 @@ namespace Phantom
 		public float ProportionalGain
 		{
 			get => proportionalGain;
-			set => proportionalGain = value;
+			set => proportionalGain = Mathf.Clamp(value, 0, float.MaxValue);
 		}
 
 		public float IntegralGain
 		{
 			get => integralGain;
-			set => integralGain = value;
+			set => integralGain = Mathf.Clamp(value, 0, float.MaxValue);
 		}
 
 		/// <summary>
@@ -32,7 +32,7 @@ namespace Phantom
 		public float DerivativeGain
 		{
 			get => derivativeGain;
-			set => derivativeGain = value;
+			set => derivativeGain = Mathf.Clamp(value, 0, float.MaxValue);
 		}
 
 		[SerializeField]
@@ -50,9 +50,7 @@ namespace Phantom
 			this.DerivativeGain = d;
 		}
 
-		public VectorPIDController()
-		{
-		}
+		public VectorPIDController() { }
 
 		public Vector3 Correction(Vector3 current, Vector3 target, float deltaTime)
 		{

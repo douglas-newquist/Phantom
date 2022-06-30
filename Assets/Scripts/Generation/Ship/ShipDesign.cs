@@ -17,7 +17,12 @@ namespace Phantom
 		public string Name
 		{
 			get => name;
-			set => name = value;
+			set
+			{
+				if (value == null)
+					throw new System.ArgumentNullException("Name");
+				name = value;
+			}
 		}
 
 		[SerializeField]
@@ -26,7 +31,12 @@ namespace Phantom
 		public TileLayerMap TileLayerMap
 		{
 			get => tileLayerMap;
-			set => tileLayerMap = value;
+			set
+			{
+				if (value == null)
+					throw new System.ArgumentNullException("TileLayerMap");
+				tileLayerMap = value;
+			}
 		}
 
 		[SerializeField]
@@ -46,7 +56,7 @@ namespace Phantom
 
 		public int Height => TileLayerMap.Height;
 
-		public RectInt Bounds => TileLayerMap.Tiles.BoundingBox;
+		public RectInt Bounds => TileLayerMap.VertexTiles.BoundingBox;
 
 		public ShipDesign(int width, int height)
 		{

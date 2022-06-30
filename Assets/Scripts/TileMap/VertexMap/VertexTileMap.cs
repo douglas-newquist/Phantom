@@ -15,7 +15,7 @@ namespace Phantom
 			set
 			{
 				if (value == null)
-					vertices.Clear();
+					throw new System.ArgumentNullException("Vertices");
 				else
 					vertices = value;
 			}

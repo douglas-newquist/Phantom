@@ -15,7 +15,7 @@ namespace Phantom
 		{
 			var map = new TileLayerMap(width, height);
 			if (map != null)
-				map.Tiles = tileGenerator.Apply(map.Tiles);
+				map.VertexTiles = tileGenerator.Apply(map.VertexTiles);
 			return Apply(map);
 		}
 	}

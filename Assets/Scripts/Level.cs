@@ -48,7 +48,7 @@ namespace Phantom
 
 		public TileLayerMap TileLayerMap => LevelDesign.TileLayerMap;
 
-		public VertexTileMap VertexTileMap => TileLayerMap.Tiles;
+		public VertexTileMap VertexTileMap => TileLayerMap.VertexTiles;
 
 		public Grid2D<int> Vertices => VertexTileMap.Vertices;
 

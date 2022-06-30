@@ -34,7 +34,7 @@ namespace Phantom
 			set => TileLayerMap.VertexTileTiles = value;
 		}
 
-		private List<LevelObject> specialObjects;
+		private List<LevelObject> specialObjects = new List<LevelObject>();
 
 		public List<LevelObject> SpecialObjects
 		{
