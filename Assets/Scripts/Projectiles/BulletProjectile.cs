@@ -18,11 +18,11 @@ namespace Phantom
 		/// <param name="other">The other Collider2D involved in this collision.</param>
 		void OnTriggerEnter2D(Collider2D other)
 		{
-			var stats = other.GetComponent<StatSheet>();
-			if (stats == null) return;
-			stats.ApplyDamage(BulletStats.damage);
+			var damageable = other.GetComponent<IDamageable>();
+			if (damageable == null) return;
+			damageable.ApplyDamage(BulletStats.damage);
 			OnExpired.Invoke(this);
-			OnHit.Invoke(new ProjectileHitEvent(stats, this));
+			OnHit.Invoke(new ProjectileHitEvent(damageable, this));
 			ObjectPool.Despawn(gameObject);
 		}
 	}

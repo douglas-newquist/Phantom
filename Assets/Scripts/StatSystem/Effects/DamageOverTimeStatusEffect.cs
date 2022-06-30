@@ -15,6 +15,8 @@ namespace Phantom.StatSystem
 			protected override IEnumerator DoEffect(StatSheet statSheet)
 			{
 				var dot = (DamageOverTimeStatusEffect)Type;
+				var damageable = statSheet.GetComponent<IDamageable>();
+				if (damageable == null) yield break;
 
 				int ticks = dot.DamageTicks.Random;
 				float duration = dot.Duration.Random;
@@ -23,7 +25,7 @@ namespace Phantom.StatSystem
 				for (int tick = 0; tick < ticks; tick++)
 				{
 					yield return new WaitForSeconds(delay);
-					statSheet.ApplyDamage(dot.damage);
+					damageable.ApplyDamage(dot.damage);
 				}
 			}
 		}
