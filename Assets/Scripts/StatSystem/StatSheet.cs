@@ -9,7 +9,8 @@ namespace Phantom.StatSystem
 	public class StatSheet : MonoBehaviour, IDamageable, IEnumerable<IStat>, IReset
 	{
 		[SerializeField]
-		private StatSheetDefaults statSheetValues;
+		private StatSheetDefaults statSheetDefaults;
+
 		[SerializeField]
 		private Dictionary<StatType, IStat> stats = new Dictionary<StatType, IStat>();
 
@@ -25,9 +26,21 @@ namespace Phantom.StatSystem
 
 		public ResourceStatType PrimaryHealthStat => primaryHealthStat;
 
+		[SerializeField]
+		private bool autoCreateMissingStats = true;
+
+		public bool AutoCreateMissingStats
+		{
+			get => autoCreateMissingStats;
+			set => autoCreateMissingStats = value;
+		}
+
 		/// <summary>
 		/// Triggers whenever this entity takes damage
 		/// </summary>
+		[Header("Events")]
+		public UnityEvent<IStat> OnStatAdded;
+
 		public UnityEvent<DamagedEvent> OnTakeDamage;
 
 		/// <summary>
@@ -42,6 +55,7 @@ namespace Phantom.StatSystem
 
 		private void Start()
 		{
+			statSheetDefaults.Apply(this);
 			Reset();
 		}
 
@@ -80,41 +94,59 @@ namespace Phantom.StatSystem
 		public T AddStat<T>(StatType type, T stat) where T : IStat
 		{
 			if (type == null)
-			{
-				Debug.LogError("Null stat type");
-				return default(T);
-			}
+				throw new System.ArgumentNullException("type");
 
 			if (stats.ContainsKey(type))
 				return (T)stats[type];
 
 			stats[type] = stat;
 			stat.Sheet = this;
+			OnStatAdded.Invoke(stat);
 			return stat;
 		}
 
 		public IStat GetStat(StatType type)
 		{
 			if (type == null)
-			{
-				Debug.LogError("Null stat type");
-				return null;
-			}
+				throw new System.ArgumentNullException("type");
 
 			if (stats.TryGetValue(type, out IStat stat))
 				return stat;
 
-			return AddStat(type, type.Create());
+			if (AutoCreateMissingStats)
+				return AddStat(type, type.Create());
+
+			throw new KeyNotFoundException("type");
 		}
 
 		public T GetStat<T>(StatType type) where T : IStat
 		{
-			IStat stat = GetStat(type);
-			if (stat is T) return (T)stat;
-			return default(T);
+			return (T)GetStat(type);
 		}
 
-		public float GetValue(StatType type) => GetStat(type).Value;
+		public bool TryGetStat(StatType type, out IStat stat)
+		{
+			return stats.TryGetValue(type, out stat);
+		}
+
+		public bool TryGetStat<T>(StatType type, out T stat) where T : IStat
+		{
+			if (TryGetStat(type, out var s) && s is T)
+			{
+				stat = (T)s;
+				return true;
+			}
+
+			stat = default(T);
+			return false;
+		}
+
+		public float GetValue(StatType type)
+		{
+			if (TryGetStat(type, out var stat))
+				return stat.Value;
+			return type.DefaultValue;
+		}
 
 		/// <summary>
 		/// Gets all stats of a given type
