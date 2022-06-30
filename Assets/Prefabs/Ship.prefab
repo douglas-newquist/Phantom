@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 838161728438992597}
   - component: {fileID: 838161728438992596}
   - component: {fileID: 838161728438992599}
+  - component: {fileID: -5793595955526242351}
   - component: {fileID: 838161728438992598}
   - component: {fileID: 5414886017876530885}
   - component: {fileID: 6882654671146568372}
@@ -74,16 +75,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statSheetDefaults:
-    stats: []
+    stats:
+    - type: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
+      value: 1000
     modifiers: []
   primaryHealthStat: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
   autoCreateMissingStats: 1
+  OnStatAdded:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-5793595955526242351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838161728438992593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6256c7a9eba4c21e9be8d1164545f79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invulnerable: 0
+  healthStatTypes:
+  - {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
+  - {fileID: 11400000, guid: 1aa0fd03d7583554eb8bb53fd768e514, type: 2}
+  - {fileID: 11400000, guid: f00840f3f4c31fb8d82e8f5e6f22b77d, type: 2}
+  damageTypeMultipliers: []
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls: []
   OnTakeFatalDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 838161728438992598}
+        m_TargetAssemblyTypeName: Phantom.Ship, Assembly-CSharp
+        m_MethodName: OnTakeFatalDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -151,6 +187,9 @@ MonoBehaviour:
     derivativeGain: 0.1
     integralSaturation: 1
     useVelocity: 0
+  pathSeeker:
+    pathAgent: {fileID: 11400000, guid: b0b3238c84dbf85949091bfeb8d3e654, type: 2}
+    pathFollowTolerance: 16
   pathAgent: {fileID: 11400000, guid: b0b3238c84dbf85949091bfeb8d3e654, type: 2}
   pathFollowTolerance: 16
 --- !u!114 &5065441348383330979

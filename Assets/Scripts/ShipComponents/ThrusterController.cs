@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Phantom.Pathfinding;
 
 namespace Phantom
 {
@@ -10,8 +9,7 @@ namespace Phantom
 		{
 			Direction,
 			Position,
-			Brake,
-			PathFinding
+			Brake
 		}
 
 		private Goal goal;
@@ -38,14 +36,9 @@ namespace Phantom
 
 		public VectorPIDController PID = new VectorPIDController(1, 0, 0);
 
-		public VertexPathAgent pathAgent;
+		public VertexPathSeeker pathSeeker = new VertexPathSeeker();
 
-		public Path<Vector2Int> path;
-
-		[Range(0f, Level.TileSize)]
-		public float pathFollowTolerance = Level.TileSize / 2;
-
-		public Vector2 Target { get; private set; }
+		private Vector2 Target { get; set; }
 
 		private void Start()
 		{
@@ -99,29 +92,11 @@ namespace Phantom
 
 		public float MoveTo(Vector2 position)
 		{
-			if (goal != Goal.Position && goal != Goal.PathFinding)
+			if (goal != Goal.Position)
 				PID.Reset();
 
-			var delta = position - (Vector2)transform.position;
-			var direction = delta.normalized;
-			var hit = collisionAvoidance.CastRay(body, direction, delta.magnitude);
-
-			if (hit.transform == null)
-			{
-				goal = Goal.Position;
-				Target = position;
-			}
-			else
-			{
-				if (Target != position)
-				{
-					Target = position;
-					goal = Goal.PathFinding;
-					var start = (Vector2Int)GameManager.CurrentLevel.GetClosestVertex(transform.position);
-					var end = (Vector2Int)GameManager.CurrentLevel.GetClosestVertex(position);
-					path = pathAgent.FindPath(GameManager.CurrentLevel.Vertices, start, end);
-				}
-			}
+			goal = Goal.Position;
+			Target = position;
 
 			return Vector2.Distance(transform.position, position);
 		}
@@ -141,40 +116,22 @@ namespace Phantom
 		{
 			Vector2 force = Vector2.zero;
 			Vector2 direction = Vector2.zero;
-			Vector2 target = Target;
-
-			if (goal == Goal.PathFinding)
-			{
-				if (path.TryGetWaypoint(out var waypoint))
-				{
-					target = GameManager.CurrentLevel.GridToWorldPoint((Vector3Int)waypoint);
-					if (Vector2.Distance(target, transform.position) < pathFollowTolerance)
-						path.NextWaypoint();
-				}
-
-				if (path.TryGetWaypoint(out waypoint))
-				{
-					target = GameManager.CurrentLevel.GridToWorldPoint((Vector3Int)waypoint);
-				}
-				else
-					target = transform.position;
-			}
 
 			switch (goal)
 			{
 				case Goal.Direction:
-					direction = target;
+					direction = Target;
 					break;
 
-				case Goal.PathFinding:
 				case Goal.Position:
-					if (Vector2.Distance(transform.position, target) < moveToBrakeDistance
+					direction = pathSeeker.GetWaypoint(transform.position, Target);
+					if (Vector2.Distance(transform.position, direction) < moveToBrakeDistance
 						&& Speed < brakeMaxVelocityToSetZero)
 					{
 						Velocity = Vector2.zero;
 						return;
 					}
-					direction = PID.Correction(transform.position, target, Time.fixedDeltaTime);
+					direction = PID.Correction(transform.position, direction, Time.fixedDeltaTime);
 					break;
 
 				case Goal.Brake:
@@ -210,19 +167,21 @@ namespace Phantom
 			if (body != null)
 				collisionAvoidance.DrawGizmos(body);
 
-			if (path.Finished)
-			{
-				var start = GameManager.CurrentLevel.GridToWorldPoint(GameManager.CurrentLevel.GetClosestVertex(transform.position));
-				Gizmos.DrawWireSphere(start, Level.TileSize / 4);
-				var lastCell = transform.position;
-				foreach (var cell in path)
-				{
-					var pos = GameManager.CurrentLevel.GridToWorldPoint((Vector3Int)cell);
-					Gizmos.DrawWireSphere(pos, pathFollowTolerance);
-					Gizmos.DrawLine(lastCell, pos);
-					lastCell = pos;
-				}
-			}
+			/*
+						if (path.Finished)
+						{
+							var start = GameManager.CurrentLevel.GridToWorldPoint(GameManager.CurrentLevel.GetClosestVertex(transform.position));
+							Gizmos.DrawWireSphere(start, Level.TileSize / 4);
+							var lastCell = transform.position;
+							foreach (var cell in path)
+							{
+								var pos = GameManager.CurrentLevel.GridToWorldPoint((Vector3Int)cell);
+								Gizmos.DrawWireSphere(pos, pathFollowTolerance);
+								Gizmos.DrawLine(lastCell, pos);
+								lastCell = pos;
+							}
+						}
+						*/
 
 			Gizmos.DrawSphere(Target, Level.TileSize / 4);
 		}

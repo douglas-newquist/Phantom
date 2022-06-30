@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a268ca230aeac048e92a3354adba2974, type: 3}
   m_Name: Ship Vertex Path Agent
   m_EditorClassIdentifier: 
-  pathfinder: {fileID: 11400000, guid: 2384066ec36c7ab2786bd8a533bd4972, type: 2}
-  diagonal: 1
+  pathfinder: {fileID: 11400000, guid: fdac6e95ec9b9f88ba5e2c244bb0ec14, type: 2}
+  diagonal: 3
   distanceMode: 2
   simplifyPath: 1
   outOfBoundsCost: -1
