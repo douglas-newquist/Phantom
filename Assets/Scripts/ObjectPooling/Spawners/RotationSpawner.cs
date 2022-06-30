@@ -4,16 +4,23 @@ namespace Phantom.ObjectPooling
 {
 	public struct RotationSpawner : ISpawner
 	{
-		public FloatRange angle;
+		public FloatRange x, y, z;
 
-		public RotationSpawner(FloatRange angle)
+		public RotationSpawner(FloatRange x, FloatRange y, FloatRange z)
 		{
-			this.angle = angle;
+			this.x = x;
+			this.y = y;
+			this.z = z;
+		}
+
+		public RotationSpawner(FloatRange z) : this()
+		{
+			this.z = z;
 		}
 
 		public bool Spawn(GameObject obj)
 		{
-			obj.transform.rotation = Quaternion.Euler(0, 0, angle.Random);
+			obj.transform.rotation = Quaternion.Euler(x.Random, y.Random, z.Random);
 			return true;
 		}
 	}
