@@ -73,10 +73,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dab3f69ac84ef0a180be333db904a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statSheetValues:
+  statSheetDefaults:
     stats: []
     modifiers: []
   primaryHealthStat: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
+  autoCreateMissingStats: 1
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls: []
