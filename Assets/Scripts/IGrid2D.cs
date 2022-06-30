@@ -10,6 +10,8 @@ namespace Phantom
 
 		Vector2Int Size { get; }
 
+		RectInt Bounds { get; }
+
 		bool InBounds(int x, int y);
 		T Get(int x, int y);
 		bool TryGet(int x, int y, out T value);

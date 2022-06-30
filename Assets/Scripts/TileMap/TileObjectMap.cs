@@ -44,6 +44,8 @@ namespace Phantom
 
 		public int Height => Tiles.Height;
 
+		public RectInt Bounds => new RectInt(0, 0, Width, Height);
+
 		public Vector2Int Size => new Vector2Int(Width, Height);
 
 		public RectInt BoundingBox => Tiles.BoundingBox;

@@ -56,6 +56,8 @@ namespace Phantom
 		/// </summary>
 		public int Height => VertexTiles.Height;
 
+		public RectInt Bounds => new RectInt(0, 0, Width, Height);
+
 		/// <summary>
 		/// Size in tiles of this map
 		/// </summary>

@@ -31,6 +31,8 @@ namespace Phantom
 		/// </summary>
 		public int Height => Vertices.Height - 1;
 
+		public RectInt Bounds => new RectInt(0, 0, Width, Height);
+
 		public Vector2Int Size => new Vector2Int(Width, Height);
 
 		/// <summary>
