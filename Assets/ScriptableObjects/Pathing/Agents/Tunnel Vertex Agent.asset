@@ -17,5 +17,6 @@ MonoBehaviour:
   distanceMode: 2
   simplifyPath: 0
   outOfBoundsCost: -1
-  activeCost: 5
+  directionChangedCost: 16
+  activeCost: 16
   inactiveCost: 1

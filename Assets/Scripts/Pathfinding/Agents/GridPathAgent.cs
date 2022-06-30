@@ -43,6 +43,13 @@ namespace Phantom.Pathfinding
 								if (PathThroughCost(map, new Vector2Int(x, pos.y)) < 0)
 									continue;
 								break;
+
+							case DiagonalMode.AllowIfAnyOrthogonal:
+								if (PathThroughCost(map, new Vector2Int(pos.x, y)) >= 0)
+									break;
+								if (PathThroughCost(map, new Vector2Int(x, pos.y)) >= 0)
+									break;
+								continue;
 						}
 					}
 

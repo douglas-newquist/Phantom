@@ -8,6 +8,7 @@ namespace Phantom.Pathfinding
 		Allow,
 
 		[Tooltip("Allows diagonals if both orthogonal directions can be done")]
-		AllowIfBothOrthogonal
+		AllowIfBothOrthogonal,
+		AllowIfAnyOrthogonal
 	}
 }
