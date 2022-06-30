@@ -29,9 +29,10 @@ namespace Phantom.ObjectPooling
 			z = 0;
 		}
 
-		public void Spawn(GameObject obj)
+		public bool Spawn(GameObject obj)
 		{
 			obj.transform.position = new Vector3(x.Random, y.Random, z.Random);
+			return true;
 		}
 	}
 }

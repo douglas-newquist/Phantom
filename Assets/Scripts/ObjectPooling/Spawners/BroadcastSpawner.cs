@@ -23,11 +23,13 @@ namespace Phantom.ObjectPooling
 			this.options = SendMessageOptions.DontRequireReceiver;
 		}
 
-		public void Spawn(GameObject obj)
+		public bool Spawn(GameObject obj)
 		{
 			if (methods != null)
 				foreach (var method in methods)
 					obj.BroadcastMessage(method, options);
+
+			return true;
 		}
 	}
 }

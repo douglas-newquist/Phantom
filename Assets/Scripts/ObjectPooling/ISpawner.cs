@@ -7,6 +7,11 @@ namespace Phantom.ObjectPooling
 	/// </summary>
 	public interface ISpawner
 	{
-		void Spawn(GameObject obj);
+		/// <summary>
+		/// Applies this spawner
+		/// </summary>
+		/// <param name="obj">Object being spawned</param>
+		/// <returns>True if this spawner was successful</returns>
+		bool Spawn(GameObject obj);
 	}
 }

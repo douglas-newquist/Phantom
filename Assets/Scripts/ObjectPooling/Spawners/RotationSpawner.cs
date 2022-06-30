@@ -11,9 +11,10 @@ namespace Phantom.ObjectPooling
 			this.angle = angle;
 		}
 
-		public void Spawn(GameObject obj)
+		public bool Spawn(GameObject obj)
 		{
 			obj.transform.rotation = Quaternion.Euler(0, 0, angle.Random);
+			return true;
 		}
 	}
 }

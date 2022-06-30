@@ -22,7 +22,12 @@ namespace Phantom.ObjectPooling
 			return Instance.pools.ContainsKey(id);
 		}
 
-		public static void Register(string id, ISpawnFactory spawnCreator)
+		/// <summary>
+		/// Registers a new object pool
+		/// </summary>
+		/// <param name="id">ID to give this object</param>
+		/// <param name="spawnFactory">Factory to create new copies</param>
+		public static void Register(string id, ISpawnFactory spawnFactory)
 		{
 			if (ContainsPool(id))
 			{
@@ -33,7 +38,7 @@ namespace Phantom.ObjectPooling
 			var container = new GameObject(id).transform;
 			container.SetParent(Instance.transform);
 
-			Instance.pools[id] = new Pool(spawnCreator, container);
+			Instance.pools[id] = new Pool(spawnFactory, container);
 		}
 
 		/// <summary>
@@ -55,6 +60,12 @@ namespace Phantom.ObjectPooling
 			Register(id, new InstantiatePoolSpawner(obj));
 		}
 
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="prefab">Prefab to use</param>
+		/// <param name="spawners"></param>
+		/// <returns></returns>
 		public static GameObject Spawn(GameObject prefab, params ISpawner[] spawners)
 		{
 			return Spawn(prefab, null, spawners);
@@ -82,9 +93,16 @@ namespace Phantom.ObjectPooling
 			spawn.transform.SetParent(parent);
 
 			if (spawners != null)
+			{
 				foreach (var spawner in spawners)
-					if (spawner != null)
-						spawner.Spawn(spawn);
+				{
+					if (spawner != null && spawner.Spawn(spawn) == false)
+					{
+						pool.Return(spawn);
+						return null;
+					}
+				}
+			}
 
 			return spawn;
 		}
