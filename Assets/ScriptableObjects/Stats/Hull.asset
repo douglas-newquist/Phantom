@@ -19,5 +19,8 @@ MonoBehaviour:
   limits:
     min: 1
     max: 100000
+  canBeModified: 1
+  statusEffects:
+  - {fileID: 11400000, guid: 914be32df91ad15549ba6388e240996d, type: 2}
   startingPercentage: 1
   maxChangedMode: 2

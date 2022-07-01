@@ -9,15 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c6cc60c4f93e8174b494e88cbfa4cd4, type: 3}
-  m_Name: Damage Over Time
+  m_Script: {fileID: 11500000, guid: de777968af13c060da740868665699af, type: 3}
+  m_Name: Damage Over Time Status Effect Type
   m_EditorClassIdentifier: 
   effectIsPositive: 1
   canCancel: 1
-  allowMultiple: 1
+  allowMultiple: 0
   duration:
     min: 30
     max: 30
+  damageTicks:
+    min: 30
+    max: 32
   damage:
-    damageType: {fileID: 0}
-    amount: 0
+    damageType: {fileID: 11400000, guid: 1cc82a24c61c70e9ca9b45538ae0a1ee, type: 2}
+    amount: 5

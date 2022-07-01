@@ -21,15 +21,6 @@ namespace Phantom.StatSystem
 
 		public IEnumerable<IStatusEffect> StatusEffects => statusEffects;
 
-		[SerializeField]
-		private bool autoCreateMissingStats = true;
-
-		public bool AutoCreateMissingStats
-		{
-			get => autoCreateMissingStats;
-			set => autoCreateMissingStats = value;
-		}
-
 		/// <summary>
 		/// Triggers whenever this entity takes damage
 		/// </summary>
@@ -65,6 +56,7 @@ namespace Phantom.StatSystem
 
 			stats[type] = stat;
 			stat.Sheet = this;
+			type.OnAddToStatSheet(this, stat);
 			OnStatAdded.Invoke(stat);
 			return stat;
 		}
@@ -77,10 +69,7 @@ namespace Phantom.StatSystem
 			if (stats.TryGetValue(type, out IStat stat))
 				return stat;
 
-			if (AutoCreateMissingStats)
-				return AddStat(type, type.Create());
-
-			throw new KeyNotFoundException("type");
+			return AddStat(type, type.Create());
 		}
 
 		public T GetStat<T>(StatType type) where T : IStat
@@ -130,17 +119,6 @@ namespace Phantom.StatSystem
 		{
 			foreach (var stat in GetStatsOfType<IModifiableStat>())
 				stat.RemoveModifiersFromSource(source);
-		}
-
-		public void AddModifier(Modifier modifier, object source)
-		{
-			modifier.Apply(this, source);
-		}
-
-		public void AddModifiers(IEnumerable<Modifier> modifiers, object source)
-		{
-			foreach (var mod in modifiers)
-				mod.Apply(this, source);
 		}
 
 		public IEnumerator<IStat> GetEnumerator()

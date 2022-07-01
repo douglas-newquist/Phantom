@@ -21,9 +21,8 @@ namespace Phantom.StatSystem
 		{
 			effect = (ResourceOverTimeStatusEffectType)Type;
 
-			if (!statSheet.TryGetStat<IResourceStat>(effect.Resource, out resource))
-				return false;
-			statSheet.TryGetStat(effect.ReferenceStat, out reference);
+			resource = statSheet.GetStat<IResourceStat>(effect.Resource);
+			reference = statSheet.GetStat(effect.ReferenceStat);
 
 			float duration = Type.Duration.Random;
 			end = duration < 0 ? -1 : Time.time + duration;

@@ -17,6 +17,8 @@ MonoBehaviour:
   icon: {fileID: 0}
   defaultValue: 0
   limits:
-    min: -100
+    min: -100000
     max: 100000
   canBeModified: 1
+  statusEffects:
+  - {fileID: 11400000, guid: 4509b9176e3b485bcaa2bdc6f8271438, type: 2}

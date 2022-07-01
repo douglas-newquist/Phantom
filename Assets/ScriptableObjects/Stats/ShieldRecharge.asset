@@ -19,3 +19,6 @@ MonoBehaviour:
   limits:
     min: 0
     max: 100000
+  canBeModified: 1
+  statusEffects:
+  - {fileID: 11400000, guid: c7a53523584e698089deea432c660bfe, type: 2}

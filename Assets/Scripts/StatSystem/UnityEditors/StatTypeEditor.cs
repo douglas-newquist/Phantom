@@ -13,6 +13,7 @@ namespace Phantom.StatSystem.Editors
 		SerializedProperty defaultValue;
 		SerializedProperty limits;
 		SerializedProperty canBeModified;
+		SerializedProperty statusEffects;
 
 		protected virtual void OnEnable()
 		{
@@ -22,6 +23,7 @@ namespace Phantom.StatSystem.Editors
 			defaultValue = serializedObject.FindProperty("defaultValue");
 			limits = serializedObject.FindProperty("limits");
 			canBeModified = serializedObject.FindProperty("canBeModified");
+			statusEffects = serializedObject.FindProperty("statusEffects");
 		}
 
 		public override void OnInspectorGUI()
@@ -36,6 +38,7 @@ namespace Phantom.StatSystem.Editors
 
 			EditorGUILayout.PropertyField(limits);
 			EditorGUILayout.PropertyField(canBeModified);
+			EditorGUILayout.PropertyField(statusEffects);
 			serializedObject.ApplyModifiedProperties();
 		}
 	}
