@@ -3,94 +3,53 @@ using UnityEngine;
 
 namespace Phantom.StatSystem
 {
-	public abstract class StatusEffect : ScriptableObject
+	public abstract class StatusEffect : IStatusEffect
 	{
-		protected abstract class RuntimeStatusEffect : IStatusEffect
+		public StatusEffectType Type { get; set; }
+
+		public object Source { get; set; }
+
+		public Coroutine Coroutine { get; set; }
+
+		public bool IsRunning => Coroutine != null;
+
+		protected StatusEffect(StatusEffectType type, object source)
 		{
-			public StatusEffect Type { get; set; }
+			Type = type;
+			Source = source;
+		}
 
-			public object Source { get; set; }
+		protected abstract IEnumerator DoEffect(StatSheet statSheet);
 
-			public Coroutine Coroutine { get; set; }
-
-			public bool IsRunning => Coroutine != null;
-
-			protected RuntimeStatusEffect(StatusEffect type, object source)
+		public virtual void Apply(StatSheet statSheet)
+		{
+			if (!IsRunning)
 			{
-				Type = type;
-				Source = source;
-			}
-
-			protected abstract IEnumerator DoEffect(StatSheet statSheet);
-
-			public virtual void Apply(StatSheet statSheet)
-			{
-				if (!IsRunning)
-				{
-					statSheet.OnStatusEffectApplied.Invoke(this);
-					Coroutine = statSheet.StartCoroutine(DoEffect(statSheet));
-				}
-			}
-
-			public void Cancel(StatSheet statSheet)
-			{
-				if (IsRunning)
-				{
-					statSheet.StopCoroutine(Coroutine);
-					statSheet.OnStatusEffectExpired.Invoke(this);
-					Coroutine = null;
-				}
-			}
-
-			public bool TryCancel(StatSheet statSheet)
-			{
-				if (!IsRunning) return true;
-				if (Type.CanCancel)
-				{
-					Cancel(statSheet);
-					return true;
-				}
-
-				return false;
+				statSheet.OnStatusEffectApplied.Invoke(this);
+				Coroutine = statSheet.StartCoroutine(DoEffect(statSheet));
 			}
 		}
 
-		public const float MaxDuration = 60 * 60;
-
-		[SerializeField]
-		private bool effectIsPositive = true;
-
-		public bool IsPositive => effectIsPositive;
-
-		public bool IsNegative => !effectIsPositive;
-
-		[SerializeField]
-		private bool canCancel = true;
-
-		/// <summary>
-		/// Can this effect be manually canceled
-		/// </summary>
-		public bool CanCancel => canCancel;
-
-		[SerializeField]
-		private bool allowMultiple = false;
-
-		/// <summary>
-		/// Can this effect be applied multiple concurrent times
-		/// </summary>
-		public bool AllowMultiple => allowMultiple;
-
-		[SerializeField]
-		[MinMax(-1, MaxDuration)]
-		private FloatRange duration = new FloatRange(30, 30);
-
-		public FloatRange Duration => duration;
-
-		public virtual IStatusEffect Apply(StatSheet statSheet)
+		public void Cancel(StatSheet statSheet)
 		{
-			return Apply(statSheet, this);
+			if (IsRunning)
+			{
+				statSheet.StopCoroutine(Coroutine);
+				statSheet.OnStatusEffectExpired.Invoke(this);
+				Coroutine = null;
+			}
 		}
 
-		public abstract IStatusEffect Apply(StatSheet statSheet, object source);
+		public bool TryCancel(StatSheet statSheet)
+		{
+			if (!IsRunning) return true;
+			if (Type.CanCancel)
+			{
+				Cancel(statSheet);
+				return true;
+			}
+
+			return false;
+		}
 	}
 }

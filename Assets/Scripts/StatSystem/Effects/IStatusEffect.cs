@@ -4,7 +4,7 @@ namespace Phantom.StatSystem
 {
 	public interface IStatusEffect
 	{
-		StatusEffect Type { get; }
+		StatusEffectType Type { get; }
 
 		object Source { get; }
 
