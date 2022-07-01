@@ -1,6 +1,6 @@
 namespace Phantom
 {
-	public interface IPIDController<T>
+	public interface IPIDController<T> : IReset
 	{
 		/// <summary>
 		/// Scales corrective force linearly
@@ -12,7 +12,5 @@ namespace Phantom
 		float DerivativeGain { get; set; }
 
 		T Correction(T current, T target, float deltaTime);
-
-		void Reset();
 	}
 }
