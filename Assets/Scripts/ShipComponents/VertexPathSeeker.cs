@@ -107,8 +107,14 @@ namespace Phantom
 
 		public void DrawGizmos()
 		{
-			if (followingPath && path.Status == PathStatus.Found)
-				path.DrawGizmos(MapToWorldCell, FollowTolerance);
+			if (followingPath)
+				switch (path.Status)
+				{
+					case PathStatus.Found:
+					case PathStatus.TimedOut:
+						path.DrawGizmos(MapToWorldCell, FollowTolerance);
+						break;
+				}
 		}
 	}
 }
