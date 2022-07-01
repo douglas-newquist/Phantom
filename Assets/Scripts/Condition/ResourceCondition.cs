@@ -9,7 +9,6 @@ namespace Phantom
 	[CreateAssetMenu(menuName = CreateMenu.Condition + "Resource Thresh Hold")]
 	public class ResourceCondition : Condition
 	{
-		[Tooltip("Leave empty to use the primary health stat")]
 		public ResourceStatType resource;
 
 		[MinMax(0f, 1f)]
@@ -23,11 +22,7 @@ namespace Phantom
 			if (statSheet == null)
 				return false;
 
-			ResourceStat r;
-			if (resource == null)
-				r = statSheet.GetStat<ResourceStat>(statSheet.PrimaryHealthStat);
-			else
-				r = statSheet.GetStat<ResourceStat>(resource);
+			ResourceStat r = statSheet.GetStat<ResourceStat>(resource);
 
 			var inside = r.Percentage >= percentage.Min && r.Percentage <= percentage.Max;
 			return inside == isInsideRange;

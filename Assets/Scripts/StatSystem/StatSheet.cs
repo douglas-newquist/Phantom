@@ -22,11 +22,6 @@ namespace Phantom.StatSystem
 		public IEnumerable<IStatusEffect> StatusEffects => statusEffects;
 
 		[SerializeField]
-		private ResourceStatType primaryHealthStat;
-
-		public ResourceStatType PrimaryHealthStat => primaryHealthStat;
-
-		[SerializeField]
 		private bool autoCreateMissingStats = true;
 
 		public bool AutoCreateMissingStats
