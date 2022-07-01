@@ -9,6 +9,9 @@ namespace Phantom.ObjectPooling
 
 		public static Pool GetPool(string id)
 		{
+			if (id == null)
+				throw new System.ArgumentNullException("id");
+
 			if (Instance.pools.TryGetValue(id, out var tmp))
 				return tmp;
 
@@ -18,8 +21,19 @@ namespace Phantom.ObjectPooling
 
 		public static bool ContainsPool(string id)
 		{
-			if (id == null) return false;
+			if (id == null)
+				throw new System.ArgumentNullException("id");
 			return Instance.pools.ContainsKey(id);
+		}
+
+		/// <summary>
+		/// Gets the auto generated name for a prefab
+		/// </summary>
+		public static string GetPrefabID(GameObject prefab)
+		{
+			if (prefab == null)
+				throw new System.ArgumentNullException("prefab");
+			return prefab.name + prefab.GetInstanceID();
 		}
 
 		/// <summary>
@@ -47,7 +61,7 @@ namespace Phantom.ObjectPooling
 		/// <param name="obj">Object to register</param>
 		public static void Register(GameObject obj)
 		{
-			Register(obj.name, obj);
+			Register(GetPrefabID(obj), obj);
 		}
 
 		/// <summary>
@@ -60,37 +74,21 @@ namespace Phantom.ObjectPooling
 			Register(id, new InstantiatePoolSpawner(obj));
 		}
 
-		/// <summary>
-		///
-		/// </summary>
-		/// <param name="prefab">Prefab to use</param>
-		/// <param name="spawners"></param>
-		/// <returns></returns>
 		public static GameObject Spawn(GameObject prefab, params ISpawner[] spawners)
 		{
-			return Spawn(prefab, null, spawners);
-		}
+			var id = GetPrefabID(prefab);
+			if (!ContainsPool(id))
+				Register(id, prefab);
 
-		public static GameObject Spawn(GameObject prefab, Transform parent, params ISpawner[] spawners)
-		{
-			if (!ContainsPool(prefab.name + prefab.GetInstanceID()))
-				Register(prefab.name + prefab.GetInstanceID(), prefab);
-
-			return Spawn(prefab.name + prefab.GetInstanceID(), parent, spawners);
+			return Spawn(id, spawners);
 		}
 
 		public static GameObject Spawn(string id, params ISpawner[] spawners)
-		{
-			return Spawn(id, null, spawners);
-		}
-
-		public static GameObject Spawn(string id, Transform parent, params ISpawner[] spawners)
 		{
 			var pool = GetPool(id);
 			if (pool == null) return null;
 
 			var spawn = pool.Spawn();
-			spawn.transform.SetParent(parent);
 
 			if (spawners != null)
 			{
