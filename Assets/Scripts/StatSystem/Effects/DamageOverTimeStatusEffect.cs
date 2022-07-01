@@ -17,8 +17,8 @@ namespace Phantom.StatSystem
 
 		protected override bool PreEffect(StatSheet statSheet)
 		{
-			var dot = (DamageOverTimeStatusEffectType)Type;
-			var damageable = statSheet.GetComponent<IDamageable>();
+			dot = (DamageOverTimeStatusEffectType)Type;
+			damageable = statSheet.GetComponent<IDamageable>();
 			if (damageable == null) return false;
 
 			ticks = dot.DamageTicks.Random;
