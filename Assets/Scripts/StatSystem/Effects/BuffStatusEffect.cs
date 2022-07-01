@@ -5,21 +5,37 @@ namespace Phantom.StatSystem
 {
 	public class BuffStatusEffect : StatusEffect
 	{
+		float duration;
+
 		public BuffStatusEffect(StatusEffectType type, object source) : base(type, source)
 		{
 		}
 
-		protected override IEnumerator DoEffect(StatSheet statSheet)
+		protected override bool PreEffect(StatSheet statSheet)
 		{
-			var buff = (BuffStatusEffectType)Type;
+			BuffStatusEffectType buff = (BuffStatusEffectType)Type;
 
 			foreach (var modifier in buff.modifiers)
 				modifier.Apply(statSheet, Source);
 
-			yield return new WaitForSeconds(buff.Duration.Random);
+			duration = buff.Duration.Random;
 
+			return base.PreEffect(statSheet);
+		}
+
+		protected override IEnumerator DoEffect(StatSheet statSheet)
+		{
+			if (duration >= 0)
+			{
+				yield return new WaitForSeconds(duration);
+				PostEffect(statSheet);
+			}
+		}
+
+		protected override void PostEffect(StatSheet statSheet)
+		{
 			statSheet.RemoveAllModifiersFromSource(Source);
-			statSheet.OnStatusEffectExpired.Invoke(this);
+			base.PostEffect(statSheet);
 		}
 	}
 }

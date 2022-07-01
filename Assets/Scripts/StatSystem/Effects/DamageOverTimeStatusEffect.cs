@@ -5,27 +5,38 @@ namespace Phantom.StatSystem
 {
 	public class DamageOverTimeStatusEffect : StatusEffect
 	{
+		DamageOverTimeStatusEffectType dot;
+		IDamageable damageable;
+
+		int ticks;
+		float delay;
+
 		public DamageOverTimeStatusEffect(StatusEffectType type, object source) : base(type, source)
 		{
 		}
 
-		protected override IEnumerator DoEffect(StatSheet statSheet)
+		protected override bool PreEffect(StatSheet statSheet)
 		{
 			var dot = (DamageOverTimeStatusEffectType)Type;
 			var damageable = statSheet.GetComponent<IDamageable>();
-			if (damageable == null) yield break;
+			if (damageable == null) return false;
 
-			int ticks = dot.DamageTicks.Random;
+			ticks = dot.DamageTicks.Random;
+			if (ticks <= 0) return false;
+
 			float duration = dot.Duration.Random;
-			float delay = duration / ticks;
+			delay = duration / ticks;
 
+			return base.PreEffect(statSheet);
+		}
+
+		protected override IEnumerator DoEffect(StatSheet statSheet)
+		{
 			for (int tick = 0; tick < ticks; tick++)
 			{
 				yield return new WaitForSeconds(delay);
 				damageable.ApplyDamage(dot.damage);
 			}
-
-			statSheet.OnStatusEffectExpired.Invoke(this);
 		}
 	}
 }

@@ -19,28 +19,50 @@ namespace Phantom.StatSystem
 			Source = source;
 		}
 
+		/// <summary>
+		/// Called before the main effect is called
+		/// </summary>
+		/// <param name="statSheet">Stat sheet being affected</param>
+		protected virtual bool PreEffect(StatSheet statSheet)
+		{
+			statSheet.OnStatusEffectApplied.Invoke(this);
+			return true;
+		}
+
+		/// <summary>
+		/// Executes effect of this status effect
+		/// </summary>
+		/// <param name="statSheet">Stat sheet being affected</param>
 		protected abstract IEnumerator DoEffect(StatSheet statSheet);
+
+		/// <summary>
+		/// Call after the main effect ends or is canceled
+		/// </summary>
+		/// <param name="statSheet"></param>
+		protected virtual void PostEffect(StatSheet statSheet)
+		{
+			statSheet.OnStatusEffectExpired.Invoke(this);
+		}
 
 		public virtual void Apply(StatSheet statSheet)
 		{
-			if (!IsRunning)
+			if (!IsRunning && PreEffect(statSheet))
 			{
-				statSheet.OnStatusEffectApplied.Invoke(this);
 				Coroutine = statSheet.StartCoroutine(DoEffect(statSheet));
 			}
 		}
 
-		public void Cancel(StatSheet statSheet)
+		public virtual void Cancel(StatSheet statSheet)
 		{
 			if (IsRunning)
 			{
 				statSheet.StopCoroutine(Coroutine);
-				statSheet.OnStatusEffectExpired.Invoke(this);
+				PostEffect(statSheet);
 				Coroutine = null;
 			}
 		}
 
-		public bool TryCancel(StatSheet statSheet)
+		public virtual bool TryCancel(StatSheet statSheet)
 		{
 			if (!IsRunning) return true;
 			if (Type.CanCancel)
