@@ -41,9 +41,9 @@ namespace Phantom
 			return delta;
 		}
 
-		public IEnumerable<Projectile> Fire()
+		public IEnumerable<GameObject> Fire()
 		{
-			var projectiles = new List<Projectile>();
+			var projectiles = new List<GameObject>();
 
 			foreach (var group in groups)
 				projectiles.AddRange(group.Fire());
@@ -51,9 +51,9 @@ namespace Phantom
 			return projectiles;
 		}
 
-		public IEnumerable<Projectile> Fire(Vector2 vector, Reference mode)
+		public IEnumerable<GameObject> Fire(Vector2 vector, Reference mode)
 		{
-			var projectiles = new List<Projectile>();
+			var projectiles = new List<GameObject>();
 
 			foreach (var group in groups)
 				projectiles.AddRange(group.Fire(vector, mode));
@@ -61,9 +61,9 @@ namespace Phantom
 			return projectiles;
 		}
 
-		public IEnumerable<Projectile> Fire(Rigidbody2D target)
+		public IEnumerable<GameObject> Fire(Rigidbody2D target)
 		{
-			var projectiles = new List<Projectile>();
+			var projectiles = new List<GameObject>();
 
 			foreach (var group in groups)
 				projectiles.AddRange(group.Fire(target));
@@ -81,12 +81,12 @@ namespace Phantom
 			throw new System.NotImplementedException();
 		}
 
-		public IEnumerable<Projectile> Fire(int group, Vector2 vector, Reference mode)
+		public IEnumerable<GameObject> Fire(int group, Vector2 vector, Reference mode)
 		{
 			throw new System.NotImplementedException();
 		}
 
-		public IEnumerable<Projectile> Fire(int group, Rigidbody2D target)
+		public IEnumerable<GameObject> Fire(int group, Rigidbody2D target)
 		{
 			throw new System.NotImplementedException();
 		}

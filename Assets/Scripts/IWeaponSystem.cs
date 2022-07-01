@@ -13,8 +13,8 @@ namespace Phantom
 
 		float Aim(int group, Rigidbody2D target);
 
-		IEnumerable<Projectile> Fire(int group, Vector2 vector, Reference mode);
+		IEnumerable<GameObject> Fire(int group, Vector2 vector, Reference mode);
 
-		IEnumerable<Projectile> Fire(int group, Rigidbody2D target);
+		IEnumerable<GameObject> Fire(int group, Rigidbody2D target);
 	}
 }

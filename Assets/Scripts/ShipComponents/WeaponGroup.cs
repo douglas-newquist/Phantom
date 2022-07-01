@@ -10,9 +10,9 @@ namespace Phantom
 
 		public int Count => weapons.Count;
 
-		public IEnumerable<Projectile> Fire()
+		public IEnumerable<GameObject> Fire()
 		{
-			var projectiles = new List<Projectile>();
+			var projectiles = new List<GameObject>();
 
 			foreach (var turret in weapons)
 				projectiles.AddRange(turret.Fire());
@@ -26,9 +26,9 @@ namespace Phantom
 		/// <param name="vector">Vector to fire at</param>
 		/// <param name="mode">What the vector is relative too</param>
 		/// <returns>List of projectiles fired</returns>
-		public IEnumerable<Projectile> Fire(Vector2 vector, Reference mode)
+		public IEnumerable<GameObject> Fire(Vector2 vector, Reference mode)
 		{
-			var projectiles = new List<Projectile>();
+			var projectiles = new List<GameObject>();
 
 			foreach (var turret in weapons)
 			{
@@ -40,9 +40,9 @@ namespace Phantom
 			return projectiles;
 		}
 
-		public IEnumerable<Projectile> Fire(Rigidbody2D target)
+		public IEnumerable<GameObject> Fire(Rigidbody2D target)
 		{
-			var projectiles = new List<Projectile>();
+			var projectiles = new List<GameObject>();
 
 			foreach (var turret in weapons)
 			{

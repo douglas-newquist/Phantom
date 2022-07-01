@@ -1,10 +1,12 @@
+using UnityEngine;
+
 namespace Phantom
 {
 	public class ProjectileFiredEvent : Event
 	{
-		public Projectile Projectile { get; private set; }
+		public GameObject Projectile { get; private set; }
 
-		public ProjectileFiredEvent(object context, Projectile projectile) : base(context)
+		public ProjectileFiredEvent(object context, GameObject projectile) : base(context)
 		{
 			Projectile = projectile;
 		}

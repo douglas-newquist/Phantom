@@ -8,7 +8,7 @@ namespace Phantom
 	public abstract class Turret : ShipComponent, IWeapon
 	{
 		[Header("Fire Setting")]
-		public ProjectileSO projectile;
+		public ProjectileType projectile;
 
 		[MinMax(0, 16)]
 		public IntRange projectilesFired = new IntRange(1, 1);
@@ -48,7 +48,7 @@ namespace Phantom
 					Vector2.zero);
 		}
 
-		public virtual IEnumerable<Projectile> Fire()
+		public virtual IEnumerable<GameObject> Fire()
 		{
 			if (CanFire)
 			{
@@ -59,7 +59,7 @@ namespace Phantom
 			}
 		}
 
-		public virtual IEnumerable<Projectile> Fire(Vector2 vector, Reference mode)
+		public virtual IEnumerable<GameObject> Fire(Vector2 vector, Reference mode)
 		{
 			var angle = Aim(vector, mode);
 
@@ -69,7 +69,7 @@ namespace Phantom
 			return null;
 		}
 
-		public virtual IEnumerable<Projectile> Fire(Rigidbody2D target)
+		public virtual IEnumerable<GameObject> Fire(Rigidbody2D target)
 		{
 			var location = PredictImpactLocation(target);
 			return Fire(location, Reference.Absolute);

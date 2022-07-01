@@ -5,11 +5,25 @@ using Phantom.ObjectPooling;
 namespace Phantom
 {
 	[RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
-	public class BulletProjectile : Projectile
+	public class KinematicProjectile : Projectile
 	{
-		public Rigidbody2D body => GetComponent<Rigidbody2D>();
+		protected Rigidbody2D body;
 
-		public BulletProjectileSO BulletStats => (BulletProjectileSO)ProjectileStats;
+		protected virtual void Start()
+		{
+			body = GetComponent<Rigidbody2D>();
+		}
+
+		protected virtual void FixedUpdate()
+		{
+			Vector3 velocity = body.velocity;
+			velocity += transform.up * Time.fixedDeltaTime * Acceleration;
+
+			if (velocity.magnitude > GameManager.SpeedLimit)
+				velocity = velocity.normalized * GameManager.SpeedLimit;
+
+			body.velocity = velocity;
+		}
 
 		/// <summary>
 		/// Sent when another object enters a trigger collider attached to this
@@ -20,9 +34,10 @@ namespace Phantom
 		{
 			var damageable = other.GetComponent<IDamageable>();
 			if (damageable == null) return;
-			damageable.ApplyDamage(BulletStats.damage);
-			OnExpired.Invoke(this);
-			OnHit.Invoke(new ProjectileHitEvent(damageable, this));
+
+			damageable.ApplyDamage(Damage);
+			OnExpired.Invoke(gameObject);
+			OnHit.Invoke(other.gameObject);
 			ObjectPool.Despawn(gameObject);
 		}
 	}

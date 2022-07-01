@@ -5,10 +5,10 @@ namespace Phantom
 {
 	public interface IFire
 	{
-		IEnumerable<Projectile> Fire();
+		IEnumerable<GameObject> Fire();
 
-		IEnumerable<Projectile> Fire(Vector2 vector, Reference mode);
+		IEnumerable<GameObject> Fire(Vector2 vector, Reference mode);
 
-		IEnumerable<Projectile> Fire(Rigidbody2D target);
+		IEnumerable<GameObject> Fire(Rigidbody2D target);
 	}
 }

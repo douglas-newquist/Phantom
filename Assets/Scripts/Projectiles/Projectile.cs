@@ -5,39 +5,31 @@ using Phantom.ObjectPooling;
 
 namespace Phantom
 {
-	public interface IProjectile
-	{
-		float DeathTime { get; set; }
-
-		void Update();
-	}
-
 	public class Projectile : MonoBehaviour, IProjectile
 	{
-		public StatSheet statSheet;
+		public Damage Damage { get; set; }
 
-		public ProjectileSO ProjectileStats;
-
-		public Damage damage;
+		public float Acceleration { get; set; }
 
 		public float DeathTime { get; set; }
 
-		public UnityEvent<Projectile> OnExpired;
+		public UnityEvent<GameObject> OnExpired;
 
-		public UnityEvent<ProjectileHitEvent> OnHit;
+		public UnityEvent<GameObject> OnHit;
 
-		protected virtual void Start()
-		{
-
-		}
 
 		public virtual void Update()
 		{
 			if (Time.time > DeathTime)
 			{
-				OnExpired.Invoke(this);
+				OnExpired.Invoke(gameObject);
 				ObjectPool.Despawn(gameObject);
 			}
+		}
+
+		public void Fire(GameObject owner, float lifeSpan)
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }
