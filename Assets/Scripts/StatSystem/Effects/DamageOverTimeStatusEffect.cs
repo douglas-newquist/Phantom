@@ -27,6 +27,8 @@ namespace Phantom.StatSystem
 					yield return new WaitForSeconds(delay);
 					damageable.ApplyDamage(dot.damage);
 				}
+
+				statSheet.OnStatusEffectExpired.Invoke(this);
 			}
 		}
 

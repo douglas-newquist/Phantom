@@ -36,6 +36,10 @@ namespace Phantom.StatSystem
 		[Header("Events")]
 		public UnityEvent<IStat> OnStatAdded;
 
+		public UnityEvent<IStatusEffect> OnStatusEffectApplied;
+
+		public UnityEvent<IStatusEffect> OnStatusEffectExpired;
+
 		private void Start()
 		{
 			statSheetDefaults.Apply(this);

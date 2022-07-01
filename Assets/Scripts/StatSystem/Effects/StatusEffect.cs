@@ -26,7 +26,10 @@ namespace Phantom.StatSystem
 			public virtual void Apply(StatSheet statSheet)
 			{
 				if (!IsRunning)
+				{
+					statSheet.OnStatusEffectApplied.Invoke(this);
 					Coroutine = statSheet.StartCoroutine(DoEffect(statSheet));
+				}
 			}
 
 			public void Cancel(StatSheet statSheet)
@@ -34,6 +37,7 @@ namespace Phantom.StatSystem
 				if (IsRunning)
 				{
 					statSheet.StopCoroutine(Coroutine);
+					statSheet.OnStatusEffectExpired.Invoke(this);
 					Coroutine = null;
 				}
 			}

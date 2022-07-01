@@ -22,6 +22,7 @@ namespace Phantom.StatSystem
 				yield return new WaitForSeconds(buff.Duration.Random);
 
 				statSheet.RemoveAllModifiersFromSource(Source);
+				statSheet.OnStatusEffectExpired.Invoke(this);
 			}
 		}
 
