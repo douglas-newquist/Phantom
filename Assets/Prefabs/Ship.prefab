@@ -79,9 +79,13 @@ MonoBehaviour:
     - type: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
       value: 1000
     modifiers: []
-  primaryHealthStat: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
-  autoCreateMissingStats: 1
   OnStatAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStatusEffectApplied:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStatusEffectExpired:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &-5793595955526242351
@@ -174,6 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 0}
+  massStat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
+  thrustStat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
   brakeMaxVelocityToSetZero: 0.2
   moveToBrakeDistance: 1
   collisionAvoidance:
@@ -182,16 +188,14 @@ MonoBehaviour:
     extraRays: 6
     totalRayAngle: 30
   PID:
-    proportionalGain: 0.5
+    proportionalGain: 1
     integralGain: 1
-    derivativeGain: 0.1
-    integralSaturation: 1
+    derivativeGain: 0.8
+    integralSaturation: 100
     useVelocity: 0
   pathSeeker:
     pathAgent: {fileID: 11400000, guid: b0b3238c84dbf85949091bfeb8d3e654, type: 2}
-    pathFollowTolerance: 16
-  pathAgent: {fileID: 11400000, guid: b0b3238c84dbf85949091bfeb8d3e654, type: 2}
-  pathFollowTolerance: 16
+    followTolerance: 16
 --- !u!114 &5065441348383330979
 MonoBehaviour:
   m_ObjectHideFlags: 0

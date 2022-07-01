@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2384e23a5ba891505a460e323eaddc6e, type: 3}
+  m_Name: Rock01
+  m_EditorClassIdentifier: 
+  tiles:
+    full: {fileID: 11400000, guid: e03c29591b91fa4b2b67187ff0724912, type: 2}
+    empty: {fileID: 0}
+    left: {fileID: 11400000, guid: f6e29fadcd0facc6a902b922abf6365f, type: 2}
+    right: {fileID: 11400000, guid: dd946ee3ac3f6287c9c92802055f0016, type: 2}
+    top: {fileID: 11400000, guid: a5e4905f3bbc3e25ca3103eb0f789ef3, type: 2}
+    bottom: {fileID: 11400000, guid: f6646f6ae9562aee1a1b3654a69e9d6e, type: 2}
+    bottomLeft: {fileID: 11400000, guid: 137e0873786f60311adfee864f871966, type: 2}
+    bottomRight: {fileID: 11400000, guid: ab76e2f7082ff635592b81ea0081504c, type: 2}
+    topLeft: {fileID: 11400000, guid: 17b90071252324e3585814c9958bd196, type: 2}
+    topRight: {fileID: 11400000, guid: 6ca361c792382b6409b2a3def71fefed, type: 2}
+    bottomLeftLarge: {fileID: 11400000, guid: e119eb2a0be7a5a00bad6919a5dbdb15, type: 2}
+    bottomRightLarge: {fileID: 11400000, guid: 402f0bf5d79a5fcedbf404b763624cdf, type: 2}
+    topLeftLarge: {fileID: 11400000, guid: baa1839f92733391a8cf84628fc470e0, type: 2}
+    topRightLarge: {fileID: 11400000, guid: 301dcaa53f8cc2cccbcbeba9f6221016, type: 2}
+    bottomLeftTopRight: {fileID: 11400000, guid: d5e263b7c2e2a7ae9bdb10abb788ec27, type: 2}
+    topLeftBottomRight: {fileID: 11400000, guid: 4f110af3ae5555446b6975aea82993ae, type: 2}

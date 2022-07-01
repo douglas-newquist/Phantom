@@ -26,7 +26,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2e2d18a23fb786b32a5aa14b85229f32, type: 2}
   tileLayerMapGenerators:
   - {fileID: 11400000, guid: e23f5a2d86570ab98a37c57c2638f666, type: 2}
+  - {fileID: 11400000, guid: 43533aaedd7348307979c84e6aeea0c0, type: 2}
   textures:
     items:
-    - value: {fileID: 11400000, guid: 5a02cbd62acb6421c8654f0e04b837c5, type: 2}
+    - value: {fileID: 11400000, guid: 12739a14497fa1b47ba92242b859d2cd, type: 2}
       weight: 1

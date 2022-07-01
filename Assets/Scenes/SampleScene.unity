@@ -1910,10 +1910,6 @@ MonoBehaviour:
   start: {fileID: 1777662707}
   end: {fileID: 151217006}
   pathAgent: {fileID: 11400000, guid: b0b3238c84dbf85949091bfeb8d3e654, type: 2}
-  resourceStatType: {fileID: 11400000, guid: 707d7c58055e1022a9d05f959bcc04b8, type: 2}
-  statusEffectTypes:
-  - {fileID: 11400000, guid: 4509b9176e3b485bcaa2bdc6f8271438, type: 2}
-  - {fileID: 11400000, guid: 558b5b483229dcc088402f7f386e2c42, type: 2}
 --- !u!4 &1387071761
 Transform:
   m_ObjectHideFlags: 0
@@ -1944,7 +1940,6 @@ MonoBehaviour:
   statSheetDefaults:
     stats: []
     modifiers: []
-  autoCreateMissingStats: 1
   OnStatAdded:
     m_PersistentCalls:
       m_Calls: []
