@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom.Pathfinding
 {
-	[CreateAssetMenu(menuName = CreateMenu.PathAgent + "Vertex Agent")]
+	[CreateAssetMenu(menuName = CreateMenu + "Vertex Agent")]
 	public class VertexPathAgent : GridPathAgent<int>
 	{
 		[Range(-1, 16)]

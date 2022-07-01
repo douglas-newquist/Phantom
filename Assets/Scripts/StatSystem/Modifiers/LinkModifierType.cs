@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom.StatSystem
 {
-	[CreateAssetMenu(menuName = CreateMenu.Modifiers + "Link")]
+	[CreateAssetMenu(menuName = ModifierType.CreateMenu + "Link")]
 	public class LinkModifierType : ModifierType
 	{
 		public StatType stat;

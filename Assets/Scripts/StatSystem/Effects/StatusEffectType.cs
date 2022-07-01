@@ -4,6 +4,8 @@ namespace Phantom.StatSystem
 {
 	public abstract class StatusEffectType : ScriptableObject
 	{
+		public const string CreateMenu = "Game/Stat System/Status Effect/";
+
 		public const float MaxDuration = 60 * 60;
 
 		[SerializeField]

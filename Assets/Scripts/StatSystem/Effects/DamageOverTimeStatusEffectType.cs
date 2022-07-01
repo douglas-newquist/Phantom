@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom.StatSystem
 {
-	[CreateAssetMenu(menuName = CreateMenu.StatusEffect + "Damage Over Time")]
+	[CreateAssetMenu(menuName = StatusEffectType.CreateMenu + "Damage Over Time")]
 	public class DamageOverTimeStatusEffectType : StatusEffectType
 	{
 

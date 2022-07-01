@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Phantom.Pathfinding
 {
-	[CreateAssetMenu(menuName = CreateMenu.Pathfinder + "Dijkstra")]
+	[CreateAssetMenu(menuName = Pathfinder.CreateMenu + "Dijkstra")]
 	public class DijkstraPathFinder : Pathfinder
 	{
 		protected override void FindPath<TMap, TCell>(IPathAgent<TMap, TCell> agent, TMap map, TCell start, TCell end, Path<TCell> result)

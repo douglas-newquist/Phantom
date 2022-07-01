@@ -6,12 +6,6 @@ namespace Phantom
 
 		public const string Condition = Game + "Condition/";
 
-		public const string Stats = Game + "Stat/";
-
-		public const string Modifiers = Game + "Modifier/";
-
-		public const string StatusEffect = Game + "Status Effect/";
-
 		public const string Projectile = Game + "Projectile/";
 
 		public const string ShipPart = Game + "Part/";
@@ -33,11 +27,5 @@ namespace Phantom
 		public const string MapGenerator = Generator + "Level/";
 
 		public const string PlacementRule = Game + "Placement Rule/";
-
-		public const string Pathing = Game + "Path Finding/";
-
-		public const string Pathfinder = Pathing + "Pathfinder/";
-
-		public const string PathAgent = Pathing + "Agent/";
 	}
 }

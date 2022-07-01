@@ -4,6 +4,8 @@ namespace Phantom.StatSystem
 {
 	public abstract class ModifierType : ScriptableObject
 	{
+		public const string CreateMenu = "Game/Stat System/Modifier/";
+
 		[Range(0, 100)]
 		public int order = 0;
 

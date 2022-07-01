@@ -2,9 +2,11 @@ using UnityEngine;
 
 namespace Phantom.StatSystem
 {
-	[CreateAssetMenu(menuName = "Game/Damage Type")]
+	[CreateAssetMenu(menuName = DamageType.CreateMenu + "Damage Type")]
 	public class DamageType : ScriptableObject
 	{
+		public const string CreateMenu = "Game/Stat System/";
+
 		public DamageMultiplier[] multipliers;
 
 		public override string ToString()

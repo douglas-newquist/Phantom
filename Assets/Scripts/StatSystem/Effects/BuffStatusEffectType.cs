@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom.StatSystem
 {
-	[CreateAssetMenu(menuName = CreateMenu.StatusEffect + "Status Effect")]
+	[CreateAssetMenu(menuName = StatusEffectType.CreateMenu + "Status Effect")]
 	public class BuffStatusEffectType : StatusEffectType
 	{
 		public Modifier[] modifiers;

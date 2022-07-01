@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom.StatSystem
 {
-	[CreateAssetMenu(menuName = CreateMenu.StatusEffect + "Resource Over Time")]
+	[CreateAssetMenu(menuName = StatusEffectType.CreateMenu + "Resource Over Time")]
 	public class ResourceOverTimeStatusEffectType : StatusEffectType
 	{
 		[SerializeField]

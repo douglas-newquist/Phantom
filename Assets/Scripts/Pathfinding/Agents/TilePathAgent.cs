@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom.Pathfinding
 {
-	[CreateAssetMenu(menuName = CreateMenu.PathAgent + "Tile Map Agent")]
+	[CreateAssetMenu(menuName = CreateMenu + "Tile Map Agent")]
 	public class TilePathAgent : GridPathAgent<VertexTile>
 	{
 		public VertexTileShapePair<float> weights;

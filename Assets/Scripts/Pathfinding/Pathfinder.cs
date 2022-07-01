@@ -7,6 +7,8 @@ namespace Phantom.Pathfinding
 	[System.Serializable]
 	public abstract class Pathfinder : ScriptableObject
 	{
+		public const string CreateMenu = "Game/Path Finding/Pathfinder/";
+
 		[Range(1, 10000)]
 		public int maxIterations = 2000;
 

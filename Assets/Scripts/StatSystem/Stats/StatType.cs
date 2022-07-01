@@ -2,9 +2,11 @@ using UnityEngine;
 
 namespace Phantom.StatSystem
 {
-	[CreateAssetMenu(menuName = CreateMenu.Stats + "Basic")]
+	[CreateAssetMenu(menuName = StatType.CreateMenu + "Basic")]
 	public class StatType : ScriptableObject, ITooltip
 	{
+		public const string CreateMenu = "Game/Stat System/Stat/";
+
 		[SerializeField]
 		private string displayName;
 

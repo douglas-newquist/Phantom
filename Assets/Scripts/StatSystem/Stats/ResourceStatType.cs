@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom.StatSystem
 {
-	[CreateAssetMenu(menuName = CreateMenu.Stats + "Resource")]
+	[CreateAssetMenu(menuName = StatType.CreateMenu + "Resource")]
 	public class ResourceStatType : StatType
 	{
 		[SerializeField]

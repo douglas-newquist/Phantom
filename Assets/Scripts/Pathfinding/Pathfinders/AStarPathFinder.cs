@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Phantom.Pathfinding
 {
-	[CreateAssetMenu(menuName = CreateMenu.Pathfinder + "A*")]
+	[CreateAssetMenu(menuName = Pathfinder.CreateMenu + "A*")]
 	public class AStarPathFinder : Pathfinder
 	{
 		public bool onlyReturnCompletePath = false;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Phantom.StatSystem
 {
-	[CreateAssetMenu(menuName = CreateMenu.Modifiers + "Add")]
+	[CreateAssetMenu(menuName = ModifierType.CreateMenu + "Add")]
 	public class AdditiveModifierType : ModifierType
 	{
 		public override IModifier Create(object source, float magnitude)

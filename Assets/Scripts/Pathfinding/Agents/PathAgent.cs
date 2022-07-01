@@ -5,6 +5,8 @@ namespace Phantom.Pathfinding
 {
 	public abstract class PathAgent<TMap, TCell> : ScriptableObject, IPathAgent<TMap, TCell>
 	{
+		public const string CreateMenu = "Game/Path Finding/Agent/";
+
 		public Pathfinder pathfinder;
 
 		/// <summary>
