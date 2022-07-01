@@ -109,11 +109,16 @@ namespace Phantom.ObjectPooling
 		/// Despawns the given object
 		/// </summary>
 		/// <param name="obj">Object to despawn</param>
-		public static void Despawn(GameObject obj)
+		public static void Despawn(GameObject obj, params ISpawner[] onDespawn)
 		{
 			if (obj == null) return;
 
 			var link = obj.GetComponent<PoolLink>();
+
+			if (onDespawn != null)
+				foreach (var despawn in onDespawn)
+					if (despawn != null)
+						despawn.Spawn(obj);
 
 			if (link == null || link.pool == null)
 				Destroy(obj);
