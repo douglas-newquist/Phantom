@@ -3,11 +3,20 @@ using UnityEngine.Tilemaps;
 
 namespace Phantom
 {
-	public abstract class MapTile : TileBase
+	[CreateAssetMenu(menuName = "Game/Rule Tile")]
+	public class MapTile : RuleTile
 	{
-		public abstract int Width { get; }
+		[SerializeField]
+		[Range(1, 16)]
+		private int width = 1;
 
-		public abstract int Height { get; }
+		public int Width => width;
+
+		[SerializeField]
+		[Range(1, 16)]
+		private int height = 1;
+
+		public int Height => height;
 
 		[SerializeField]
 		private TileBase tile;
@@ -50,26 +59,6 @@ namespace Phantom
 				for (int yi = 0, y = position.y; yi < Height; yi++, y++)
 					if (xi != 0 || yi != 0)
 						map.SetTile(new Vector3Int(x, y, position.z), new TileObject(position));
-		}
-
-		public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
-		{
-			Tile.GetTileData(position, tilemap, ref tileData);
-		}
-
-		public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
-		{
-			return Tile.StartUp(position, tilemap, go);
-		}
-
-		public override bool GetTileAnimationData(Vector3Int position, ITilemap tilemap, ref TileAnimationData tileAnimationData)
-		{
-			return Tile.GetTileAnimationData(position, tilemap, ref tileAnimationData);
-		}
-
-		public override void RefreshTile(Vector3Int position, ITilemap tilemap)
-		{
-			Tile.RefreshTile(position, tilemap);
 		}
 	}
 }

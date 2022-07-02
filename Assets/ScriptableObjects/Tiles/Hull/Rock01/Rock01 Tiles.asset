@@ -9,7 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 871b9a8b9e6bbbcb5828356608b69eac, type: 3}
-  m_Name: New Tile Map Texture
+  m_Script: {fileID: 11500000, guid: 38e3d617b8845029296928d389aa2f44, type: 3}
+  m_Name: Rock01 Tiles
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 34bfcf956b1da2070bced3cc5932f1be, type: 3}
+  m_DefaultSprite: {fileID: 0}
+  m_DefaultGameObject: {fileID: 0}
+  m_DefaultColliderType: 1
+  m_TilingRules: []
+  width: 1
+  height: 1
+  tile: {fileID: 0}
+  placementRules: []
