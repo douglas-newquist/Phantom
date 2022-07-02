@@ -34,6 +34,11 @@ namespace Phantom
 			get => derivativeGain;
 			set => derivativeGain = Mathf.Clamp(value, 0, float.MaxValue);
 		}
+		public float IntegralSaturation
+		{
+			get => integralSaturation;
+			set => integralSaturation = value;
+		}
 
 		[SerializeField]
 		private bool useVelocity = false;
@@ -76,9 +81,9 @@ namespace Phantom
 			lastErrorValid = true;
 
 			integral = integral + (error * deltaTime);
-			integral.x = Mathf.Clamp(integral.x, -integralSaturation, integralSaturation);
-			integral.y = Mathf.Clamp(integral.y, -integralSaturation, integralSaturation);
-			integral.z = Mathf.Clamp(integral.z, -integralSaturation, integralSaturation);
+			integral.x = Mathf.Clamp(integral.x, -IntegralSaturation, IntegralSaturation);
+			integral.y = Mathf.Clamp(integral.y, -IntegralSaturation, IntegralSaturation);
+			integral.z = Mathf.Clamp(integral.z, -IntegralSaturation, IntegralSaturation);
 			I = IntegralGain * integral;
 
 			return P + I + D;
