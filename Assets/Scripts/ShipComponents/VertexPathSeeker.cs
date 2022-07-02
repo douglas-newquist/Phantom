@@ -85,7 +85,7 @@ namespace Phantom
 				return target;
 			}
 
-			if (lastPathTarget != target)
+			if (!followingPath || lastPathTarget != target)
 			{
 				path = pathAgent.FindPath(Vertices, WorldToMapCell(current), WorldToMapCell(target));
 				lastPathTarget = target;
