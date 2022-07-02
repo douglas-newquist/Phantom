@@ -136,7 +136,7 @@ namespace Phantom
 				var tile = keyValuePair.Value;
 
 				if (tile != null && tile.Tile != null)
-					tilemap.SetTile(position, tile.Tile);
+					tile.Tile.Place(tilemap, position);
 			}
 
 			tilemap.CompressBounds();

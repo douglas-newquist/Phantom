@@ -35,7 +35,5 @@ MonoBehaviour:
   m_Flags: 1
   m_ColliderType: 1
   sprites:
-    items:
-    - value: {fileID: 1908657234, guid: 06caa210b760e716bb4669ce0e61edbf, type: 3}
-      weight: 0
+  - {fileID: 1908657234, guid: 06caa210b760e716bb4669ce0e61edbf, type: 3}
   vertexTile: 2

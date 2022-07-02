@@ -22,6 +22,4 @@ MonoBehaviour:
   zRange:
     min: 0
     max: 0
-  objects:
-  - {fileID: 11400000, guid: 3f1b91c9b3ef3aa87a509cf855a16c69, type: 2}
-  - {fileID: 11400000, guid: 93094333a7e12bcfaaca813a11896b9d, type: 2}
+  objects: []

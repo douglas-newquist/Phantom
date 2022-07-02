@@ -6,11 +6,11 @@ namespace Phantom
 	[CreateAssetMenu(menuName = CreateMenu.ShipPart + "List")]
 	public class ShipPartsListSO : ScriptableObject
 	{
-		public ShipPartSO[] parts;
+		public PartTile[] parts;
 
-		public List<ShipPartSO> GetPlaceableParts(ShipDesign design, int x, int y)
+		public List<PartTile> GetPlaceableParts(ShipDesign design, int x, int y)
 		{
-			var placable = new List<ShipPartSO>();
+			var placable = new List<PartTile>();
 
 
 			return placable;

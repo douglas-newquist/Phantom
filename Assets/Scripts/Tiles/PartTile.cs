@@ -6,15 +6,13 @@ using Phantom.StatSystem;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.ShipPart + "Part")]
-	public class ShipPartSO : MapTile
+	public class PartTile : MapTile
 	{
 		public StatSheetDefaults baseStats;
 
-		public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
+		public override void Place(Tilemap tilemap, Vector3Int position)
 		{
-			if (!base.StartUp(position, tilemap, go))
-				return false;
-
+			base.Place(tilemap, position);
 			var root = tilemap.GetComponent<Transform>();
 			var statSheet = root.GetComponentInParent<StatSheet>();
 
@@ -22,8 +20,6 @@ namespace Phantom
 			{
 				baseStats.Apply(statSheet);
 			}
-
-			return true;
 		}
 	}
 }

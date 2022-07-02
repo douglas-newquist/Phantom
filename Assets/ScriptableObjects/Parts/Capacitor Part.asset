@@ -10,19 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 203a4144ddac1ec7c8a22d71e2281128, type: 3}
-  m_Name: Battery 01
+  m_Name: Capacitor Part
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 60b00a840c377018cb10d56c136f2ccc, type: 2}
-  placementRules:
-  - {fileID: 11400000, guid: 106946b14d6978be0a7f1e121a5e43a8, type: 2}
   width: 1
   height: 1
+  tile: {fileID: 11400000, guid: 3a0f8f39c7b3430a79f620e03be65663, type: 2}
+  placementRules:
+  - {fileID: 11400000, guid: 106946b14d6978be0a7f1e121a5e43a8, type: 2}
   baseStats:
     stats:
     - type: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
       value: 0.5
-    - type: {fileID: 11400000, guid: 707d7c58055e1022a9d05f959bcc04b8, type: 2}
-      value: 5
-    - type: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
-      value: 5
+    - type: {fileID: 11400000, guid: f00840f3f4c31fb8d82e8f5e6f22b77d, type: 2}
+      value: 10
     modifiers: []

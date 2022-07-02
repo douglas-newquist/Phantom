@@ -1,10 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = "Game/Rule Tile")]
-	public class MapTile : RuleTile
+	public abstract class MapTile : ScriptableObject
 	{
 		[SerializeField]
 		[Range(1, 16)]
@@ -18,10 +18,7 @@ namespace Phantom
 
 		public int Height => height;
 
-		[SerializeField]
-		private TileBase tile;
-
-		public TileBase Tile { get => tile; set => tile = value; }
+		public TileBase tile;
 
 		public PlacementRule[] placementRules;
 
@@ -59,6 +56,11 @@ namespace Phantom
 				for (int yi = 0, y = position.y; yi < Height; yi++, y++)
 					if (xi != 0 || yi != 0)
 						map.SetTile(new Vector3Int(x, y, position.z), new TileObject(position));
+		}
+
+		public virtual void Place(Tilemap tilemap, Vector3Int position)
+		{
+			tilemap.SetTile(position, tile);
 		}
 	}
 }

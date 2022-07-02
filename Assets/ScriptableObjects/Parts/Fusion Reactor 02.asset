@@ -12,11 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203a4144ddac1ec7c8a22d71e2281128, type: 3}
   m_Name: Fusion Reactor 02
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 7abdb07af55e1dcad949ee076f428190, type: 2}
-  placementRules:
-  - {fileID: 11400000, guid: f272a46cf14f965708aa115112aae4f3, type: 2}
+  m_DefaultSprite: {fileID: 21300000, guid: 5053d962da7a1f8adaeff3dcc824df72, type: 3}
+  m_DefaultGameObject: {fileID: 0}
+  m_DefaultColliderType: 1
+  m_TilingRules:
+  - m_Id: 0
+    m_Sprites:
+    - {fileID: 21300000, guid: 5053d962da7a1f8adaeff3dcc824df72, type: 3}
+    m_GameObject: {fileID: 0}
+    m_MinAnimationSpeed: 1
+    m_MaxAnimationSpeed: 1
+    m_PerlinScale: 0.5
+    m_Output: 0
+    m_ColliderType: 1
+    m_RandomTransform: 0
+    m_Neighbors: 
+    m_NeighborPositions:
+    - {x: -1, y: 1, z: 0}
+    - {x: 0, y: 1, z: 0}
+    - {x: 1, y: 1, z: 0}
+    - {x: -1, y: 0, z: 0}
+    - {x: 1, y: 0, z: 0}
+    - {x: -1, y: -1, z: 0}
+    - {x: 0, y: -1, z: 0}
+    - {x: 1, y: -1, z: 0}
+    m_RuleTransform: 0
   width: 5
   height: 5
+  placementRules:
+  - {fileID: 11400000, guid: f272a46cf14f965708aa115112aae4f3, type: 2}
+  connectsWith: []
   baseStats:
     stats:
     - type: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
