@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
+using Phantom.StatSystem;
 
 namespace Phantom
 {
@@ -15,6 +15,24 @@ namespace Phantom
 		private Goal goal;
 
 		public Rigidbody2D body;
+
+		private StatSheet statSheet;
+
+		[SerializeField]
+		private StatType massStat, thrustStat;
+
+		public StatType MassStat => massStat;
+
+		public StatType ThrustStat => thrustStat;
+
+		public float Thrust => statSheet.GetValue(thrustStat);
+
+		public float Mass => statSheet.GetValue(MassStat);
+
+		/// <summary>
+		/// The thrust to weight ratio
+		/// </summary>
+		public float TWR => Thrust / Mass;
 
 		public Vector2 Velocity
 		{
@@ -42,8 +60,14 @@ namespace Phantom
 
 		private void Start()
 		{
+			statSheet = GetComponent<StatSheet>();
 			body = GetComponent<Rigidbody2D>();
 			thrusters = GetComponentsInChildren<Thruster>();
+
+			//PID.ProportionalGain = TWR;
+			//PID.IntegralGain = TWR / 4;
+			//	PID.DerivativeGain = TWR / 2;
+			PID.IntegralSaturation = TWR;
 		}
 
 		/// <summary>
