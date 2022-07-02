@@ -13,9 +13,6 @@ namespace Phantom
 
 		public NameGenerator[] nameGenerators;
 
-		[Tooltip("Vertex generator to use if creating a new design")]
-		public VertexGenerator[] vertexGenerators;
-
 		public TileLayerMapGenerator[] tileLayerMapGenerators;
 
 		public WeightedList<TileMapSO> hulls;
@@ -37,9 +34,6 @@ namespace Phantom
 
 			foreach (var generator in nameGenerators)
 				design.Name = generator.Apply(design.Name);
-
-			foreach (var generator in vertexGenerators)
-				design.TileLayerMap.VertexTiles = generator.Apply(design.TileLayerMap.VertexTiles);
 
 			foreach (var generator in tileLayerMapGenerators)
 				design.TileLayerMap = generator.Apply(design.TileLayerMap);

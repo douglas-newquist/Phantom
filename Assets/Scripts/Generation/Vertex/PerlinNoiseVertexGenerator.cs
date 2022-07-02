@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Perlin Noise")]
-	public class PerlinNoiseVertexGenerator : VertexGenerator
+	public sealed class PerlinNoiseVertexGenerator : VertexGenerator
 	{
 		[MinMax(0, 1)]
 		public FloatRange thresholdHeight = new FloatRange(0f, 1f);
@@ -12,9 +12,9 @@ namespace Phantom
 
 		public int high = 1, low = 0;
 
-		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
+		protected override VertexTileMap ApplyOnce(VertexTileMap design, RectInt area)
 		{
-			grid = new VertexTileMap(grid);
+			design = new VertexTileMap(design);
 
 			float xScale = scale.Random, yScale = scale.Random;
 			float xStep = xScale / area.width;
@@ -29,11 +29,11 @@ namespace Phantom
 				for (int y = area.yMin; y <= area.yMax; y++, Y += yStep)
 				{
 					var height = Mathf.PerlinNoise(X, Y);
-					grid.Vertices.TrySet(x, y, height >= threshold ? high : low);
+					design.Vertices.TrySet(x, y, height >= threshold ? high : low);
 				}
 			}
 
-			return grid;
+			return design;
 		}
 	}
 }

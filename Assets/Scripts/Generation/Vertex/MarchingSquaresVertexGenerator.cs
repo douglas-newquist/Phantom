@@ -5,22 +5,22 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Marching Squares")]
-	public class MarchingSquaresVertexGenerator : VertexGenerator
+	public sealed class MarchingSquaresVertexGenerator : VertexGenerator
 	{
 		[MinMax(0, 8)]
 		public IntRange n;
 
 		public int alive = 1, dead = 0;
 
-		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
+		protected override VertexTileMap ApplyOnce(VertexTileMap design, RectInt area)
 		{
-			var result = new VertexTileMap(grid);
+			var result = new VertexTileMap(design);
 
 			for (int x = area.xMin; x <= area.xMax; x++)
 				for (int y = area.yMin; y <= area.yMax; y++)
 				{
 					int active = 0;
-					foreach (var neighbor in grid.Vertices.GetNeighbors(new Vector2Int(x, y), 1, true))
+					foreach (var neighbor in design.Vertices.GetNeighbors(new Vector2Int(x, y), 1, true))
 						if (neighbor.Value == alive)
 							active++;
 

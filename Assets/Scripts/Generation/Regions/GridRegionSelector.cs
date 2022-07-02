@@ -3,8 +3,11 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Grid")]
-	public class GridVertexGenerator : VertexGenerator
+	/// <summary>
+	/// Breaks the given total area into a grid of regions
+	/// </summary>
+	[CreateAssetMenu(menuName = CreateMenu + "Grid of Regions")]
+	public sealed class GridRegionSelector : RegionSelector
 	{
 		[MinMax(1, 64)]
 		public IntRange x = new IntRange(2, 4), y = new IntRange(2, 4);
@@ -23,21 +26,7 @@ namespace Phantom
 			CellSize
 		}
 
-		public VertexGenerator cellGenerator;
-
-		public VertexGenerator borderGenerator;
-
-		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
-		{
-			var cells = new VertexTileMap(grid);
-
-			foreach (var region in GetRegions(area))
-				cells = cellGenerator.Apply(cells, region);
-
-			return cells;
-		}
-
-		public IEnumerable<RectInt> GetRegions(RectInt area)
+		public override IEnumerable<RectInt> GetRegions(RectInt totalArea)
 		{
 			int width = x.Random;
 			int height = y.Random;
@@ -45,9 +34,9 @@ namespace Phantom
 			int ySpace = ySpacing.Random;
 
 			if (slice == Slice.CellCount)
-				return GetCountRegions(area, width, xSpace, height, ySpace);
+				return GetCountRegions(totalArea, width, xSpace, height, ySpace);
 
-			return GetRegionsOfSize(area, x.Random, xSpace, y.Random, ySpace);
+			return GetRegionsOfSize(totalArea, x.Random, xSpace, y.Random, ySpace);
 		}
 
 		public IEnumerable<RectInt> GetCountRegions(RectInt area, int xCells, int xSpace, int yCells, int ySpace)

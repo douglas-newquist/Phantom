@@ -10,9 +10,9 @@ namespace Phantom
 
 		public int value = 1;
 
-		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
+		protected override VertexTileMap ApplyOnce(VertexTileMap design, RectInt area)
 		{
-			grid = new VertexTileMap(grid);
+			design = new VertexTileMap(design);
 			var center = area.center;
 			var maxDistance = area.xMax - center.x;
 			var threshHold = chance.Random;
@@ -25,11 +25,11 @@ namespace Phantom
 					distance /= maxDistance;
 					distance *= threshHold;
 					if (Random.Range(0f, 1f) >= distance)
-						grid.Vertices.TrySet(x, y, value);
+						design.Vertices.TrySet(x, y, value);
 				}
 			}
 
-			return grid;
+			return design;
 		}
 	}
 }

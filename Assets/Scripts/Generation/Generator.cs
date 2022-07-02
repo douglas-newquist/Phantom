@@ -7,10 +7,22 @@ namespace Phantom
 		[MinMax(0, 16)]
 		public IntRange repeat = new IntRange(1, 1);
 
+		public RegionSelector regionSelector;
+
 		public virtual T Apply(T design, RectInt area)
 		{
 			for (int repeats = repeat.Random; repeats > 0; repeats--)
-				design = ApplyOnce(design, area);
+			{
+				if (regionSelector != null)
+				{
+					foreach (var region in regionSelector.GetRegions(area))
+						design = ApplyOnce(design, region);
+				}
+				else
+				{
+					design = ApplyOnce(design, area);
+				}
+			}
 
 			return design;
 		}

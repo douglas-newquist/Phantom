@@ -20,12 +20,11 @@ MonoBehaviour:
     max: 32
   nameGenerators:
   - {fileID: 11400000, guid: aecb1200a5651859e9e967f30c9f6ca0, type: 2}
-  vertexGenerators:
+  tileLayerMapGenerators:
   - {fileID: 11400000, guid: daf2f8d7ad4d84582ae60c71dd6d9e8b, type: 2}
   - {fileID: 11400000, guid: 5efc1547f9420a9e8a419c8cbd967f50, type: 2}
   - {fileID: 11400000, guid: ba9244d740259b54c9530963f00515ff, type: 2}
   - {fileID: 11400000, guid: 04409bde5b9402a86908ace3a52177f5, type: 2}
-  tileLayerMapGenerators:
   - {fileID: 11400000, guid: 6895ac771b60c2bc7950877ac4470431, type: 2}
   hulls:
     items:

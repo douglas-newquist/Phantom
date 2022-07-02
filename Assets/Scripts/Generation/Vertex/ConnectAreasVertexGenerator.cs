@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Connect Areas")]
-	public class ConnectAreasVertexGenerator : VertexGenerator
+	public sealed class ConnectAreasVertexGenerator : VertexGenerator
 	{
 		public class Room
 		{
@@ -73,7 +73,7 @@ namespace Phantom
 		[Range(0, 16)]
 		public float pathRadius = 2;
 
-		public override VertexTileMap ApplyOnce(VertexTileMap design, RectInt area)
+		protected override VertexTileMap ApplyOnce(VertexTileMap design, RectInt area)
 		{
 			design = new VertexTileMap(design);
 
@@ -97,7 +97,7 @@ namespace Phantom
 			return design;
 		}
 
-		protected List<Room> GetRooms(VertexTileMap design, RectInt area)
+		private List<Room> GetRooms(VertexTileMap design, RectInt area)
 		{
 			var rooms = new List<Room>();
 
@@ -108,7 +108,7 @@ namespace Phantom
 			return rooms;
 		}
 
-		protected int PickTargetRoom(List<Room> rooms, int start)
+		private int PickTargetRoom(List<Room> rooms, int start)
 		{
 			int end;
 			{
@@ -118,7 +118,7 @@ namespace Phantom
 			return end;
 		}
 
-		protected void ConnectRooms(VertexTileMap design, Room room1, Room room2)
+		private void ConnectRooms(VertexTileMap design, Room room1, Room room2)
 		{
 			var start = room1.FindClosestCellToRoom(room2);
 			var end = room2.FindClosestCellToRoom(room1);
@@ -129,7 +129,7 @@ namespace Phantom
 				PlacePath(design, path);
 		}
 
-		protected void PlacePath(VertexTileMap design, Path<Vector2Int> path)
+		private void PlacePath(VertexTileMap design, Path<Vector2Int> path)
 		{
 			foreach (var point in path)
 			{

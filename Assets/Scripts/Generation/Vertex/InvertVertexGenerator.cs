@@ -3,20 +3,20 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Invert")]
-	public class InvertVertexGenerator : VertexGenerator
+	public sealed class InvertVertexGenerator : VertexGenerator
 	{
-		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
+		protected override VertexTileMap ApplyOnce(VertexTileMap design, RectInt area)
 		{
-			grid = new VertexTileMap(grid);
+			design = new VertexTileMap(design);
 
 			for (int x = area.xMin; x <= area.xMax; x++)
 				for (int y = area.yMin; y <= area.yMax; y++)
-					if (grid.Vertices.Get(x, y) == 0)
-						grid.Vertices.Set(x, y, 1);
+					if (design.Vertices.Get(x, y) == 0)
+						design.Vertices.Set(x, y, 1);
 					else
-						grid.Vertices.Set(x, y, 0);
+						design.Vertices.Set(x, y, 0);
 
-			return grid;
+			return design;
 		}
 	}
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Phantom
 {
 	[CreateAssetMenu(menuName = CreateMenu.VertexGenerator + "Border")]
-	public class BorderVertexGenerator : VertexGenerator
+	public sealed class BorderVertexGenerator : VertexGenerator
 	{
 		[MinMax(0, 32)]
 		public IntRange topBorder = new IntRange(3, 3);
@@ -19,59 +19,59 @@ namespace Phantom
 
 		public int value = 1;
 
-		public override VertexTileMap ApplyOnce(VertexTileMap grid, RectInt area)
+		protected override VertexTileMap ApplyOnce(VertexTileMap design, RectInt area)
 		{
-			grid = new VertexTileMap(grid);
+			design = new VertexTileMap(design);
 
-			TopBorder(grid, area);
-			BottomBorder(grid, area);
-			LeftBorder(grid, area);
-			RightBorder(grid, area);
+			TopBorder(design, area);
+			BottomBorder(design, area);
+			LeftBorder(design, area);
+			RightBorder(design, area);
 
-			return grid;
+			return design;
 		}
 
-		public void BottomBorder(VertexTileMap grid, RectInt area)
+		public void BottomBorder(VertexTileMap design, RectInt area)
 		{
 			for (int x = area.xMin; x <= area.xMax; x++)
 			{
 				int depth = bottomBorder.Random;
 
 				for (int yi = 0; yi < depth; yi++)
-					grid.Vertices.TrySet(x, area.yMin + yi, value);
+					design.Vertices.TrySet(x, area.yMin + yi, value);
 			}
 		}
 
-		public void TopBorder(VertexTileMap grid, RectInt area)
+		public void TopBorder(VertexTileMap design, RectInt area)
 		{
 			for (int x = area.xMin; x <= area.xMax; x++)
 			{
 				int depth = topBorder.Random;
 
 				for (int yi = 0; yi < depth; yi++)
-					grid.Vertices.TrySet(x, area.yMax - yi, value);
+					design.Vertices.TrySet(x, area.yMax - yi, value);
 			}
 		}
 
-		public void LeftBorder(VertexTileMap grid, RectInt area)
+		public void LeftBorder(VertexTileMap design, RectInt area)
 		{
 			for (int y = area.yMin; y <= area.yMax; y++)
 			{
 				int depth = leftBorder.Random;
 
 				for (int xi = 0; xi < depth; xi++)
-					grid.Vertices.TrySet(area.xMin + xi, y, value);
+					design.Vertices.TrySet(area.xMin + xi, y, value);
 			}
 		}
 
-		public void RightBorder(VertexTileMap grid, RectInt area)
+		public void RightBorder(VertexTileMap design, RectInt area)
 		{
 			for (int y = area.yMin; y <= area.yMax; y++)
 			{
 				int depth = rightBorder.Random;
 
 				for (int xi = 0; xi < depth; xi++)
-					grid.Vertices.TrySet(area.xMax - xi, y, value);
+					design.Vertices.TrySet(area.xMax - xi, y, value);
 			}
 		}
 	}
