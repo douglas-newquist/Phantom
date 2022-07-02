@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203a4144ddac1ec7c8a22d71e2281128, type: 3}
   m_Name: Thruster 01
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: bbd9800c573fea7479bdc21dc2d763ab, type: 2}
-  placementRules:
-  - {fileID: 11400000, guid: 22052344577e1d673b8d393904e0eec6, type: 2}
   width: 1
   height: 1
+  tile: {fileID: 11400000, guid: 93e008486367c2d67946bb810fd79fbf, type: 2}
+  placementRules:
+  - {fileID: 11400000, guid: 22052344577e1d673b8d393904e0eec6, type: 2}
   baseStats:
     stats:
     - type: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
@@ -26,4 +26,4 @@ MonoBehaviour:
     modifiers:
     - stat: {fileID: 11400000, guid: a4721f0b45add341c95539ab35a4f964, type: 2}
       modifier: {fileID: 11400000, guid: 05111833f4d890de298726d77e752065, type: 2}
-      magnitude: -50
+      magnitude: -10

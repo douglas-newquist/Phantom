@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203a4144ddac1ec7c8a22d71e2281128, type: 3}
   m_Name: Swivel Turret 01
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 367e377a60ebff0499bf4d0ab1458776, type: 2}
-  placementRules:
-  - {fileID: 11400000, guid: 106946b14d6978be0a7f1e121a5e43a8, type: 2}
   width: 1
   height: 1
+  tile: {fileID: 11400000, guid: 3182fe2ef753fd32ab9927ed1aa31571, type: 2}
+  placementRules:
+  - {fileID: 11400000, guid: 106946b14d6978be0a7f1e121a5e43a8, type: 2}
   baseStats:
     stats:
     - type: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
