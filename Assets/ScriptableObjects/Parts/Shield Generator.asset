@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203a4144ddac1ec7c8a22d71e2281128, type: 3}
+  m_Name: Shield Generator
+  m_EditorClassIdentifier: 
+  width: 1
+  height: 1
+  tile: {fileID: 11400000, guid: 9509fac7a4f3db88d9e8af25b2523fbe, type: 2}
+  placementRules:
+  - {fileID: 11400000, guid: 106946b14d6978be0a7f1e121a5e43a8, type: 2}
+  baseStats:
+    stats:
+    - type: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
+      value: 1
+    - type: {fileID: 11400000, guid: f00840f3f4c31fb8d82e8f5e6f22b77d, type: 2}
+      value: 5
+    - type: {fileID: 11400000, guid: b47f482ac95dcd113b57507d40391096, type: 2}
+      value: 2
+    modifiers:
+    - stat: {fileID: 11400000, guid: a4721f0b45add341c95539ab35a4f964, type: 2}
+      modifier: {fileID: 11400000, guid: 05111833f4d890de298726d77e752065, type: 2}
+      magnitude: -5
