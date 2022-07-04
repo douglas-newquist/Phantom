@@ -35,15 +35,34 @@ namespace Phantom
 				Camera.orthographicSize = zoomRange.FromPercentage(1f - zoomLevel);
 
 				if (GameManager.IsRunning && zoomLevel != old)
-					OnZoomLevelChanged.Invoke(new ValueChangedEvent(this, old, zoomLevel));
+					OnZoomLevelChanged.Invoke(zoomLevel);
 			}
 		}
 
-		public UnityEvent<ValueChangedEvent> OnZoomLevelChanged;
+		[Range(0f, 1f)]
+		private float zoomStep = 0.05f;
+
+		public float ZoomStep
+		{
+			get => zoomStep;
+			set => zoomStep = Mathf.Clamp01(value);
+		}
+
+		public UnityEvent<float> OnZoomLevelChanged;
 
 		private void OnGUI()
 		{
 			ZoomLevel = zoomLevel;
+		}
+
+		public void ZoomIn()
+		{
+			ZoomLevel += ZoomStep;
+		}
+
+		public void ZoomOut()
+		{
+			ZoomLevel -= ZoomStep;
 		}
 	}
 }
