@@ -42,7 +42,7 @@ namespace Phantom.StatSystem
 				current = Mathf.Clamp(value, 0, Value);
 
 				if (old != current)
-					OnCurrentChanged.Invoke(new ValueChangedEvent(this, old, current));
+					OnCurrentChanged.Invoke(current);
 			}
 		}
 
@@ -51,9 +51,9 @@ namespace Phantom.StatSystem
 		public bool Full => Current == Value;
 
 		[SerializeField]
-		protected UnityEvent<ValueChangedEvent> onCurrentChanged = new UnityEvent<ValueChangedEvent>();
+		protected UnityEvent<float> onCurrentChanged = new UnityEvent<float>();
 
-		public UnityEvent<ValueChangedEvent> OnCurrentChanged => onCurrentChanged;
+		public UnityEvent<float> OnCurrentChanged => onCurrentChanged;
 
 		public float Percentage
 		{
@@ -74,16 +74,16 @@ namespace Phantom.StatSystem
 			return Type.name + " " + Current + " / " + Value + " (" + BaseValue + ")";
 		}
 
-		void OnMaxChanged(ValueChangedEvent change)
+		void OnMaxChanged(float old, float delta)
 		{
 			switch (maxChangedMode)
 			{
 				case Changed.KeepDeltaMax:
-					Current += change.Delta;
+					Current += delta;
 					break;
 
 				case Changed.KeepPercentage:
-					Percentage = Math.ToPercentage(Current, 0, change.Old);
+					Percentage = Math.ToPercentage(Current, 0, old);
 					break;
 
 				default:
@@ -96,7 +96,7 @@ namespace Phantom.StatSystem
 		{
 			float old = value;
 			base.Recalculate();
-			OnMaxChanged(new ValueChangedEvent(this, old, Value));
+			OnMaxChanged(old, Value - old);
 		}
 
 		/// <summary>

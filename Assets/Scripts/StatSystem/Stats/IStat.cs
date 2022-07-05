@@ -7,8 +7,8 @@ namespace Phantom.StatSystem
 		StatSheet Sheet { get; set; }
 		StatType Type { get; }
 		float BaseValue { get; set; }
-		UnityEvent<ValueChangedEvent> OnBaseValueChanged { get; }
+		UnityEvent<float> OnBaseValueChanged { get; }
 		float Value { get; }
-		UnityEvent<ValueChangedEvent> OnValueChanged { get; }
+		UnityEvent<float> OnValueChanged { get; }
 	}
 }

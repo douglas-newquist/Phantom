@@ -26,7 +26,7 @@ namespace Phantom
 			var mass = Stats.GetStat(massStat);
 			body.mass = mass.Value;
 			// TODO Spawning might run this multiple times
-			mass.OnValueChanged.AddListener(stat => body.mass = stat.Current);
+			mass.OnValueChanged.AddListener(mass => body.mass = mass);
 			StartCoroutine(controller.Control(gameObject));
 		}
 	}

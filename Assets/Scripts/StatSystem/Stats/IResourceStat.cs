@@ -10,7 +10,7 @@ namespace Phantom.StatSystem
 		float Percentage { get; set; }
 		bool Empty { get; }
 		bool Full { get; }
-		UnityEvent<ValueChangedEvent> OnCurrentChanged { get; }
+		UnityEvent<float> OnCurrentChanged { get; }
 
 		float Deposit(float amount, bool allOrNothing = false);
 		float Withdraw(float amount, bool allOrNothing = false);

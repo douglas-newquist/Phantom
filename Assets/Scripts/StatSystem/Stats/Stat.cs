@@ -40,13 +40,13 @@ namespace Phantom.StatSystem
 				MarkDirty();
 
 				if (old != baseValue)
-					OnBaseValueChanged.Invoke(new ValueChangedEvent(this, old, value));
+					OnBaseValueChanged.Invoke(value);
 			}
 		}
 		[SerializeField]
-		protected UnityEvent<ValueChangedEvent> onBaseValueChanged;
+		protected UnityEvent<float> onBaseValueChanged;
 
-		public UnityEvent<ValueChangedEvent> OnBaseValueChanged => onBaseValueChanged;
+		public UnityEvent<float> OnBaseValueChanged => onBaseValueChanged;
 
 		[SerializeField]
 		protected float value = 0;
@@ -66,9 +66,9 @@ namespace Phantom.StatSystem
 		}
 
 		[SerializeField]
-		protected UnityEvent<ValueChangedEvent> onValueChanged;
+		protected UnityEvent<float> onValueChanged;
 
-		public UnityEvent<ValueChangedEvent> OnValueChanged => onValueChanged;
+		public UnityEvent<float> OnValueChanged => onValueChanged;
 
 		[SerializeField]
 		protected List<IModifier> modifiers = new List<IModifier>();
@@ -77,8 +77,8 @@ namespace Phantom.StatSystem
 		public Stat()
 		{
 			modifiers = new List<IModifier>();
-			onValueChanged = new UnityEvent<ValueChangedEvent>();
-			onBaseValueChanged = new UnityEvent<ValueChangedEvent>();
+			onValueChanged = new UnityEvent<float>();
+			onBaseValueChanged = new UnityEvent<float>();
 		}
 
 		public Stat(StatType type, float baseValue) : this()
@@ -105,7 +105,7 @@ namespace Phantom.StatSystem
 			Dirty = false;
 
 			if (old != value)
-				OnValueChanged.Invoke(new ValueChangedEvent(this, old, value));
+				OnValueChanged.Invoke(value);
 		}
 
 		/// <summary>
