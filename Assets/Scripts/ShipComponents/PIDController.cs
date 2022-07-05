@@ -81,9 +81,9 @@ namespace Phantom
 			lastErrorValid = true;
 
 			integral = integral + (error * deltaTime);
-			integral.x = Mathf.Clamp(integral.x, -IntegralSaturation, IntegralSaturation);
-			integral.y = Mathf.Clamp(integral.y, -IntegralSaturation, IntegralSaturation);
-			integral.z = Mathf.Clamp(integral.z, -IntegralSaturation, IntegralSaturation);
+			if (integral.magnitude > IntegralSaturation)
+				integral = integral.normalized * IntegralSaturation;
+
 			I = IntegralGain * integral;
 
 			return P + I + D;

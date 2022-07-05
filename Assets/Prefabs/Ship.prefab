@@ -78,6 +78,8 @@ MonoBehaviour:
     stats:
     - type: {fileID: 11400000, guid: 2cad06d759250704987498ac6b70995f, type: 2}
       value: 1000
+    - type: {fileID: 11400000, guid: c2ed9714dabb8e8c5b94697cf3566d6a, type: 2}
+      value: 0.1
     modifiers: []
   OnStatAdded:
     m_PersistentCalls:
@@ -180,7 +182,7 @@ MonoBehaviour:
   body: {fileID: 0}
   massStat: {fileID: 11400000, guid: fa498d97051fc288ebe90a20bd480375, type: 2}
   thrustStat: {fileID: 11400000, guid: 6918140b9c7f1e42d9a23ab08662bbbd, type: 2}
-  brakeMaxVelocityToSetZero: 0.2
+  brakeMaxVelocityToSetZero: 0.05
   moveToBrakeDistance: 1
   collisionAvoidance:
     lookAheadRange: 2
@@ -188,10 +190,16 @@ MonoBehaviour:
     extraRays: 6
     totalRayAngle: 30
   PID:
-    proportionalGain: 1
-    integralGain: 1
-    derivativeGain: 0.8
-    integralSaturation: 100
+    proportionalGain: 0.05
+    integralGain: 0.01
+    derivativeGain: 0.01
+    integralSaturation: 1
+    useVelocity: 0
+  BrakePID:
+    proportionalGain: 0.05
+    integralGain: 0
+    derivativeGain: 0
+    integralSaturation: 1
     useVelocity: 0
   pathSeeker:
     pathAgent: {fileID: 11400000, guid: b0b3238c84dbf85949091bfeb8d3e654, type: 2}

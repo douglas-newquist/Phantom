@@ -54,6 +54,8 @@ namespace Phantom
 
 		public VectorPIDController PID = new VectorPIDController(1, 0, 0);
 
+		public VectorPIDController BrakePID = new VectorPIDController(0.75f, 0, 0);
+
 		public VertexPathSeeker pathSeeker = new VertexPathSeeker();
 
 		private Vector2 Target { get; set; }
@@ -63,11 +65,6 @@ namespace Phantom
 			statSheet = GetComponent<StatSheet>();
 			body = GetComponent<Rigidbody2D>();
 			thrusters = GetComponentsInChildren<Thruster>();
-
-			//PID.ProportionalGain = TWR;
-			//PID.IntegralGain = TWR / 4;
-			//	PID.DerivativeGain = TWR / 2;
-			PID.IntegralSaturation = TWR;
 		}
 
 		/// <summary>
@@ -131,7 +128,7 @@ namespace Phantom
 		public void Brake()
 		{
 			if (goal != Goal.Brake)
-				PID.Reset();
+				BrakePID.Reset();
 
 			goal = Goal.Brake;
 		}
@@ -165,7 +162,7 @@ namespace Phantom
 						return;
 					}
 
-					direction = PID.Correction(Velocity, Vector2.zero, Time.fixedDeltaTime);
+					direction = BrakePID.Correction(Velocity, Vector2.zero, Time.fixedDeltaTime);
 					break;
 			}
 
