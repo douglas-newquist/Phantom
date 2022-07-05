@@ -26,6 +26,7 @@ namespace Phantom
 			{
 				projectile.DeathTime = Time.time + lifeSpan.Random;
 				projectile.Damage = damage;
+				projectile.Owner = statSheet.gameObject;
 			}
 
 			return obj;

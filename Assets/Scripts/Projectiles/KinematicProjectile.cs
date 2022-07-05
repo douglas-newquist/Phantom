@@ -32,12 +32,15 @@ namespace Phantom
 		/// <param name="other">The other Collider2D involved in this collision.</param>
 		void OnTriggerEnter2D(Collider2D other)
 		{
-			var damageable = other.GetComponent<IDamageable>();
-			if (damageable == null) return;
+			if (other.gameObject == Owner) return;
 
-			damageable.ApplyDamage(Damage);
+			if (other.TryGetComponent<IDamageable>(out var damageable))
+			{
+				damageable.ApplyDamage(Damage);
+				OnHit.Invoke(other.gameObject);
+			}
+
 			OnExpired.Invoke(gameObject);
-			OnHit.Invoke(other.gameObject);
 			ObjectPool.Despawn(gameObject);
 		}
 	}

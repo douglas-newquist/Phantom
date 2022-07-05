@@ -13,10 +13,22 @@ namespace Phantom
 
 		public float DeathTime { get; set; }
 
+		public GameObject Owner { get; set; }
+
 		public UnityEvent<GameObject> OnExpired;
 
 		public UnityEvent<GameObject> OnHit;
 
+		private void Start()
+		{
+			OnSpawn();
+		}
+
+		protected virtual void OnSpawn()
+		{
+			if (TryGetComponent<TrailRenderer>(out var trail))
+				trail.Clear();
+		}
 
 		public virtual void Update()
 		{
@@ -25,11 +37,6 @@ namespace Phantom
 				OnExpired.Invoke(gameObject);
 				ObjectPool.Despawn(gameObject);
 			}
-		}
-
-		public void Fire(GameObject owner, float lifeSpan)
-		{
-			throw new System.NotImplementedException();
 		}
 	}
 }

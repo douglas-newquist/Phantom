@@ -11,6 +11,6 @@ namespace Phantom
 
 		Damage Damage { get; set; }
 
-		void Fire(GameObject owner, float lifeSpan);
+		GameObject Owner { get; set; }
 	}
 }

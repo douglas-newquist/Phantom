@@ -38,7 +38,9 @@ namespace Phantom
 				body.velocity = heading * GetVelocity(statSheet);
 
 			if (obj.TryGetComponent<IProjectile>(out var projectile))
+			{
 				projectile.Acceleration = GetAcceleration(statSheet);
+			}
 
 			return obj;
 		}
