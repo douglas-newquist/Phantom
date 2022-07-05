@@ -64,6 +64,7 @@ namespace Phantom
 				{
 					case Mode.Brake:
 						movable.Brake();
+						lookable.Look(mouse, Reference.Absolute);
 						break;
 
 					case Mode.Normal:
