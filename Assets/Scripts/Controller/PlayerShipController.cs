@@ -8,12 +8,21 @@ namespace Phantom
 	{
 		public Reference thrustReference;
 
+		enum Mode
+		{
+			Normal,
+			Brake,
+			MoveTo,
+		}
+
 		public override IEnumerator Control(GameObject gameObject)
 		{
 			IMover movable = gameObject.GetComponent<IMover>();
 			ILooker lookable = gameObject.GetComponent<ILooker>();
 			IWeaponSystem weaponSystem = gameObject.GetComponent<IWeaponSystem>();
 			Vector2 target = gameObject.transform.position;
+
+			Mode mode = Mode.Normal;
 
 			while (gameObject != null)
 			{
@@ -37,26 +46,42 @@ namespace Phantom
 				var mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				mouse.z = 0;
 
-				if (Input.GetMouseButton(1))
-					target = mouse;
-
 				if (Input.GetKey(KeyCode.X))
-					movable.Brake();
+				{
+					mode = Mode.Brake;
+				}
+				else if (Input.GetMouseButton(1))
+				{
+					mode = Mode.MoveTo;
+					target = mouse;
+				}
 				else if (direction != Vector2.zero)
-					movable.MoveRelative(direction, thrustReference);
-				else
-					movable.MoveTo(target);
+				{
+					mode = Mode.Normal;
+				}
 
-				if (lookable != null)
-					lookable.Look(mouse, Reference.Absolute);
+				switch (mode)
+				{
+					case Mode.Brake:
+						movable.Brake();
+						break;
 
-				//				if (target != null)
-				//					Turrets.Aim(target, Input.GetMouseButton(0));
-				//				else
+					case Mode.Normal:
+						movable.MoveRelative(direction, thrustReference);
+						lookable.Look(mouse, Reference.Absolute);
+						break;
+
+					case Mode.MoveTo:
+						movable.MoveTo(target);
+						lookable.Look(target, Reference.Absolute);
+						break;
+				}
+
 				if (Input.GetMouseButton(0))
 					weaponSystem.Fire(mouse, Reference.Absolute);
 				else
 					weaponSystem.Aim(mouse, Reference.Absolute);
+
 				yield return null;
 			}
 		}
