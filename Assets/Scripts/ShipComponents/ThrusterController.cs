@@ -192,21 +192,6 @@ namespace Phantom
 				collisionAvoidance.DrawGizmos(body);
 
 			pathSeeker.DrawGizmos();
-			/*
-						if (path.Finished)
-						{
-							var start = GameManager.CurrentLevel.GridToWorldPoint(GameManager.CurrentLevel.GetClosestVertex(transform.position));
-							Gizmos.DrawWireSphere(start, Level.TileSize / 4);
-							var lastCell = transform.position;
-							foreach (var cell in path)
-							{
-								var pos = GameManager.CurrentLevel.GridToWorldPoint((Vector3Int)cell);
-								Gizmos.DrawWireSphere(pos, pathFollowTolerance);
-								Gizmos.DrawLine(lastCell, pos);
-								lastCell = pos;
-							}
-						}
-						*/
 
 			Gizmos.DrawSphere(Target, Level.TileSize / 4);
 		}
