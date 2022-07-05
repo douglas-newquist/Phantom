@@ -102,6 +102,8 @@ namespace Phantom.ObjectPooling
 				}
 			}
 
+			spawn.BroadcastMessage("OnSpawn", SendMessageOptions.DontRequireReceiver);
+
 			return spawn;
 		}
 
