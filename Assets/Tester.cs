@@ -25,6 +25,8 @@ namespace Phantom
 		public VertexPathAgent pathAgent;
 		public Path<Vector2Int> path;
 
+		public Phantom.UI.HealthBars healthBars;
+
 
 		// Start is called before the first frame update
 		void Start()
@@ -35,6 +37,7 @@ namespace Phantom
 			shipDesign = shipGenerator.Create(32, 32);
 			var shipName = shipBuilder.CreateRegister(shipDesign);
 			var ship = ObjectPool.Spawn(shipName, new PositionSpawner(GameManager.CurrentLevel.WorldBounds));
+			healthBars.SetStatSheet(ship);
 
 			followCameraExtension.SetTarget(ship);
 		}
