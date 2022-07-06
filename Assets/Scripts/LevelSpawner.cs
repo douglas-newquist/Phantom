@@ -23,8 +23,8 @@ namespace Phantom
 			if (GameManager.CurrentLevel.GetSpawnableVertex(area, out var coordinate))
 			{
 				var pos = GameManager.CurrentLevel.GridToWorldPoint(coordinate);
-				pos.x += Random.Range(0, Level.TileSize / 4);
-				pos.y += Random.Range(0, Level.TileSize / 4);
+				pos.x += Random.Range(0, Level.TileSize / 8);
+				pos.y += Random.Range(0, Level.TileSize / 8);
 				obj.transform.position = pos;
 				return true;
 			}
