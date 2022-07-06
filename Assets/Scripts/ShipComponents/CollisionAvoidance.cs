@@ -7,6 +7,9 @@ namespace Phantom
 	public class CollisionAvoidance
 	{
 		[SerializeField]
+		private LayerMask mask;
+
+		[SerializeField]
 		private float lookAheadRange = 2;
 
 		public float LookAheadRange
@@ -72,7 +75,7 @@ namespace Phantom
 
 		public RaycastHit2D CastRay(Rigidbody2D body, Vector2 direction, float maxDistance)
 		{
-			return Physics2D.Raycast(body.position, direction.normalized, maxDistance);
+			return Physics2D.Raycast(body.position, direction.normalized, maxDistance, mask);
 		}
 
 		/// <summary>
@@ -82,7 +85,7 @@ namespace Phantom
 		/// <param name="direction">Direction to cast in</param>
 		private RaycastHit2D CastRay(Rigidbody2D body, Vector2 direction)
 		{
-			return Physics2D.Raycast(body.position, direction.normalized, GetMaxRayDistance(body));
+			return CastRay(body, direction.normalized, GetMaxRayDistance(body));
 		}
 
 		/// <summary>

@@ -37,6 +37,9 @@ namespace Phantom
 			set => followTolerance = Mathf.Clamp(value, float.Epsilon, Level.TileSize);
 		}
 
+		[SerializeField]
+		private LayerMask mask;
+
 		private Path<Vector2Int> path;
 
 		private bool followingPath = false;
@@ -59,7 +62,7 @@ namespace Phantom
 		private bool NeedsPathFinder(Vector2 current, Vector2 target)
 		{
 			Vector2 delta = target - current;
-			var hit = Physics2D.Raycast(current, delta.normalized, delta.magnitude);
+			var hit = Physics2D.Raycast(current, delta.normalized, delta.magnitude, mask);
 			return hit.transform != null;
 		}
 
