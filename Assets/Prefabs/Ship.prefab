@@ -187,7 +187,7 @@ MonoBehaviour:
   collisionAvoidance:
     mask:
       serializedVersion: 2
-      m_Bits: 1
+      m_Bits: 129
     lookAheadRange: 2
     strength: 0.2
     extraRays: 4
