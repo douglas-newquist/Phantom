@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -31,6 +32,8 @@ namespace Phantom
 		}
 
 		public Tilemap tilemap;
+
+		public RectInt Bounds => LevelDesign.TileLayerMap.Bounds;
 
 		public BoundsInt TileBounds => tilemap.cellBounds;
 
@@ -106,6 +109,49 @@ namespace Phantom
 		private void OnDrawGizmos()
 		{
 			Gizmos.DrawWireCube(WorldBounds.center, WorldBounds.size);
+		}
+
+		public bool IsSpawnable(Vector3Int coordinate)
+		{
+			if (LevelDesign.TileLayerMap.VertexTiles.Vertices.TryGet(coordinate.x, coordinate.y, out var v))
+				return v == 0;
+			return false;
+		}
+
+		public IEnumerable<Vector3Int> GetVertices(RectInt area)
+		{
+			for (int x = area.xMin; x < area.xMax; x++)
+			{
+				for (int y = area.yMin; y < area.yMax; y++)
+				{
+					var vertex = new Vector3Int(x, y);
+					if (levelDesign.TileLayerMap.VertexTiles.Vertices.InBounds(x, y))
+						yield return vertex;
+				}
+			}
+		}
+
+		public IEnumerable<Vector3Int> GetSpawnableVertices(RectInt area)
+		{
+			foreach (var vertex in GetVertices(area))
+			{
+				if (IsSpawnable(vertex))
+					yield return vertex;
+			}
+		}
+
+		public bool GetSpawnableVertex(RectInt area, out Vector3Int coordinate)
+		{
+			var spawnable = GetSpawnableVertices(area).ToArray();
+
+			if (spawnable.Length == 0)
+			{
+				coordinate = Vector3Int.zero;
+				return false;
+			}
+
+			coordinate = spawnable[Random.Range(0, spawnable.Length)];
+			return true;
 		}
 	}
 }

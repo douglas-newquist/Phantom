@@ -36,7 +36,7 @@ namespace Phantom
 
 			shipDesign = shipGenerator.Create(32, 32);
 			var shipName = shipBuilder.CreateRegister(shipDesign);
-			var ship = ObjectPool.Spawn(shipName, new PositionSpawner(GameManager.CurrentLevel.WorldBounds));
+			var ship = ObjectPool.Spawn(shipName, new LevelSpawner());
 			healthBars.SetStatSheet(ship);
 
 			followCameraExtension.SetTarget(ship);
