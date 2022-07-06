@@ -15,7 +15,7 @@ namespace Phantom
 		/// <summary>
 		/// Units each tile in a tile occupies
 		/// </summary>
-		public const float TileSize = 64;
+		public const float TileSize = 32;
 
 		/// <summary>
 		/// Total number of units a level can occupy
