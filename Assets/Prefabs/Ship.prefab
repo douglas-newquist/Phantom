@@ -190,12 +190,12 @@ MonoBehaviour:
       m_Bits: 129
     lookAheadRange: 2
     strength: 0.2
-    extraRays: 4
-    totalRayAngle: 25
+    extraRays: 3
+    totalRayAngle: 30
   PID:
-    proportionalGain: 0.05
-    integralGain: 0.01
-    derivativeGain: 0.01
+    proportionalGain: 1
+    integralGain: 1
+    derivativeGain: 0.75
     integralSaturation: 1
     useVelocity: 0
   BrakePID:
@@ -206,7 +206,7 @@ MonoBehaviour:
     useVelocity: 0
   pathSeeker:
     pathAgent: {fileID: 11400000, guid: b0b3238c84dbf85949091bfeb8d3e654, type: 2}
-    followTolerance: 8
+    followTolerance: 6
     mask:
       serializedVersion: 2
       m_Bits: 1

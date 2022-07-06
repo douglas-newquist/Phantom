@@ -29,10 +29,7 @@ namespace Phantom
 
 		public float Mass => statSheet.GetValue(MassStat);
 
-		/// <summary>
-		/// The thrust to weight ratio
-		/// </summary>
-		public float TWR => Thrust / Mass;
+		public float Acceleration => Thrust / Mass;
 
 		public Vector2 Velocity
 		{
@@ -41,8 +38,6 @@ namespace Phantom
 		}
 
 		public float Speed => Velocity.magnitude;
-
-		private Thruster[] thrusters;
 
 		[Range(0f, 1f)]
 		public float brakeMaxVelocityToSetZero = 0.1f;
@@ -64,7 +59,6 @@ namespace Phantom
 		{
 			statSheet = GetComponent<StatSheet>();
 			body = GetComponent<Rigidbody2D>();
-			thrusters = GetComponentsInChildren<Thruster>();
 		}
 
 		/// <summary>
@@ -74,9 +68,6 @@ namespace Phantom
 		/// <param name="mode">Frame of reference</param>
 		public Vector2 TranslateVector(Vector2 vector, Reference mode)
 		{
-			if (vector.sqrMagnitude > 1)
-				vector.Normalize();
-
 			switch (mode)
 			{
 				case Reference.Relative:
@@ -87,17 +78,6 @@ namespace Phantom
 			}
 		}
 
-		public Vector2 GetMaximumThrust(Vector2 vector, Reference mode)
-		{
-			vector = TranslateVector(vector, mode);
-			var max = Vector2.zero;
-
-			foreach (var thruster in thrusters)
-				max += thruster.GetMaximumThrust(vector);
-
-			return max;
-		}
-
 		public void MoveRelative(Vector2 vector, Reference mode)
 		{
 			goal = Goal.Direction;
@@ -105,10 +85,7 @@ namespace Phantom
 			if (vector.magnitude > 1)
 				vector.Normalize();
 
-			if (mode == Reference.Relative)
-				Target = transform.TransformDirection(vector);
-			else
-				Target = vector;
+			Target = TranslateVector(vector, mode);
 		}
 
 		public float MoveTo(Vector2 position)
@@ -135,7 +112,6 @@ namespace Phantom
 
 		private void FixedUpdate()
 		{
-			Vector2 force = Vector2.zero;
 			Vector2 direction = Vector2.zero;
 
 			switch (goal)
@@ -174,13 +150,10 @@ namespace Phantom
 			if (direction.magnitude > 1)
 				direction.Normalize();
 
-			foreach (var thruster in thrusters)
-				force += thruster.Thrust(direction, Reference.Absolute);
+			Velocity += direction * Acceleration * Time.fixedDeltaTime;
 
-			body.AddForce(force * Time.fixedDeltaTime, ForceMode2D.Impulse);
-
-			if (body.velocity.magnitude > GameManager.SpeedLimit)
-				body.velocity = body.velocity.normalized * GameManager.SpeedLimit;
+			if (Velocity.magnitude > GameManager.SpeedLimit)
+				Velocity = Velocity.normalized * GameManager.SpeedLimit;
 		}
 
 		private void OnDrawGizmos()
