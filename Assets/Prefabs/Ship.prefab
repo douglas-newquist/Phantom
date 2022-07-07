@@ -199,7 +199,7 @@ MonoBehaviour:
     integralSaturation: 1
     useVelocity: 0
   BrakePID:
-    proportionalGain: 0.05
+    proportionalGain: 0.5
     integralGain: 0
     derivativeGain: 0
     integralSaturation: 1
