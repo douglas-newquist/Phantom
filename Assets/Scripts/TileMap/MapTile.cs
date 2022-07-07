@@ -4,7 +4,8 @@ using UnityEngine.Tilemaps;
 
 namespace Phantom
 {
-	public abstract class MapTile : ScriptableObject
+	[CreateAssetMenu(menuName = "Game/Tiles/Map Tile")]
+	public class MapTile : ScriptableObject
 	{
 		[SerializeField]
 		[Range(1, 16)]
