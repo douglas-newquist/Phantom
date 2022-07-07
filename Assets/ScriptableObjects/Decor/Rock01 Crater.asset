@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e3d617b8845029296928d389aa2f44, type: 3}
+  m_Name: Rock01 Crater
+  m_EditorClassIdentifier: 
+  width: 1
+  height: 1
+  tile: {fileID: 11400000, guid: f661bba6430a845fca67886101b210a7, type: 2}
+  placementRules:
+  - {fileID: 11400000, guid: f272a46cf14f965708aa115112aae4f3, type: 2}
