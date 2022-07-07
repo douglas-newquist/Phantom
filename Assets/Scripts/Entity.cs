@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using Phantom.StatSystem;
+using Phantom.ObjectPooling;
 
 namespace Phantom
 {
@@ -21,7 +22,7 @@ namespace Phantom
 
 		public virtual void OnDeath()
 		{
-			Destroy(gameObject);
+			ObjectPool.Despawn(gameObject);
 			Debug.Log("Death");
 		}
 	}
