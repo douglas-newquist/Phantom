@@ -18,12 +18,12 @@ namespace Phantom.ObjectPooling
 		{
 			if (obj.TryGetComponent<PoolLink>(out var link))
 			{
-				link.name = name;
+				link.pool = name;
 			}
 			else
 			{
 				link = obj.AddComponent<PoolLink>();
-				link.name = name;
+				link.pool = name;
 			}
 
 			return true;
