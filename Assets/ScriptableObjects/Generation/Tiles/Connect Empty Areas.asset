@@ -15,11 +15,11 @@ MonoBehaviour:
   repeat:
     min: 1
     max: 1
-  mask: {fileID: 0}
+  regionSelector: {fileID: 0}
   findAreasWith: 0
   connectWith: 0
   extraConnections:
     min: 0
-    max: 0
+    max: 2
   pathAgent: {fileID: 11400000, guid: 171876c75c8b22c73bd56c6149ce80ce, type: 2}
   pathRadius: 1

@@ -94,6 +94,15 @@ namespace Phantom
 				ConnectRooms(design, edge.source, edge.destination);
 			}
 
+			foreach (var room in rooms)
+			{
+				for (int extra = extraConnections.Random; extra > 0; extra--)
+				{
+					var room2 = rooms[Random.Range(0, rooms.Count)];
+					ConnectRooms(design, room, room2);
+				}
+			}
+
 			return design;
 		}
 
