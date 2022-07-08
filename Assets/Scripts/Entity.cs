@@ -6,24 +6,29 @@ using Phantom.ObjectPooling;
 namespace Phantom
 {
 	[DisallowMultipleComponent]
-	public class Entity : MonoBehaviour
+	public class Entity : MonoBehaviour, IEntity
 	{
 		public StatSheet Stats => GetComponent<StatSheet>();
 
-		public void OnTakeDamage(DamagedEvent e)
-		{
-			Debug.Log(e);
-		}
+		public bool InCombat => Time.time > lastCombat + 60;
 
-		public void OnTakeFatalDamage(DamagedEvent e)
+		public bool IsAlive => throw new System.NotImplementedException();
+
+		private float lastCombat = float.NegativeInfinity;
+
+		public virtual void OnTakeDamage(DamagedEvent damagedEvent)
 		{
-			Debug.Log(e);
+			lastCombat = Time.time;
 		}
 
 		public virtual void OnDeath()
 		{
 			ObjectPool.Despawn(gameObject);
-			Debug.Log("Death");
+		}
+
+		public Attitude GetAttitudeTowards(IEntity other)
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }
