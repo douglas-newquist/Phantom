@@ -7,6 +7,7 @@ namespace Phantom.StatSystem
 		ResourceStatType ResourceType { get; }
 		ResourceStat.Changed MaxChangedMode { get; set; }
 		float Current { get; set; }
+		float Missing { get; set; }
 		float Percentage { get; set; }
 		bool Empty { get; }
 		bool Full { get; }

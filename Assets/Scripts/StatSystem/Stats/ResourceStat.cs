@@ -46,6 +46,12 @@ namespace Phantom.StatSystem
 			}
 		}
 
+		public float Missing
+		{
+			get => Value - Current;
+			set => Current = Value - value;
+		}
+
 		public bool Empty => Current <= 0;
 
 		public bool Full => Current == Value;
