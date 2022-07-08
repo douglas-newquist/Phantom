@@ -6,7 +6,7 @@ namespace Phantom.ObjectPooling
 	/// <summary>
 	/// Manages spawning templates for a single object
 	/// </summary>
-	public class Pool
+	public sealed class Pool : IPool
 	{
 		private ISpawnFactory spawner;
 
@@ -20,36 +20,23 @@ namespace Phantom.ObjectPooling
 
 		private Stack<GameObject> available = new Stack<GameObject>();
 
+		private List<ISpawner> spawners = new List<ISpawner>();
+
 		/// <summary>
 		///
 		/// </summary>
 		/// <param name="master">Object to use as a template</param>
 		/// <param name="container">Where to store objects</param>
-		public Pool(ISpawnFactory spawner, Transform container)
+		/// <param name="spawners">Spawners to call when spawning</param>
+		public Pool(ISpawnFactory spawner, Transform container, params ISpawner[] spawners)
 		{
 			this.spawner = spawner;
 			this.container = container;
+
+			this.spawners.Add(new PoolLinkSpawner(Name));
+			if (spawners != null)
+				this.spawners.AddRange(spawners);
 		}
-
-		/// <summary>
-		/// Creates a new object
-		/// </summary>
-		public GameObject Create()
-		{
-			var spawn = spawner.Create();
-
-			if (spawn.TryGetComponent<PoolLink>(out var link) == false)
-				link = spawn.AddComponent<PoolLink>();
-
-			link.pool = Name;
-
-			return spawn;
-		}
-
-		/// <summary>
-		/// Returns the given object to this pool
-		/// </summary>
-		/// <param name="spawn">The object to return</param>
 		public void Return(GameObject spawn)
 		{
 			spawn.SetActive(false);
@@ -71,10 +58,27 @@ namespace Phantom.ObjectPooling
 				spawn = available.Pop();
 			}
 			else
-				spawn = Create();
+				spawn = spawner.Create();
 
 			spawn.SetActive(true);
 			return spawn;
+		}
+
+		public void AddSpawner(ISpawner spawner)
+		{
+			spawners.Add(spawner);
+		}
+
+		public bool RemoveSpawner(ISpawner spawner)
+		{
+			return spawners.Remove(spawner);
+		}
+
+		public void DestroyUnused()
+		{
+			foreach (var obj in available)
+				GameObject.Destroy(obj);
+			available.Clear();
 		}
 	}
 }
