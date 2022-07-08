@@ -5,9 +5,9 @@ namespace Phantom.ObjectPooling
 {
 	public class ObjectPool : MonoSingleton<ObjectPool>
 	{
-		private Dictionary<string, Pool> pools = new Dictionary<string, Pool>();
+		private Dictionary<string, IPool> pools = new Dictionary<string, IPool>();
 
-		public static Pool GetPool(string id)
+		public static IPool GetPool(string id)
 		{
 			if (id == null)
 				throw new System.ArgumentNullException("id");
@@ -36,32 +36,35 @@ namespace Phantom.ObjectPooling
 			return prefab.name + prefab.GetInstanceID();
 		}
 
-		/// <summary>
-		/// Registers a new object pool
-		/// </summary>
-		/// <param name="id">ID to give this object</param>
-		/// <param name="spawnFactory">Factory to create new copies</param>
-		public static void Register(string id, ISpawnFactory spawnFactory)
+		public static void Register(string id, IPool pool)
 		{
+			if (id == null)
+				throw new System.ArgumentNullException("id");
+
+			if (pool == null)
+				throw new System.ArgumentNullException("pool");
+
 			if (ContainsPool(id))
 			{
 				Debug.LogWarning("Object pool with the name '" + id + "' already exists");
 				return;
 			}
 
-			var container = new GameObject(id).transform;
-			container.SetParent(Instance.transform);
-
-			Instance.pools[id] = new Pool(spawnFactory, container);
+			Instance.pools[id] = pool;
 		}
 
 		/// <summary>
-		/// Registers a new object to the pool, uses the object name as the id
+		/// Registers a new object pool
 		/// </summary>
-		/// <param name="obj">Object to register</param>
-		public static void Register(GameObject obj)
+		/// <param name="id">ID to give this object</param>
+		/// <param name="spawnFactory">Factory to create new copies</param>
+		/// <param name="spawners">Spawners to use in the pool</param>
+		public static void Register(string id, ISpawnFactory spawnFactory, params ISpawner[] spawners)
 		{
-			Register(GetPrefabID(obj), obj);
+			var container = new GameObject(id).transform;
+			container.SetParent(Instance.transform);
+
+			Register(id, new Pool(spawnFactory, container, spawners));
 		}
 
 		/// <summary>
@@ -69,9 +72,23 @@ namespace Phantom.ObjectPooling
 		/// </summary>
 		/// <param name="id">Name to register the object by</param>
 		/// <param name="obj">Object to register</param>
-		public static void Register(string id, GameObject obj)
+		/// <param name="spawners">Spawners to use in the pool</param>
+		public static void Register(string id, GameObject obj, params ISpawner[] spawners)
 		{
-			Register(id, new InstantiatePoolSpawner(obj));
+			Register(id, new InstantiatePoolSpawner(obj), spawners);
+		}
+
+		/// <summary>
+		/// Registers a new object to the pool, uses the object name as the id
+		/// </summary>
+		/// <param name="obj">Object to register</param>
+		/// <param name="spawners">Spawners to use in the pool</param>
+		public static void Register(GameObject obj, params ISpawner[] spawners)
+		{
+			if (obj == null)
+				throw new System.ArgumentNullException("obj");
+
+			Register(GetPrefabID(obj), obj, spawners);
 		}
 
 		public static GameObject Spawn(GameObject prefab, params ISpawner[] spawners)

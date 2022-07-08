@@ -16,8 +16,6 @@ namespace Phantom.ObjectPooling
 
 		public string Name => container.name;
 
-		private int availableCount = 0;
-
 		private Stack<GameObject> available = new Stack<GameObject>();
 
 		private List<ISpawner> spawners = new List<ISpawner>();
@@ -42,7 +40,6 @@ namespace Phantom.ObjectPooling
 			spawn.SetActive(false);
 			spawn.transform.SetParent(container);
 			available.Push(spawn);
-			availableCount++;
 		}
 
 		/// <summary>
@@ -52,15 +49,22 @@ namespace Phantom.ObjectPooling
 		{
 			GameObject spawn;
 
-			if (availableCount > 0)
-			{
-				availableCount--;
+			if (available.Count > 0)
 				spawn = available.Pop();
-			}
 			else
 				spawn = spawner.Create();
 
 			spawn.SetActive(true);
+
+			foreach (var spawner in spawners)
+			{
+				if (spawner != null && spawner.Spawn(spawn) == false)
+				{
+					Return(spawn);
+					return null;
+				}
+			}
+
 			return spawn;
 		}
 
