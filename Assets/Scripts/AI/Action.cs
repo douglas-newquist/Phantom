@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Phantom
@@ -10,15 +11,16 @@ namespace Phantom
 
 		public virtual int Priority => priority;
 
-		public Condition[] conditions;
+		public WorldSensor[] worldSensors;
+
+		public WorldStateCondition[] conditions;
+
+		public WorldState[] effects;
 
 		public virtual bool IsPossible
 		{
 			get
 			{
-				foreach (var condition in conditions)
-					if (!condition.Satisfied(gameObject))
-						return false;
 
 				return true;
 			}
