@@ -8,7 +8,7 @@ namespace Phantom.ObjectPooling
 	/// </summary>
 	public sealed class Pool : IPool
 	{
-		private ISpawnFactory spawner;
+		private ISpawnFactory factory;
 
 		private Transform container;
 
@@ -26,12 +26,13 @@ namespace Phantom.ObjectPooling
 		/// <param name="master">Object to use as a template</param>
 		/// <param name="container">Where to store objects</param>
 		/// <param name="spawners">Spawners to call when spawning</param>
-		public Pool(ISpawnFactory spawner, Transform container, params ISpawner[] spawners)
+		public Pool(ISpawnFactory factory, Transform container, params ISpawner[] spawners)
 		{
-			this.spawner = spawner;
 			this.container = container;
+			this.factory = factory;
+			factory.AddSpawner(new PoolLinkSpawner(Name));
 
-			this.spawners.Add(new PoolLinkSpawner(Name));
+			this.spawners.Add(new SetParentSpawner(Container));
 			if (spawners != null)
 				this.spawners.AddRange(spawners);
 		}
@@ -52,7 +53,7 @@ namespace Phantom.ObjectPooling
 			if (available.Count > 0)
 				spawn = available.Pop();
 			else
-				spawn = spawner.Create();
+				spawn = factory.Create();
 
 			spawn.SetActive(true);
 

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Phantom.ObjectPooling;
 
@@ -6,7 +7,7 @@ namespace Phantom
 	/// <summary>
 	/// Creates new ship objects from a design
 	/// </summary>
-	public class ShipSpawnCreator : ISpawnFactory
+	public sealed class ShipSpawnCreator : ISpawnFactory
 	{
 		[SerializeField]
 		private ShipBuilder builder;
@@ -36,15 +37,36 @@ namespace Phantom
 			}
 		}
 
-		public ShipSpawnCreator(ShipBuilder builder, ShipDesign design)
+		private List<ISpawner> spawners = new List<ISpawner>();
+
+		public ShipSpawnCreator(ShipBuilder builder, ShipDesign design, params ISpawner[] spawners)
 		{
 			Builder = builder;
 			Design = design;
+
+			if (spawners != null)
+				this.spawners.AddRange(spawners);
 		}
 
 		public GameObject Create()
 		{
-			return Builder.Create(Design);
+			var ship = Builder.Create(Design);
+
+			foreach (var spawner in spawners)
+				if (spawner != null)
+					spawner.Spawn(ship);
+
+			return ship;
+		}
+
+		public void AddSpawner(ISpawner spawner)
+		{
+			spawners.Add(spawner);
+		}
+
+		public bool RemoveSpawner(ISpawner spawner)
+		{
+			return spawners.Remove(spawner);
 		}
 	}
 }

@@ -11,5 +11,9 @@ namespace Phantom.ObjectPooling
 		/// Generates a new GameObject
 		/// </summary>
 		GameObject Create();
+
+		void AddSpawner(ISpawner spawner);
+
+		bool RemoveSpawner(ISpawner spawner);
 	}
 }

@@ -75,7 +75,7 @@ namespace Phantom.ObjectPooling
 		/// <param name="spawners">Spawners to use in the pool</param>
 		public static void Register(string id, GameObject obj, params ISpawner[] spawners)
 		{
-			Register(id, new InstantiatePoolSpawner(obj), spawners);
+			Register(id, new InstantiateSpawnFactory(obj), spawners);
 		}
 
 		/// <summary>
