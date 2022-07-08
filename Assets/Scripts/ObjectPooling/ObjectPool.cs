@@ -115,6 +115,8 @@ namespace Phantom.ObjectPooling
 		{
 			if (obj == null) return;
 
+			obj.BroadcastMessage("OnDespawn", SendMessageOptions.DontRequireReceiver);
+
 			var link = obj.GetComponent<PoolLink>();
 
 			if (onDespawn != null)
