@@ -28,6 +28,12 @@ namespace Phantom
 			set => this.value = value;
 		}
 
+		public bool BoolValue
+		{
+			get => Value != 0;
+			set => Value = value ? 1 : 0;
+		}
+
 		public WorldState(string key, int value) : this()
 		{
 			Key = key;
@@ -37,7 +43,7 @@ namespace Phantom
 		public WorldState(string key, bool value) : this()
 		{
 			Key = key;
-			Value = value ? 1 : 0;
+			BoolValue = value;
 		}
 	}
 }
