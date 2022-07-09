@@ -2869,6 +2869,8 @@ MonoBehaviour:
     tileMapTexture: {fileID: 0}
   followCameraExtension: {fileID: 519420037}
   healthBars: {fileID: 739539207}
+  playerController: {fileID: 11400000, guid: 2aadf2ee469ae5d6e9bf21f068d7736d, type: 2}
+  aiController: {fileID: 11400000, guid: 6b38f95e4062e83b3a318d3266bfb549, type: 2}
 --- !u!4 &1387071761
 Transform:
   m_ObjectHideFlags: 0

@@ -70,12 +70,6 @@ namespace Phantom
 			body = GetComponent<Rigidbody2D>();
 		}
 
-		private void Update()
-		{
-			if (!IsRunning)
-				Perform();
-		}
-
 		protected override bool PreAction()
 		{
 			Vector2 dir = Random.insideUnitCircle.normalized;

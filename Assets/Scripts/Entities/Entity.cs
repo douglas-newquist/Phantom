@@ -95,6 +95,16 @@ namespace Phantom
 				attackers.Add(damagedEvent.Damage.Source as IEntity);
 		}
 
+		public void EnterCombat(IEntity entity)
+		{
+			Debug.Log("Entered combat");
+		}
+
+		public void ExitCombat(IEntity entity)
+		{
+			Debug.Log("Exited combat");
+		}
+
 		public virtual void OnDeath()
 		{
 			ObjectPool.Despawn(gameObject);

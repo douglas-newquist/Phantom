@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Phantom
 {
-	[CreateAssetMenu(menuName = CreateMenu.Controller + "Player Ship Controller")]
+	[CreateAssetMenu(menuName = CreateMenu + "Player Ship Controller")]
 	public class PlayerShipController : Controller
 	{
 		public Reference thrustReference;

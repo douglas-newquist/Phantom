@@ -22,6 +22,7 @@ namespace Phantom
 		public SimpleFollowCameraExtension followCameraExtension;
 
 		public Phantom.UI.HealthBars healthBars;
+		public Controller playerController, aiController;
 
 
 		// Start is called before the first frame update
@@ -35,11 +36,16 @@ namespace Phantom
 			var ship = ObjectPool.Spawn(shipName, new LevelSpawner());
 			healthBars.SetStatSheet(ship);
 
+			if (ship.TryGetComponent(out Controllable controllable))
+				controllable.Controller = playerController;
+
 			followCameraExtension.SetTarget(ship);
 
 			for (int i = 0; i < 25; i++)
 			{
 				ship = ObjectPool.Spawn(shipName, new LevelSpawner());
+				if (ship.TryGetComponent(out controllable))
+					controllable.Controller = aiController;
 			}
 		}
 	}

@@ -5,6 +5,8 @@ namespace Phantom
 {
 	public abstract class Controller : ScriptableObject
 	{
+		public const string CreateMenu = "Game/Controller/";
+
 		public void Control(MonoBehaviour monoBehaviour, GameObject gameObject)
 		{
 			if (monoBehaviour == null)
