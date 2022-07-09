@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 5065441348383330979}
   - component: {fileID: -3590059326517004536}
   - component: {fileID: -7756427746711344842}
+  - component: {fileID: 8576276457858296145}
   m_Layer: 7
   m_Name: Ship
   m_TagString: Untagged
@@ -273,8 +274,39 @@ MonoBehaviour:
     value: 0
   effects: []
   wanderDistance:
-    min: 0
+    min: 50
     max: 400
+  idleTime:
+    min: 0
+    max: 15
+  centerOnSelf: 0
+--- !u!114 &8576276457858296145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838161728438992593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6af4f4131c7ec682983cb8e4da2f6af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 0
+  worldSensors:
+  - {fileID: 11400000, guid: 050005bb4d04f93428c985b6909c7269, type: 2}
+  conditions:
+  - key: In Combat
+    comparison: 0
+    value: 0
+  effects: []
+  wanderDistance:
+    min: 250
+    max: 1000
+  idleTime:
+    min: 0
+    max: 5
+  centerOnSelf: 1
 --- !u!1 &1422378177006879728
 GameObject:
   m_ObjectHideFlags: 0

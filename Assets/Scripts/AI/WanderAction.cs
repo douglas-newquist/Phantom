@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Phantom
 {
+	/// <summary>
+	/// Wanders around a specific point on the map
+	/// </summary>
 	public class WanderAction : Action, IAction
 	{
 		IMover mover;
@@ -11,9 +14,53 @@ namespace Phantom
 
 		private Vector2 origin, target;
 
+		/// <summary>
+		/// The point to wander around
+		/// </summary>
+		public Vector2 Origin
+		{
+			get => CenterOnSelf ? transform.position : origin;
+			set
+			{
+				CenterOnSelf = false;
+				origin = value;
+			}
+		}
+
 		[SerializeField]
 		[MinMax(0f, Level.TotalSizeLimit)]
 		private FloatRange wanderDistance;
+
+		/// <summary>
+		/// How far to wander from the origin
+		/// </summary>
+		public FloatRange WanderDistance
+		{
+			get => wanderDistance;
+			set => wanderDistance = value;
+		}
+
+		[SerializeField]
+		[MinMax(0f, 5f * 60f)]
+		private FloatRange idleTime = new FloatRange(0, 15);
+
+		/// <summary>
+		/// Time to wait at the target location
+		/// </summary>
+		public FloatRange IdleTime
+		{
+			get => idleTime;
+			set => idleTime = value;
+		}
+
+		[SerializeField]
+		private bool centerOnSelf = false;
+
+		public bool CenterOnSelf
+		{
+			get => centerOnSelf;
+			set => centerOnSelf = value;
+		}
 
 		private void OnSpawn()
 		{
@@ -32,8 +79,8 @@ namespace Phantom
 		protected override bool PreAction()
 		{
 			Vector2 dir = Random.insideUnitCircle.normalized;
-			float dist = wanderDistance.Random;
-			Vector2 point = origin + dir * dist;
+			float dist = WanderDistance.Random;
+			Vector2 point = Origin + dir * dist;
 			Vector2 delta = point - (Vector2)transform.position;
 
 			var hit = Physics2D.Raycast(transform.position, delta.normalized, delta.magnitude);
@@ -49,7 +96,7 @@ namespace Phantom
 
 		private bool ReachedGoal()
 		{
-			looker.Look(body.velocity.normalized, Reference.Absolute);
+			looker.Look(target - (Vector2)transform.position, Reference.Absolute);
 			return Vector2.Distance(transform.position, target) < Level.TileSize;
 		}
 
@@ -57,6 +104,7 @@ namespace Phantom
 		{
 			mover.MoveTo(target);
 			yield return new WaitUntil(ReachedGoal);
+			yield return new WaitForSeconds(IdleTime.Random);
 			IsRunning = false;
 		}
 
@@ -67,8 +115,8 @@ namespace Phantom
 			var _color = Gizmos.color;
 			Gizmos.color = Color.green;
 
-			Gizmos.DrawWireSphere(origin, wanderDistance.Max);
-			Gizmos.DrawWireSphere(-origin, wanderDistance.Min);
+			Gizmos.DrawWireSphere(Origin, WanderDistance.Max);
+			Gizmos.DrawWireSphere(Origin, WanderDistance.Min);
 
 			Gizmos.color = _color;
 		}

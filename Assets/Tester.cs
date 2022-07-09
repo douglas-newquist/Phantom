@@ -37,9 +37,9 @@ namespace Phantom
 
 			followCameraExtension.SetTarget(ship);
 
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 25; i++)
 			{
-				//ship = ObjectPool.Spawn(shipName, new LevelSpawner());
+				ship = ObjectPool.Spawn(shipName, new LevelSpawner());
 			}
 		}
 	}
