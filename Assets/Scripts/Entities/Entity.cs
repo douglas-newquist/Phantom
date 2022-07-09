@@ -84,8 +84,8 @@ namespace Phantom
 		{
 			if (!InCombat)
 			{
-				OnEnterCombat.Invoke(this);
 				InCombat = true;
+				OnEnterCombat.Invoke(this);
 			}
 
 			LastCombatTime = Time.time;
