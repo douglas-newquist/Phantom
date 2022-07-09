@@ -1,8 +1,10 @@
 namespace Phantom
 {
-	public interface IAction
+	public interface IAction : IReset
 	{
-		int Priority { get; }
+		float Cost { get; }
+
+		bool InRange { get; set; }
 
 		/// <summary>
 		/// Is this action currently being performed
@@ -11,10 +13,7 @@ namespace Phantom
 
 		bool Completed { get; }
 
-		/// <summary>
-		/// Can this action be done right now
-		/// </summary>
-		bool IsPossible { get; }
+		bool PossibleGiven(WorldStates worldStates);
 
 		/// <summary>
 		/// Start doing this action

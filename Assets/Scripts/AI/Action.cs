@@ -7,36 +7,41 @@ namespace Phantom
 	public abstract class Action : MonoBehaviour, IAction
 	{
 		[SerializeField]
-		private int priority;
+		private float cost;
 
-		public virtual int Priority => priority;
+		public float Cost => cost;
 
-		public WorldSensor[] worldSensors;
+		[SerializeField]
+		private List<WorldSensor> worldSensors = new List<WorldSensor>();
 
-		public WorldStateCondition[] conditions;
+		[SerializeField]
+		private List<WorldStateCondition> conditions = new List<WorldStateCondition>();
 
-		public WorldState[] effects;
+		[SerializeField]
+		private List<WorldState> effects = new List<WorldState>();
 
-		public virtual bool IsPossible
+		public virtual bool RequiresInRange => false;
+
+		private bool inRange = false;
+
+		public virtual bool InRange
 		{
-			get
-			{
-
-				return true;
-			}
+			get => inRange || !RequiresInRange;
+			set => inRange = value;
 		}
 
 		protected Coroutine coroutine;
 
-		public virtual bool IsRunning => coroutine != null;
+		public virtual bool IsRunning { get; protected set; }
 
 		public virtual bool Completed => !IsRunning;
 
 		public virtual bool Perform()
 		{
-			if (IsPossible && !IsRunning && PreAction())
+			if (!IsRunning && PreAction())
 			{
 				coroutine = StartCoroutine(DoAction());
+				IsRunning = true;
 				return true;
 			}
 
@@ -50,7 +55,25 @@ namespace Phantom
 		public virtual void StopAction()
 		{
 			if (IsRunning)
+			{
 				StopCoroutine(coroutine);
+				IsRunning = false;
+			}
+		}
+
+		public virtual void Reset()
+		{
+			StopAction();
+			inRange = false;
+		}
+
+		public virtual bool PossibleGiven(WorldStates worldStates)
+		{
+			foreach (var condition in conditions)
+				if (!condition.Satisfied(worldStates))
+					return false;
+
+			return true;
 		}
 	}
 }

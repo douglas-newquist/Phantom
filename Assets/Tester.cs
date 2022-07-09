@@ -21,10 +21,6 @@ namespace Phantom
 
 		public SimpleFollowCameraExtension followCameraExtension;
 
-		public Transform start, end;
-		public VertexPathAgent pathAgent;
-		public Path<Vector2Int> path;
-
 		public Phantom.UI.HealthBars healthBars;
 
 
@@ -34,30 +30,17 @@ namespace Phantom
 			levelDesign = mapGenerator.Create();
 			GameManager.CurrentLevel = levelBuilder.Create(levelDesign).GetComponent<Level>();
 
-			shipDesign = shipGenerator.Create(32, 32);
+			shipDesign = shipGenerator.Create(16, 16);
 			var shipName = shipBuilder.CreateRegister(shipDesign);
 			var ship = ObjectPool.Spawn(shipName, new LevelSpawner());
 			healthBars.SetStatSheet(ship);
 
 			followCameraExtension.SetTarget(ship);
-		}
 
-		private void Update()
-		{
-			var s = new Vector2Int((int)start.position.x, (int)start.position.y);
-			var e = new Vector2Int((int)end.position.x, (int)end.position.y);
-
-			path = pathAgent.FindPath(GameManager.CurrentLevel.Vertices, s, e);
-		}
-
-		private void OnDrawGizmos()
-		{
-			if (path.Status == PathStatus.Found)
-				foreach (var cell in path)
-				{
-					var pos = new Vector3(cell.x, cell.y, 0);
-					Gizmos.DrawWireSphere(pos, 0.5f);
-				}
+			for (int i = 0; i < 10; i++)
+			{
+				//ship = ObjectPool.Spawn(shipName, new LevelSpawner());
+			}
 		}
 	}
 }

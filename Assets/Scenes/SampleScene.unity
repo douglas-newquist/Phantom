@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb8f888a1f41583abb789f33ecfd31d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 1
+  cost: 0
   worldSensors:
   - {fileID: 11400000, guid: 050005bb4d04f93428c985b6909c7269, type: 2}
   conditions:
@@ -360,13 +360,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec5a42aabc47e01e098c858af16317b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 0
+  cost: 0
   worldSensors: []
   conditions:
   - key: Hostile Visible
     comparison: 0
     value: 1
-  effects: []
+  effects:
+  - key: In Combat
+    value: 1
 --- !u!114 &92991666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6af4f4131c7ec682983cb8e4da2f6af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 0
+  cost: 0
   worldSensors:
   - {fileID: 11400000, guid: 050005bb4d04f93428c985b6909c7269, type: 2}
   conditions:
@@ -387,8 +389,6 @@ MonoBehaviour:
     comparison: 0
     value: 0
   effects: []
-  origin: {x: 0, y: 0}
-  target: {x: 0, y: 0}
   wanderDistance:
     min: 0
     max: 400
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875b47d2e00e21947bc03cac07b898e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 10
+  cost: 0
   worldSensors:
   - {fileID: 11400000, guid: 050005bb4d04f93428c985b6909c7269, type: 2}
   conditions:
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6af4f4131c7ec682983cb8e4da2f6af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 0
+  cost: 0
   worldSensors:
   - {fileID: 11400000, guid: 050005bb4d04f93428c985b6909c7269, type: 2}
   conditions:
@@ -447,8 +447,6 @@ MonoBehaviour:
     comparison: 0
     value: 0
   effects: []
-  origin: {x: 0, y: 0}
-  target: {x: 0, y: 0}
   wanderDistance:
     min: 50
     max: 100
