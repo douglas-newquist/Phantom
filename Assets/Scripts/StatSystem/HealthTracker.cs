@@ -10,7 +10,15 @@ namespace Phantom.StatSystem
 	{
 		private StatSheet stats;
 
-		public StatSheet Stats => stats;
+		public StatSheet Stats
+		{
+			get
+			{
+				if (stats == null)
+					stats = GetComponent<StatSheet>();
+				return stats;
+			}
+		}
 
 		[SerializeField]
 		private bool invulnerable = false;
@@ -52,11 +60,6 @@ namespace Phantom.StatSystem
 		/// Triggers after OnTakeFatalDamage if this entity is still dying
 		/// </summary>
 		public UnityEvent<StatSheet> OnDeath;
-
-		private void Start()
-		{
-			stats = GetComponent<StatSheet>();
-		}
 
 		private ResourceStat GetResource(ResourceStatType type)
 		{
