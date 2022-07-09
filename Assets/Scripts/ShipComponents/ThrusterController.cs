@@ -156,7 +156,7 @@ namespace Phantom
 				Velocity = Velocity.normalized * GameManager.SpeedLimit;
 		}
 
-		private void OnDrawGizmos()
+		private void OnDrawGizmosSelected()
 		{
 			if (body != null)
 				collisionAvoidance.DrawGizmos(body);
