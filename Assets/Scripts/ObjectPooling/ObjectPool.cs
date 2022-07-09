@@ -1,11 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Phantom.ObjectPooling
 {
 	public class ObjectPool : MonoSingleton<ObjectPool>
 	{
 		private Dictionary<string, IPool> pools = new Dictionary<string, IPool>();
+
+		[SerializeField]
+		private UnityEvent<GameObject> onSpawn;
+
+		public static UnityEvent<GameObject> OnSpawn => Instance.onSpawn;
+
+		[SerializeField]
+		private UnityEvent<GameObject> onDespawn;
+
+		public static UnityEvent<GameObject> OnDespawn => Instance.onDespawn;
 
 		public static IPool GetPool(string id)
 		{
@@ -106,6 +117,8 @@ namespace Phantom.ObjectPooling
 			if (pool == null) return null;
 
 			var spawn = pool.Spawn();
+			if (spawn == null)
+				return null;
 
 			if (spawners != null)
 			{
@@ -120,6 +133,7 @@ namespace Phantom.ObjectPooling
 			}
 
 			spawn.BroadcastMessage("OnSpawn", SendMessageOptions.DontRequireReceiver);
+			OnSpawn.Invoke(spawn);
 
 			return spawn;
 		}
@@ -140,6 +154,8 @@ namespace Phantom.ObjectPooling
 				foreach (var despawn in onDespawn)
 					if (despawn != null)
 						despawn.Spawn(obj);
+
+			OnDespawn.Invoke(obj);
 
 			if (link == null || link.pool == null)
 				Destroy(obj);
