@@ -45,5 +45,10 @@ namespace Phantom
 			Key = key;
 			BoolValue = value;
 		}
+
+		public override int GetHashCode()
+		{
+			return Key.GetHashCode();
+		}
 	}
 }
