@@ -1,0 +1,119 @@
+using System.Collections.Generic;
+using System.Collections;
+using UnityEngine;
+
+namespace Phantom
+{
+	[DisallowMultipleComponent]
+	public sealed class GoapPlanner : MonoBehaviour
+	{
+		private HashSet<IAction> actions = new HashSet<IAction>();
+
+		private HashSet<WorldSensor> worldSensors = new HashSet<WorldSensor>();
+
+		/// <summary>
+		/// Is the GOAP controller currently executing a plan
+		/// </summary>
+		public bool Executing => coroutine != null;
+
+		public bool HasPlan => plan != null;
+
+		private Coroutine coroutine;
+
+		private Stack<IAction> plan = null;
+
+		public void AddAction(IAction action)
+		{
+			actions.Add(action);
+
+			foreach (var sensor in action.WorldSensors)
+				worldSensors.Add(sensor);
+		}
+
+		public bool RemoveAction(IAction action)
+		{
+			if (actions.Remove(action))
+			{
+				return true;
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Generates a sequence of actions
+		/// </summary>
+		/// <returns>Returns true if a plan was successfully generated</returns>
+		public bool Plan(WorldStates goal)
+		{
+			var states = new WorldStates();
+
+			foreach (var sensor in worldSensors)
+				states.SetState(sensor.GetWorldState(gameObject));
+
+			plan = new Stack<IAction>();
+			foreach (var action in actions)
+				plan.Push(action);
+			return true;
+		}
+
+		/// <summary>
+		/// Starts executing the current plan
+		/// </summary>
+		/// <returns>True if started</returns>
+		public bool Execute()
+		{
+			if (!HasPlan || Executing) return false;
+
+			coroutine = StartCoroutine(DoPlan());
+			return true;
+		}
+
+		/// <summary>
+		/// Stops the execution of the current plan
+		/// </summary>
+		public void Abort()
+		{
+			if (Executing)
+			{
+				StopCoroutine(coroutine);
+				PostPlan();
+			}
+		}
+
+		public void ScanActions()
+		{
+			foreach (var action in GetComponentsInChildren<IAction>())
+				AddAction(action);
+		}
+
+		private IEnumerator DoPlan()
+		{
+			while (plan.TryPop(out IAction action))
+			{
+				if (!action.InRange)
+				{
+					IMover mover = GetComponent<IMover>();
+					mover.MoveTo(action.StartingLocation);
+					yield return new WaitUntil(() => action.InRange);
+				}
+
+				if (!action.Perform())
+				{
+					Abort();
+					break;
+				}
+
+				yield return new WaitUntil(() => action.Completed);
+			}
+
+			PostPlan();
+		}
+
+		private void PostPlan()
+		{
+			coroutine = null;
+			plan = null;
+		}
+	}
+}

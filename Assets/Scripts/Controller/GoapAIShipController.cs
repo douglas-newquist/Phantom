@@ -13,13 +13,26 @@ namespace Phantom
 			IWeaponSystem weaponSystem = gameObject.GetComponent<IWeaponSystem>();
 			IEntity entity = gameObject.GetComponent<IEntity>();
 			IAction[] actions = gameObject.GetComponentsInChildren<IAction>();
+			GoapPlanner planner = gameObject.GetComponent<GoapPlanner>();
+			planner.ScanActions();
 			Debug.Log(actions.Length);
 
 			while (entity.IsAlive)
 			{
-				var action = actions[Random.Range(0, actions.Length)];
-				action.Perform();
-				yield return new WaitUntil(() => action.Completed);
+				var goal = new WorldStates();
+				if (planner.Plan(goal) == false)
+				{
+					yield return new WaitForSeconds(5);
+					continue;
+				}
+
+				if (planner.Execute() == false)
+				{
+					yield return new WaitForSeconds(5);
+					continue;
+				}
+
+				yield return new WaitUntil(() => !planner.Executing);
 			}
 		}
 	}
