@@ -30,6 +30,10 @@ namespace Phantom
 			set => inRange = value;
 		}
 
+		public virtual Vector2 StartingLocation => transform.position;
+
+		public IEnumerable<WorldSensor> WorldSensors => worldSensors;
+
 		protected Coroutine coroutine;
 
 		public virtual bool IsRunning { get; protected set; }
