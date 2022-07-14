@@ -31,14 +31,34 @@ namespace Phantom.Pathfinding
 					float moveCost = agent.GetPathCost(map, cell.pos, neighbor);
 					float tentative = cell.cost + moveCost;
 
+					if (cell.previous != null)
+					{
+						float subPathCost = agent.GetSubPathExtraCost(map, cell.previous.pos, cell.pos, neighbor);
+
+						if (subPathCost < 0)
+							continue;
+
+						tentative += subPathCost;
+					}
+
 					if (!searched.TryGetValue(neighbor, out var neighborNode))
 					{
+						agent.OnBetterPathFound(map,
+							  default(TCell),
+							  cell.pos,
+							  neighbor);
+
 						neighborNode = new Node<TCell>(cell, neighbor, tentative);
 						searched.Add(neighbor, neighborNode);
 						toSearch.Insert(neighborNode);
 					}
-					else if (cell.cost + moveCost < neighborNode.cost)
+					else if (tentative < neighborNode.cost)
 					{
+						agent.OnBetterPathFound(map,
+							  neighborNode.previous.pos,
+							  cell.pos,
+							  neighbor);
+
 						neighborNode.cost = tentative;
 						neighborNode.previous = cell;
 						toSearch.Insert(neighborNode);
