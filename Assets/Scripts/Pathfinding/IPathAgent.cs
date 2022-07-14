@@ -42,6 +42,15 @@ namespace Phantom.Pathfinding
 		/// </summary>
 		/// <param name="path">Resultant path object</param>
 		void OnFinishedPathFinding(Path<TCell> path);
+
+		/// <summary>
+		/// Called when a better sub path is found
+		/// </summary>
+		/// <typeparam name="TMap">Map type the agent understands</typeparam>
+		/// <param name="original">The original source cell</param>
+		/// <param name="current">The new better source cell</param>
+		/// <param name="end">Next cell in the path</param>
+		void OnBetterPathFound(TMap map, TCell original, TCell current, TCell end);
 	}
 
 	/// <summary>
