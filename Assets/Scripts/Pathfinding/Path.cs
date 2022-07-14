@@ -42,13 +42,15 @@ namespace Phantom.Pathfinding
 
 		public PathStatus Status { get; private set; }
 
-		private List<TCell> Cells;
+		private List<TCell> cells;
+
+		public IEnumerable<TCell> Cells => cells;
 
 		private int waypointNumber = 0;
 
 		public bool Finished => Status != PathStatus.Searching;
 
-		public int Length => Cells.Count;
+		public int Length => cells.Count;
 
 		public Path(PathStatus status, List<TCell> path) : this()
 		{
@@ -65,16 +67,16 @@ namespace Phantom.Pathfinding
 		{
 			string s = "Path with status " + Status + " which took " + Duration.TotalSeconds + " seconds";
 
-			if (Cells != null)
-				s += " of length " + Cells.Count;
+			if (cells != null)
+				s += " of length " + cells.Count;
 
 			return s;
 		}
 
 		public TCell this[int i]
 		{
-			get => Cells[i];
-			set => Cells[i] = value;
+			get => cells[i];
+			set => cells[i] = value;
 		}
 
 		public void NextWaypoint()
@@ -90,18 +92,18 @@ namespace Phantom.Pathfinding
 		public void SetPath(List<TCell> path, PathStatus status)
 		{
 			Ended = DateTime.Now;
-			Cells = path;
+			cells = path;
 			Status = status;
 		}
 
 		public IEnumerator<TCell> GetEnumerator()
 		{
-			return ((IEnumerable<TCell>)Cells).GetEnumerator();
+			return ((IEnumerable<TCell>)cells).GetEnumerator();
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
-			return ((IEnumerable)Cells).GetEnumerator();
+			return ((IEnumerable)cells).GetEnumerator();
 		}
 
 		public bool TryGetWaypoint(out TCell cell)
@@ -110,9 +112,9 @@ namespace Phantom.Pathfinding
 			{
 				case PathStatus.Found:
 				case PathStatus.TimedOut:
-					if (waypointNumber < Cells.Count)
+					if (waypointNumber < cells.Count)
 					{
-						cell = Cells[waypointNumber];
+						cell = cells[waypointNumber];
 						return true;
 					}
 					break;
@@ -124,7 +126,7 @@ namespace Phantom.Pathfinding
 
 		public void RemoveAt(int index)
 		{
-			Cells.RemoveAt(index);
+			cells.RemoveAt(index);
 		}
 
 		public void Reset()
@@ -134,7 +136,7 @@ namespace Phantom.Pathfinding
 
 		public void Reverse()
 		{
-			Cells.Reverse();
+			cells.Reverse();
 		}
 
 		public void DrawGizmos(Func<TCell, Vector3> cellToWorld, float radius)
