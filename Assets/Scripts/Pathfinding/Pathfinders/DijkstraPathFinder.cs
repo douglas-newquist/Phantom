@@ -19,21 +19,21 @@ namespace Phantom.Pathfinding
 
 			while (loop++ < maxIterations && toSearch.TryExtract(out var cell))
 			{
-				if (Equals(cell.pos, end))
+				if (Equals(cell.Cell, end))
 				{
 					result.SetPath(BuildPath(cell), PathStatus.Found);
 					agent.OnFinishedPathFinding(result);
 					return;
 				}
 
-				foreach (var neighbor in agent.GetNeighbors(map, cell.pos))
+				foreach (var neighbor in agent.GetNeighbors(map, cell.Cell))
 				{
-					float moveCost = agent.GetPathCost(map, cell.pos, neighbor);
-					float tentative = cell.cost + moveCost;
+					float moveCost = agent.GetPathCost(map, cell.Cell, neighbor);
+					float tentative = cell.Cost + moveCost;
 
-					if (cell.previous != null)
+					if (cell.Previous != null)
 					{
-						float subPathCost = agent.GetSubPathExtraCost(map, cell.previous.pos, cell.pos, neighbor);
+						float subPathCost = agent.GetSubPathExtraCost(map, cell.Previous.Cell, cell.Cell, neighbor);
 
 						if (subPathCost < 0)
 							continue;
@@ -45,26 +45,26 @@ namespace Phantom.Pathfinding
 					{
 						agent.OnBetterPathFound(map,
 							  default(TCell),
-							  cell.pos,
+							  cell.Cell,
 							  neighbor);
 
 						neighborNode = new Node<TCell>(cell, neighbor, tentative);
 						searched.Add(neighbor, neighborNode);
 						toSearch.Insert(neighborNode);
 					}
-					else if (tentative < neighborNode.cost)
+					else if (tentative < neighborNode.Cost)
 					{
 						if (agent.ChecksCompletePath)
 							if (!agent.GetCompletePathPossible(map, BuildPath(neighborNode)))
 								continue;
 
 						agent.OnBetterPathFound(map,
-							  neighborNode.previous.pos,
-							  cell.pos,
+							  neighborNode.Previous.Cell,
+							  cell.Cell,
 							  neighbor);
 
-						neighborNode.cost = tentative;
-						neighborNode.previous = cell;
+						neighborNode.Cost = tentative;
+						neighborNode.Previous = cell;
 						toSearch.Insert(neighborNode);
 					}
 				}

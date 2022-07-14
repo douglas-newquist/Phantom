@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Phantom.Pathfinding
 {
@@ -13,28 +14,55 @@ namespace Phantom.Pathfinding
 			/// <summary>
 			/// Best node to reach this one from
 			/// </summary>
-			public Node<TCell> previous;
+			private Node<TCell> previous;
+
+			/// <summary>
+			/// Best node to reach this one from
+			/// </summary>
+			public Node<TCell> Previous
+			{
+				get => previous;
+				set => previous = value;
+			}
 
 			/// <summary>
 			/// Where this node is in the map
 			/// </summary>
-			public TCell pos;
+			private TCell cell;
+
+			/// <summary>
+			/// Where this node is in the map
+			/// </summary>
+			public TCell Cell
+			{
+				get => cell;
+				set => cell = value;
+			}
 
 			/// <summary>
 			/// Cost of getting to this cell
 			/// </summary>
-			public float cost;
+			private float cost;
+
+			/// <summary>
+			/// Cost of getting to this cell
+			/// </summary>
+			public float Cost
+			{
+				get => cost;
+				set => cost = Mathf.Clamp(value, 0, float.MaxValue);
+			}
 
 			public Node(Node<TCell> previous, TCell cell, float cost)
 			{
-				this.previous = previous;
-				this.pos = cell;
-				this.cost = cost;
+				Previous = previous;
+				Cell = cell;
+				Cost = cost;
 			}
 
 			public int CompareTo(Node<TCell> other)
 			{
-				return cost.CompareTo(other.cost);
+				return Cost.CompareTo(other.Cost);
 			}
 		}
 	}

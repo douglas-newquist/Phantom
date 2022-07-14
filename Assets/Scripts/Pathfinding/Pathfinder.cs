@@ -50,10 +50,10 @@ namespace Phantom.Pathfinding
 		{
 			var cells = new List<TCell>();
 
-			while (end.previous != null)
+			while (end.Previous != null)
 			{
-				cells.Add(end.pos);
-				end = end.previous;
+				cells.Add(end.Cell);
+				end = end.Previous;
 			}
 
 			cells.Reverse();

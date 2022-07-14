@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Phantom.Pathfinding
 {
@@ -6,9 +7,30 @@ namespace Phantom.Pathfinding
 	{
 		protected class StarNode<T> : Node<T>, IComparable<StarNode<T>>
 		{
-			public float h;
+			/// <summary>
+			/// The cost of getting to this cell
+			/// </summary>
+			public float GScore
+			{
+				get => Cost;
+				set => Cost = value;
+			}
 
-			public float FScore => cost + h;
+			private float hScore;
+
+			/// <summary>
+			/// Estimated remaining cost to reach the goal
+			/// </summary>
+			public float HScore
+			{
+				get => hScore;
+				set => hScore = Mathf.Clamp(value, 0, float.MaxValue);
+			}
+
+			/// <summary>
+			/// Estimated total cost to reach the goal
+			/// </summary>
+			public float FScore => GScore + HScore;
 
 			/// <summary>
 			///
@@ -18,14 +40,14 @@ namespace Phantom.Pathfinding
 			/// <param name="hScore">Estimated remaining cost to reach goal</param>
 			public StarNode(StarNode<T> previous, T cell, float gScore, float hScore) : base(previous, cell, gScore)
 			{
-				this.h = hScore;
+				HScore = hScore;
 			}
 
 			public override string ToString()
 			{
-				var s = pos + "\tG:" + cost + "\tH:" + h + "\tF:" + FScore;
-				if (previous != null)
-					s += " from " + previous.pos;
+				var s = Cell + "\tG:" + Cost + "\tH:" + HScore + "\tF:" + FScore;
+				if (Previous != null)
+					s += " from " + Previous.Cell;
 				return s;
 			}
 
