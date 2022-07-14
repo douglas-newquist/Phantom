@@ -49,6 +49,9 @@ namespace Phantom.Pathfinding
 		public virtual void OnFinishedPathFinding(Path<TCell> path) { }
 
 		public virtual float GetSubPathExtraCost(TMap map, TCell a, TCell b, TCell c) => 0;
+
+		public virtual void OnBetterPathFound(TMap map, TCell original, TCell current, TCell end)
+		{ }
 	}
 
 	public abstract class PathAgent<TMap> : PathAgent<TMap, Vector2Int> { }
