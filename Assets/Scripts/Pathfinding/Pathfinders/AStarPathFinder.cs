@@ -99,9 +99,19 @@ namespace Phantom.Pathfinding
 
 						searched.Add(neighbor, neighborNode);
 						toSearch.Insert(neighborNode);
+
+						agent.OnBetterPathFound(map,
+							  default(TCell),
+							  cell.pos,
+							  neighbor);
 					}
 					else if (tentative < neighborNode.cost)
 					{
+						agent.OnBetterPathFound(map,
+							  neighborNode.previous.pos,
+							  cell.pos,
+							  neighbor);
+
 						neighborNode.cost = tentative;
 						neighborNode.previous = cell;
 						if (reevaluateVisitedOnBetterPath)
