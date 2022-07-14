@@ -81,7 +81,14 @@ namespace Phantom.Pathfinding
 					float tentative = cell.cost + moveCost;
 
 					if (cell.previous != null)
-						tentative += agent.GetSubPathExtraCost(map, cell.previous.pos, cell.pos, neighbor);
+					{
+						float subPathCost = agent.GetSubPathExtraCost(map, cell.previous.pos, cell.pos, neighbor);
+
+						if (subPathCost < 0)
+							continue;
+
+						tentative += subPathCost;
+					}
 
 					if (!searched.TryGetValue(neighbor, out var neighborNode))
 					{
