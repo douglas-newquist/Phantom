@@ -54,6 +54,10 @@ namespace Phantom.Pathfinding
 					}
 					else if (tentative < neighborNode.cost)
 					{
+						if (agent.ChecksCompletePath)
+							if (!agent.GetCompletePathPossible(map, BuildPath(neighborNode)))
+								continue;
+
 						agent.OnBetterPathFound(map,
 							  neighborNode.previous.pos,
 							  cell.pos,

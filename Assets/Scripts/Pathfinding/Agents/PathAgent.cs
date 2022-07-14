@@ -9,6 +9,8 @@ namespace Phantom.Pathfinding
 
 		public Pathfinder pathfinder;
 
+		public bool ChecksCompletePath => false;
+
 		/// <summary>
 		/// Gets the cost of moving through a specific cell
 		/// </summary>
@@ -52,6 +54,11 @@ namespace Phantom.Pathfinding
 
 		public virtual void OnBetterPathFound(TMap map, TCell original, TCell current, TCell end)
 		{ }
+
+		public virtual bool GetCompletePathPossible(TMap map, IEnumerable<TCell> path)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 
 	public abstract class PathAgent<TMap> : PathAgent<TMap, Vector2Int> { }

@@ -38,6 +38,19 @@ namespace Phantom.Pathfinding
 		float GetSubPathExtraCost(TMap map, TCell a, TCell b, TCell c);
 
 		/// <summary>
+		/// Does this agent have to check the entire path
+		/// </summary>
+		bool ChecksCompletePath { get; }
+
+		/// <summary>
+		/// Checks if the entire path is possible
+		/// </summary>
+		/// <typeparam name="TMap">Map type the agent understands</typeparam>
+		/// <param name="path"></param>
+		/// <returns></returns>
+		bool GetCompletePathPossible(TMap map, IEnumerable<TCell> path);
+
+		/// <summary>
 		/// Called when the pathfinder finishes
 		/// </summary>
 		/// <param name="path">Resultant path object</param>
