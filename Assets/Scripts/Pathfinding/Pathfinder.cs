@@ -5,46 +5,12 @@ using UnityEngine;
 namespace Phantom.Pathfinding
 {
 	[System.Serializable]
-	public abstract class Pathfinder : ScriptableObject
+	public abstract partial class Pathfinder : ScriptableObject
 	{
 		public const string CreateMenu = "Game/Path Finding/Pathfinder/";
 
 		[Range(1, 10000)]
 		public int maxIterations = 2000;
-
-		/// <summary>
-		/// Stores information about nodes that have been searched
-		/// </summary>
-		/// <typeparam name="TCell">Coordinate type used in the map</typeparam>
-		protected class Node<TCell> : IComparable<Node<TCell>>
-		{
-			/// <summary>
-			/// Best node to reach this one from
-			/// </summary>
-			public Node<TCell> previous;
-
-			/// <summary>
-			/// Where this node is in the map
-			/// </summary>
-			public TCell pos;
-
-			/// <summary>
-			/// Cost of getting to this cell
-			/// </summary>
-			public float cost;
-
-			public Node(Node<TCell> previous, TCell cell, float cost)
-			{
-				this.previous = previous;
-				this.pos = cell;
-				this.cost = cost;
-			}
-
-			public int CompareTo(Node<TCell> other)
-			{
-				return cost.CompareTo(other.cost);
-			}
-		}
 
 		/// <summary>
 		/// Finds a path between two points on the given map
