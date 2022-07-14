@@ -132,6 +132,11 @@ namespace Phantom.Pathfinding
 			waypointNumber = 0;
 		}
 
+		public void Reverse()
+		{
+			Cells.Reverse();
+		}
+
 		public void DrawGizmos(Func<TCell, Vector3> cellToWorld, float radius)
 		{
 			var _color = Gizmos.color;
