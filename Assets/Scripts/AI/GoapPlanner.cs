@@ -1,5 +1,7 @@
-using System.Collections.Generic;
+using Phantom.Pathfinding;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Phantom
@@ -21,6 +23,9 @@ namespace Phantom
 		private Coroutine coroutine;
 
 		private Stack<IAction> plan = null;
+
+		[SerializeField]
+		private Pathfinder pathfinder;
 
 		public void AddAction(IAction action)
 		{
@@ -46,10 +51,12 @@ namespace Phantom
 		/// <returns>Returns true if a plan was successfully generated</returns>
 		public bool Plan(WorldStates goal)
 		{
-			var states = new WorldStates();
+			var worldStates = new WorldStates();
 
 			foreach (var sensor in worldSensors)
-				states.SetState(sensor.GetWorldState(gameObject));
+				worldStates.SetState(sensor.GetWorldState(gameObject));
+
+			var agent = new GoapPathAgent(worldStates);
 
 			plan = new Stack<IAction>();
 			foreach (var action in actions)
