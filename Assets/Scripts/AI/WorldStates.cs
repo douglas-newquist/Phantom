@@ -7,6 +7,14 @@ namespace Phantom
 	{
 		private Dictionary<string, WorldState> states = new Dictionary<string, WorldState>();
 
+		public WorldStates() { }
+
+		public WorldStates(WorldStates worldStates)
+		{
+			foreach (var state in worldStates.states)
+				SetState(state.Value);
+		}
+
 		public bool HasState(string key)
 		{
 			return states.ContainsKey(key);
@@ -25,6 +33,12 @@ namespace Phantom
 		public void SetState(WorldState state)
 		{
 			states[state.Key] = state;
+		}
+
+		public void SetStates(IEnumerable<WorldState> states)
+		{
+			foreach (var state in states)
+				SetState(state);
 		}
 	}
 }
