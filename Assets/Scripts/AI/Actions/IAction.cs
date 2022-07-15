@@ -26,6 +26,11 @@ namespace Phantom
 		/// </summary>
 		bool Completed { get; }
 
+		/// <summary>
+		/// Gets the effects of performing this action
+		/// </summary>
+		IEnumerable<WorldState> Effects { get; }
+
 		bool PossibleGiven(WorldStates worldStates);
 
 		/// <summary>

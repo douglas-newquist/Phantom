@@ -20,6 +20,8 @@ namespace Phantom
 		[SerializeField]
 		private List<WorldState> effects = new List<WorldState>();
 
+		public IEnumerable<WorldState> Effects => effects;
+
 		public virtual bool RequiresInRange => false;
 
 		private bool inRange = false;
