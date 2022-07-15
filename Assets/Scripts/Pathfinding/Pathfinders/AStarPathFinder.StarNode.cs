@@ -16,7 +16,7 @@ namespace Phantom.Pathfinding
 				set => Cost = value;
 			}
 
-			private float hScore;
+			private float hScore = 0;
 
 			/// <summary>
 			/// Estimated remaining cost to reach the goal
@@ -32,16 +32,7 @@ namespace Phantom.Pathfinding
 			/// </summary>
 			public float FScore => GScore + HScore;
 
-			/// <summary>
-			///
-			/// </summary>
-			/// <param name="cell"></param>
-			/// <param name="gScore">Actual cost to get here</param>
-			/// <param name="hScore">Estimated remaining cost to reach goal</param>
-			public StarNode(StarNode<T> previous, T cell, float gScore, float hScore) : base(previous, cell, gScore)
-			{
-				HScore = hScore;
-			}
+			public StarNode(T cell) : base(cell) { }
 
 			public override string ToString()
 			{

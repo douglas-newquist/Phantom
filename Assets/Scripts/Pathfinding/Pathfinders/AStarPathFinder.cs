@@ -11,19 +11,31 @@ namespace Phantom.Pathfinding
 
 		public bool reevaluateVisitedOnBetterPath = true;
 
-		protected override void FindPath<TMap, TCell>(IPathAgent<TMap, TCell> agent, TMap map, TCell start, TCell end, Path<TCell> result)
+		public override void FindPath<TMap, TCell>(PathRequest<TMap, TCell> request)
 		{
+			if (request == null) throw new System.ArgumentNullException("request");
+
 			int loop = 0;
+
+			var map = request.Map;
+			var agent = request.Agent;
 
 			var searched = new Dictionary<TCell, StarNode<TCell>>();
 			var toSearch = new MinHeap<StarNode<TCell>>();
 
-			var startNode = new StarNode<TCell>(null, start, 0, agent.GetPathCost(map, start, end));
-			searched.Add(start, startNode);
-			toSearch.Insert(startNode);
+			foreach (var start in request.StartingCells)
+			{
+				var startNode = new StarNode<TCell>(start)
+				{
+					HScore = request.GetCheapestGoalCost(start)
+				};
+
+				searched.Add(start, startNode);
+				toSearch.Insert(startNode);
+			}
 
 			PathStatus status = PathStatus.NoPathPossible;
-			var bestNode = startNode;
+			StarNode<TCell> bestNode = null;
 
 			while (toSearch.TryExtract(out var cell))
 			{
@@ -33,14 +45,14 @@ namespace Phantom.Pathfinding
 					break;
 				}
 
-				if (Equals(cell.Cell, end))
+				if (request.GoalReached(map, cell.Cell))
 				{
 					status = PathStatus.Found;
 					bestNode = cell;
 					break;
 				}
 
-				if (cell.HScore < bestNode.HScore)
+				if (bestNode == null || cell.HScore < bestNode.HScore)
 					bestNode = cell;
 
 				foreach (var neighbor in agent.GetNeighbors(map, cell.Cell))
@@ -60,10 +72,12 @@ namespace Phantom.Pathfinding
 
 					if (!searched.TryGetValue(neighbor, out var neighborNode))
 					{
-						neighborNode = new StarNode<TCell>(cell,
-										 neighbor,
-										 tentative,
-										 agent.GetPathCost(map, neighbor, end));
+						neighborNode = new StarNode<TCell>(neighbor)
+						{
+							Previous = cell,
+							GScore = tentative,
+							HScore = request.GetCheapestGoalCost(neighbor)
+						};
 
 						searched.Add(neighbor, neighborNode);
 						toSearch.Insert(neighborNode);
@@ -91,12 +105,13 @@ namespace Phantom.Pathfinding
 					}
 				}
 			}
-			if (onlyReturnCompletePath && status != PathStatus.Found)
-				result.SetPath(null, status);
-			else
-				result.SetPath(BuildPath(bestNode), status);
 
-			agent.OnFinishedPathFinding(result);
+			if (onlyReturnCompletePath && status != PathStatus.Found)
+				request.Path.SetPath(null, status);
+			else
+				request.Path.SetPath(BuildPath(bestNode), status);
+
+			agent.OnFinishedPathFinding(request.Path);
 		}
 	}
 }

@@ -28,25 +28,21 @@ namespace Phantom.Pathfinding
 			return PathThroughCost(map, pos) >= 0;
 		}
 
+		public PathRequest<TMap, TCell> FindPath(PathRequest<TMap, TCell> request)
+		{
+			pathfinder.FindPath(request);
+			return request;
+		}
+
+		public PathRequest<TMap, TCell> FindPathAsync(PathRequest<TMap, TCell> request)
+		{
+			pathfinder.FindPathAsync(request);
+			return request;
+		}
+
 		public abstract IEnumerable<TCell> GetNeighbors(TMap map, TCell pos);
 
 		public abstract float GetPathCost(TMap map, TCell start, TCell end);
-
-		public Path<TCell> FindPath(TMap map, TCell start, TCell end)
-		{
-			if (pathfinder == null)
-				throw new System.NullReferenceException("Pathfinder not assigned in PathAgent");
-
-			return pathfinder.FindPath(this, map, start, end);
-		}
-
-		public Path<TCell> FindPathAsync(TMap map, TCell start, TCell end)
-		{
-			if (pathfinder == null)
-				throw new System.NullReferenceException("Pathfinder not assigned in PathAgent");
-
-			return pathfinder.FindPathAsync(this, map, start, end);
-		}
 
 		public virtual void OnFinishedPathFinding(Path<TCell> path) { }
 

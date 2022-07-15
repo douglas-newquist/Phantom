@@ -6,23 +6,31 @@ namespace Phantom.Pathfinding
 	[CreateAssetMenu(menuName = Pathfinder.CreateMenu + "Dijkstra")]
 	public class DijkstraPathFinder : Pathfinder
 	{
-		protected override void FindPath<TMap, TCell>(IPathAgent<TMap, TCell> agent, TMap map, TCell start, TCell end, Path<TCell> result)
+		public override void FindPath<TMap, TCell>(PathRequest<TMap, TCell> request)
 		{
+			if (request == null) throw new System.ArgumentNullException("request");
+
 			int loop = 0;
+
+			var map = request.Map;
+			var agent = request.Agent;
 
 			var searched = new Dictionary<TCell, Node<TCell>>();
 			var toSearch = new MinHeap<Node<TCell>>();
 
-			var startNode = new Node<TCell>(null, start, 0);
-			searched.Add(start, startNode);
-			toSearch.Insert(startNode);
+			foreach (var start in request.StartingCells)
+			{
+				var startNode = new Node<TCell>(start);
+				searched.Add(start, startNode);
+				toSearch.Insert(startNode);
+			}
 
 			while (loop++ < maxIterations && toSearch.TryExtract(out var cell))
 			{
-				if (Equals(cell.Cell, end))
+				if (request.GoalReached(map, cell.Cell))
 				{
-					result.SetPath(BuildPath(cell), PathStatus.Found);
-					agent.OnFinishedPathFinding(result);
+					request.Path.SetPath(BuildPath(cell), PathStatus.Found);
+					agent.OnFinishedPathFinding(request.Path);
 					return;
 				}
 
@@ -48,7 +56,12 @@ namespace Phantom.Pathfinding
 							  cell.Cell,
 							  neighbor);
 
-						neighborNode = new Node<TCell>(cell, neighbor, tentative);
+						neighborNode = new Node<TCell>(neighbor)
+						{
+							Previous = cell,
+							Cost = tentative
+						};
+
 						searched.Add(neighbor, neighborNode);
 						toSearch.Insert(neighborNode);
 					}
@@ -71,11 +84,11 @@ namespace Phantom.Pathfinding
 			}
 
 			if (loop >= maxIterations)
-				result.SetPath(null, PathStatus.TimedOut);
+				request.Path.SetPath(null, PathStatus.TimedOut);
 			else
-				result.SetPath(null, PathStatus.NoPathPossible);
+				request.Path.SetPath(null, PathStatus.NoPathPossible);
 
-			agent.OnFinishedPathFinding(result);
+			agent.OnFinishedPathFinding(request.Path);
 		}
 	}
 }

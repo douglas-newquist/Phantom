@@ -129,13 +129,18 @@ namespace Phantom
 
 		private void ConnectRooms(VertexTileMap design, Room room1, Room room2)
 		{
-			var start = room1.FindClosestCellToRoom(room2);
-			var end = room2.FindClosestCellToRoom(room1);
+			var request = new PathRequest<IGrid2D<int>, Vector2Int>()
+			{
+				Map = design.Vertices,
+				Agent = pathAgent,
+				StartingCell = room1.FindClosestCellToRoom(room2),
+				GoalCell = room2.FindClosestCellToRoom(room1)
+			};
 
-			var path = pathAgent.FindPath(design.Vertices, start, end);
+			var path = pathAgent.FindPath(request);
 
-			if (path.Status == PathStatus.Found)
-				PlacePath(design, path);
+			if (request.Path.Status == PathStatus.Found)
+				PlacePath(design, request.Path);
 		}
 
 		private void PlacePath(VertexTileMap design, Path<Vector2Int> path)

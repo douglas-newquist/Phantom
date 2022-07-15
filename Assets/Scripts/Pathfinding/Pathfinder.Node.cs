@@ -14,7 +14,7 @@ namespace Phantom.Pathfinding
 			/// <summary>
 			/// Best node to reach this one from
 			/// </summary>
-			private Node<TCell> previous;
+			private Node<TCell> previous = null;
 
 			/// <summary>
 			/// Best node to reach this one from
@@ -28,7 +28,7 @@ namespace Phantom.Pathfinding
 			/// <summary>
 			/// Where this node is in the map
 			/// </summary>
-			private TCell cell;
+			private TCell cell = default(TCell);
 
 			/// <summary>
 			/// Where this node is in the map
@@ -42,7 +42,7 @@ namespace Phantom.Pathfinding
 			/// <summary>
 			/// Cost of getting to this cell
 			/// </summary>
-			private float cost;
+			private float cost = 0;
 
 			/// <summary>
 			/// Cost of getting to this cell
@@ -53,11 +53,9 @@ namespace Phantom.Pathfinding
 				set => cost = Mathf.Clamp(value, 0, float.MaxValue);
 			}
 
-			public Node(Node<TCell> previous, TCell cell, float cost)
+			public Node(TCell cell)
 			{
-				Previous = previous;
-				Cell = cell;
-				Cost = cost;
+				this.cell = cell;
 			}
 
 			public int CompareTo(Node<TCell> other)

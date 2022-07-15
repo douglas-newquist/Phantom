@@ -90,7 +90,16 @@ namespace Phantom
 
 			if (!followingPath || lastPathTarget != target)
 			{
-				path = pathAgent.FindPath(Vertices, WorldToMapCell(current), WorldToMapCell(target));
+				var request = new PathRequest<IGrid2D<int>, Vector2Int>()
+				{
+					Map = Vertices,
+					Agent = pathAgent,
+					StartingCell = WorldToMapCell(current),
+					GoalCell = WorldToMapCell(target)
+				};
+
+				pathAgent.FindPath(request);
+				path = request.Path;
 				lastPathTarget = target;
 				followingPath = true;
 			}
