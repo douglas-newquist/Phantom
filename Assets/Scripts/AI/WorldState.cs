@@ -46,6 +46,11 @@ namespace Phantom
 			BoolValue = value;
 		}
 
+		public override string ToString()
+		{
+			return "State '" + Key + "' with value " + Value;
+		}
+
 		public override int GetHashCode()
 		{
 			return Key.GetHashCode();

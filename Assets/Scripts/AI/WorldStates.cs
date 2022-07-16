@@ -15,6 +15,16 @@ namespace Phantom
 				SetState(state.Value);
 		}
 
+		public override string ToString()
+		{
+			string s = "World states with " + states.Count + " states";
+
+			foreach (var state in states.Values)
+				s += "\n" + state;
+
+			return s;
+		}
+
 		public bool HasState(string key)
 		{
 			return states.ContainsKey(key);
