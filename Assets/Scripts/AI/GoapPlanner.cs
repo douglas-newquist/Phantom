@@ -27,6 +27,8 @@ namespace Phantom
 		[SerializeField]
 		private Pathfinder pathfinder;
 
+		private GoapPathAgent agent;
+
 		public void AddAction(IAction action)
 		{
 			actions.Add(action);
@@ -49,18 +51,29 @@ namespace Phantom
 		/// Generates a sequence of actions
 		/// </summary>
 		/// <returns>Returns true if a plan was successfully generated</returns>
-		public bool Plan(WorldStates goal)
+		public bool Plan(params WorldStateCondition[] goals)
 		{
 			var worldStates = new WorldStates();
 
 			foreach (var sensor in worldSensors)
 				worldStates.SetState(sensor.GetWorldState(gameObject));
 
-			var agent = new GoapPathAgent(worldStates);
+			agent = new GoapPathAgent(worldStates);
+			var request = new PathRequest<IEnumerable<IAction>, IAction>()
+			{
+				Map = actions,
+				Agent = agent,
+				StartingCells = actions.Where(a => a.PossibleGiven(worldStates)),
+				GoalReached = (map, action) => agent.GoalReached(action, goals)
+			};
+
+			pathfinder.FindPath(request);
+			Debug.Log(request.Path.Length);
 
 			plan = new Stack<IAction>();
-			foreach (var action in actions)
+			foreach (var action in request.Path)
 				plan.Push(action);
+
 			return true;
 		}
 

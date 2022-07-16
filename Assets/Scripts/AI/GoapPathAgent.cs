@@ -27,6 +27,25 @@ namespace Phantom
 			return worldStates;
 		}
 
+		/// <summary>
+		/// Checks if after performing the given action the agent will have completed all goals
+		/// </summary>
+		/// <param name="action">Action to perform</param>
+		/// <param name="goals"></param>
+		/// <returns></returns>
+		public bool GoalReached(IAction action, WorldStateCondition[] goals)
+		{
+			var states = new WorldStates(GetWorldStates(action));
+			states.SetStates(action.Effects);
+			Debug.Log(states);
+
+			foreach (var goal in goals)
+				if (!goal.Satisfied(states))
+					return false;
+
+			return true;
+		}
+
 		public IEnumerable<IAction> GetNeighbors(IEnumerable<IAction> map, IAction pos)
 		{
 			var states = GetWorldStates(pos);
@@ -50,7 +69,10 @@ namespace Phantom
 			cellWorldStates[current] = states;
 		}
 
-		public void OnFinishedPathFinding(Path<IAction> path) { }
+		public void OnFinishedPathFinding(Path<IAction> path)
+		{
+			path.Reverse();
+		}
 
 		public bool GetCompletePathPossible(IEnumerable<IAction> map, IEnumerable<IAction> path)
 		{

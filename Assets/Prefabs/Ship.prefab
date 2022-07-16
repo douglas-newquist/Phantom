@@ -297,14 +297,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6af4f4131c7ec682983cb8e4da2f6af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0
+  cost: 10
   worldSensors:
   - {fileID: 11400000, guid: 050005bb4d04f93428c985b6909c7269, type: 2}
   conditions:
   - key: In Combat
     comparison: 0
     value: 0
-  effects: []
+  effects:
+  - key: Patrol
+    value: 1
   wanderDistance:
     min: 50
     max: 400
@@ -324,14 +326,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6af4f4131c7ec682983cb8e4da2f6af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0
+  cost: 10
   worldSensors:
   - {fileID: 11400000, guid: 050005bb4d04f93428c985b6909c7269, type: 2}
-  conditions:
-  - key: In Combat
-    comparison: 0
-    value: 0
-  effects: []
+  conditions: []
+  effects:
+  - key: Patrol
+    value: 1
   wanderDistance:
     min: 250
     max: 1000

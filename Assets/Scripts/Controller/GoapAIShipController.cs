@@ -20,7 +20,7 @@ namespace Phantom
 			while (entity.IsAlive)
 			{
 				var goal = new WorldStates();
-				if (planner.Plan(goal) == false)
+				if (planner.Plan(new WorldStateCondition("Patrol", WorldStateCondition.Relation.AtLeast, 1)) == false)
 				{
 					yield return new WaitForSeconds(5);
 					continue;
