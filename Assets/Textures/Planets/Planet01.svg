@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="512"
@@ -14,7 +13,7 @@
    viewBox="0 0 135.46667 135.46667"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
    sodipodi:docname="Planet01.svg"
    inkscape:export-filename="Planet01.png"
    inkscape:export-xdpi="96"
@@ -23,20 +22,20 @@
      id="defs2" />
   <sodipodi:namedview
      id="base"
-     pagecolor="#ffffff"
+     pagecolor="#00070f"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.3925781"
-     inkscape:cx="256"
-     inkscape:cy="256"
+     inkscape:zoom="0.46163557"
+     inkscape:cx="652.72029"
+     inkscape:cy="1176.6436"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
-     showgrid="false"
+     showgrid="true"
      units="px"
      inkscape:window-width="2512"
-     inkscape:window-height="1411"
+     inkscape:window-height="1410"
      inkscape:window-x="2608"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -51,7 +50,18 @@
      inkscape:snap-midpoints="true"
      inkscape:snap-center="true"
      inkscape:snap-object-midpoints="true"
-     inkscape:snap-page="true" />
+     inkscape:snap-page="true"
+     inkscape:document-rotation="0"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid922"
+       dotted="false"
+       empspacing="32"
+       visible="true"
+       enabled="false" />
+  </sodipodi:namedview>
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -60,7 +70,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -70,16 +80,61 @@
      id="layer1"
      transform="translate(0,-161.53333)">
     <circle
-       r="60.324139"
-       style="opacity:1;fill:#6c6753;fill-opacity:1;stroke:none;stroke-width:17.0411644;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#a5a095;stroke-width:16.9333;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.8;paint-order:stroke markers fill"
+       id="circle1138"
+       cy="229.26666"
+       cx="67.733337"
+       r="128.45737" />
+    <circle
+       style="opacity:1;fill:#12a1e8;fill-opacity:1;stroke:none;stroke-width:8.46666687;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.20000002;paint-order:stroke markers fill"
        id="circle820"
-       cx="67.73333"
-       cy="229.26666" />
+       cx="67.733337"
+       cy="229.26666"
+       r="59.266666" />
     <circle
        cy="229.26666"
-       cx="67.73333"
+       cx="67.733337"
        id="circle819"
-       style="opacity:0.118;fill:#87cdde;fill-opacity:1;stroke:none;stroke-width:19.13421249;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none"
+       style="opacity:0.4;fill:#84c1ed;fill-opacity:1;stroke:none;stroke-width:19.1342;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none"
        r="67.733337" />
+    <ellipse
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#f3daac;stroke-width:16.9333;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.8;paint-order:stroke markers fill"
+       id="path1108"
+       cy="506.00385"
+       cx="205.11423"
+       rx="88.82267"
+       ry="88.822655" />
+    <circle
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#847e70;stroke-width:16.9333;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.80000001;paint-order:stroke markers fill"
+       id="ellipse1110"
+       cy="229.26666"
+       cx="67.733337"
+       r="108.73329" />
+    <image
+       sodipodi:absref="/home/deathsnakeprime/Projects/Phantom/Assets/Textures/ship-01.png"
+       xlink:href="../ship-01.png"
+       width="16.933334"
+       height="16.933334"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeQuality"
+       id="image1134"
+       x="209.66492"
+       y="249.73126" />
+    <circle
+       style="opacity:1;fill:#b78565;fill-opacity:1;stroke:none;stroke-width:8.46667;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.44816;paint-order:stroke markers fill"
+       id="path1104"
+       cx="-49.466606"
+       cy="112.06672"
+       r="16.933334" />
+    <image
+       sodipodi:absref="/home/deathsnakeprime/Projects/Phantom/Assets/Textures/Stars/Star01.png"
+       xlink:href="../Stars/Star01.png"
+       width="270.93335"
+       height="270.93335"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeQuality"
+       id="image1150"
+       x="377.3692"
+       y="521.21729" />
   </g>
 </svg>
